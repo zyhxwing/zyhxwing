@@ -1,0 +1,1268 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="i, xwing">
+    <meta name="description" content="xwing的个人网站">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>i | xwing</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+
+   <style>
+    body{
+       background-image: url(/medias/featureimages/0.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">xwing</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">xwing</div>
+        <div class="logo-desc">
+            
+            xwing的个人网站
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">i</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/xwing/">
+                                <span class="chip bg-color">xwing</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/xwing/" class="post-category">
+                                xwing
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-09-05
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="xwing"><a href="#xwing" class="headerlink" title="xwing"></a>xwing</h1><h2 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h2><p>个人信息：面试官您好，我叫张宇涵，目前就读于南京邮电大学的物联网学院电子信息，目前研三。很高兴能参加今天的面试，我应聘的岗位是前端开发工程师。</p>
+<p>我在校期间参加一些软件开发的比赛，比如中国研究生电子竞赛与中国研究生智慧城市大赛，在比赛中我担任了页面前后端开发的职责，都获得了比较好的名次。</p>
+<p>同时在校期间也有过一些项目经历，我在项目中大部分负责的是前后端开发，部分是前端开发。所以 我能够熟练使用js css html 对vue开发框架比较熟悉，了解es6新特性 也对java mysql有一定的了解。我最近做过的一个项目是微网格管理系统 我在其中负责了前期需求确认和页面原型图的绘制，以及前端功能模块的开发，包括地址与建筑管理、人口管理、车辆管理等模块，同时项目后期还负责了整体统筹的工作，以上是我的自我介绍。</p>
+<h2 id="英语自我介绍"><a href="#英语自我介绍" class="headerlink" title="英语自我介绍"></a>英语自我介绍</h2><p>My name is ZhangYuHan. And i was born in Jiangsu Nantong.My intended work city is Shanghai.  And i got my bachel degree when i graduated from my college, as 2020. i will get my master degree in 2023.</p>
+<p>During the past few years, i ‘ve spent most of my time on study, and i have passed cet6, and i have acquired basic knowledge of my major both in theory and in practice during my college. Otherwise, I also participated in some software development projects. In a recent project, I was mainly responsible for front-end development and writing high-quality code.<br>i have got a lot of interest . such as swimming,running and basketball. For me ,my biggest advantage is cooperating with other. and i think i am a good team player and i am a person  of great honesty to others .Also i am able to work under great pressure . i hope you can give me the chance.</p>
+<h2 id="实习经历"><a href="#实习经历" class="headerlink" title="实习经历"></a>实习经历</h2><p>参与 csb 运营监控平台前端工程的代码优化；根据团队规范使用 Vue.js 完成前端业务功能开发，包括 eop能力调用实时展示、接口服务情况、平台健康度展示等功能，编写高质量，易读易维护的代码；参与能力开放平台接口注册与配置工作。</p>
+<h2 id="项目经历："><a href="#项目经历：" class="headerlink" title="项目经历："></a>项目经历：</h2><ol>
+<li>微网格管理系统项目内容：兼容三维、二维等多种数据格式的社区网格化管理平台。支持动态处理事件，把“人、地、物、事、组织”等全部纳入网格管理，对每一网格实施精细化、主动化、可视化。</li>
+</ol>
+<p>项目技术：SpringBoot、java、Vue2.0、Ant DesignVue</p>
+<p>负责模块：利用axure设计单位管理等界面效果图，参与实有人口管理、地址与房屋管理、车辆管理、行政区划管理、单位管理（学校管理、党政机关管理、医院管理）、工单管理的前端开发。</p>
+<p>个人收获， 我主要负责的内容是前端开发，项目开发的经历首先增长了我前端的开发知识，比如supermap 地图功能的实现、print打印功能、文件下载功能。同时时间的紧迫也培养了我良好的时间意识，保证了在工期压力之下依旧能够稳定地产出高质量的代码。最后我也是了解到 在项目开发的时候切记个人主义，不要你想什么就是什么，  不要假想用户会了解软件设计的详细过程，也不要想当然的认为用户会耐心的看用户帮助文档，一切从用户的角度出发思考问题</p>
+<ul>
+<li><p>axure图绘制（主要做交互，开发的参考，  页面、控件、跳转、动态面板，条件判断，给页面、面板取名字。页面里面可以放各种控件，点击控件可以实现页面之间的跳转。动态面板就是一个局部的小页面，也叫面板，里面的内容分为a，b，c，d。。。。各种状态，比如你点击一下某个按钮，这个小页面就从a状态 切换到b状态，这就是“动态”的意思。条件判断就是，比如点击登陆按钮，要判断账号输入框里是否有文字，没有的话就要显示一条提示，提示放在一个动态面板中，默认为不）2。supermap、leaflat地图功能实现（页面引入、初始化地图、地图上绘制点、线、多边形、弹框、绘制省市区的边界与高亮区域、绘制热力图和风力图）<a target="_blank" rel="noopener" href="https://blog.csdn.net/summer_du/article/details/1143634733%E3%80%82">https://blog.csdn.net/summer_du/article/details/1143634733。</a></p>
+</li>
+<li><p>print打印功能实现（1.声明打印区域：可通过设置class 类名或 id 指定打印区域，但由于vue项目涉及到打包部署，推荐使用ref获取DOM节点，如果使用id或class获取，打包部署后打印内容可能显示空白。2.调用打印方法。3.声明不打印区域（ 声明”no-print”类名 ， 在print方法中通过”noPrint”属性指定不打印区域（通过class类名指定））4. 通过css设置page-break-after来解决数据切割问题， page-break-after：always 属性用于设置在指定元素后面插入分页符。5. @page规则允许你指定页面盒子的许多方面。例如，你想要指定页面尺寸。 除了可以用长度值声明尺寸，你还可以使用纸质尺寸关键字，例如”A4”或““legal”。 你也可以使用关键字来指定页面方向 portrait（竖向的）或landscape（横向的）。）<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41897680/article/details/1247976734%E3%80%82">https://blog.csdn.net/weixin_41897680/article/details/1247976734。</a></p>
+</li>
+<li><p>文件下载功能实现（1 直接用创建canvas方法， 并且得到图片的base64编码数据 2.  生成一个a元素，先创建一个单击事件，  将生成的URL设置为a.href属性，在通过虚拟dom创建a标签，最后调用点击事件）<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35435093/article/details/123902850%E5%89%8D%E7%AB%AF%E9%9C%80%E8%A6%81%E4%BA%8B%E5%85%88%E5%A3%B0%E6%98%8E%EF%BC%8C%E5%9C%A8%E8%AF%B7%E6%B1%82%E5%A4%B4%E8%AE%BE%E7%BD%AE%E6%96%87%E4%BB%B6%E6%B5%81%E6%A0%BC%E5%BC%8F%E4%B8%BAbold%EF%BC%8C%E5%86%8D%E4%BB%8E%E5%90%8E%E7%AB%AF%E8%8E%B7%E5%8F%96%E6%96%87%E4%BB%B6%E6%B5%81%EF%BC%8C%E7%84%B6%E5%90%8E%E8%BF%94%E7%8E%B0%E5%88%B0%E9%A1%B5%E9%9D%A2">https://blog.csdn.net/qq_35435093/article/details/123902850前端需要事先声明，在请求头设置文件流格式为bold，再从后端获取文件流，然后返现到页面</a></p>
+</li>
+<li><p>antd框架的熟悉与使用</p>
+</li>
+<li><p>后端对接与团队交流</p>
+</li>
+<li><p>需求确认，bug修改是否正确</p>
+</li>
+</ul>
+<ol start="2">
+<li>小型企业安全生产信息化管理平台<br>项目内容：基于JavaWeb的安全生产信息化管理平台，规范企业安全生产规范化建设<br>项目技术：SpringCloud、java、Vue3.0、elementUi<br>负责模块：参与系统管理与业务模块的功能设计以及安全生产目标功能与隐患排查功能前后端的开发。<br>个人收获：对于一个完整的项目流程有了更加深刻的认识和理解，同时参与了业务流程设计与数据库设计，掌握了更多技能，包括用axure绘制原型图，用staruml设计数据库，这让我了解到快速学习新知识并将其运用到业务开发的重要性。在这个开发的过程中，前端代码直观的反馈会带给我成就感，我对前端的兴趣也越来越浓厚，</li>
+</ol>
+<ul>
+<li><p>axure图绘制</p>
+</li>
+<li><p>数据库设计</p>
+</li>
+<li><p>页面设计</p>
+</li>
+<li><p>功能设计</p>
+</li>
+<li><p>批量导入功能的实现EasyExcel是阿里巴巴开源的一个excel处理框架，以使用简单、节省内存著称。EasyExcel能很大的减少占用内存的主要原因是在解析文件时没有将数据一次性全部加载到内存中，而是从磁盘上一行行读取数据，逐个解析。 EasyExcel采用一行一行的解析模式，并将一行的解析结果以观察者的模式通知处理（AnalysisEventListener）。（使用EasyExcel进行导入功能：1.引入maven2.编写pojo（ @ExcelProperty(“单据编号”)注解对应的excel的标题，一个字都不能差，他会自动读取）3.编写controller（    &#x2F;&#x2F;1.进行读取数据，StorageRetrieval是我的pojo类， &#x2F;&#x2F;2.new SorageListener(storageService)这个是监听器，主要用来读取数据的&#x2F;&#x2F;3. EasyExcel.read（file.getInputStream();, StorageRetrieval.class, new SorageListener; ））4.读取到工作簿内容后，将获取到的数据传到dto：workBook.sheet().doReadSync();））<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/a1489540461/article/details/1202709906%E3%80%82">https://blog.csdn.net/a1489540461/article/details/1202709906。</a></p>
+</li>
+<li><p>工作流功能的实现</p>
+</li>
+</ul>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">private Integer companyId;</span><br><span class="line">//表示是否为通用工作流(0表示通用工作流，1表示自定义工作流)</span><br><span class="line">private Integer type;</span><br><span class="line">//当为通用工作流时，需要传下级审批人id,为自定义工作流时无需传该值,其中该值为数组</span><br><span class="line">private List&lt;Integer&gt; checkUserIdList;</span><br><span class="line">//该业务的唯一标识</span><br><span class="line">private String identifier;</span><br><span class="line">//提交人id</span><br><span class="line">private Integer inputUserId;</span><br><span class="line">//任务流程实例Id</span><br><span class="line">private String processId;</span><br><span class="line">//退回标志(1表示退回，0表示不是退回)</span><br><span class="line">private Integer returnFlag;</span><br><span class="line">//退回原因</span><br><span class="line">private String reason;</span><br><span class="line">//业务id</span><br><span class="line">private Integer businessId;</span><br><span class="line">//业务批注</span><br><span class="line">private String comment;</span><br><span class="line">//会签类型,用于表示是否需要所有人审批后会签完成</span><br><span class="line">private Integer countersignType;</span><br><span class="line">//当前审批人id</span><br><span class="line">private Integer checkUserId;</span><br><span class="line"></span><br><span class="line">新增文件-工作流逻辑</span><br><span class="line">1.如果为提交并且工作流未关闭则启动工作流</span><br><span class="line">Object object=feignClientServe.startCounterSign(activitiesCheckDTO); //开始会签</span><br><span class="line">  1.根据唯一标识来确认对应该流程操作的是哪个数据库表</span><br><span class="line">    2.设置工作流流程变量</span><br><span class="line">    3.判断工作流所属类型（通用还是专有）</span><br><span class="line">    3.1.表示通用工作流</span><br><span class="line">    3.2.更新业务表信息与审批人信息</span><br><span class="line">    3.3.表示专有工作流</span><br><span class="line">    3.4.根据工作流id查询工作流明细</span><br><span class="line">    3.5.根据前端传回的数据，（是否会签）设置流程变量</span><br><span class="line">    3.6.更新审批人信息</span><br><span class="line">    4.修改待处理业务表信息，更新审批人待处理的文件的数量 </span><br><span class="line">2.如果为提交操作但是工作流为关闭状态直接完成流程更改体系文件状态      </span><br><span class="line">3.如果为暂存业务则不走工作流，直接入数据库，但是此时不走工作流</span><br><span class="line"></span><br><span class="line">审批文件-工作流逻辑</span><br><span class="line">1.驳回</span><br><span class="line">    1.1.当退回时直接结束流程，完成当前任务，文件状态更改</span><br><span class="line">    1.2.获取所有审核人员信息，待处理任务减1</span><br><span class="line">    1.3.删除审批信息</span><br><span class="line">2.通过</span><br><span class="line">    2.1.判断是否是通用、专有</span><br><span class="line">    2.2.通用工作流获取所有下级审批人</span><br><span class="line">    2.3.如果仅剩一个或会签类型为仅需一人审批，且没有下级审批人，流程结束</span><br><span class="line">    2.4.获取当前实例所有需要审核人员信息，将其提示信息减一</span><br><span class="line">    2.5.还有多个活动实例，且有下级审批人，流程继续，</span><br><span class="line">    2.6.判断下一个流程是否会签，同时新增下一个节点的审批人员信息</span><br><span class="line">    2.7.专有工作流从流程变量中获取流程节点id来获取会签类型</span><br><span class="line">    2.8.获取下一节点审批人员信息，并且根据节点id获取下一节点信息，为下级审批人员添加提醒</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>文件预览功能kkFileView   1. 将预览接口提供给前端；2.利用 window.open 浏览器打开新窗口预览文件 3.通过iframe，预览文件 结合elementUI的弹窗（可以做其他弹窗效果）很多系统内不是直接暴露文件下载地址，而是请求通过id、code等参数到通过统一的接口，后端通过id或code等参数定位文件，再通过OutputStream输出下载，此时下载url是不带文件后缀名的，预览时需要拿到文件名，传一个参数fullfilename&#x3D;xxx.xxx来指定文件名<br><a target="_blank" rel="noopener" href="https://kkfileview.keking.cn/zh-cn/docs/usage.html">https://kkfileview.keking.cn/zh-cn/docs/usage.html</a></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/MtangEr/article/details/108599708?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-108599708-blog-120524610.pc_relevant_paycolumn_v3&amp;spm=1001.2101.3001.4242.1&amp;utm_relevant_index=3">https://blog.csdn.net/MtangEr/article/details/108599708?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-108599708-blog-120524610.pc_relevant_paycolumn_v3&amp;spm=1001.2101.3001.4242.1&amp;utm_relevant_index=3</a></p>
+<p>3.徐工培训云平台<br>项目内容：基于JavaWeb的培训教育管理平台，实现课程学习、参与考试、发布计划等功能<br>项目技术：SpringBoot、java、Vue2.0、elementUi、Mint UI<br>负责模块：PC端课程管理的前后端开发，移动端的课程学习、线下课程签到、课程评价管理的前后端开发<br>个人收获：个人收获：我系统地了解了程序开发的相关知识，对项目的运行流程有了大体上的认知，培养了我良好的编程习惯，包括变量命名规范、格式规范等</p>
+<ul>
+<li>服务器项目搭建</li>
+<li>课程视屏播放 vue-video-player<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38684316/article/details/88070737?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1-88070737-blog-105723063.pc_relevant_multi_platform_whitelistv1&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1-88070737-blog-105723063.pc_relevant_multi_platform_whitelistv1&amp;utm_relevant_index=1">https://blog.csdn.net/weixin_38684316/article/details/88070737?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1-88070737-blog-105723063.pc_relevant_multi_platform_whitelistv1&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1-88070737-blog-105723063.pc_relevant_multi_platform_whitelistv1&amp;utm_relevant_index=1</a></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">1.首先是npm i vue-video-player -D 安装依赖</span><br><span class="line">2.在main.js里面引入</span><br><span class="line">3.vue组件中引用</span><br><span class="line">  &lt;video-player class=&quot;video-player vjs-custom-skin&quot;</span><br><span class="line">                 ref=&quot;videoPlayer&quot;</span><br><span class="line">                 :playsinline=&quot;true&quot;</span><br><span class="line">                 style=&quot;object-fit:fill&quot;</span><br><span class="line">                 :options=&quot;playerOptions&quot;</span><br><span class="line">                @play=&quot;onPlayerPlay($event)&quot;</span><br><span class="line">                @pause=&quot;onPlayerPause($event)&quot;</span><br><span class="line">                @ended=&quot;onPlayerEnded($event)&quot;</span><br><span class="line">                @timeupdate=&quot;onPlayerTimeupdate($event)&quot;</span><br><span class="line">                @ready=&quot;playerReadied&quot;</span><br><span class="line">   &gt;</span><br><span class="line">   &lt;/video-player&gt;</span><br><span class="line"></span><br><span class="line">playerOptions: &#123;</span><br><span class="line">          playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度</span><br><span class="line">          autoplay: false, //如果true,浏览器准备好时开始回放。</span><br><span class="line">          muted: false, // 默认情况下将会消除任何音频。</span><br><span class="line">          loop: false, // 导致视频一结束就重新开始。</span><br><span class="line">          preload: &#x27;auto&#x27;, // 建议浏览器在&lt;video&gt;加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）</span><br><span class="line">          language: &#x27;zh-CN&#x27;,</span><br><span class="line">          aspectRatio: &#x27;16:9&#x27;, // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如&quot;16:9&quot;或&quot;4:3&quot;）</span><br><span class="line">          fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。</span><br><span class="line">          sources: [&#123;</span><br><span class="line">            type: &quot;video/mp4&quot;,</span><br><span class="line">            src: &quot;你的视频地址&quot;</span><br><span class="line">          &#125;],</span><br><span class="line">          poster: &quot;你的封面地址&quot;,</span><br><span class="line">          width: document.documentElement.clientWidth,</span><br><span class="line">          notSupportedMessage: &#x27;此视频暂无法播放，请稍后再试&#x27;, //允许覆盖Video.js无法播放媒体源时显示的默认信息。</span><br><span class="line">          controlBar: &#123;</span><br><span class="line">            timeDivider: true,</span><br><span class="line">            durationDisplay: true,</span><br><span class="line">            remainingTimeDisplay: false,</span><br><span class="line">            fullscreenToggle: true  //全屏按钮</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">mounted() &#123;</span><br><span class="line">    this.onPlayerPlay(this.$refs.videoPlayer.player);</span><br><span class="line">&#125;, </span><br><span class="line"></span><br><span class="line">onPlayerPlay(player) &#123;</span><br><span class="line">    this.paused = false</span><br><span class="line">&#125;,</span><br><span class="line">// 暂停回调</span><br><span class="line">onPlayerPause(player) &#123;</span><br><span class="line">    this.paused = true</span><br><span class="line">&#125;,</span><br><span class="line">playerReadied (player) &#123;</span><br><span class="line">    console.dir(this.timelog);</span><br><span class="line">    player.currentTime(this.timelog);</span><br><span class="line">&#125;,</span><br><span class="line">// 视频播完回调</span><br><span class="line">onPlayerEnded(player) &#123;</span><br><span class="line">    if (localStorage.videoStatus == 0) &#123;</span><br><span class="line">//完成课程</span><br><span class="line">        this.finishLesson();</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        alert(&quot;已经看过&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>文件预览功能</p>
+</li>
+<li><p>手机端界面响应式布局实现</p>
+</li>
+<li><p>无限滑动功能的实现（  better-scroll）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">initScroll(dom) &#123;</span><br><span class="line">    let that = this;</span><br><span class="line">    that.$nextTick(() =&gt; &#123;</span><br><span class="line">        let bscrollDom = this.$refs[dom];</span><br><span class="line">        let bScroll = new BScroll(bscrollDom, &#123;</span><br><span class="line">            click: true,</span><br><span class="line">            probeType: 2,</span><br><span class="line">            bounceTime: 700, //回弹时间</span><br><span class="line">            pullUpLoad: &#123;</span><br><span class="line">                threshold: 50, // 当上拉距离超过50px时触发 pullingUp 事件</span><br><span class="line">                stop: 50</span><br><span class="line">            &#125;,</span><br><span class="line">            pullDownRefresh: &#123;</span><br><span class="line">                threshold: 50, // 当下拉距离超过50px时触发 pullingDown 事件</span><br><span class="line">                stop: 50</span><br><span class="line">            &#125;,</span><br><span class="line">            useTransition: false // 防止iphone微信滑动卡顿</span><br><span class="line">        &#125;);</span><br><span class="line">        bScroll.on(&quot;pullingDown&quot;, () =&gt; &#123;</span><br><span class="line">            this.page = 1;</span><br><span class="line">            console.dir(&quot;下拉刷新&quot;);</span><br><span class="line">            //下拉刷新图标显示</span><br><span class="line">            this.loadingUp = true;</span><br><span class="line">            //删除无数据提示的标识位</span><br><span class="line">            this.showFlag = false;</span><br><span class="line">            setTimeout(() =&gt; &#123;</span><br><span class="line">              //清空当前课程列表</span><br><span class="line">                this.lessonList = [];</span><br><span class="line">              //重新加载课程列表</span><br><span class="line">                this.getCourseData(this.page);</span><br><span class="line">            &#125;, 1000);</span><br><span class="line">            //完成下拉操作</span><br><span class="line">            bScroll.finishPullDown();</span><br><span class="line">        &#125;);</span><br><span class="line">        bScroll.on(&quot;pullingUp&quot;, () =&gt; &#123;</span><br><span class="line">            console.dir(&quot;上拉加载&quot;);</span><br><span class="line">          //上划加载图标显示</span><br><span class="line">            this.loadingDown = true;</span><br><span class="line">          //删除无数据提示的标识位</span><br><span class="line">            this.showFlag = false;</span><br><span class="line">            localStorage.selected=0;//叠加</span><br><span class="line">            if (this.page &lt; this.totalPages) &#123;</span><br><span class="line">                setTimeout(() =&gt; &#123;</span><br><span class="line">                    this.page++;</span><br><span class="line">                  //继续加载课程列表</span><br><span class="line">                    this.getCourseData(this.page);</span><br><span class="line">                &#125;, 1000);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">              //跳转页码大于总页码，无更多数据</span><br><span class="line">              //隐藏上划加载图标</span><br><span class="line">                this.loadingDown = false;</span><br><span class="line">              //显示无数据提示的标识位</span><br><span class="line">                this.showFlag = true;</span><br><span class="line">            &#125;</span><br><span class="line">          //完成上划操作</span><br><span class="line">            bScroll.finishPullUp();</span><br><span class="line">        &#125;);</span><br><span class="line">        //清空bScroll</span><br><span class="line">        bScroll.refresh();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>better scroll原理 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44890979/article/details/111400863">https://blog.csdn.net/weixin_44890979/article/details/111400863</a><br>better scroll教程 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37719279/article/details/82084342">https://blog.csdn.net/weixin_37719279/article/details/82084342</a></p>
+</li>
+<li><p>生成二维码（qrcodesjs2）<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_48115935/article/details/113178939">https://blog.csdn.net/weixin_48115935/article/details/113178939</a></p>
+</li>
+</ul>
+<h2 id="什么要学习前端"><a href="#什么要学习前端" class="headerlink" title="什么要学习前端"></a>什么要学习前端</h2><p>个人热爱，从一开始接触互联网，就对这个行业有向往有憧憬，期望能在这个行业发光发热，敲出的代码跑出来运行起来，内心很兴奋</p>
+<p>前端一开始写html页面，看着自己写出来的一个个页面就很有成就感，然后慢慢的就想写的更漂亮，交互效果越多，就开始努力学习css和js，随着页面越来越复杂，就需要学更多的东西，追求更高的代码质量，就是这样的良性循环促使自己在前端道路上一直走下去。</p>
+<p>就业前景好（互联网应用环境）也觉得这个行业,社区很开放，很有活力。这两年前端技术井喷，感觉自己还是图样，还需要在工作中不断学习，提高知识水平</p>
+<p>前端的技术一直推陈出新(3-6个月)，而且新技术出来后，几乎立马就能使用，不断学习，不断应用，这样的工作不会枯燥乏味。。</p>
+<h2 id="介绍一下前端的学习经历"><a href="#介绍一下前端的学习经历" class="headerlink" title="介绍一下前端的学习经历"></a>介绍一下前端的学习经历</h2><ol>
+<li>购买书籍 js红宝书，html网页开发</li>
+<li>视频网站 b站</li>
+<li>个人博客 阮一峰、童欧巴等大神的博客</li>
+<li>交流平台 掘金、csdn、w3cschool</li>
+<li>官方文档vue官方网站、supermap（leaflet）官方文档、antd、elui官方文档、 b站大学，W3school等网站</li>
+</ol>
+<h2 id="对未来三年职业的规划"><a href="#对未来三年职业的规划" class="headerlink" title="对未来三年职业的规划"></a>对未来三年职业的规划</h2><p>1 我是想走技术路线，想找个平台稳定地钻研<br>2 同时，我对满帮行业背景的业务很感兴趣，想在这一领域深耕一下，不仅想全面了解这块业务，而且还想全面掌握前端技术在该领域的解决方案。<br>3 为了达到这个目的，我首先会做好本职工作，然后会尽量解决项目中遇到的技术问题，如果项目里用到的技术我不熟，我会第一时间去了解。<br>4 我希望通过自己技术能力的提升，最后能够持续走技术路线，接触公司的架构，往资深研发的方向上走。在未来2-3年内达到技术专家的能力，在业务上和技术上，解决项目上的大多数问题。</p>
+<h2 id="你认为一名前端工程师应该具备什么特点？"><a href="#你认为一名前端工程师应该具备什么特点？" class="headerlink" title="你认为一名前端工程师应该具备什么特点？"></a>你认为一名前端工程师应该具备什么特点？</h2><p>1、沟通的能力2、团队合作的能力3、审美的能力4、技术的能力5、学习的能力6、保持热爱的能</p>
+<p>有的是跟产品开需求会或项目立会的时候，会先就具体需求的功能点先做可行性方案的讨论，如果开发成本过高的话，通常都会说服需求方用一些替代方案。又或者是一些高级的功能模块，我们会把项目拆解，分成几期，首先先出核心功能模块，上线之后再做一些高级需求的模块，实现产品的迭代开发。给ui提意见是这样的，除非你干过设计或者了解设计的创作过程，否则从设计的角度最好不要提不同的意见。可以从交互或功能或体验上给建设性的意见，另外讲的时候是需要技巧的，可以先正面肯定一下他的劳动成果或努力的结果，然后说，我这儿看到几点问题，跟你交流一下，然后布啦布啦，而不是直接上去就说，我感觉这儿怎么怎么的，很主观的，说这样根本没有一个评判的标准或依据。最后一定要说，根据你的行业经验或自我设计标准，你肯定不会允许这样的现象出现吧，然后你看要不要在重新考虑一下。我就是想到了给你提一下。</p>
+<p>B. 要是效果图是客户提供的怎么破？在沟通是有什么经验？设计的质量如果本身就有问题，比方说就没考虑添加数据以后的情况，或者是其它页面在流程上风格上不统一怎么怎么的，客户又不是很懂，初期非要你按照他的想法来。这时候就需要站在一个更高的高度来有技巧的处理这个问题。比如说，你这个页面等上线后，在用户看来2个页面看到的按钮不一样，感觉很外行，从而导致的结果就是下次不在访问，这样用户就会丢失。</p>
+<h2 id="如果直接按照图来做，有没有遇到过页面上实现不了的功能？"><a href="#如果直接按照图来做，有没有遇到过页面上实现不了的功能？" class="headerlink" title="如果直接按照图来做，有没有遇到过页面上实现不了的功能？"></a>如果直接按照图来做，有没有遇到过页面上实现不了的功能？</h2><p>遇到这样的问题怎么进行处理？但从ui图上，基本上都能实现，从功能上有很多都出现了问题，有困难的先根据是否有官方文档或者是否有可以参考的地方来判断自己能完成，如果这些都没有，先阅读项目手册来看是否有其他类似的功能，再通过搜索引擎来查询解决方案，如果在尝试一段时间后还是存在问题，就和他人反馈这个问题，寻求解决，<strong>在解决了之后需要反思自己为什么这块地方做不出来，是技术不行，还是文档看的不到位，还是说单纯bug没注意，影响了整体</strong>。</p>
+<h2 id="项目中会遇到困难吗-你是怎么解决的？"><a href="#项目中会遇到困难吗-你是怎么解决的？" class="headerlink" title="项目中会遇到困难吗 你是怎么解决的？"></a>项目中会遇到困难吗 你是怎么解决的？</h2><p>面对遇到困难的需求，我会先根据是否有官方文档或者是否有可以参考的地方来判断自己能完成，如果这些都没有，那么会先分析这个需求的 实现逻辑，需要先完成什么在完成什么，一步一步来，确认当前首先需要解决什么。同时也会阅读项目手册来看是否有其他类似的功能，再通过搜索引擎来查询有没有类似的解决方案，如果在尝试一段时间后还是存在问题，就找师兄、同学去讨论，看看他人的思路是否有值得借鉴的地方，进而去解决这个问题，在解决了之后我还需要反思自己为什么这块地方做不出来，是技术不行，还是文档看的不到位，还是说单纯在写代码的过程中bug没注意，影响了整体。</p>
+<h2 id="让你收获最多的项目，你做了什么？"><a href="#让你收获最多的项目，你做了什么？" class="headerlink" title="让你收获最多的项目，你做了什么？"></a>让你收获最多的项目，你做了什么？</h2><p>10 11 7，<br>开发各个模块的前端页面</p>
+<h2 id="这个系统在代码方面有哪些不合理的地方？"><a href="#这个系统在代码方面有哪些不合理的地方？" class="headerlink" title="这个系统在代码方面有哪些不合理的地方？"></a>这个系统在代码方面有哪些不合理的地方？</h2><p>组件抽取做的不好<br>单个文件代码过长各种命名太随意，用中文缩写<br>单个页面不要和其他页面、全局耦合<br>能用组件的坚决不自己写（自己写时间格式化方法）<br>注释写的太少<br>编译问题太多</p>
+<h2 id="个人的优缺点"><a href="#个人的优缺点" class="headerlink" title="个人的优缺点"></a>个人的优缺点</h2><p>考虑问题还不够全面，这边改了，对其他组件的影响还没考虑过去，有时间限制的影响，也有自己对整体项目的把握度不够，通过锻炼可以成长克服这个问题</p>
+<p>善于沟通、项目中难免会存在分歧与争执，交流</p>
+<h2 id="你选择公司的标准是什么？第一份职业你更多是看重什么？"><a href="#你选择公司的标准是什么？第一份职业你更多是看重什么？" class="headerlink" title="你选择公司的标准是什么？第一份职业你更多是看重什么？"></a>你选择公司的标准是什么？第一份职业你更多是看重什么？</h2><ul>
+<li>成长，踏入职场的第一步，从学生转变过来，希望有完善的培训机制帮助成长。满帮市场份额高，并且仍处于初级阶段，未来有非常大的上涨空间；</li>
+<li>氛围，我愿意和小伙伴一起成长，同时也希望有导师能帮助我们</li>
+<li>稳定，在大家普遍认为互联网寒冬开始的2022年，很多公司裁员、校招缩减，满帮首先没有裁员，并且开启了历届最大规模的2022校招，反应公司上层对公司发展的足够自信，也能表现出稳定</li>
+<li>薪资，薪资很高</li>
+</ul>
+<h2 id="你对我们公司的印象或者了解多少？选择我们公司是看重了我们公司的什么？"><a href="#你对我们公司的印象或者了解多少？选择我们公司是看重了我们公司的什么？" class="headerlink" title="你对我们公司的印象或者了解多少？选择我们公司是看重了我们公司的什么？"></a>你对我们公司的印象或者了解多少？选择我们公司是看重了我们公司的什么？</h2><p>同上</p>
+<h2 id="你觉得自己有什么特有的品质吗？与其他人相比你的优缺点是什么？"><a href="#你觉得自己有什么特有的品质吗？与其他人相比你的优缺点是什么？" class="headerlink" title="你觉得自己有什么特有的品质吗？与其他人相比你的优缺点是什么？"></a>你觉得自己有什么特有的品质吗？与其他人相比你的优缺点是什么？</h2><p>抗压能力强、沟通能力可、开朗乐观、做事主动认真积极</p>
+<h2 id="说一下你的家庭情况？"><a href="#说一下你的家庭情况？" class="headerlink" title="说一下你的家庭情况？"></a>说一下你的家庭情况？</h2><p>母亲是个体经营户，开店的，父亲是做工程的，项目经理</p>
+<h2 id="谈一谈你印象最深的一件事？或者自己的一次失败或者让自己十分满意的经历？"><a href="#谈一谈你印象最深的一件事？或者自己的一次失败或者让自己十分满意的经历？" class="headerlink" title="谈一谈你印象最深的一件事？或者自己的一次失败或者让自己十分满意的经历？"></a>谈一谈你印象最深的一件事？或者自己的一次失败或者让自己十分满意的经历？</h2><p>项目难点如何克服的？</p>
+<h2 id="当你在工作中与上级意见不一致时，你会怎么办？"><a href="#当你在工作中与上级意见不一致时，你会怎么办？" class="headerlink" title="当你在工作中与上级意见不一致时，你会怎么办？"></a>当你在工作中与上级意见不一致时，你会怎么办？</h2><p>还是会好好沟通</p>
+<h2 id="你期待的薪资工作地点和待遇是多少？"><a href="#你期待的薪资工作地点和待遇是多少？" class="headerlink" title="你期待的薪资工作地点和待遇是多少？"></a>你期待的薪资工作地点和待遇是多少？</h2><p>22*15</p>
+<h2 id="你如何看待加班？如果休息日突然让你回公司加班你怎么看？"><a href="#你如何看待加班？如果休息日突然让你回公司加班你怎么看？" class="headerlink" title="你如何看待加班？如果休息日突然让你回公司加班你怎么看？"></a>你如何看待加班？如果休息日突然让你回公司加班你怎么看？</h2><p>如果是自己负责的内容没有做完的话，我会自己主动加班完成自己的任务，如果领导要求的话，我也愿意配合团队进度，进行加班</p>
+<p>首先去是肯定要去的，既然休息日让回来，说明肯定是重要的事情，项目紧急或者自己负责的地方bug了，大家一起加班，把这关克服就好了，如果是后者的话，就需要反思自己了。</p>
+<h2 id="你希望与怎样的领导共事？"><a href="#你希望与怎样的领导共事？" class="headerlink" title="你希望与怎样的领导共事？"></a>你希望与怎样的领导共事？</h2><p>在员工遇到难题的时候，能够提供指导。<br>踏实认真，做一件事就认真做，好好做，员工朝着一个目标一起努力</p>
+<h2 id="你接受调岗吗？如果部门需要你到对应的岗位你接受吗？"><a href="#你接受调岗吗？如果部门需要你到对应的岗位你接受吗？" class="headerlink" title="你接受调岗吗？如果部门需要你到对应的岗位你接受吗？"></a>你接受调岗吗？如果部门需要你到对应的岗位你接受吗？</h2><p>看具体岗位，技术岗位</p>
+<h2 id="你觉得你能胜任这份工作的原因是什么？"><a href="#你觉得你能胜任这份工作的原因是什么？" class="headerlink" title="你觉得你能胜任这份工作的原因是什么？"></a>你觉得你能胜任这份工作的原因是什么？</h2><p>抗压能力强、沟通能力可、开朗乐观、做事主动认真积极</p>
+<h2 id="你在同学和老师眼中是个怎么样的人？"><a href="#你在同学和老师眼中是个怎么样的人？" class="headerlink" title="你在同学和老师眼中是个怎么样的人？"></a>你在同学和老师眼中是个怎么样的人？</h2><p>平易近人</p>
+<h2 id="你最近在看什么书？或者你最喜欢的一本书、电影等是什么？"><a href="#你最近在看什么书？或者你最喜欢的一本书、电影等是什么？" class="headerlink" title="你最近在看什么书？或者你最喜欢的一本书、电影等是什么？"></a>你最近在看什么书？或者你最喜欢的一本书、电影等是什么？</h2><p>技术类书籍：js红宝书<br>娱乐类书籍：白夜行<br>电影：白夜行</p>
+<h3 id="反问"><a href="#反问" class="headerlink" title="反问"></a>反问</h3><p>1、关于薪资架构s<br>工资 &#x3D; 基本工资 + 绩效 +  补贴<br>一定要问清楚这个薪资构成，关乎着你供房基金公司帮你缴纳多少、以及扣税等<br>2、关于五险一金的比例</p>
+<p>3、工作时长，是否有双休还是大小周等</p>
+<p>4、对于试用期的薪资、时长、考核标准等</p>
+<p>5、关于年假等</p>
+<p>6、出差比例或者出差补贴等</p>
+<p>7、考勤制度，是否打卡还是弹性制度？</p>
+<p>8、公司做的产品主要有哪些？自己未来的部门？</p>
+<p>9、面试结果大概什么时候出来？</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">xwing</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://zyhxwing.gitee.io/2022/09/05/i/">https://zyhxwing.gitee.io/2022/09/05/i/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">xwing</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/xwing/">
+                                    <span class="chip bg-color">xwing</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/09/05/i/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="i">
+                        
+                        <span class="card-title">i</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/xwing/" class="post-category">
+                                    xwing
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/xwing/">
+                        <span class="chip bg-color">xwing</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/09/05/vite/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="vite">
+                        
+                        <span class="card-title">vite</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
+                                    前端
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/vite/">
+                        <span class="chip bg-color">vite</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7/">
+                        <span class="chip bg-color">打包工具</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: xwing<br />'
+            + '文章作者: xwing<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="7618857959"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='list'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <span id="year">2022</span>
+            <a href="/about" target="_blank">xwing</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/zyhxwing" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1216112348@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1216112348" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1216112348" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,1395 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="JavaScript, xwing">
+    <meta name="description" content="xwing的个人网站">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>JavaScript | xwing</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+
+   <style>
+    body{
+       background-image: url(/medias/featureimages/0.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">xwing</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">xwing</div>
+        <div class="logo-desc">
+            
+            xwing的个人网站
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">JavaScript</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/JavaScript/">
+                                <span class="chip bg-color">JavaScript</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
+                                前端
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-09-03
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h1><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ul>
+<li><p>基本数据类型<br><strong>Number，String，Boolean，null，undefined，symbol，bigint（后两个为ES6新增）</strong></p>
+</li>
+<li><p>引用数据类型<br><strong>普通对象，数组对象，正则对象，日期对象，Math数学函数对象。</strong></p>
+</li>
+<li><p>包装数据类型<br><strong>Number，String，Boolean</strong></p>
+</li>
+</ul>
+<p><strong>两种数据存储方式：</strong></p>
+<ul>
+<li><p>基本数据类型是直接存储在栈中的简单数据段，占据空间小、大小固定，属于被频繁使用的数据。栈是存储基本类型值和执行代码的空间。</p>
+</li>
+<li><p>引用数据类型是存储在堆内存中，占据空间大、大小不固定。引用数据类型在栈中存储了指针，该指针指向堆中该实体的起始地址，当解释器寻找引用值时，会检索其在栈中的地址，取得地址后从堆中获得实体。</p>
+</li>
+</ul>
+<p><strong>两种数据类型的区别：</strong></p>
+<ul>
+<li>堆比栈空间大，栈比堆运行速度快。</li>
+<li>堆内存是无序存储，可以根据引用直接获取。</li>
+<li>基础数据类型比较稳定，而且相对来说占用的内存小。</li>
+<li>引用数据类型大小是动态的，而且是无限的。</li>
+</ul>
+<p>BigInt类型<br>BigInt数据类型提供了一种方法来表示大于2^53-1的整数。BigInt可以表示任意大的整数。</p>
+<p>Symbol类型<br>Symbol 是一种在ES6 中新添加的数据类型，本质上是一种唯一标识符，可用作对象的唯一属性名，这样其他人就不会改写或覆盖你设置的属性值，同时具备隐藏性（for in不能访问）。</p>
+<h2 id="js常见函数"><a href="#js常见函数" class="headerlink" title="js常见函数"></a>js常见函数</h2><h3 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign"></a>Object.assign</h3><p>Object.assign(target, …sources)</p>
+<p><strong>Object.assign会将source里面的可枚举属性复制到target</strong>，如果和target的已有属性重名，则会覆盖。后续的source会覆盖前面的source的同名属性。Object.assign复制的是属性值，如果属性值是一个引用类型，那么复制的其实是引用地址，就会存在引用共享的问题。</p>
+<h3 id="Object-defineProperty"><a href="#Object-defineProperty" class="headerlink" title="Object.defineProperty"></a>Object.defineProperty</h3><p>var a&#x3D; {}<br>Object.defineProperty(a,”b”,{<br>  value:123<br>})<br>console.log(a.b);&#x2F;&#x2F;123<br>第一个参数：目标对象<br>第二个参数：需要定义的属性或方法的名字。<br>第三个参数：目标属性所拥有的特性。（descriptor）</p>
+<h3 id="可枚举属性"><a href="#可枚举属性" class="headerlink" title="可枚举属性"></a>可枚举属性</h3><p>可枚举可以理解为是否可以被遍历被列举出来，可枚举性决定了这个属性能否被<strong>for…in</strong>查找遍历到。<br>js中基本包装类型的原型属性是不可枚举的（不可被 for…in… 遍历），比如：Boolean,Number和String三个的原型属性，或是 Boolean,Number值，都是不可枚举的，即是基本类型。基本包装类型还可以像引用类型一样访问它自带的一些方法，但是不能像引用类型那样自定义方法。</p>
+<p>判断属性是否可枚举<br>1.<strong>for…in</strong><br>2.<strong>propertyIsEnumerable( )</strong> 方法返回一个布尔值，表示属性是否可以枚举</p>
+<p>每个对象都有一个propertyIsEnumerable方法。该方法可以确定对象中的指定属性是否可以通过for…in循环枚举，但通过原型链继承的属性除外。如果对象不具有指定的属性，则此方法返回false。</p>
+<h3 id="String-prototype"><a href="#String-prototype" class="headerlink" title="String.prototype"></a>String.prototype</h3><p>String.prototype用于为某字符串对象新增方法</p>
+<h3 id="forEach、filter、map、some、every、find、findIndex、reduce"><a href="#forEach、filter、map、some、every、find、findIndex、reduce" class="headerlink" title="forEach、filter、map、some、every、find、findIndex、reduce"></a>forEach、filter、map、some、every、find、findIndex、reduce</h3><p>这里有一堆土豆，如果换成代码，可以表示如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var potatos = [&#123; id: &#x27;1001&#x27;, weight: 50 &#125;,</span><br><span class="line">&#123; id: &#x27;1002&#x27;, weight: 80 &#125;,</span><br><span class="line">&#123; id: &#x27;1003&#x27;, weight: 120 &#125;,</span><br><span class="line">&#123; id: &#x27;1004&#x27;, weight: 40 &#125;,</span><br><span class="line">&#123; id: &#x27;1005&#x27;, weight: 110 &#125;,</span><br><span class="line">&#123; id: &#x27;1006&#x27;, weight: 60 &#125;]</span><br></pre></td></tr></table></figure>
+
+<p>同时把上面的重量（g）记录成一个数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var w = [50, 80, 120, 40, 110, 60]</span><br></pre></td></tr></table></figure>
+
+<h4 id="批量操作-foreach"><a href="#批量操作-foreach" class="headerlink" title="批量操作 foreach"></a>批量操作 foreach</h4><p>数组里所有元素的weight增加，修改原数组，无返回值<br>map可实现，但不修改原数组，返回新数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">potatos.forEach(potato =&gt; potato.weight += 20 )</span><br></pre></td></tr></table></figure>
+
+<h4 id="生成原始数据的特征信息map"><a href="#生成原始数据的特征信息map" class="headerlink" title="生成原始数据的特征信息map"></a>生成原始数据的特征信息map</h4><p>map最适合做的事是映射，生成原始数据的特征信息的map</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">w = potatos.map(potato =&gt; &#123; return potato.weight += 20 &#125;)</span><br><span class="line">//[ 70, 100, 140, 60, 130, 80 ]</span><br></pre></td></tr></table></figure>
+
+<h4 id="筛选过滤filter"><a href="#筛选过滤filter" class="headerlink" title="筛选过滤filter"></a>筛选过滤filter</h4><p>filter是滤波的意思 从名字上看，就知道筛选过滤这样的活是filter<br>返回一个新的对象数组，并不会改变原数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var bigOnes = potatos.filter(potato =&gt; &#123; return potato.weight &gt; 100 &#125;)</span><br><span class="line"></span><br><span class="line">//[ &#123; id: &#x27;1003&#x27;, weight: 120 &#125;, &#123; id: &#x27;1005&#x27;, weight: 110 &#125; ]</span><br></pre></td></tr></table></figure>
+
+<h4 id="判断数组中有没有符合条件的时候some"><a href="#判断数组中有没有符合条件的时候some" class="headerlink" title="判断数组中有没有符合条件的时候some"></a>判断数组中有没有符合条件的时候some</h4><p>当只需要判断数组中有没有符合条件的时候（一个就行） 就需要我们的some方法登场了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var hasbig = potatos.some(potato =&gt; &#123; return potato.weight &gt; 100 &#125;)</span><br><span class="line">//true</span><br></pre></td></tr></table></figure>
+<p>我们的some小伙计，去土豆存放的仓库进行寻找，只要找到一个符合条件的，就回来报告true 所以并不会全部遍历，不做多余的活（性能优良）</p>
+<h4 id="判断数组元素是否全符合every"><a href="#判断数组元素是否全符合every" class="headerlink" title="判断数组元素是否全符合every"></a>判断数组元素是否全符合every</h4><p>every对每一个元素执行一个callback，直到它找到一个使 callback 返回 false的元素（没那么大的土豆），就返回false，直到遍历完成也没有返回false的话，就返回true</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var allbig = potatos.every(potato =&gt; &#123; return potato.weight &gt; 100 &#125;)</span><br><span class="line">//false</span><br></pre></td></tr></table></figure>
+
+<h4 id="寻找数组元素中一个符合的find"><a href="#寻找数组元素中一个符合的find" class="headerlink" title="寻找数组元素中一个符合的find"></a>寻找数组元素中一个符合的find</h4><p>来了一个顾客，想要一个大土豆 find自告奋勇，我去找给他</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var big = potatos.find(potato =&gt; &#123; return potato.weight &gt; 100 &#125;)</span><br><span class="line">//&#123; id: &#x27;1003&#x27;, weight: 120 &#125;</span><br></pre></td></tr></table></figure>
+<p>find和some很类似，都是寻找符合条件的，有一个就可以 不过some进去搜罗了一圈回来报了个“有”（true），而find则把那个土豆抱了出来（返回第一个符合条件的对象）</p>
+<h4 id="当需要知道所需元素的索引findIndex"><a href="#当需要知道所需元素的索引findIndex" class="headerlink" title="当需要知道所需元素的索引findIndex"></a>当需要知道所需元素的索引findIndex</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var i = potatos.findIndex(potato=&gt;&#123; return potato.weight &gt; 100 &#125;)</span><br><span class="line">//2</span><br></pre></td></tr></table></figure>
+
+<p>当需要知道所需元素的索引，就可以用findIndex，findIndex返回第一个符合条件的索引号</p>
+<h4 id="递归累加reduce"><a href="#递归累加reduce" class="headerlink" title="递归累加reduce"></a>递归累加reduce</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var sum = weight.reduce((sum, w) =&gt; &#123; return w + sum &#125;,0)</span><br><span class="line">//460</span><br><span class="line">//并不会改变原表格</span><br></pre></td></tr></table></figure>
+
+<p>reduce()方法接收一个回调函数作为第一个参数，回调函数又接受四个参数，分别是；<br>1、previousValue &#x3D;&gt;初始值或上一次回调函数叠加的值；<br>2、currentValue &#x3D;&gt; 本次回调（循环）将要执行的值；<br>3、index&#x3D;&gt;“currentValue”的索引值；<br>4、arr &#x3D;&gt; 数组本身；<br>reduce()方法返回的是最后一次调用回调函数的返回值；能够实现递归累加</p>
+<h3 id="常见数据类型检测的方式"><a href="#常见数据类型检测的方式" class="headerlink" title="常见数据类型检测的方式"></a>常见数据类型检测的方式</h3><h4 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h4><p>其中数组、对象、null都会被判断为Object，其他判断都正确</p>
+<h4 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h4><p>只能判断引用数据类型,不能判断基本数据类型</p>
+<h4 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h4><p>一是判断数据的类型，二是对象实例通过constructor对象访问它的构造函数。需要注意的事情是如果创建一个对象来改变它的原型,constructor就不能来判断数据类型了</p>
+<h4 id="Object-prototype-toString-call"><a href="#Object-prototype-toString-call" class="headerlink" title="Object.prototype.toString.call()"></a>Object.prototype.toString.call()</h4><p>无论是Array,还是Date，所有数据类型。都是从对象衍生而来的。本质上，Array和Date还有Function啥的他们就是对象。虽然他们都被称为对象，对象也是有很多类型的。比如Date,他就是时间对象‘ [object Date] ’, Array,他就是数组对象‘[object Array]’等等。简而言之，js中所有的数据类型，都只是对象的一种类型。所以，js中有一句话叫，万物皆对象。而<strong>Object.prototype.toString() 这个函数作用就是，返回当前调用者的对象类型。</strong></p>
+<p>因为Object.prototype.toString()返回的是调用者的类型。不论你toString()本身的入参写的是什么，在Object.prototype.toString()中，他的调用者永远都是Object.prototype；所以，在不加call()情况下，我们的出来的结果永远都是 ‘[object Object]’</p>
+<h4 id="isNaN-检测数据是否是数字"><a href="#isNaN-检测数据是否是数字" class="headerlink" title="isNaN 检测数据是否是数字"></a>isNaN 检测数据是否是数字</h4><h4 id="Array-isArray-检测数据是否是数组"><a href="#Array-isArray-检测数据是否是数组" class="headerlink" title="Array.isArray()检测数据是否是数组"></a>Array.isArray()检测数据是否是数组</h4><h3 id="slice、splice、split"><a href="#slice、splice、split" class="headerlink" title="slice、splice、split"></a>slice、splice、split</h3><h4 id="slice-start-end"><a href="#slice-start-end" class="headerlink" title="slice(start,[end])"></a>slice(start,[end])</h4><p>slice(start,[end])方法：该方法是对数组进行部分截取，该方法返回一个新数组<br>参数start是截取的开始数组索引，end参数等于你要取的最后一个字符的位置值加上1（可选）。<br>包含了源函数从start到 end 所指定的元素，但是不包括end元素，比如a.slice(0,3)；<br>如果出现负数就把负数与长度相加后再划分。<br>slice中的负数的绝对值若大于数组长度就会显示所有数组<br>若参数只有一个，并且参数大于length，则为空。<br> 如果结束位置小于起始位置，则返回空数组<br> 返回的个数是end-start的个数<br>不会改变原数组</p>
+<p>var arr &#x3D; [1,2,3,4,5,6]<br>&#x2F;<em>console.log(arr.slice(3))&#x2F;&#x2F;[4,5,6] 从下标为0的到3，截取3之后的数<br>console.log(arr.slice(0,3))&#x2F;&#x2F;[1,2,3] 从下标为0的地方截取到下标为3之前的数<br>console.log(arr.slice(0,-2))&#x2F;&#x2F;[1,2,3,4]<br>console.log(arr.slice(-4,4))&#x2F;&#x2F;[3,4]<br>console.log(arr.slice(-7))&#x2F;&#x2F;[1,2,3,4,5,6]<br>console.log(arr.slice(-3,-3))&#x2F;&#x2F; []<br>console.log(arr.slice(8))&#x2F;&#x2F;[]</em>&#x2F;<br>&#x2F;&#x2F; 个人总结：slice的参数如果是正数就从左往右数，如果是负数的话就从右往左边数，<br>&#x2F;&#x2F; 截取的数组与数的方向一致，如果是2个参数则截取的是数的交集，没有交集则返回空数组<br>&#x2F;&#x2F; ps：slice也可以切割字符串，用法和数组一样，但要注意空格也算字符</p>
+<h4 id="splice-start-deletecount-item"><a href="#splice-start-deletecount-item" class="headerlink" title="splice(start,deletecount,item)"></a>splice(start,deletecount,item)</h4><p> start：起始位置<br> deletecount：删除位数<br>item：替换的item<br> 返回值为被删除的字符串<br>如果有额外的参数，那么item会插入到被移除元素的位置上。<br> splice:移除，splice方法从array中移除一个或多个数组，并用新的item替换它们。<br>举一个简单的例子<br>var a&#x3D;[‘a’,’b’,’c’];<br>var b&#x3D;a.splice(1,1,’e’,’f’);<br>console.log(a) &#x2F;&#x2F;[‘a’, ‘e’, ‘f’, ‘c’]<br>console.log(b) &#x2F;&#x2F;[‘b’]</p>
+<p>var a &#x3D; [1, 2, 3, 4, 5, 6];<br>&#x2F;&#x2F;console.log(“被删除的为：”,a.splice(1, 1, 8, 9)); &#x2F;&#x2F;被删除的为：2<br>&#x2F;&#x2F; console.log(“a数组元素：”,a); &#x2F;&#x2F;1,8,9,3,4,5,6</p>
+<p>&#x2F;&#x2F; console.log(“被删除的为：”, a.splice(0, 2)); &#x2F;&#x2F;被删除的为：1,2<br>&#x2F;&#x2F; console.log(“a数组元素：”, a) &#x2F;&#x2F;3,4,5,6<br>console.log(“被删除的为：”, a.splice(1, 0, 2, 2)) &#x2F;&#x2F;插入 第二个数为0，表示删除0个  <br>console.log(“a数组元素：”, a) &#x2F;&#x2F;1,2,2,2,3,4,5,6</p>
+<h4 id="split-字符串"><a href="#split-字符串" class="headerlink" title="split(字符串)"></a>split(字符串)</h4><p>&#x2F;&#x2F; string.split(separator,limit)：split方法把这个string分割成片段来创建一个字符串数组。<br>&#x2F;&#x2F; 可选参数limit可以限制被分割的片段数量。<br>&#x2F;&#x2F; separator参数可以是一个字符串或一个正则表达式。<br>&#x2F;&#x2F; 如果separator是一个空字符，会返回一个单字符的数组，不会改变原数组。<br>var a&#x3D;”0123456”;  <br>var b&#x3D;a.split(“”,3);  <br>console.log(b);&#x2F;&#x2F;b&#x3D;[“0”,”1”,”2”]<br>&#x2F;&#x2F; 注意：String.split() 执行的操作与 Array.join 执行的操作是相反的。</p>
+<h3 id="for-in、Object-keys和for-of"><a href="#for-in、Object-keys和for-of" class="headerlink" title="for in、Object.keys和for-of"></a>for in、Object.keys和for-of</h3><p><strong>for-in</strong><br>for … in是为遍历对象属性而构建的，<br>主要用于遍历对象的<strong>可枚举属性</strong>，包括自有属性、继承自原型的属性</p>
+<p><strong>for-of</strong><br>es6 中添加的循环遍历语法；<br>支持遍历数组，类数组对象（DOM NodeList），字符串，Map 对象，Set 对象；<br>不支持遍历对象； 遍历后输出的结果为数组元素的值</p>
+<p><strong>Object.keys()</strong> <br>对数组的遍历顺序和 for in 一致<br>此方法返回一个数组，元素均为对象自有可枚举的属性<br>Object.keys主要用于遍历对象自有的可枚举属性，不包括继承自原型的属性和不可枚举的属性</p>
+<p><strong>Object.getOwnProperty</strong><br>此方法用于返回对象的自有属性，包括可枚举和不可枚举的属性</p>
+<h2 id="var、function变量、函数提升"><a href="#var、function变量、函数提升" class="headerlink" title="var、function变量、函数提升"></a>var、function变量、函数提升</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var scope = &#x27;global&#x27;;</span><br><span class="line">function f()&#123;</span><br><span class="line">    console.log(scope);</span><br><span class="line">    var scope = &#x27;local&#x27;;</span><br><span class="line">    console.log(scope);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于函数内声明提升，所以上面的代码实际上是这样的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var scope = &#x27;global&#x27;;</span><br><span class="line">function f()&#123;</span><br><span class="line">    var scope;    //变量声明提升到函数顶部</span><br><span class="line">    console.log(scope);</span><br><span class="line">    scope = &#x27;local&#x27;;    //变量初始化依然保留在原来的位置</span><br><span class="line">    console.log(scope);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>经过这样变形之后，答案就就非常明显了。由于scope在第一个console.log(scope)语句之前就已经定义了，但是并没有赋值，因此此时scope的指是undefined.第二个console.log(scope)语句之前，scope已经完成赋值为’local’，所以输出的结果是local。</p>
+<hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var getName = function()&#123;</span><br><span class="line">    console.log(2);</span><br><span class="line">&#125;</span><br><span class="line">//函数表达式为变量声明，变量声明提升优先级较低</span><br><span class="line">function getName ()&#123;</span><br><span class="line">    console.log(1);</span><br><span class="line">&#125;</span><br><span class="line">//函数声明，函数声明提升优先级更高</span><br><span class="line">getName();</span><br></pre></td></tr></table></figure>
+<p>让我们来分析一下，这个例子涉及到了变量声明提升和函数声明提升。正如前面说到的函数声明提升，函数声明function getName(){}的声明会被提前到顶部。而函数表达式var getName &#x3D; function(){}则表现出变量声明提升。因此在这种情况下，getName也是一个变量，因此这个变量的声明也将提升到底部，而变量的赋值依然保留在原来的位置。<strong>需要注意的是，函数优先，虽然函数声明和变量声明都会被提升，但是函数会首先被提升，然后才是变量</strong>。因此上面的函数可以转换成下面的样子:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function getName()&#123;    //函数声明提升到顶部</span><br><span class="line">    console.log(1);</span><br><span class="line">&#125;</span><br><span class="line">var getName;    //变量声明提升</span><br><span class="line">getName = function()&#123;    //变量赋值依然保留在原来的位置</span><br><span class="line">    console.log(2);</span><br><span class="line">&#125;</span><br><span class="line">getName();    // 最终输出：2</span><br><span class="line"></span><br><span class="line">所以最终的输出结果是：2。在原来的例子中，函数声明虽然是在函数表达式后面，但由于函数声明提升到顶部，因此后面getName又被函数表达式的赋值操作给覆盖了，所以输出2。</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="对象的属性"><a href="#对象的属性" class="headerlink" title="对象的属性"></a>对象的属性</h2><p>对象里的属性分为两种：数据属性 和 访问器属性。首先我们看看数据属性。</p>
+<p><strong>数据属性</strong></p>
+<ol>
+<li>[[<strong>Configurable</strong>]]：翻译：adj. 可配置的；结构的 表示属性是否可以通过 delete 删除并重新定义，是否可以修改它的特性，以及是否可以把它改为访问器属性。默认情况下，所有直接定义在对象上的属性的这个特 性都是 true，如前面的例子所示。</li>
+<li>[[<strong>Enumerable</strong>]]：翻译：adj. 可列举的；可点数的 表示属性是否可以通过 for-in 循环返回。默认情况下，所有直接定义在对 象上的属性的这个特性都是 true，如前面的例子所示。</li>
+<li>[[<strong>Writable</strong>]]：翻译：adj. 可写的，能写成文的 表示属性的值是否可以被修改。默认情况下，所有直接定义在对象上的属性的 这个特性都是 true，如前面的例子所示。</li>
+<li>[[<strong>Value</strong>]]：翻译：值 包含属性实际的值。这就是前面提到的那个读取和写入属性值的位置。这个特性 的默认值为 undefined</li>
+</ol>
+<p><strong>访问器属性</strong></p>
+<ol>
+<li>[[<strong>Configurable</strong>]]：表示属性是否可以通过 delete 删除并重新定义，是否可以修改它的特 性，以及是否可以把它改为数据属性。默认情况下，所有直接定义在对象上的属性的这个特性都是 true。</li>
+<li>[[<strong>Enumerable</strong>]]：表示属性是否可以通过 for-in 循环返回。默认情况下，所有直接定义在对 象上的属性的这个特性都是 true。</li>
+<li>[[<strong>Get</strong>]]：获取函数，在读取属性时调用。默认值为 undefined。</li>
+<li>[[<strong>Set</strong>]]：设置函数，在写入属性时调用。默认值为 undefined。</li>
+</ol>
+<h2 id="js事件流"><a href="#js事件流" class="headerlink" title="js事件流"></a>js事件流</h2><p>事件流一共由三个阶段分别是<br>1.捕获阶段<br>2.目标阶段<br>3.冒泡阶段</p>
+<p>通俗一点来说就是一个事件被触发时，浏览器会自动从用户操作标签外的最上级标签逐渐向里检查是否有相同事件，如果有则触发，如果没有则继续向下检查直到用户操作的标签，这过程称为捕获，此时浏览器会继续由用户操作标签继续向上级标签检查，如果有相同事件则触发，如果没有则继续向上检查直到最上级元素为止，此过程称为冒泡。</p>
+<p>从外向内找监听函数，叫做事件捕捉<br>从内向外找监听函数，叫做事件冒泡</p>
+<p><strong>取消冒泡 e.stopPropagation()</strong><br>捕获是不可取消的，但是冒泡可以取消。所有冒泡皆可取消，默认动作有的可以取消有的不能取消。e.stopPropagation() 可以中断冒泡，浏览器不再向上走了。</p>
+<p>事件委托<br>由于事件会在冒泡阶段向上传播到父节点，因此可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件。这种方法叫做事件的代理（delegation）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var ul = document.querySelector(&#x27;ul&#x27;);</span><br><span class="line"></span><br><span class="line">ul.addEventListener(&#x27;click&#x27;, function (event) &#123;</span><br><span class="line">  if (event.target.tagName.toLowerCase() === &#x27;li&#x27;) &#123;</span><br><span class="line">    // some code</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，click事件的监听函数定义在节点，但是实际上，它处理的是子节点的click事件。这样做的好处是，只要定义一个监听函数，就能处理多个子节点的事件，而不用在每个节点上定义监听函数。而且以后再添加子节点，监听函数依然有效。</p>
+<p><strong>优点</strong><br>省监听数（内存）<br>可以监听动态元素</p>
+<h2 id="js的事件循环"><a href="#js的事件循环" class="headerlink" title="js的事件循环"></a>js的事件循环</h2><p><img src="/../images/JavaScript/1363_1.png" alt="js事件循环"></p>
+<p>S是单线程的，但是我们在写代码的时候，会有同步执行的代码和异步执行的代码。EventLoop就是一种解决异步回调的一种机制。具体的解决办法就是使用一个执行栈和事件队列，事件队列又分为宏任务队列和微任务队列。简单的来讲，就是把代码从上到下，会把同步任务压入到执行栈，遇到异步的任务，根据异步任务的类型，放入不同的事件队列，交给其它线程进行处理。如果执行栈空的话，就从事件队列当中取出结果，放入到执行栈中执行并执行。Event Loop 的每一次循环称为一个tick，具体是先拿出一个宏任务，然后检查它里面的微任务，如果有的话，就执行所有的微任务，结束之后，进行一次渲染。再拿出一个宏任务，按照刚刚的过程继续进行</p>
+<h3 id="宏任务MacroTask"><a href="#宏任务MacroTask" class="headerlink" title="宏任务MacroTask"></a>宏任务MacroTask</h3><p>script代码、settiemout、setInterval</p>
+<h3 id="微任务MicroTask"><a href="#微任务MicroTask" class="headerlink" title="微任务MicroTask"></a>微任务MicroTask</h3><p>promise.then、await</p>
+<h3 id="Vue-nextTick"><a href="#Vue-nextTick" class="headerlink" title="Vue.nextTick"></a>Vue.nextTick</h3><p>与此同时，针对于vue的mvvn框架，在修改数据之后，视图并不会立刻更新，而是等同一事件循环中的所有数据变化完成之后，再统一进行视图更新。<br>Vue.nextTick将回调函数放到微任务或者宏任务当中以延迟它地执行顺序</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//改变数据</span><br><span class="line">vm.message = &#x27;changed&#x27;</span><br><span class="line"></span><br><span class="line">//想要立即使用更新后的DOM。这样不行，因为设置message后DOM还没有更新</span><br><span class="line">console.log(vm.$el.textContent) // 并不会得到&#x27;changed&#x27;</span><br><span class="line"></span><br><span class="line">//这样可以，nextTick里面的代码会在DOM更新后执行Vue.nextTick(function()&#123;</span><br><span class="line">    console.log(vm.$el.textContent) //可以得到&#x27;changed&#x27;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="js异步方法"><a href="#js异步方法" class="headerlink" title="js异步方法"></a>js异步方法</h2><h3 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h3><p>是异步操作最基本的方法，比如AJAX回调，回调函数的优点是简单、容易理解和实现，缺点是不利于代码的阅读和维护，各个部分之间高度耦合，使得程序结构混乱、流程难以追踪（尤其是多个回调函数嵌套的情况），而且每个任务只能指定一个回调函数。此外它不能使用try catch捕获错误，不能之间return。</p>
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><p>包装了一个异步调用并生成一个Promise实例，当异步调用返回的时候根据调用的结果分别调用实例化时传入的resolve和reject方法，then接收到对应的数据，做出相应的处理。Promise不仅能够捕获错误，而且也能很好地解决了回调地狱的问题，缺点是无法取消Promise，错误需要通过回调函数捕获。</p>
+<h3 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h3><p>函数是ES6提供的一种异步编程解决方案，Generator函数是一个状态机，封装了多个内部状态，可暂停函数，yield可暂停，next方法可启动，每次返回的是yield后的表达式结果。优点是异步语义清晰，缺点是手动迭代Generator函数很麻烦，实现逻辑优点绕。<br>function* gen(x){<br>    const y &#x3D; yield x + 6;<br>    return y;<br>}<br>const g &#x3D; gen(1);<br>&#x2F;&#x2F;执行 Generator 会返回一个Object,而不是像普通函数返回return 后面的值<br>g.next() &#x2F;&#x2F; { value: 7, done: false }<br>&#x2F;&#x2F;调用指针的 next 方法,会从函数的头部或上一次停下来的地方开始执行，直到遇到下一个 yield 表达式或return语句暂停,也就是执行yield 这一行<br>&#x2F;&#x2F; 执行完成会返回一个 Object,<br>&#x2F;&#x2F; value 就是执行 yield 后面的值,done 表示函数是否执行完毕<br>g.next() &#x2F;&#x2F; { value: undefined, done: true }<br>&#x2F;&#x2F; 因为最后一行 return y 被执行完成,所以done 为 true</p>
+<h3 id="async-x2F-await"><a href="#async-x2F-await" class="headerlink" title="async&#x2F;await"></a>async&#x2F;await</h3><p>是于Promise实现的，async&#x2F;awt使得异步代码看起来像同步代码，所以优点是使用方法清晰明了，缺点是await将异步代码改造成了同步代码，如果多个异步代码没有依赖性却使用了await会导致性能上的降低，代码没有依赖性的话，完全可以使用Promise.all的方式。</p>
+<h2 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h2><p>javascript和typescript的区别是什么</p>
+<p>区别：<br>1、TypeScript中的数据要求带有明确的类型，JavaScript不要求。<br>2、TypeScript引入了JavaScript中没有的“类”概念。<br>3、TypeScript通过类型注解提供编译时的静态类型检查（ 虽然JavaScript是弱类型语言，但是在将其升级改造引入”类型注解”这一概念后的TypeScript中，类型注解相当于强类型语言中声明了某个变量的类型，以后该变量就必须为此类型，否则ts编译器将报错，并不能正确地编译成js文件。）。</p>
+<h2 id="JS的arugments"><a href="#JS的arugments" class="headerlink" title="JS的arugments"></a>JS的arugments</h2><p>在函数调用的时候，浏览器每次都会传递进两个隐式参数：<br>一个是函数的上下文对象this，另一个则是封装实参的类数组对象arguments。</p>
+<p>1、arguments是一个类数组对象，用来存储实参；具有length、callee等属性；可以用arguments[0]这个形式访问实参；可以转换为真实数组。<br>2、arguments和函数相关联，其只有在函数执行时可用，不能显式创建。<br>3、arguments可以用来遍历参数；通过callee实现递归；也可以模拟函数重载。</p>
+<p>function f5(){<br>    &#x2F;&#x2F; 可以使用slice来将arguments转换为真实数组<br>    var args1 &#x3D; Array.prototype.slice.call(arguments);<br>    var args2 &#x3D; [].slice.call(arguments);<br>    &#x2F;&#x2F; 也可以使用Array.from()方法或者扩展运算符来将arguments转换为真实数组<br>    var args3 &#x3D; Array.from(arguments);<br>    var args4 &#x3D; […arguments];<br>}<br>f5(‘name’, ‘age’);</p>
+<h2 id="JS的原型链"><a href="#JS的原型链" class="headerlink" title="JS的原型链"></a>JS的原型链</h2><p>什么是原型：任何对象实例都有一个原型，也叫原型对象，这个原型对象由对象的内置属性_proto_指向它的构造函数的 prototype 指向的对象，即任何对象都是由一个构造函数创建的，但是不是每一个对象都有 prototype，只有方法才有 prototype。</p>
+<p>什么是原型链：<strong>原型链基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。</strong>当调用某种方法或查找某种属性时，首先会在自身调用和查找，如果自身并没有该属性或方法，则会去它的__proto__中查找，也就是构造函数的显式原型prototype中查找，如果构造函数的显式原型prototype中也没有该属性，因为构造函数的显式原型prototype也是对象，也有__proto__，那么会去它的__proto__指向的另一个显式原型prototype中查找，一直到null，如果没有则返回undefined</p>
+<ul>
+<li><p>所有引用类型（函数，数组，对象）都拥有__proto__属性（隐式原型)</p>
+</li>
+<li><p>所有函数除了有_proto_属性之外还拥有prototype属性（显式原型）</p>
+</li>
+</ul>
+<h2 id="JS-set、map、weakset、weakmap区别"><a href="#JS-set、map、weakset、weakmap区别" class="headerlink" title="JS set、map、weakset、weakmap区别"></a>JS set、map、weakset、weakmap区别</h2><p>共同点：<br>他们都是构造函数</p>
+<p>不同点：<br>1、weakset、set不允许有重复的数据，set可以存储原始值和对象引用，存储的数据必须是唯一值<br>2、weakset是弱集合，存储的数据只能是对象，对对象的引用是弱引用；在没有其他引用和该键引用同一对象，这个对象将会被垃圾回收；不可枚举<br>3、map表示字典，用键值对的形式存放数据，键和值可以是原始值和对象引用<br>4、weakmap是弱字典，以键值对形式存放，键只能是对象，对对象的引用是弱引用；在没有其他引用和该键引用同一对象，这个对象将会被垃圾回收；不可枚举<br>WeakMap 中，每个键对自己所引用对象的引用都是弱引用，在没有其他引用和该键引用同一对象，这个对象将会被垃圾回收（相应的key则变成无效的），所以，WeakMap 的 key 是不可枚举的；所以不容易造成内存泄漏。</p>
+<h2 id="js-垃圾回收机制"><a href="#js-垃圾回收机制" class="headerlink" title="js 垃圾回收机制"></a>js 垃圾回收机制</h2><p>我们知道，程序运行中会有一些垃圾数据不再使用，需要及时释放出去，如果我们没有及时释放，这就是内存泄露。JavaScript 是一门具有自动垃圾收集机制的编程语言，由执行环境负责在代码执行时管理内存。JS 中的垃圾数据都是由垃圾回收（Garbage Collection，缩写为 GC）器自动回收的，不需要手动释放。JS 引擎中有一个后台进程称为垃圾回收器，它监视所有对象，观察对象是否可被访问，然后按照固定的时间间隔周期性的删除掉那些不可访问的对象即可。</p>
+<p>常见的垃圾回收方法：1）引用计数方法；2）标记清除方法。</p>
+<p><strong>1）引用计数</strong><br>引用计数就是给一个占用物理空间的对象附加一个引用计数器，当有其它对象引用这个对象时，这个对象的引用计数加一，反之解除时就减一，当该对象引用计数为 0 时就会被回收。如果出现循环引用，则一直不会被回收，还是会造成内存泄漏。</p>
+<p>解决办法：及时销毁绑定的事件、使用弱引用 weakMap、weakSet。</p>
+<p><strong>2）标记清除方法。</strong></p>
+<p>V8 中主垃圾回收器就采用标记清除法进行垃圾回收。主要流程如下：<br>标记：遍历调用栈，看老生代区域堆中的对象是否被引用，被引用的对象标记为活动对象，没有被引用的对象（待清理）标记为垃圾数据。<br>清除：将所有垃圾数据清理掉。</p>
+<p><img src="/../images/JavaScript/1365_1.png" alt="标记清除方法"></p>
+<p>垃圾回收算法垃圾回收的实现简单分为以下三个步骤：<br><strong>1）可访问性</strong><br>从 GC Roots 对象出发，遍历 GC Root 中的所有对象：<br>a、可访问对象：通过 GC Root 遍历到的对象，我们就认为该对象是可访问的（reachable），那么必须保证这些对象应该在内存中保留。<br>b、不可访问对象：通过 GC Roots 没有遍历到的对象，则是不可访问的（unreachable），并会对其做上标记，那么这些不可访问的对象就可能被回收。</p>
+<p>GC Root 有很多，通常包括了以下几种 (但是不止于这几种)：全局的 window 对象（位于每个 iframe 中）；文档 DOM 树，可以通过遍历文档到达的所有原生 DOM 节点组成；存放栈上变量。</p>
+<p><strong>2）回收不可访问对象所占据的内存</strong><br>在所有的标记完成之后，统一清理内存中所有被标记为可回收的对象。</p>
+<p><strong>3）内存整理</strong><br>频繁回收对象后，内存中就会存在大量不连续空间，称为内存碎片。当出现了大量的内存碎片之后，如果需要分配较大的连续内存时，就会出现内存不足的情况，所以最后一步需要整理这些内存碎片。</p>
+<p>在我们的实际开发过程中，如果我们想要让垃圾回收器回收某一对象，就将对象的引用直接设置为 null。但如果一个对象被多次引用时，例如作为另一对象的键、值或子元素时，将该对象引用设置为 null 时，该对象是不会被回收的，依然存在。</p>
+<h2 id="Cookie、LocalStorage、SessionStorage"><a href="#Cookie、LocalStorage、SessionStorage" class="headerlink" title="Cookie、LocalStorage、SessionStorage"></a>Cookie、LocalStorage、SessionStorage</h2><p><img src="/../images/JavaScript/1367_1.png" alt="Cookie、LocalStorage、SessionStorage"></p>
+<h2 id="es6"><a href="#es6" class="headerlink" title="es6"></a>es6</h2><h3 id="let-const-var"><a href="#let-const-var" class="headerlink" title="let const var"></a>let const var</h3><p>var ——ES5 变量声明方式变量未赋值时，变量undefined（为使用声明变量时也为undefined）<br>作用域——var的作用域为方法作用域；只要在方法内定义了，整个方法内的定义变量后的代码都可以使用</p>
+<p>let——ES6变量声明方式<br>在变量为声明前直接使用会报错<br>作用域——let为块作用域——通常let比var 范围要小<br>let禁止重复声明变量，否则会报错；var可以重复声明</p>
+<p>const——ES6变量声明方式</p>
+<ol>
+<li>const为常量声明方式；声明变量时必须初始化，在后面出现的代码中不能再修改该常量的值</li>
+<li>const实际上保证的，并不是变量的值不得改动，而是变量指向的那个内存地址不得改动</li>
+</ol>
+<h4 id="暂时性死区"><a href="#暂时性死区" class="headerlink" title="暂时性死区"></a>暂时性死区</h4><p>暂时性死区：只要一进入当前作用域，所要使用的变量就已经存在了，但是不可获取，只有等到声明变量的那一行代码出现，才可以获取和使用该变量</p>
+<p>暂时性死区和不能变量提升的意义在于: 为了减少运行时错误，防止在变量声明前就使用这个变量，从而导致意料之外的行为。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var tmp = 123; // 声明</span><br><span class="line">if (true) &#123;</span><br><span class="line">  tmp = &#x27;abc&#x27;; // 报错 因为本区域有tmp声明变量</span><br><span class="line">  let tmp; // 绑定if这个块级的作用域 不能出现tmp变量</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h4><p><strong>概念</strong>：多个作用域对象连续引用形成的链式结构。</p>
+<p><strong>使用方面解释</strong>：当在Javascript中使用一个变量的时候，首先Javascript引擎会尝试在当前作用域下去寻找该变量，如果没找到，再到它的上层作用域寻找，以此类推直到找到该变量或是已经到了全局作用域，如果在全局作用域里仍然找不到该变量，它就会直接报错。</p>
+<p><strong>存储方面解释</strong>：作用域链在JS内部中是以数组的形式存储的，数组的第一个索引对应的是函数本身的执行期上下文，也就是当前执行的代码所在环境的变量对象，下一个索引对应的空间存储的是该对象的外部执行环境，依次类推，一直到全局执行环境</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a = 100</span><br><span class="line">function fun() &#123;</span><br><span class="line">    var b = 200</span><br><span class="line">    console.log(a) //100</span><br><span class="line">// fun函数局部作用域中没有变量a，于是从它的上一级，也就是全局作用域中找，</span><br><span class="line">//在全局中a被赋值为100，于是输出100</span><br><span class="line">    console.log(b)//200 fun函数局部作用域中有变量b，并且它被赋值为了200，输出200</span><br><span class="line">&#125;</span><br><span class="line">fun()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var a = 10</span><br><span class="line">function fun() &#123;</span><br><span class="line">   console.log(a)</span><br><span class="line">&#125;</span><br><span class="line">function show(f) &#123;</span><br><span class="line">   var a = 20</span><br><span class="line">   (function() &#123;</span><br><span class="line">      f()   //10，而不是20; 函数的作用域是在函数定义的时候就被决定了，与函数在哪里被调用无关</span><br><span class="line">   &#125;)()</span><br><span class="line">&#125;</span><br><span class="line">show(fun)</span><br></pre></td></tr></table></figure>
+
+<p>由于变量的查找是沿着作用域链来实现的，所以也称作用域链为变量查找的机制。是不是很好理解，这里再来补充一点作用域的作用</p>
+<ul>
+<li><p>作用域最为重要的一点是安全。变量只能在特定的区域内才能被访问，外部环境不能访问内部环境的任何变量和函数，即可以向上搜索，但不可以向下搜索， 有了作用域我们就可以避免在程序其它位置意外对某个变量做出修改导致程序发生事故。</p>
+</li>
+<li><p>作用域能够减轻命名的压力。我们可以在不同的作用域内定义相同的变量名，并且这些变量名不会产生冲突。。</p>
+</li>
+</ul>
+<h4 id="let在编译后实际还是var-因为低版本不支持let语法-这个是怎么实现的？"><a href="#let在编译后实际还是var-因为低版本不支持let语法-这个是怎么实现的？" class="headerlink" title="let在编译后实际还是var,因为低版本不支持let语法,这个是怎么实现的？"></a>let在编译后实际还是var,因为低版本不支持let语法,这个是怎么实现的？</h4><ol>
+<li><p>let 处于全局作用域，那么 let 直接变成 var。</p>
+</li>
+<li><p>let 处于块作用域，那就要判断该变量升级至上级的函数作用域或者全局作用域后，是否会与同一作用域的变量发生重名现象，如果重名，那就换个变量名。同时修改所有引用这个变量的代码。</p>
+</li>
+<li><p>let 处于循环语句中，形成类似闭包的效果，此时需要将循环内部的方法转换为立即执行函数的写法，利用闭包的特性保存循环次数。</p>
+</li>
+<li><p>let 和 const 是 ES6 新增的变量申明关键字， 和 var 的主要区别在于作用域的不同，var 支持全局作用域和函数作用域，而 let 和 const 是块作用域。Babel 使用 babel-plugin-transform-block-scoping 插件完成 let 到 var 的转换，本质是块作用域到函数作用域或全局作用域的转换。</p>
+</li>
+<li><p>Babel 在生成 AST 之后，定义了一个访问者（visitor），用于遍历 AST 的过程中，根据语法规则生成作用域对象(Scope)，该对象中定义了该作用域下绑定的变量，这些变量是否被引用以及每个引用具体的路径。这些信息是后续修改作用域以及变量更换绑定的基础。</p>
+</li>
+<li><p>let 直接变为 var 很容易导致语义变化，需要结合作用域和上下文来进行判断，如果变成 var 后，和同层作用域的变量名称发生冲突，可以修改名称解决。如果 let 被内层作用域的方法引用，则需要修改代码，形成闭包。</p>
+</li>
+<li><p>babel-plugin-transform-block-scoping 插件是 Babel 中负责块级作用域转换的插件，实现了收集作用域下变量，判断是否存在闭包，let 节点修改等功能。我们在自己编写插件的时候，最好能多看几个 Babel 的原生插件，不仅可以了解 Babel 编译的原理，还可以学一些 AST 操作的方法。</p>
+</li>
+</ol>
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p>可以看出，定义箭头函在数语法上要比普通函数简洁得多。箭头函数省去了function关键字，采用箭头&#x3D;&gt;来定义函数。</p>
+<p>关于箭头函数的参数：① 如果箭头函数没有参数，直接写一个空括号即可。② 如果箭头函数的参数只有一个，也可以省去包裹参数的括号。③ 如果箭头函数有多个参数，将参数依次用逗号(,)分隔，包裹在括号中即可。</p>
+<p>① 如果箭头函数的函数体只有一句代码，就是简单返回某个变量或者返回一个简单的JS表达式，可以省去函数体的大括号{ }。</p>
+<p>② 如果箭头函数的函数体只有一句代码，就是返回一个对象，可以像下面这样写</p>
+<p>③ 如果箭头函数的函数体只有一条语句并且不需要返回值（最常见是调用一个函数），可以给这条语句前面加一个void关键字</p>
+<p>区别：</p>
+<ul>
+<li>语法更加简洁、清晰。箭头函数的定义要比普通函数定义简洁、清晰得多，很快捷。</li>
+<li>箭头函数不会创建自己的this。箭头函数没有自己的this，它会捕获自己在定义时（注意，是定义时，不是调用时）所处的外层执行环境的this，并继承这个this值。所以，箭头函数中this的指向在它被定义的时候就已经确定了，之后永远不会改变。</li>
+<li>箭头函数继承而来的this指向永远不变。call()&#x2F;.apply()&#x2F;.bind()无法改变箭头函数中this的指向.call()&#x2F;.apply()&#x2F;.bind()方法可以用来动态修改函数执行时this的指向，但由于箭头函数的this定义时就已经确定且永远不会改变。所以使用这些方法永远也改变不了箭头函数this的指向，虽然这么做代码不会报错。</li>
+<li>箭头函数不能作为构造函数使用。因为箭头函数没有自己的this，它的this其实是继承了外层执行环境中的this，</li>
+<li>箭头函数没有自己的arguments</li>
+<li>箭头函数没有原型prototype</li>
+<li>箭头函数不能用作Generator函数，不能使用yeild关键字</li>
+</ul>
+<h4 id="new做了什么"><a href="#new做了什么" class="headerlink" title="new做了什么"></a>new做了什么</h4><p>1.创建一个空对象<br>2.this指向这个对象<br>3.执行构造函数的语句<br>4.返回该对象</p>
+<h3 id="parseInt方法"><a href="#parseInt方法" class="headerlink" title="parseInt方法"></a>parseInt方法</h3><h3 id="拓展运算符"><a href="#拓展运算符" class="headerlink" title="拓展运算符"></a>拓展运算符</h3><h3 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h3><h3 id="异步Promise、Generator和Async"><a href="#异步Promise、Generator和Async" class="headerlink" title="异步Promise、Generator和Async"></a>异步Promise、Generator和Async</h3><h3 id="数组遍历方法for-in、Object-keys"><a href="#数组遍历方法for-in、Object-keys" class="headerlink" title="数组遍历方法for in、Object.keys()"></a>数组遍历方法for in、Object.keys()</h3><h3 id="Symbol-bigInt"><a href="#Symbol-bigInt" class="headerlink" title="Symbol\bigInt"></a>Symbol\bigInt</h3><h3 id="数据结构Set和Map"><a href="#数据结构Set和Map" class="headerlink" title="数据结构Set和Map"></a>数据结构Set和Map</h3><h3 id="class定义类"><a href="#class定义类" class="headerlink" title="class定义类"></a>class定义类</h3><h2 id="js闭包"><a href="#js闭包" class="headerlink" title="js闭包"></a>js闭包</h2><p>闭包是指有权访问另外一个函数作用域中的变量的函数。 <br>内部的函数存在外部作用域的引用就会导致闭包。</p>
+<p>闭包中的变量存储的位置是堆内存。</p>
+<p><strong>作用：</strong><br>保护函数的私有变量不受外部的干扰。形成不销毁的栈内存。保存，把一些函数内的值保存下来。闭包可以实现方法和属性的私有化。局部变量无法共享和长久的保存，而全局变量可能造成变量污染，所以我们希望有一种机制既可以长久的保存变量又不会造成全局污染。</p>
+<p><strong>闭包使用场景</strong><br>return一个函数<br>函数作为参数<br>循环赋值<br>防抖节流</p>
+<p><strong>闭包缺点</strong><br>容易导致内存泄漏。闭包会携带包含它的函数作用域，因此会比其他函数占用更多的内存。过度使用闭包会导致内存占用过多</p>
+<h2 id="js内存泄漏"><a href="#js内存泄漏" class="headerlink" title="js内存泄漏"></a>js内存泄漏</h2><h3 id="什么是内存泄漏？"><a href="#什么是内存泄漏？" class="headerlink" title="什么是内存泄漏？"></a>什么是内存泄漏？</h3><p>当内存中本应该在垃圾回收周期中清理的对象，因为被另一个对象的无意引用而从根能够保持可访问时，就会发生内存泄漏。将冗余对象保留在内存中会导致应用程序内部使用过多的内存，并可能导致性能下降。</p>
+<h3 id="那该如何判断代码正在泄漏内存呢？"><a href="#那该如何判断代码正在泄漏内存呢？" class="headerlink" title="那该如何判断代码正在泄漏内存呢？"></a>那该如何判断代码正在泄漏内存呢？</h3><p>内存使用检查最快的方法就是<strong>查看浏览器的任务管理器</strong>。 它们提供了当前在浏览器中运行的所有选项卡和进程的概览。在任务管理器中查看每个选项卡的 JavaScript 内存占用情况。如果网站什么都不做，但是 JavaScript 内存使用量却在逐渐增加，那们很有可能发生了内存泄漏。</p>
+<h3 id="什么会导致内存泄漏呢"><a href="#什么会导致内存泄漏呢" class="headerlink" title="什么会导致内存泄漏呢"></a>什么会导致内存泄漏呢</h3><ol>
+<li>意外的全局变量：由于使用未声明的变量,而意外的创建了一个全局变量,而使这个变量一直留在内存中无法被回收。<strong>通过使用严格模式“use strict”来避免这一切。在JavaScript文件的开头，它将开启更严格的JavaScript解析模式，从而防止意外的创建全局变量。</strong></li>
+<li>被遗忘的计时器或回调函数：设置了 setInterval 定时器，而忘记取消它，如果循环函数有对外部变量的引用的话，那么这个变量会被一直留在内存中，而无法被回收。<strong>修改计时器回调中引用的对象；必要时使用从计时器返回的句柄（定时器的标识符）取消它clearInterval()。</strong></li>
+<li>脱离 DOM 的引用：获取一个 DOM 元素的引用，而后面这个元素被删除，由于一直保留了对这个元素的引用，所以它也无法被回收。要解决此问题，<strong>可以在完成后，删除指向DOM元素的变量。</strong></li>
+<li>闭包：不合理的使用闭包，从而导致某些变量一直被留在内存当中。<strong>了解何时创建闭包以及闭包保留了哪些对象；了解闭包的预期寿命和用法（尤其是用作回调时）。</strong></li>
+<li>事件监听器：事件侦听器将防止在其范围内捕获的所有变量被垃圾收集。添加后，事件侦听器将一直有效，直到：<strong>使用 removeEventListener() 显式删除或者关联的 DOM 元素被移除。</strong></li>
+<li>缓存：如果不断地将内存添加到缓存中，而不删除未使用的对象，并且没有一些限制大小的逻辑，那么缓存可以无限增长。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> user_1 = &#123; <span class="attr">name</span>: <span class="string">&quot;Peter&quot;</span>, <span class="attr">id</span>: <span class="number">12345</span> &#125;;</span><br><span class="line"><span class="keyword">let</span> user_2 = &#123; <span class="attr">name</span>: <span class="string">&quot;Mark&quot;</span>, <span class="attr">id</span>: <span class="number">54321</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> mapCache = <span class="keyword">new</span> <span class="title class_">Map</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">cache</span>(<span class="params">obj</span>)&#123;</span><br><span class="line">  <span class="keyword">if</span> (!mapCache.<span class="title function_">has</span>(obj))&#123;</span><br><span class="line">    <span class="keyword">const</span> value = <span class="string">`<span class="subst">$&#123;obj.name&#125;</span> has an id of <span class="subst">$&#123;obj.id&#125;</span>`</span>;</span><br><span class="line">    mapCache.<span class="title function_">set</span>(obj, value);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [value, <span class="string">&#x27;computed&#x27;</span>];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> [mapCache.<span class="title function_">get</span>(obj), <span class="string">&#x27;cached&#x27;</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">cache</span>(user_1); <span class="comment">// [&#x27;Peter has an id of 12345&#x27;, &#x27;computed&#x27;]</span></span><br><span class="line"><span class="title function_">cache</span>(user_1); <span class="comment">// [&#x27;Peter has an id of 12345&#x27;, &#x27;cached&#x27;]</span></span><br><span class="line"><span class="title function_">cache</span>(user_2); <span class="comment">// [&#x27;Mark has an id of 54321&#x27;, &#x27;computed&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mapCache); <span class="comment">// &#123;&#123;…&#125; =&gt; &#x27;Peter has an id of 12345&#x27;, &#123;…&#125; =&gt; &#x27;Mark has an id of 54321&#x27;&#125;</span></span><br><span class="line">user_1 = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mapCache); <span class="comment">// &#123;&#123;…&#125; =&gt; &#x27;Peter has an id of 12345&#x27;, &#123;…&#125; =&gt; &#x27;Mark has an id of 54321&#x27;&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在上面的示例中，缓存仍然保留 user_1 对象。因此，我们需要将那些永远不会被重用的变量从缓存中清除。<strong>可以使用 WeakMap 来解决此问题。</strong>它是一种具有弱键引用的数据结构，仅接受对象作为键。如果我们使用一个对象作为键，并且它是对该对象的唯一引用——相关变量将从缓存中删除并被垃圾收集。在以下示例中，将 user_1 对象清空后，相关变量会在下一次垃圾回收后自动从 WeakMap 中删除。</p>
+<h2 id="TypeScript与JavaScript区别"><a href="#TypeScript与JavaScript区别" class="headerlink" title="TypeScript与JavaScript区别"></a>TypeScript与JavaScript区别</h2><p>区别：</p>
+<ol>
+<li>TypeScript中的数据要求带有明确的类型，JavaScript不要求。</li>
+<li>TypeScript引入了JavaScript中没有的“类”概念。</li>
+<li>TypeScript通过类型注解提供编译时的静态类型检查（ 虽然JavaScript是弱类型语言，但是在将其升级改造引入”类型注解”这一概念后的TypeScript中，类型注解相当于强类型语言中声明了某个变量的类型，以后该变量就必须为此类型，否则ts编译器将报错，并不能正确地编译成js文件）。</li>
+</ol>
+<h2 id="JSON-stringify有什么缺点？"><a href="#JSON-stringify有什么缺点？" class="headerlink" title="JSON.stringify有什么缺点？"></a>JSON.stringify有什么缺点？</h2><ol>
+<li>如果obj里面有时间对象，则JSON.stringify后再JSON.parse的结果，时间将只是字符串的形式，而不是对象的形式</li>
+<li>如果obj里有RegExp(正则表达式的缩写)、Error对象，则序列化的结果将只得到空对象；</li>
+<li>如果obj里有函数，undefined，则序列化的结果会把函数或 undefined丢失；</li>
+<li>如果obj里有NaN、Infinity和-Infinity，则序列化的结果会变成null</li>
+<li>JSON.stringify()只能序列化对象的可枚举的自有属性，例如 如果obj中的对象是有构造函数生成的， 则使用JSON.parse(JSON.stringify(obj))深拷贝后，会丢弃对象的constructor；<br>6、如果对象中存在循环引用的情况也无法正确实现深拷贝；</li>
+</ol>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">xwing</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://zyhxwing.gitee.io/2022/09/03/javascript/">https://zyhxwing.gitee.io/2022/09/03/javascript/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">xwing</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/JavaScript/">
+                                    <span class="chip bg-color">JavaScript</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/09/04/browser/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="前端安全、网络传输、浏览器相关">
+                        
+                        <span class="card-title">前端安全、网络传输、浏览器相关</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-09-04
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
+                                    前端
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/JavaScript/">
+                        <span class="chip bg-color">JavaScript</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">前端安全</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+                        <span class="chip bg-color">浏览器</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93/">
+                        <span class="chip bg-color">网络传输</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/09/02/http/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="计算机网络">
+                        
+                        <span class="card-title">计算机网络</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
+                                    前端
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+                        <span class="chip bg-color">计算机网络</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: xwing<br />'
+            + '文章作者: xwing<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="7618857959"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='list'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <span id="year">2022</span>
+            <a href="/about" target="_blank">xwing</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/zyhxwing" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1216112348@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1216112348" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1216112348" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

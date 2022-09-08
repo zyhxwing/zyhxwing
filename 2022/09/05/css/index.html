@@ -1,0 +1,1429 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="css, xwing">
+    <meta name="description" content="xwing的个人网站">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>css | xwing</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+
+   <style>
+    body{
+       background-image: url(/medias/featureimages/0.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">xwing</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">xwing</div>
+        <div class="logo-desc">
+            
+            xwing的个人网站
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">css</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/css/">
+                                <span class="chip bg-color">css</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
+                                前端
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-09-05
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="css"><a href="#css" class="headerlink" title="css"></a>css</h1><h2 id="css3新特性"><a href="#css3新特性" class="headerlink" title="css3新特性"></a>css3新特性</h2><ol>
+<li>圆角border-radius</li>
+<li>阴影之box-shadow</li>
+<li>阴影之text-shadow</li>
+<li>背景渐变linear-gradient</li>
+<li>转换transform</li>
+<li>translate()移动</li>
+<li>rotate()旋转</li>
+<li>scale()缩放</li>
+<li>skew()倾斜</li>
+<li>3D转换之rotateX()</li>
+<li>3D转换之rotateY()</li>
+<li>translate3d()</li>
+</ol>
+<ul>
+<li>过渡transition</li>
+</ul>
+<ol start="13">
+<li>动画animation</li>
+</ol>
+<ul>
+<li>@keyframes创建动画</li>
+<li>animation执行动画</li>
+</ul>
+<ol start="14">
+<li>媒体查询 自动获取当前设备的屏幕信息. 以便于采用渲染方式. 使同一种样式在不同设备上显示出不同的效果。</li>
+</ol>
+<ul>
+<li>设置meta标签</li>
+<li>媒体查询语句</li>
+</ul>
+<ol start="15">
+<li>响应式布局 响应式局部就是让一套代码能够在不同设备上显示. 通过隐藏或者缩小相关元素来实现整个网页的功能完整性和美观性</li>
+<li>栅格系统 col&#x2F;row栅格系统是媒体查询的具体实现. 是一种规定的写法. 能够最小限度保证在各个设备上的显示美观性。</li>
+</ol>
+<h2 id="css选择器优先级"><a href="#css选择器优先级" class="headerlink" title="css选择器优先级"></a>css选择器优先级</h2><p>css选择器优先级最高到最低顺序为：</p>
+<ol>
+<li>id选择器(#myid)</li>
+<li>类选择器(.myclassname)</li>
+<li>标签选择器(div,h1,p)</li>
+<li>子选择器(ul &lt; li)</li>
+<li>后代选择器(li a)</li>
+<li>伪类选择(a:hover,li:nth-child)</li>
+</ol>
+<p>当两个规则都作用到了同一个html元素上时，如果定义的属性有冲突，那么应该用谁的值的，用到谁的值谁的优先级就高。<br>我们来看一下css选择器优先级的算法：</p>
+<ul>
+<li>每个规则对应一个初始”四位数”：0、0、0、0</li>
+<li>若是 行内选择符，则加1、0、0、0</li>
+<li>若是 ID选择符，则加0、1、0、0</li>
+<li>若是 类选择符&#x2F;伪类选择符，则分别加0、0、1、0</li>
+<li>若是 元素选择符，则分别加0、0、0、1</li>
+</ul>
+<p>!important的优先级是最高的，但出现冲突时则需比较”四位数“;<br>优先级相同时，则采用就近原则，选择最后出现的样式;<br>继承得来的属性，其优先级最低。</p>
+<h2 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h2><h3 id="元素知道宽高"><a href="#元素知道宽高" class="headerlink" title="元素知道宽高"></a>元素知道宽高</h3><ul>
+<li>绝对定位、相对定位、calc计算偏移距离</li>
+<li>绝对定位、相对定位、margin计算偏移距离</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .outer &#123;</span><br><span class="line">        position: relative;</span><br><span class="line">        width: 200px;</span><br><span class="line">        height: 200px;</span><br><span class="line">        background-color: red;</span><br><span class="line">    &#125;</span><br><span class="line">        //calc</span><br><span class="line">    .inner &#123;</span><br><span class="line">        position: absolute;</span><br><span class="line">        top: calc(50% - 50px);</span><br><span class="line">        left: calc(50% - 50px);</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">    &#125;</span><br><span class="line">        //margin</span><br><span class="line">   .inner &#123;</span><br><span class="line">        position: absolute;</span><br><span class="line">        top: 50%;</span><br><span class="line">        left: 50%;</span><br><span class="line">        margin-left: -50px;</span><br><span class="line">        margin-top: -50px;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;outer&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="元素不知道宽高"><a href="#元素不知道宽高" class="headerlink" title="元素不知道宽高"></a>元素不知道宽高</h3><ul>
+<li>绝对定位、相对定位、calc计算偏移距离</li>
+<li>绝对定位、相对定位、margin计算偏移距离</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .outer &#123;</span><br><span class="line">        position: relative;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        width: 200px;</span><br><span class="line">        height: 200px;</span><br><span class="line">        background-color: red;</span><br><span class="line">    &#125;</span><br><span class="line">        //margin:0</span><br><span class="line">    .inner &#123;</span><br><span class="line">        position: absolute;</span><br><span class="line">        top: 0;</span><br><span class="line">        bottom: 0;</span><br><span class="line">        left: 0;</span><br><span class="line">        right: 0;</span><br><span class="line">        margin: auto;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">    &#125;</span><br><span class="line">        //transform</span><br><span class="line">    .inner &#123;</span><br><span class="line">        position: absolute;</span><br><span class="line">        top: 50%;</span><br><span class="line">        left: 50%;</span><br><span class="line">        transform: translate(-50%, -50%);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;outer&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//flex 布局</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .outer &#123;</span><br><span class="line">        display: flex;</span><br><span class="line">        justify-content: center;</span><br><span class="line">        align-items: center;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        width: 200px;</span><br><span class="line">        height: 200px;</span><br><span class="line">        background-color: red;</span><br><span class="line">    &#125;</span><br><span class="line">    .inner &#123;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;outer&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//grid布局</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .outer &#123;</span><br><span class="line">        display: grid;</span><br><span class="line">        justify-content: center;</span><br><span class="line">        align-items: center;</span><br><span class="line">        </span><br><span class="line">        width: 200px;</span><br><span class="line">        height: 200px;</span><br><span class="line">        background-color: red;</span><br><span class="line">    &#125;</span><br><span class="line">    .inner &#123;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;outer&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//table布局</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .outer &#123;</span><br><span class="line">        display: table-cell;</span><br><span class="line">        text-align: center;</span><br><span class="line">        vertical-align: middle;</span><br><span class="line">        </span><br><span class="line">        width: 200px;</span><br><span class="line">        height: 200px;</span><br><span class="line">        background-color: red;</span><br><span class="line">    &#125;</span><br><span class="line">    .inner &#123;</span><br><span class="line">        display: inline-block;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;outer&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>vertical-align 只对 table-cell起作用，vertical-align 的值是相对于其父元素的，父元素必须是行内元素。<br>对于一行文字来讲，该属性的值是相对于行高（line-height）的。<br>对于 table-cell，该属性的值是相对于表格的行高的。</p>
+<h2 id="行内元素垂直居中、水平居中"><a href="#行内元素垂直居中、水平居中" class="headerlink" title="行内元素垂直居中、水平居中"></a>行内元素垂直居中、水平居中</h2><h3 id="垂直居中-1"><a href="#垂直居中-1" class="headerlink" title="垂直居中"></a>垂直居中</h3><ul>
+<li>在行内元素的父元素设置：text-align: center;</li>
+<li>flex布局：在行内元素的父元素设置：display: flex;justify-content: center;</li>
+</ul>
+<h3 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h3><p><strong>单行文本</strong></p>
+<ul>
+<li>把 line-height 设置为父元素的高度</li>
+<li>flex布局：在行内元素的父元素设置：display: flex;align-items: center;<br><strong>多行文本</strong></li>
+<li>在父元素设置： disaply: table-cell; vertical-align: middle; （多行文本垂直居中也适合单行文本的垂直居中）</li>
+</ul>
+<h2 id="实现单行／多行文本溢出的省略样式"><a href="#实现单行／多行文本溢出的省略样式" class="headerlink" title="实现单行／多行文本溢出的省略样式"></a>实现单行／多行文本溢出的省略样式</h2><h3 id="单行文本溢出省略"><a href="#单行文本溢出省略" class="headerlink" title="单行文本溢出省略"></a>单行文本溢出省略</h3><p>实现方式也很简单，涉及的css属性有：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">text-overflow：ellipsis;</span><br><span class="line">white-space：nowrap;</span><br><span class="line">overflow：hidden;</span><br></pre></td></tr></table></figure>
+
+<p>overflow设为hidden，普通情况用在块级元素的外层隐藏内部溢出元素，或者配合下面两个属性实现文本溢出省略<br>white-space:nowrap，作用是设置文本不换行，是overflow:hidden和text-overflow：ellipsis生效的基础<br>text-overflow属性值有如下：clip：当对象内文本溢出部分裁切掉,ellipsis：当对象内文本溢出时显示省略标记（…）</p>
+<h3 id="多行文本溢出省略"><a href="#多行文本溢出省略" class="headerlink" title="多行文本溢出省略"></a>多行文本溢出省略</h3><p>多行文本溢出的时候，我们可以分为两种情况：基于高度截断、基于行数截断</p>
+<h4 id="基于高度截断"><a href="#基于高度截断" class="headerlink" title="基于高度截断"></a>基于高度截断</h4><ul>
+<li>伪元素 + 定位<br>代码结构如下</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .demo &#123;</span><br><span class="line">        position: relative;</span><br><span class="line">        line-height: 20px;</span><br><span class="line">        height: 40px;</span><br><span class="line">        overflow: hidden;</span><br><span class="line">    &#125;</span><br><span class="line">    .demo::after &#123;</span><br><span class="line">        content: &quot;...&quot;;</span><br><span class="line">        position: absolute;</span><br><span class="line">        bottom: 0;</span><br><span class="line">        right: 0;</span><br><span class="line">        padding: 0 20px 0 10px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&#x27;demo&#x27;&gt;这是一段很长的文本&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="基于行数截断"><a href="#基于行数截断" class="headerlink" title="基于行数截断"></a>基于行数截断</h4><ul>
+<li>css</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">    p &#123;</span><br><span class="line">        width: 400px;</span><br><span class="line">        border-radius: 1px solid red;</span><br><span class="line">        -webkit-line-clamp: 2;</span><br><span class="line">        //用来限制在一个块元素显示的文本的行数，为了实现该效果，它需要组合其他的WebKit属性）</span><br><span class="line">        display: -webkit-box;</span><br><span class="line">        //将对象作为弹性伸缩盒子模型显示</span><br><span class="line">        -webkit-box-orient: vertical;</span><br><span class="line">        //设置或检索伸缩盒对象的子元素的排列方式</span><br><span class="line">        overflow: hidden;//文本溢出限定的宽度就隐藏内容</span><br><span class="line">        text-overflow: ellipsis;</span><br><span class="line">        //多行文本的情况下，用省略号“…”隐藏溢出范围的文本</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;p&gt;</span><br><span class="line">    这是一些文本这是一些文本这是一些文本这是一些文本这是一些文本</span><br><span class="line">    这是一些文本这是一些文本这是一些文本这是一些文本这是一些文本</span><br><span class="line">&lt;/p &gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h2><h3 id="媒体查询作用"><a href="#媒体查询作用" class="headerlink" title="媒体查询作用"></a>媒体查询作用</h3><ul>
+<li>使用 @media查询,可以针对不同的媒体类型定义不同的样式;</li>
+<li>@media 可以针对不同的屏幕尺寸设置不同的样式;</li>
+<li>当重置浏览器大小的过程中,页面也会根据浏览器的宽度和高度重新渲染页面;</li>
+<li>目前针对很多苹果手机、 Android手机 ,平板等设备都用得到多媒体查询。</li>
+</ul>
+<h3 id="语法规范"><a href="#语法规范" class="headerlink" title="语法规范"></a>语法规范</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@media mediatype and|not|only (media feature) &#123;</span><br><span class="line">	CSS-Code;</span><br><span class="line">&#125;</span><br><span class="line">// 1.用@media开头；</span><br><span class="line">// 2.mediatype媒体类型；</span><br><span class="line">// 3.关键字and not only</span><br><span class="line">// 4.media feature媒体特性，必须有小括号包含</span><br></pre></td></tr></table></figure>
+<h3 id="mediatype查询类型"><a href="#mediatype查询类型" class="headerlink" title="mediatype查询类型"></a>mediatype查询类型</h3><p>将不同的终端设备分为不同的类型</p>
+<p><img src="https://img-blog.csdnimg.cn/62e73f971dcd40738f521e5ab64c4efd.png#pic_center" alt="mediatype查询类型"></p>
+<h3 id="and-not-only"><a href="#and-not-only" class="headerlink" title="and|not|only"></a>and|not|only</h3><p>关键字将媒体类型或多个特性连接到一起做为媒体查询的条件</p>
+<ul>
+<li>and：可以将多个媒体特性连接到一起，相当”且”于的意思</li>
+<li>not：排除某个媒体类型，相当于”非”的意思，可以省略</li>
+<li>only：指定某个特定的媒体类型，可省略</li>
+</ul>
+<h3 id="media-feature"><a href="#media-feature" class="headerlink" title="media feature"></a>media feature</h3><p><img src="https://img-blog.csdnimg.cn/3ea213eb798242c2b3eb8351696ac21e.png#pic_center" alt="media feature"></p>
+<p><img src="https://img-blog.csdnimg.cn/c897e47cefce4cb0ba1d2b7501097435.png#pic_center" alt="示例"></p>
+<h2 id="rem、em、px、vh、vw-的区别"><a href="#rem、em、px、vh、vw-的区别" class="headerlink" title="rem、em、px、vh、vw 的区别"></a>rem、em、px、vh、vw 的区别</h2><ul>
+<li><p>px相对长度单位。像素px是<strong>相对于显示器屏幕分辨率</strong>而言的。</p>
+</li>
+<li><p>%相对长度单位。相对于自己的父级。</p>
+</li>
+<li><p>em相对长度单位。基准点为<strong>父节点字体</strong>的大小，即相对于当前对象内文本的字体尺寸（继承父节点字体大小）。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸( 16px )。</p>
+</li>
+<li><p>rem相对长度单位。r’是“root”的缩写，相对于<strong>根元素html</strong>的字体大小。</p>
+</li>
+<li><p>vh and vw：<strong>相对于视口的高度和宽度</strong>，而不是父元素的（CSS百分比是相对于包含它的最近的父元素的高度和宽度）。</p>
+</li>
+<li><p>vmin and vmax：取视口高度和宽度两者的最小值或者最大值，以最小或大进行百分比的计算。</p>
+</li>
+<li><p>pt 设备像素（物理像素）</p>
+</li>
+<li><p>dpr  &#x3D; 设备像素 &#x2F; 设备独立像素</p>
+</li>
+<li><p>ppi 每英寸像素，值越大，图像越清晰</p>
+</li>
+</ul>
+<h2 id="canvas与svg的区别"><a href="#canvas与svg的区别" class="headerlink" title="canvas与svg的区别"></a>canvas与svg的区别</h2><h3 id="svg"><a href="#svg" class="headerlink" title="svg"></a>svg</h3><p>SVG 指可伸缩矢量图形 (Scalable Vector Graphics)。<br>SVG 用来定义用于网络的基于矢量的图形。<br>SVG 使用 XML 格式定义图形。<br>SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失。<br>SVG 是万维网联盟的标准。<br>SVG 与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体。</p>
+<h3 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h3><p>HTML5 的 canvas 元素使用 JavaScript 在网页上绘制图像。画布是一个矩形区域，您可以控制其每一像素。canvas 拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法。<br>知道了svg和canvas是什么之后，我们就来比较一下canvas和svg。</p>
+<h3 id="canvas和svg的区别比较"><a href="#canvas和svg的区别比较" class="headerlink" title="canvas和svg的区别比较"></a>canvas和svg的区别比较</h3><p><strong>首先我们从时间上看canvas与svg的区别：</strong><br>canvas是html5提供的新元素<canvas>，而svg存在的历史要比canvas久远，已经有十几年了。<br>svg并不是html5专有的标签，最初svg是用xml技术（超文本扩展语言，可以自定义标签或属性）描述二维图形的语言。</p>
+<p><strong>其次我们从功能上看canvas与svg的区别：</strong><br>SVG 是一种使用 <strong>XML</strong> 描述 2D 图形的语言。<br>SVG 基于 XML，这意味着 SVG DOM 中的每个元素都是可用的。您可以为某个元素附加 JavaScript 事件处理器。<br>在 SVG 中，每个被绘制的图形均被视为对象。如果 SVG 对象的属性发生变化，那么浏览器能够自动重现图形。</p>
+<p>Canvas 通过 <strong>JavaScript</strong> 来绘制 2D 图形。<br>Canvas 是逐像素进行渲染的。<br>在 canvas 中，一旦图形被绘制完成，它就不会继续得到浏览器的关注。如果其位置发生变化，那么整个场景也需要重新绘制，包括任何或许已被图形覆盖的对象。</p>
+<p><strong>最后我们来看canvas与svg技术应用上的比较：</strong></p>
+<ul>
+<li>canvas不依赖分辨率, svg依赖分辨率。。</li>
+<li>canvas支持事件处理器, svg支持。</li>
+<li>canvas最适合带有大型渲染区域的应用程序（比如谷歌地图），svg弱的文本渲染能力。</li>
+<li>canvas复杂度高会减慢渲染速度（任何过度使用 DOM 的应用都不快）。</li>
+<li>canvas不适合游戏应用，svg最适合图像密集型的游戏，其中的许多对象会被频繁重绘。</li>
+</ul>
+<h2 id="继承相关"><a href="#继承相关" class="headerlink" title="继承相关"></a>继承相关</h2><p>css的继承：就是给父级设置一些属性，子级继承了父级的该属性，这就是我们的css中的继承。 官方解<br>释，继承是一种规则，它允许样式不仅应用于特定的html标签元素，而且应用于其后代元素。</p>
+<h3 id="无继承性的属性"><a href="#无继承性的属性" class="headerlink" title="无继承性的属性"></a>无继承性的属性</h3><ol>
+<li>display：规定元素应该生成的框的类型</li>
+<li>文本属性：<br>vertical-align：垂直文本对齐<br>text-decoration：规定添加到文本的装饰<br>text-shadow：文本阴影效果<br>white-space：空白符的处理<br>unicode-bidi：设置文本的方向</li>
+<li>盒子模型的属性：width、height、margin 、margin-top、margin-right、margin-bottom、margin-left、border、 border-style、border-top-style、border-right-style、border-bottom-style、border-left-style、border-width、border-top-width、border-right-right、border-bottom-width、border-left-width、border-color、border-top-color、border-right-color、border-bottom-color、border-left-color、border-top、border-right、border-bottom、border-left、padding、padding-top、padding-right、padding-bottom、padding-left</li>
+<li>背景属性：background、background-color、background-image、background-repeat、background-position、background-attachment</li>
+<li>定位属性：float、clear、position、top、right、bottom、left、min-width、min-height、max-width、max-height、overflow、clip、z-index</li>
+<li>生成内容属性：content、counter-reset、counter-increment</li>
+<li>轮廓样式属性：outline-style、outline-width、outline-color、outline</li>
+<li>页面样式属性：size、page-break-before、page-break-after</li>
+<li>声音样式属性：pause-before、pause-after、pause、cue-before、cue-after、cue、play-during</li>
+</ol>
+<h3 id="有继承性的属性"><a href="#有继承性的属性" class="headerlink" title="有继承性的属性"></a>有继承性的属性</h3><ol>
+<li><p>字体系列属性<br>font：组合字体<br>font-family：规定元素的字体系列<br>font-weight：设置字体的粗细<br>font-size：设置字体的尺寸<br>font-style：定义字体的风格<br>font-variant：设置小型大写字母的字体显示文本，这意味着所有的小写字母均会被转换为大写，但是所有使用小型大写 字体的字母与其余文本相比，其字体尺寸更小。<br>font-stretch：对当前的 font-family 进行伸缩变形。所有主流浏览器都不支持。<br>font-size-adjust：为某个元素规定一个 aspect 值，这样就可以保持首选字体的 x-height。</p>
+</li>
+<li><p>文本系列属性<br>text-indent：文本缩进<br>text-align：文本水平对齐<br>line-height：行高<br>word-spacing：增加或减少单词间的空白（即字间隔）<br>letter-spacing：增加或减少字符间的空白（字符间距）<br>text-transform：控制文本大小写<br>direction：规定文本的书写方向<br>color：文本颜色 a元素除外</p>
+</li>
+<li><p>元素可见性：visibility</p>
+</li>
+<li><p>表格布局属性：caption-side、border-collapse、border-spacing、empty-cells、table-layout</p>
+</li>
+<li><p>列表布局属性：list-style-type、list-style-image、list-style-position、list-style</p>
+</li>
+<li><p>生成内容属性：quotes</p>
+</li>
+<li><p>光标属性：cursor</p>
+</li>
+<li><p>页面样式属性：page、page-break-inside、windows、orphans</p>
+</li>
+<li><p>声音样式属性：speak、speak-punctuation、speak-numeral、speak-header、speech-rate、volume、voice-family、 pitch、pitch-range、stress、richness、、azimuth、elevation</p>
+</li>
+</ol>
+<h3 id="所有元素可以继承的属性"><a href="#所有元素可以继承的属性" class="headerlink" title="所有元素可以继承的属性"></a>所有元素可以继承的属性</h3><ol>
+<li>元素可见性：visibility</li>
+<li>光标属性：cursor</li>
+</ol>
+<h3 id="内联元素可以继承的属性"><a href="#内联元素可以继承的属性" class="headerlink" title="内联元素可以继承的属性"></a>内联元素可以继承的属性</h3><ol>
+<li>字体系列属性</li>
+<li>除text-indent、text-align之外的文本系列属性</li>
+</ol>
+<h3 id="块级元素可以继承的属性"><a href="#块级元素可以继承的属性" class="headerlink" title="块级元素可以继承的属性"></a>块级元素可以继承的属性</h3><ol>
+<li>text-indent、text-align</li>
+</ol>
+<h2 id="css预处理工具"><a href="#css预处理工具" class="headerlink" title="css预处理工具"></a>css预处理工具</h2><p>CSS 预处理器是一个能让你通过预处理器自己独有的语法来生成CSS的程序。<br>css预处理器种类繁多，三种主流css预处理器是Less、Sass（Scss）及Stylus；它们各自的背景如下:<br><strong>Sass：</strong><br>2007年诞生，最早也是最成熟的CSS预处理器，拥有ruby社区的支持和compass这一最强大的css框架，目前受LESS影响，已经进化到了全面兼容CSS的SCSS（SCSS 需要使用分号和花括号而不是换行和缩进）。<br><strong>Less：</strong><br>2009年出现，受SASS的影响较大，但又使用CSS的语法，让大部分开发者和设计师更容易上手，在ruby社区之外支持者远超过SASS。其缺点是比起SASS来，可编程功能不够。优点是简单和兼容CSS，反过来也影响了SASS演变到了SCSS的时代，著名的Twitter Bootstrap就是采用LESS做底层语言的。<br><strong>Stylus：</strong><br>2010年产生，来自Node.js社区，主要用来给Node项目进行CSS预处理支持，在此社区之内有一定支持者，在广泛的意义上人气还完全不如SASS和LESS。</p>
+<h3 id="less-和scss区别"><a href="#less-和scss区别" class="headerlink" title="less 和scss区别"></a>less 和scss区别</h3><p>相同点：</p>
+<ul>
+<li>LESS和SCSS都是css的预处理器，可以拥有变量，运算，继承，嵌套的功能，使用两者可以使代码更加的便于阅读和维护。</li>
+<li>都可以通过自带的插件，转成相对应的css文件。</li>
+<li>都可以参数混入，可以传递参数的class，就像函数一样</li>
+<li>嵌套的规则相同，都是class嵌套class</li>
+</ul>
+<p>不同点：</p>
+<ul>
+<li>声明和使用变量LESS用@符号，SCSS用$符号表示</li>
+<li>变量插值LESS采用@{XXXX}的形式，SCSS采用${XXXX}的形式</li>
+<li>less不支持条件语句，scss支持条件语句</li>
+<li>引用外部css文件方式不同 scss引用的css文件名必须以‘_’开头（下划线），文件名如果以下划线开头的话，sass会认为改文件是一个应用文件，不会将它转成css文件</li>
+<li>调整色相的函数不一样，LESS使用spin（）的函数；SCSS使用名为adjust_hue()的函数</li>
+<li>LESS和SCSS都可以使用&amp;符号表示父选择器，但是SCSS的&amp;符号只能出现在一个组合选择器的开始位置，LESS则没有这个限制</li>
+</ul>
+<p>总结：<br>SCSS和LESS都是一种基于css之上的高级语言，两者之间各有优点，sass在功能上面比LESS更强大，LESS比较的清晰明了，容易上手，主要是看大家的工作中，更倾向于使用那个进行开发，两者都能够大大提高书写代码的效率</p>
+<h2 id="行内元素和块级元素的区别"><a href="#行内元素和块级元素的区别" class="headerlink" title="行内元素和块级元素的区别"></a>行内元素和块级元素的区别</h2><p><strong>块级元素</strong></p>
+<ol>
+<li>总是从新的一行开始，即各个块级元素独占一行，默认垂直向下排列；</li>
+<li>高度、宽度、margin及padding都是可控的，设置有效，有边距效果；</li>
+<li>宽度没有设置时，默认为100%；</li>
+<li>块级元素中可以包含块级元素和行内元素。</li>
+</ol>
+<p><strong>行内元素</strong></p>
+<ol>
+<li>和其他元素都在一行，即行内元素和其他行内元素都会在一条水平线上排列；</li>
+<li>高度、宽度是不可控的，设置无效，由内容决定。</li>
+<li>根据标签语义化的理念，行内元素最好只包含行内元素，不包含块级元素。<br>转换</li>
+</ol>
+<p>当然块级元素与行内元素之间的特性是可以相互转换的。HTML可以将元素分为行内元素、块状元素和行内块状元素三种。<br>使用display属性能够将三者任意转换：<br>(1)display:inline;转换为行内元素；<br>(2)display:block;转换为块状元素；<br>(3)display:inline-block;转换为行内块状元素。<br>   当使用display:inline-block</p>
+<h2 id="重绘和回流"><a href="#重绘和回流" class="headerlink" title="重绘和回流"></a>重绘和回流</h2><p><strong>重绘</strong>: 当渲染树中的一些元素需要更新属性，而这些属性只是影响元素的外观、风格，而不会影响布局的操作，比如 background-color，我们将这样的操作称为重绘。</p>
+<p><strong>回流</strong>：当渲染树中的一部分（或全部）因为元素的规模尺寸、布局、隐藏等改变而需要重新构建的操作，会影响到布局的操作，这样的操作我们称为回流。</p>
+<p>任何会改变元素几何信息（元素的位置和尺寸大小）的操作，都会触发回流。</p>
+<ul>
+<li>添加或者删除可见的 DOM 元素；</li>
+<li>元素尺寸改变——边距、填充、边框、宽度和高度</li>
+<li>内容变化，比如用户在 input 框中输入文字</li>
+<li>浏览器窗口尺寸改变——resize事件发生时</li>
+<li>计算 offsetWidth 和 offsetHeight 属性</li>
+<li>设置 style 属性的值</li>
+<li>当你修改网页的默认字体时。</li>
+</ul>
+<h2 id="隐藏一个元素的几种方法"><a href="#隐藏一个元素的几种方法" class="headerlink" title="隐藏一个元素的几种方法"></a>隐藏一个元素的几种方法</h2><ol>
+<li><p>display:none  隐藏后不占据空间 会产生回流和重绘 不会被子元素继承，同时在渲染树中消失，但在dom树依然存在</p>
+</li>
+<li><p>visibility:hidden  隐藏后依旧占据空间 所以只会产生重绘 会被子元素继承，在渲染树、dom树都存在</p>
+</li>
+<li><p>opacity:0 隐藏后依旧占据空间 所以只会产生重绘 会被子元素继承</p>
+</li>
+<li><p>width:0 height:0</p>
+</li>
+</ol>
+<h2 id="一个按钮，一直固定在在窗口的右边"><a href="#一个按钮，一直固定在在窗口的右边" class="headerlink" title="一个按钮，一直固定在在窗口的右边"></a>一个按钮，一直固定在在窗口的右边</h2><ol>
+<li><p>float:left </p>
+</li>
+<li><p>display:flex;justify-content:flex-start</p>
+</li>
+<li><p>position:fixed</p>
+</li>
+</ol>
+<h2 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h2><p>CSS3中的盒模型有以下两种:标准盒模型、IE盒模型<br>盒模型都是由四个部分组成的,分别是margin、border、padding和content<br>标准盒模型和IE盒模型的区别在于设置width和height时, 所对应的范围不同</p>
+<ol>
+<li>标准盒模型的width和height属性的范围只包含了content</li>
+<li>IE盒模型的width和height属性的范围包含了border、padding和content<br>可以通过修改元素的box-sizing属性来改变元素的盒模型；</li>
+<li>box-sizing：content-box表示标准盒模型（默认值）</li>
+<li>box-sizing：border-box表示IE盒模型（怪异盒模型）</li>
+</ol>
+<h2 id="block、inline-block、inline"><a href="#block、inline-block、inline" class="headerlink" title="block、inline-block、inline"></a>block、inline-block、inline</h2><h3 id="block"><a href="#block" class="headerlink" title="block"></a>block</h3><p>块级元素：元素呈现“块”状，有自己的宽度和高度，也就是<strong>可以设置宽(width)和高(height)，除此之外，独自占据一行高度</strong>（float浮动除外），一般可以作为其他容器使用，可容纳块级元素和行内元素。块级元素有以下特点：</p>
+<p>每个块级元素都是独自占一行。<br>元素的高度(height)、宽度(width)、行高(line-height)和边距(margin、padding)都是可以设置的。　　<br>元素的宽度如果不设置的话，默认为父元素的宽度（父元素宽度100%）。<br>常见块级元素：</p>
+<p><code>&lt;body&gt;、&lt;address&gt;、 &lt;caption&gt;、&lt;dd&gt;、&lt;div&gt;、&lt;dl&gt;、&lt;dt&gt;、&lt;fieldset&gt;、&lt;form&gt;、&lt;h1&gt;～&lt;h6&gt;、&lt;hr&gt;、 &lt;legend&gt;、&lt;li&gt;、&lt;noframes&gt;、&lt;noscript&gt;、&lt;ol&gt;、&lt;ul&gt;、&lt;p&gt;、&lt;pre&gt;、&lt;table&gt;、&lt;tbody&gt;、&lt;td&gt;、&lt;tfoot&gt;、&lt;th&gt;、&lt;thead&gt;、&lt;tr&gt;</code></p>
+<p>注意：块级元素内能嵌套块级元素、行内元素。但是h1-h6、p、dt这几个块级元素不能嵌套块级元素。</p>
+<h2 id="inline"><a href="#inline" class="headerlink" title="inline"></a>inline</h2><p>​行内元素<strong>不可以设置宽（width）和高（height），但可以与其他行内元素位于同一行</strong>,行内元素内一般不可以包含块级元素。行内元素的高度一般由元素内部的字体大小决定，宽度由内容的长度控制。行内元素有以下特点： ​</p>
+<p>每一个行内元素可以和别的行内元素共享一行，相邻的行内元素会排列在同一行里，直到一行排不下了，才会换行。<br>行内元素的高度(height)、宽度(width)、行高(line-height)及内、外边距的底和顶边距(margin-top、padding-top、margin-bottom、padding-bottom)不可设置。<br>元素的宽度就是它包含的文字或图片的宽度，不可改变。</p>
+<h2 id="inline-block"><a href="#inline-block" class="headerlink" title="inline-block"></a>inline-block</h2><p>行内块级元素，它既具有块级元素的特点，也有行内元素的特点，<strong>它可以自由设置元素宽度和高度，也可以在一行中放置多个行内块级元素。</strong>比如input、img就是行内块级元素，它可以设置高宽以及一行多个。具体特点如下：</p>
+<p>和其他行内或行内块级元素元素放置在同一行上；<br>元素的高度、宽度、行高以及顶和底边距都可设置。<br>注意：img和input元素虽然属于行内元素，但是又可以细分为行内替换元素。所以它表现的像行内块级元素一样。</p>
+<h2 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h2><p>BFC 全称：Block Formatting Context， 名为 “块级格式化上下文”。</p>
+<p>W3C官方解释为：BFC它决定了元素如何对其内容进行定位，以及与其它元素的关系和相互作用，当涉及到可视化布局时，Block Formatting Context提供了一个环境，HTML在这个环境中按照一定的规则进行布局。<br>简单来说就是，BFC是一个完全独立的空间（布局环境），让空间里的子元素不会影响到外面的布局。</p>
+<p><strong>怎样触发BFC</strong></p>
+<ul>
+<li>overflow: hidden</li>
+<li>display: inline-block</li>
+<li>position: absolute</li>
+<li>position: fixed</li>
+<li>display: table-cell</li>
+<li>display: flex</li>
+</ul>
+<p>BFC就是一个块级元素，块级元素会在垂直方向一个接一个的排列<br>BFC就是页面中的一个隔离的独立容器，容器里的标签不会影响到外部标签。垂直方向的距离由margin决定， 属于同一个BFC的两个相邻的标签外边距会发生重叠。计算BFC的高度时，浮动元素也参与计算</p>
+<p><strong>BFC解决了什么问题</strong></p>
+<ol>
+<li>使用float脱离文档流，高度塌陷</li>
+<li>margin边距重叠</li>
+<li>两栏布局</li>
+</ol>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">xwing</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://zyhxwing.gitee.io/2022/09/05/css/">https://zyhxwing.gitee.io/2022/09/05/css/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">xwing</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/css/">
+                                    <span class="chip bg-color">css</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/09/05/webpack/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="webpack">
+                        
+                        <span class="card-title">webpack</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-09-05
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
+                                    前端
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7/">
+                        <span class="chip bg-color">打包工具</span>
+                    </a>
+                    
+                    <a href="/tags/webpack/">
+                        <span class="chip bg-color">webpack</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/09/05/html/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="html">
+                        
+                        <span class="card-title">html</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
+                                    前端
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/html/">
+                        <span class="chip bg-color">html</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: xwing<br />'
+            + '文章作者: xwing<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="7618857959"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='list'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <span id="year">2022</span>
+            <a href="/about" target="_blank">xwing</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/zyhxwing" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1216112348@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1216112348" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1216112348" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
