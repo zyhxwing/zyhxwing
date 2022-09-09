@@ -505,11 +505,26 @@
 <p><strong>优点</strong><br>省监听数（内存）<br>可以监听动态元素</p>
 <h2 id="js的事件循环"><a href="#js的事件循环" class="headerlink" title="js的事件循环"></a>js的事件循环</h2><p><img src="/../images/JavaScript/1363_1.png" alt="js事件循环"></p>
 <p>S是单线程的，但是我们在写代码的时候，会有同步执行的代码和异步执行的代码。EventLoop就是一种解决异步回调的一种机制。具体的解决办法就是使用一个执行栈和事件队列，事件队列又分为宏任务队列和微任务队列。简单的来讲，就是把代码从上到下，会把同步任务压入到执行栈，遇到异步的任务，根据异步任务的类型，放入不同的事件队列，交给其它线程进行处理。如果执行栈空的话，就从事件队列当中取出结果，放入到执行栈中执行并执行。Event Loop 的每一次循环称为一个tick，具体是先拿出一个宏任务，然后检查它里面的微任务，如果有的话，就执行所有的微任务，结束之后，进行一次渲染。再拿出一个宏任务，按照刚刚的过程继续进行</p>
-<h3 id="宏任务MacroTask"><a href="#宏任务MacroTask" class="headerlink" title="宏任务MacroTask"></a>宏任务MacroTask</h3><p>script代码、settiemout、setInterval</p>
-<h3 id="微任务MicroTask"><a href="#微任务MicroTask" class="headerlink" title="微任务MicroTask"></a>微任务MicroTask</h3><p>promise.then、await</p>
+<h3 id="宏任务MacroTask"><a href="#宏任务MacroTask" class="headerlink" title="宏任务MacroTask"></a>宏任务MacroTask</h3><p>script代码、settimeout、setInterval、ajax、dom监听、UI Rendering</p>
+<h3 id="微任务MicroTask"><a href="#微任务MicroTask" class="headerlink" title="微任务MicroTask"></a>微任务MicroTask</h3><p>promise.then、await、queueMicrotask、MutationObserver的Api</p>
 <h3 id="Vue-nextTick"><a href="#Vue-nextTick" class="headerlink" title="Vue.nextTick"></a>Vue.nextTick</h3><p>与此同时，针对于vue的mvvn框架，在修改数据之后，视图并不会立刻更新，而是等同一事件循环中的所有数据变化完成之后，再统一进行视图更新。<br>Vue.nextTick将回调函数放到微任务或者宏任务当中以延迟它地执行顺序</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//改变数据</span><br><span class="line">vm.message = &#x27;changed&#x27;</span><br><span class="line"></span><br><span class="line">//想要立即使用更新后的DOM。这样不行，因为设置message后DOM还没有更新</span><br><span class="line">console.log(vm.$el.textContent) // 并不会得到&#x27;changed&#x27;</span><br><span class="line"></span><br><span class="line">//这样可以，nextTick里面的代码会在DOM更新后执行Vue.nextTick(function()&#123;</span><br><span class="line">    console.log(vm.$el.textContent) //可以得到&#x27;changed&#x27;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+<h3 id="settimeout倒计时为什么会出现误差"><a href="#settimeout倒计时为什么会出现误差" class="headerlink" title="settimeout倒计时为什么会出现误差"></a>settimeout倒计时为什么会出现误差</h3><p>setTimeout作为异步任务，在实现倒计时功能的时候，除了执行我们功能的实现代码，还会有主线程对任务队列的读取及执行等过程，这些过程也需要耗费一些时间，所以会因为event loop的机制出现些许误差。</p>
+<h3 id="为什么使用setTimeout实现倒计时，而不是setInterval"><a href="#为什么使用setTimeout实现倒计时，而不是setInterval" class="headerlink" title="为什么使用setTimeout实现倒计时，而不是setInterval?"></a>为什么使用setTimeout实现倒计时，而不是setInterval?</h3><p>setInterval指定的是“开始执行”之间的间隔，并不考虑每次任务执行本身所消耗的时间。因此实际上，两次执行之间的间隔会小于指定的时间。比如，setInterval指定每 100ms 执行一次，每次执行需要 5ms，那么第一次执行结束后95毫秒，第二次执行就会开始。如果某次执行耗时特别长，比如需要105毫秒，那么它结束后，下一次执行就会立即开始。<br>为了确保两次执行之间有固定的间隔，可以不用setInterval，而是每次执行结束后，使用setTimeout指定下一次执行的具体时间。</p>
+<h2 id="MutationObserver"><a href="#MutationObserver" class="headerlink" title="MutationObserver"></a>MutationObserver</h2><p>MutationObserver能在某个范围内的DOM树发生变化时作出适当反应的能力.该API设计用来替换掉在DOM3事件规范中引入的Mutation事件.</p>
+<ul>
+<li><p>监视 DOM 变动的接口<br>当监视的 DOM 发生变动时 MutationObserver 将收到通知并触发事先设定好的回调函数。</p>
+</li>
+<li><p>类似于事件，但是异步触发<br>添加监视时，MutationObserver 上的 observer 函数与 addEventListener 有相似之处，但不同于后者的同步触发，MutationObserver 是异步触发，此举是为了避免 DOM 频繁变动导致回调函数被频繁调用，造成浏览器卡顿。</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> observer = <span class="keyword">new</span> <span class="title class_">MutationObserver</span>(callback);</span><br></pre></td></tr></table></figure>
+
+<h2 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a>requestAnimationFrame</h2><p>你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。requestAnimationFrame(rAF) 需要传入一个回调函数作为参数，同时该回调函数会在浏览器下一次重绘之前执行。</p>
+<p>requestAnimationFrame(rAF) 的回调有两个特征：<br>在重新渲染前调用。<br>很可能在宏任务之后不调用。</p>
+<p>我们来分析一下，为什么要在重新渲染前去调用？因为 rAF 是官方推荐的用来做一些流畅动画所应该使用的 API，做动画不可避免的会去更改 DOM，而如果在渲染之后再去更改 DOM，那就只能等到下一轮渲染机会的时候才能去绘制出来了，这显然是不合理的。<br>rAF在浏览器决定渲染之前给你最后一个机会去改变 DOM 属性，然后很快在接下来的绘制中帮你呈现出来，所以这是做流畅动画的不二选择。下面我用一个 setTimeout的例子来对比。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">style</span>.<span class="property">background</span> = <span class="string">&quot;red&quot;</span></span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">style</span>.<span class="property">background</span> = <span class="string">&quot;blue&quot;</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//这个结果是非常不可控的，如果这两个 Task 之间正好遇到了浏览器认定的渲染机会，那么它会重绘，否则就不会。由于这俩宏任务的间隔周期太短了，所以很大概率是不会的。</span></span><br><span class="line"><span class="keyword">let</span> i = <span class="number">10</span></span><br><span class="line"><span class="keyword">let</span> <span class="title function_">req</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  i--</span><br><span class="line">  <span class="title function_">requestAnimationFrame</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">style</span>.<span class="property">background</span> = <span class="string">&quot;red&quot;</span></span><br><span class="line">    <span class="title function_">requestAnimationFrame</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">style</span>.<span class="property">background</span> = <span class="string">&quot;blue&quot;</span></span><br><span class="line">      <span class="keyword">if</span> (i &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="title function_">req</span>()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">req</span>()</span><br><span class="line"><span class="comment">//浏览器会非常规律的把这 10 组也就是 20 次颜色变化绘制出来，</span></span><br></pre></td></tr></table></figure>
 <h2 id="js异步方法"><a href="#js异步方法" class="headerlink" title="js异步方法"></a>js异步方法</h2><h3 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h3><p>是异步操作最基本的方法，比如AJAX回调，回调函数的优点是简单、容易理解和实现，缺点是不利于代码的阅读和维护，各个部分之间高度耦合，使得程序结构混乱、流程难以追踪（尤其是多个回调函数嵌套的情况），而且每个任务只能指定一个回调函数。此外它不能使用try catch捕获错误，不能之间return。</p>
 <h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><p>包装了一个异步调用并生成一个Promise实例，当异步调用返回的时候根据调用的结果分别调用实例化时传入的resolve和reject方法，then接收到对应的数据，做出相应的处理。Promise不仅能够捕获错误，而且也能很好地解决了回调地狱的问题，缺点是无法取消Promise，错误需要通过回调函数捕获。</p>
 <h3 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h3><p>函数是ES6提供的一种异步编程解决方案，Generator函数是一个状态机，封装了多个内部状态，可暂停函数，yield可暂停，next方法可启动，每次返回的是yield后的表达式结果。优点是异步语义清晰，缺点是手动迭代Generator函数很麻烦，实现逻辑优点绕。<br>function* gen(x){<br>    const y &#x3D; yield x + 6;<br>    return y;<br>}<br>const g &#x3D; gen(1);<br>&#x2F;&#x2F;执行 Generator 会返回一个Object,而不是像普通函数返回return 后面的值<br>g.next() &#x2F;&#x2F; { value: 7, done: false }<br>&#x2F;&#x2F;调用指针的 next 方法,会从函数的头部或上一次停下来的地方开始执行，直到遇到下一个 yield 表达式或return语句暂停,也就是执行yield 这一行<br>&#x2F;&#x2F; 执行完成会返回一个 Object,<br>&#x2F;&#x2F; value 就是执行 yield 后面的值,done 表示函数是否执行完毕<br>g.next() &#x2F;&#x2F; { value: undefined, done: true }<br>&#x2F;&#x2F; 因为最后一行 return y 被执行完成,所以done 为 true</p>
@@ -621,6 +636,29 @@
 <li>TypeScript引入了JavaScript中没有的“类”概念。</li>
 <li>TypeScript通过类型注解提供编译时的静态类型检查（ 虽然JavaScript是弱类型语言，但是在将其升级改造引入”类型注解”这一概念后的TypeScript中，类型注解相当于强类型语言中声明了某个变量的类型，以后该变量就必须为此类型，否则ts编译器将报错，并不能正确地编译成js文件）。</li>
 </ol>
+<h2 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h2><p>浅拷贝是创建一个新对象，这个对象有着原始对象属性值的一份精确拷贝。如果属性是基本类型，拷贝的就是基本类型的值，如果属性是引用类型，拷贝的就是内存地址 ，所以如果其中一个对象改变了这个地址，就会影响到另一个对象。</p>
+<p>深拷贝是将一个对象从内存中完整的拷贝一份出来,从堆内存中开辟一个新的区域存放新对象,且修改新对象不会影响原对象。</p>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/3/1/170965259fb768fd~tplv-t2oaga2asx-zoom-in-crop-mark:4536:0:0:0.awebp" alt="深拷贝和浅拷贝"></p>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ul>
+<li><p>当我们把一个对象赋值给一个新的变量时，赋的其实是该对象的在栈中的地址，而不是堆中的数据。也就是两个对象指向的是同一个存储空间，无论哪个对象发生改变，其实都是改变的存储空间的内容，因此，两个对象是联动的。</p>
+</li>
+<li><p>浅拷贝：重新在堆中创建内存，拷贝前后对象的基本数据类型互不影响，但拷贝前后对象的引用类型因共享同一块内存，会相互影响。</p>
+</li>
+<li><p>深拷贝：从堆内存中开辟一个新的区域存放新对象，对对象中的子对象进行递归拷贝,拷贝前后的两个对象互不影响。</p>
+</li>
+</ul>
+<h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><p>浅拷贝：</p>
+<ul>
+<li>Object.assign()</li>
+<li>lodash.clone</li>
+<li>展开运算符…</li>
+<li>Array.prototype.concat() </li>
+<li>Array.prototype.slice()<br>深拷贝：</li>
+<li>JSON.parse(JSON.stringify())</li>
+<li>lodash.cloneDeep</li>
+<li>jQuery.extend()</li>
+<li>手写递归方法</li>
+</ul>
 <h2 id="JSON-stringify有什么缺点？"><a href="#JSON-stringify有什么缺点？" class="headerlink" title="JSON.stringify有什么缺点？"></a>JSON.stringify有什么缺点？</h2><ol>
 <li>如果obj里面有时间对象，则JSON.stringify后再JSON.parse的结果，时间将只是字符串的形式，而不是对象的形式</li>
 <li>如果obj里有RegExp(正则表达式的缩写)、Error对象，则序列化的结果将只得到空对象；</li>

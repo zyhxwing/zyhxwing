@@ -619,6 +619,7 @@
 <li>设置 style 属性的值</li>
 <li>当你修改网页的默认字体时。</li>
 </ul>
+<h3 id="为什么有时候用translate而不是用绝对定位来改变位置"><a href="#为什么有时候用translate而不是用绝对定位来改变位置" class="headerlink" title="为什么有时候用translate而不是用绝对定位来改变位置"></a>为什么有时候用translate而不是用绝对定位来改变位置</h3><p>translate 是 transform 属性的⼀个值。改变transform或opacity不会触发浏览器重排（reflow）或重绘（repaint），只会触发复合（compositions）。⽽改变绝对定位会触发重排，进⽽触发重绘和复合。transform使浏览器为元素创建⼀个 GPU 图层，但改变绝对定位会使⽤到 CPU。 因此translate()更⾼效，可以缩短平滑动画的绘制时间。 ⽽translate改变位置时，元素依然会占据其原始空间，绝对定位就不会发⽣这种情况。</p>
 <h2 id="隐藏一个元素的几种方法"><a href="#隐藏一个元素的几种方法" class="headerlink" title="隐藏一个元素的几种方法"></a>隐藏一个元素的几种方法</h2><ol>
 <li><p>display:none  隐藏后不占据空间 会产生回流和重绘 不会被子元素继承，同时在渲染树中消失，但在dom树依然存在</p>
 </li>
@@ -669,6 +670,20 @@
 <li>使用float脱离文档流，高度塌陷</li>
 <li>margin边距重叠</li>
 <li>两栏布局</li>
+</ol>
+<h2 id="让整个页面变成灰色"><a href="#让整个页面变成灰色" class="headerlink" title="让整个页面变成灰色"></a>让整个页面变成灰色</h2><p>filter: grayscale(100%)  滤镜属性：100%的灰色</p>
+<h2 id="让整个页面禁止点击事件"><a href="#让整个页面禁止点击事件" class="headerlink" title="让整个页面禁止点击事件"></a>让整个页面禁止点击事件</h2><p>pointer-events:none<br>让元素永远无法成为鼠标事件的target，进而禁止鼠标事件即可。</p>
+<h2 id="margin坍塌"><a href="#margin坍塌" class="headerlink" title="margin坍塌"></a>margin坍塌</h2><p><strong>margin塌陷现象：</strong>在垂直方向如果有两个元素的外边距有相遇，在浏览器中加载的真正的外边距不是两个间距的加和，而是两个边距中值比较大的，边距小的塌陷到了边距值大的值内部。</p>
+<ol>
+<li><p>同级元素塌陷：上面的元素有下边距，下面的元素有上边距，两个边距相遇，真正盒子间距离是较大的那个值。<br>盒子box1的下边距依然存在，只是不显示了，由此可见边距小的塌陷到了边距值大的值内部，所以间距为box2的边距100px。</p>
+</li>
+<li><p>父子元素塌陷：父子元素之间也会出现margin塌陷，（1）父元素和子元素都设置了同方向的margin-top值，两个属性之间没有其他内容进行隔离，导致两个属性相遇，发生margin塌陷。（2）本身父元素与上一个元素的距离是0，子元素如果设置了垂直方向的上边距，会带着父级元素一起掉下来（父元素的上边距0塌陷到了子元素的上边距50里面）。</p>
+</li>
+</ol>
+<p><strong>解决方法：</strong></p>
+<ol>
+<li>同级元素：如果两个元素垂直方向有间距，只需要设置给一个元素，不要进行拆分。</li>
+<li>父子元素：让两个边距不要相遇，中间可以使用父元素border或padding将边距分隔开；更加常用的方法，父子盒模型之间的距离就不要用子元素的margin去设置，而是用父元素的padding挤出来。</li>
 </ol>
 
                 

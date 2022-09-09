@@ -430,6 +430,19 @@
 <li>每个input标签对应的说明文本都需要使用label标签，并且通过为input设置id属性，在label标签中设置for&#x3D;someId来让说明文本和相对应的input关联起来</li>
 </ol>
 <p><strong>常见的语义化标签：</strong>article（定义文章）、aside（定义文章的侧边栏）、figure（一组媒体对象以及文字）、figurecaption（定义figure的标题）、footer（定义页脚）、header（定义页眉）、nav（定义导航栏）、section（定义文档中的区段）、time（定义日期和时间）、dialog（定义一个对话框）</p>
+<h2 id="浏览器渲染页面的一般过程："><a href="#浏览器渲染页面的一般过程：" class="headerlink" title="浏览器渲染页面的一般过程："></a>浏览器渲染页面的一般过程：</h2><ol>
+<li><p>浏览器解析html源码，然后创建一个 DOM树。并行请求 css&#x2F;image&#x2F;js在DOM树中，每一个HTML标签都有一个对应的节点，并且每一个文本也都会有一个对应的文本节点。DOM树的根节点就是 documentElement，对应的是html标签。</p>
+</li>
+<li><p>浏览器解析CSS代码，计算出最终的样式数据。构建CSSOM树。对CSS代码中非法的语法它会直接忽略掉。解析CSS的时候会按照如下顺序来定义优先级：浏览器默认设置 &lt; 用户设置 &lt; 外链样式 &lt; 内联样式 &lt; html中的style。</p>
+</li>
+<li><p>DOM Tree + CSSOM –&gt; 渲染树（rendering tree）。渲染树和DOM树有点像，但是是有区别的。</p>
+</li>
+</ol>
+<p>DOM树完全和html标签一一对应，但是渲染树会忽略掉不需要渲染的元素，比如head、display:none的元素等。而且一大段文本中的每一个行在渲染树中都是独立的一个节点。渲染树中的每一个节点都存储有对应的css属性。</p>
+<ol start="4">
+<li>一旦渲染树创建好了，浏览器就可以根据渲染树直接把页面绘制到屏幕上。</li>
+</ol>
+<p>以上四个步骤并不是一次性顺序完成的。如果DOM或者CSSOM被修改，以上过程会被重复执行。实际上，CSS和JavaScript往往会多次修改DOM或者CSSOM。</p>
 
                 
             </div>
