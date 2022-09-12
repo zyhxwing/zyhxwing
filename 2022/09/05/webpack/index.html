@@ -501,33 +501,33 @@
 <p>Hash：和整个项目的构建相关，只要项目文件有修改，整个项目构建的 hash 值就会更改<br>Chunkhash：和 Webpack 打包的 chunk 有关，不同的 entry 会生出不同的 chunkhash<br>Contenthash：根据文件内容来定义 hash，文件内容不变，则 contenthash 不变</p>
 <p><strong>Compiler 模块是 webpack 的主要引擎，在 webpack 首次启动时会返回一个 Compiler 实例，而 Compiler 通过 Compilation 模块可以创建新的 compilation 实例，这个 compilation 实例能够访问依赖图中所有模块，也就是说项目中的任一文件的变化都会引起 compilation 实例的变化</strong>。</p>
 <p>JS的文件指纹设置<br>设置 output 的 filename，用 chunkhash。</p>
-<pre class="line-numbers language-javaScript" data-language="javaScript"><code class="language-javaScript">module.exports &#x3D; &#123;
-    entry: &#123;
-        app: &#39;.&#x2F;scr&#x2F;app.js&#39;,
-        search: &#39;.&#x2F;src&#x2F;search.js&#39;
-    &#125;,
-    output: &#123;
-        filename: &#39;[name][chunkhash:8].js&#39;,
-        path:__dirname + &#39;&#x2F;dist&#39;
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">app</span><span class="token operator">:</span> <span class="token string">'./scr/app.js'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">search</span><span class="token operator">:</span> <span class="token string">'./src/search.js'</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token string">'[name][chunkhash:8].js'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">path</span><span class="token operator">:</span>__dirname <span class="token operator">+</span> <span class="token string">'/dist'</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>CSS的文件指纹设置<br>设置 MiniCssExtractPlugin 的 filename，使用 contenthash。</p>
-<pre class="line-numbers language-javaScript" data-language="javaScript"><code class="language-javaScript">module.exports &#x3D; &#123;
-    entry: &#123;
-        app: &#39;.&#x2F;scr&#x2F;app.js&#39;,
-        search: &#39;.&#x2F;src&#x2F;search.js&#39;
-    &#125;,
-    output: &#123;
-        filename: &#39;[name][chunkhash:8].js&#39;,
-        path:__dirname + &#39;&#x2F;dist&#39;
-    &#125;,
-    plugins:[
-        new MiniCssExtractPlugin(&#123;
-            filename: &#96;[name][contenthash:8].css&#96;
-        &#125;)
-    ]
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">app</span><span class="token operator">:</span> <span class="token string">'./scr/app.js'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">search</span><span class="token operator">:</span> <span class="token string">'./src/search.js'</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token string">'[name][chunkhash:8].js'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">path</span><span class="token operator">:</span>__dirname <span class="token operator">+</span> <span class="token string">'/dist'</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">plugins</span><span class="token operator">:</span><span class="token punctuation">[</span>
+        <span class="token keyword">new</span> <span class="token class-name">MiniCssExtractPlugin</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">[name][contenthash:8].css</span><span class="token template-punctuation string">`</span></span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>图片的文件指纹设置<br>设置file-loader的name，使用hash。</p>
 <p>占位符名称及含义</p>
