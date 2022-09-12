@@ -388,6 +388,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -462,7 +465,61 @@
 <li><p>工作流功能的实现</p>
 </li>
 </ul>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">private Integer companyId;</span><br><span class="line">//表示是否为通用工作流(0表示通用工作流，1表示自定义工作流)</span><br><span class="line">private Integer type;</span><br><span class="line">//当为通用工作流时，需要传下级审批人id,为自定义工作流时无需传该值,其中该值为数组</span><br><span class="line">private List&lt;Integer&gt; checkUserIdList;</span><br><span class="line">//该业务的唯一标识</span><br><span class="line">private String identifier;</span><br><span class="line">//提交人id</span><br><span class="line">private Integer inputUserId;</span><br><span class="line">//任务流程实例Id</span><br><span class="line">private String processId;</span><br><span class="line">//退回标志(1表示退回，0表示不是退回)</span><br><span class="line">private Integer returnFlag;</span><br><span class="line">//退回原因</span><br><span class="line">private String reason;</span><br><span class="line">//业务id</span><br><span class="line">private Integer businessId;</span><br><span class="line">//业务批注</span><br><span class="line">private String comment;</span><br><span class="line">//会签类型,用于表示是否需要所有人审批后会签完成</span><br><span class="line">private Integer countersignType;</span><br><span class="line">//当前审批人id</span><br><span class="line">private Integer checkUserId;</span><br><span class="line"></span><br><span class="line">新增文件-工作流逻辑</span><br><span class="line">1.如果为提交并且工作流未关闭则启动工作流</span><br><span class="line">Object object=feignClientServe.startCounterSign(activitiesCheckDTO); //开始会签</span><br><span class="line">  1.根据唯一标识来确认对应该流程操作的是哪个数据库表</span><br><span class="line">    2.设置工作流流程变量</span><br><span class="line">    3.判断工作流所属类型（通用还是专有）</span><br><span class="line">    3.1.表示通用工作流</span><br><span class="line">    3.2.更新业务表信息与审批人信息</span><br><span class="line">    3.3.表示专有工作流</span><br><span class="line">    3.4.根据工作流id查询工作流明细</span><br><span class="line">    3.5.根据前端传回的数据，（是否会签）设置流程变量</span><br><span class="line">    3.6.更新审批人信息</span><br><span class="line">    4.修改待处理业务表信息，更新审批人待处理的文件的数量 </span><br><span class="line">2.如果为提交操作但是工作流为关闭状态直接完成流程更改体系文件状态      </span><br><span class="line">3.如果为暂存业务则不走工作流，直接入数据库，但是此时不走工作流</span><br><span class="line"></span><br><span class="line">审批文件-工作流逻辑</span><br><span class="line">1.驳回</span><br><span class="line">    1.1.当退回时直接结束流程，完成当前任务，文件状态更改</span><br><span class="line">    1.2.获取所有审核人员信息，待处理任务减1</span><br><span class="line">    1.3.删除审批信息</span><br><span class="line">2.通过</span><br><span class="line">    2.1.判断是否是通用、专有</span><br><span class="line">    2.2.通用工作流获取所有下级审批人</span><br><span class="line">    2.3.如果仅剩一个或会签类型为仅需一人审批，且没有下级审批人，流程结束</span><br><span class="line">    2.4.获取当前实例所有需要审核人员信息，将其提示信息减一</span><br><span class="line">    2.5.还有多个活动实例，且有下级审批人，流程继续，</span><br><span class="line">    2.6.判断下一个流程是否会签，同时新增下一个节点的审批人员信息</span><br><span class="line">    2.7.专有工作流从流程变量中获取流程节点id来获取会签类型</span><br><span class="line">    2.8.获取下一节点审批人员信息，并且根据节点id获取下一节点信息，为下级审批人员添加提醒</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+ <pre class="line-numbers language-none"><code class="language-none">private Integer companyId;
+&#x2F;&#x2F;表示是否为通用工作流(0表示通用工作流，1表示自定义工作流)
+private Integer type;
+&#x2F;&#x2F;当为通用工作流时，需要传下级审批人id,为自定义工作流时无需传该值,其中该值为数组
+private List&lt;Integer&gt; checkUserIdList;
+&#x2F;&#x2F;该业务的唯一标识
+private String identifier;
+&#x2F;&#x2F;提交人id
+private Integer inputUserId;
+&#x2F;&#x2F;任务流程实例Id
+private String processId;
+&#x2F;&#x2F;退回标志(1表示退回，0表示不是退回)
+private Integer returnFlag;
+&#x2F;&#x2F;退回原因
+private String reason;
+&#x2F;&#x2F;业务id
+private Integer businessId;
+&#x2F;&#x2F;业务批注
+private String comment;
+&#x2F;&#x2F;会签类型,用于表示是否需要所有人审批后会签完成
+private Integer countersignType;
+&#x2F;&#x2F;当前审批人id
+private Integer checkUserId;
+
+新增文件-工作流逻辑
+1.如果为提交并且工作流未关闭则启动工作流
+Object object&#x3D;feignClientServe.startCounterSign(activitiesCheckDTO); &#x2F;&#x2F;开始会签
+  1.根据唯一标识来确认对应该流程操作的是哪个数据库表
+    2.设置工作流流程变量
+    3.判断工作流所属类型（通用还是专有）
+    3.1.表示通用工作流
+    3.2.更新业务表信息与审批人信息
+    3.3.表示专有工作流
+    3.4.根据工作流id查询工作流明细
+    3.5.根据前端传回的数据，（是否会签）设置流程变量
+    3.6.更新审批人信息
+    4.修改待处理业务表信息，更新审批人待处理的文件的数量 
+2.如果为提交操作但是工作流为关闭状态直接完成流程更改体系文件状态      
+3.如果为暂存业务则不走工作流，直接入数据库，但是此时不走工作流
+
+审批文件-工作流逻辑
+1.驳回
+    1.1.当退回时直接结束流程，完成当前任务，文件状态更改
+    1.2.获取所有审核人员信息，待处理任务减1
+    1.3.删除审批信息
+2.通过
+    2.1.判断是否是通用、专有
+    2.2.通用工作流获取所有下级审批人
+    2.3.如果仅剩一个或会签类型为仅需一人审批，且没有下级审批人，流程结束
+    2.4.获取当前实例所有需要审核人员信息，将其提示信息减一
+    2.5.还有多个活动实例，且有下级审批人，流程继续，
+    2.6.判断下一个流程是否会签，同时新增下一个节点的审批人员信息
+    2.7.专有工作流从流程变量中获取流程节点id来获取会签类型
+    2.8.获取下一节点审批人员信息，并且根据节点id获取下一节点信息，为下级审批人员添加提醒
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>文件预览功能kkFileView   1. 将预览接口提供给前端；2.利用 window.open 浏览器打开新窗口预览文件 3.通过iframe，预览文件 结合elementUI的弹窗（可以做其他弹窗效果）很多系统内不是直接暴露文件下载地址，而是请求通过id、code等参数到通过统一的接口，后端通过id或code等参数定位文件，再通过OutputStream输出下载，此时下载url是不带文件后缀名的，预览时需要拿到文件名，传一个参数fullfilename&#x3D;xxx.xxx来指定文件名<br><a target="_blank" rel="noopener" href="https://kkfileview.keking.cn/zh-cn/docs/usage.html">https://kkfileview.keking.cn/zh-cn/docs/usage.html</a></li>
 </ul>
@@ -472,14 +529,138 @@
 <li>服务器项目搭建</li>
 <li>课程视屏播放 vue-video-player<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38684316/article/details/88070737?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1-88070737-blog-105723063.pc_relevant_multi_platform_whitelistv1&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1-88070737-blog-105723063.pc_relevant_multi_platform_whitelistv1&amp;utm_relevant_index=1">https://blog.csdn.net/weixin_38684316/article/details/88070737?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1-88070737-blog-105723063.pc_relevant_multi_platform_whitelistv1&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1-88070737-blog-105723063.pc_relevant_multi_platform_whitelistv1&amp;utm_relevant_index=1</a></li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">1.首先是npm i vue-video-player -D 安装依赖</span><br><span class="line">2.在main.js里面引入</span><br><span class="line">3.vue组件中引用</span><br><span class="line">  &lt;video-player class=&quot;video-player vjs-custom-skin&quot;</span><br><span class="line">                 ref=&quot;videoPlayer&quot;</span><br><span class="line">                 :playsinline=&quot;true&quot;</span><br><span class="line">                 style=&quot;object-fit:fill&quot;</span><br><span class="line">                 :options=&quot;playerOptions&quot;</span><br><span class="line">                @play=&quot;onPlayerPlay($event)&quot;</span><br><span class="line">                @pause=&quot;onPlayerPause($event)&quot;</span><br><span class="line">                @ended=&quot;onPlayerEnded($event)&quot;</span><br><span class="line">                @timeupdate=&quot;onPlayerTimeupdate($event)&quot;</span><br><span class="line">                @ready=&quot;playerReadied&quot;</span><br><span class="line">   &gt;</span><br><span class="line">   &lt;/video-player&gt;</span><br><span class="line"></span><br><span class="line">playerOptions: &#123;</span><br><span class="line">          playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度</span><br><span class="line">          autoplay: false, //如果true,浏览器准备好时开始回放。</span><br><span class="line">          muted: false, // 默认情况下将会消除任何音频。</span><br><span class="line">          loop: false, // 导致视频一结束就重新开始。</span><br><span class="line">          preload: &#x27;auto&#x27;, // 建议浏览器在&lt;video&gt;加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）</span><br><span class="line">          language: &#x27;zh-CN&#x27;,</span><br><span class="line">          aspectRatio: &#x27;16:9&#x27;, // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如&quot;16:9&quot;或&quot;4:3&quot;）</span><br><span class="line">          fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。</span><br><span class="line">          sources: [&#123;</span><br><span class="line">            type: &quot;video/mp4&quot;,</span><br><span class="line">            src: &quot;你的视频地址&quot;</span><br><span class="line">          &#125;],</span><br><span class="line">          poster: &quot;你的封面地址&quot;,</span><br><span class="line">          width: document.documentElement.clientWidth,</span><br><span class="line">          notSupportedMessage: &#x27;此视频暂无法播放，请稍后再试&#x27;, //允许覆盖Video.js无法播放媒体源时显示的默认信息。</span><br><span class="line">          controlBar: &#123;</span><br><span class="line">            timeDivider: true,</span><br><span class="line">            durationDisplay: true,</span><br><span class="line">            remainingTimeDisplay: false,</span><br><span class="line">            fullscreenToggle: true  //全屏按钮</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">mounted() &#123;</span><br><span class="line">    this.onPlayerPlay(this.$refs.videoPlayer.player);</span><br><span class="line">&#125;, </span><br><span class="line"></span><br><span class="line">onPlayerPlay(player) &#123;</span><br><span class="line">    this.paused = false</span><br><span class="line">&#125;,</span><br><span class="line">// 暂停回调</span><br><span class="line">onPlayerPause(player) &#123;</span><br><span class="line">    this.paused = true</span><br><span class="line">&#125;,</span><br><span class="line">playerReadied (player) &#123;</span><br><span class="line">    console.dir(this.timelog);</span><br><span class="line">    player.currentTime(this.timelog);</span><br><span class="line">&#125;,</span><br><span class="line">// 视频播完回调</span><br><span class="line">onPlayerEnded(player) &#123;</span><br><span class="line">    if (localStorage.videoStatus == 0) &#123;</span><br><span class="line">//完成课程</span><br><span class="line">        this.finishLesson();</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        alert(&quot;已经看过&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">1.首先是npm i vue-video-player -D 安装依赖
+2.在main.js里面引入
+3.vue组件中引用
+  &lt;video-player class&#x3D;&quot;video-player vjs-custom-skin&quot;
+                 ref&#x3D;&quot;videoPlayer&quot;
+                 :playsinline&#x3D;&quot;true&quot;
+                 style&#x3D;&quot;object-fit:fill&quot;
+                 :options&#x3D;&quot;playerOptions&quot;
+                @play&#x3D;&quot;onPlayerPlay($event)&quot;
+                @pause&#x3D;&quot;onPlayerPause($event)&quot;
+                @ended&#x3D;&quot;onPlayerEnded($event)&quot;
+                @timeupdate&#x3D;&quot;onPlayerTimeupdate($event)&quot;
+                @ready&#x3D;&quot;playerReadied&quot;
+   &gt;
+   &lt;&#x2F;video-player&gt;
+
+playerOptions: &#123;
+          playbackRates: [0.7, 1.0, 1.5, 2.0], &#x2F;&#x2F;播放速度
+          autoplay: false, &#x2F;&#x2F;如果true,浏览器准备好时开始回放。
+          muted: false, &#x2F;&#x2F; 默认情况下将会消除任何音频。
+          loop: false, &#x2F;&#x2F; 导致视频一结束就重新开始。
+          preload: &#39;auto&#39;, &#x2F;&#x2F; 建议浏览器在&lt;video&gt;加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
+          language: &#39;zh-CN&#39;,
+          aspectRatio: &#39;16:9&#39;, &#x2F;&#x2F; 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如&quot;16:9&quot;或&quot;4:3&quot;）
+          fluid: true, &#x2F;&#x2F; 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
+          sources: [&#123;
+            type: &quot;video&#x2F;mp4&quot;,
+            src: &quot;你的视频地址&quot;
+          &#125;],
+          poster: &quot;你的封面地址&quot;,
+          width: document.documentElement.clientWidth,
+          notSupportedMessage: &#39;此视频暂无法播放，请稍后再试&#39;, &#x2F;&#x2F;允许覆盖Video.js无法播放媒体源时显示的默认信息。
+          controlBar: &#123;
+            timeDivider: true,
+            durationDisplay: true,
+            remainingTimeDisplay: false,
+            fullscreenToggle: true  &#x2F;&#x2F;全屏按钮
+          &#125;
+        &#125;
+mounted() &#123;
+    this.onPlayerPlay(this.$refs.videoPlayer.player);
+&#125;, 
+
+onPlayerPlay(player) &#123;
+    this.paused &#x3D; false
+&#125;,
+&#x2F;&#x2F; 暂停回调
+onPlayerPause(player) &#123;
+    this.paused &#x3D; true
+&#125;,
+playerReadied (player) &#123;
+    console.dir(this.timelog);
+    player.currentTime(this.timelog);
+&#125;,
+&#x2F;&#x2F; 视频播完回调
+onPlayerEnded(player) &#123;
+    if (localStorage.videoStatus &#x3D;&#x3D; 0) &#123;
+&#x2F;&#x2F;完成课程
+        this.finishLesson();
+    &#125;else&#123;
+        alert(&quot;已经看过&quot;)
+    &#125;
+&#125;,
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li><p>文件预览功能</p>
 </li>
 <li><p>手机端界面响应式布局实现</p>
 </li>
 <li><p>无限滑动功能的实现（  better-scroll）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">initScroll(dom) &#123;</span><br><span class="line">    let that = this;</span><br><span class="line">    that.$nextTick(() =&gt; &#123;</span><br><span class="line">        let bscrollDom = this.$refs[dom];</span><br><span class="line">        let bScroll = new BScroll(bscrollDom, &#123;</span><br><span class="line">            click: true,</span><br><span class="line">            probeType: 2,</span><br><span class="line">            bounceTime: 700, //回弹时间</span><br><span class="line">            pullUpLoad: &#123;</span><br><span class="line">                threshold: 50, // 当上拉距离超过50px时触发 pullingUp 事件</span><br><span class="line">                stop: 50</span><br><span class="line">            &#125;,</span><br><span class="line">            pullDownRefresh: &#123;</span><br><span class="line">                threshold: 50, // 当下拉距离超过50px时触发 pullingDown 事件</span><br><span class="line">                stop: 50</span><br><span class="line">            &#125;,</span><br><span class="line">            useTransition: false // 防止iphone微信滑动卡顿</span><br><span class="line">        &#125;);</span><br><span class="line">        bScroll.on(&quot;pullingDown&quot;, () =&gt; &#123;</span><br><span class="line">            this.page = 1;</span><br><span class="line">            console.dir(&quot;下拉刷新&quot;);</span><br><span class="line">            //下拉刷新图标显示</span><br><span class="line">            this.loadingUp = true;</span><br><span class="line">            //删除无数据提示的标识位</span><br><span class="line">            this.showFlag = false;</span><br><span class="line">            setTimeout(() =&gt; &#123;</span><br><span class="line">              //清空当前课程列表</span><br><span class="line">                this.lessonList = [];</span><br><span class="line">              //重新加载课程列表</span><br><span class="line">                this.getCourseData(this.page);</span><br><span class="line">            &#125;, 1000);</span><br><span class="line">            //完成下拉操作</span><br><span class="line">            bScroll.finishPullDown();</span><br><span class="line">        &#125;);</span><br><span class="line">        bScroll.on(&quot;pullingUp&quot;, () =&gt; &#123;</span><br><span class="line">            console.dir(&quot;上拉加载&quot;);</span><br><span class="line">          //上划加载图标显示</span><br><span class="line">            this.loadingDown = true;</span><br><span class="line">          //删除无数据提示的标识位</span><br><span class="line">            this.showFlag = false;</span><br><span class="line">            localStorage.selected=0;//叠加</span><br><span class="line">            if (this.page &lt; this.totalPages) &#123;</span><br><span class="line">                setTimeout(() =&gt; &#123;</span><br><span class="line">                    this.page++;</span><br><span class="line">                  //继续加载课程列表</span><br><span class="line">                    this.getCourseData(this.page);</span><br><span class="line">                &#125;, 1000);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">              //跳转页码大于总页码，无更多数据</span><br><span class="line">              //隐藏上划加载图标</span><br><span class="line">                this.loadingDown = false;</span><br><span class="line">              //显示无数据提示的标识位</span><br><span class="line">                this.showFlag = true;</span><br><span class="line">            &#125;</span><br><span class="line">          //完成上划操作</span><br><span class="line">            bScroll.finishPullUp();</span><br><span class="line">        &#125;);</span><br><span class="line">        //清空bScroll</span><br><span class="line">        bScroll.refresh();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">initScroll(dom) &#123;
+    let that &#x3D; this;
+    that.$nextTick(() &#x3D;&gt; &#123;
+        let bscrollDom &#x3D; this.$refs[dom];
+        let bScroll &#x3D; new BScroll(bscrollDom, &#123;
+            click: true,
+            probeType: 2,
+            bounceTime: 700, &#x2F;&#x2F;回弹时间
+            pullUpLoad: &#123;
+                threshold: 50, &#x2F;&#x2F; 当上拉距离超过50px时触发 pullingUp 事件
+                stop: 50
+            &#125;,
+            pullDownRefresh: &#123;
+                threshold: 50, &#x2F;&#x2F; 当下拉距离超过50px时触发 pullingDown 事件
+                stop: 50
+            &#125;,
+            useTransition: false &#x2F;&#x2F; 防止iphone微信滑动卡顿
+        &#125;);
+        bScroll.on(&quot;pullingDown&quot;, () &#x3D;&gt; &#123;
+            this.page &#x3D; 1;
+            console.dir(&quot;下拉刷新&quot;);
+            &#x2F;&#x2F;下拉刷新图标显示
+            this.loadingUp &#x3D; true;
+            &#x2F;&#x2F;删除无数据提示的标识位
+            this.showFlag &#x3D; false;
+            setTimeout(() &#x3D;&gt; &#123;
+              &#x2F;&#x2F;清空当前课程列表
+                this.lessonList &#x3D; [];
+              &#x2F;&#x2F;重新加载课程列表
+                this.getCourseData(this.page);
+            &#125;, 1000);
+            &#x2F;&#x2F;完成下拉操作
+            bScroll.finishPullDown();
+        &#125;);
+        bScroll.on(&quot;pullingUp&quot;, () &#x3D;&gt; &#123;
+            console.dir(&quot;上拉加载&quot;);
+          &#x2F;&#x2F;上划加载图标显示
+            this.loadingDown &#x3D; true;
+          &#x2F;&#x2F;删除无数据提示的标识位
+            this.showFlag &#x3D; false;
+            localStorage.selected&#x3D;0;&#x2F;&#x2F;叠加
+            if (this.page &lt; this.totalPages) &#123;
+                setTimeout(() &#x3D;&gt; &#123;
+                    this.page++;
+                  &#x2F;&#x2F;继续加载课程列表
+                    this.getCourseData(this.page);
+                &#125;, 1000);
+            &#125; else &#123;
+              &#x2F;&#x2F;跳转页码大于总页码，无更多数据
+              &#x2F;&#x2F;隐藏上划加载图标
+                this.loadingDown &#x3D; false;
+              &#x2F;&#x2F;显示无数据提示的标识位
+                this.showFlag &#x3D; true;
+            &#125;
+          &#x2F;&#x2F;完成上划操作
+            bScroll.finishPullUp();
+        &#125;);
+        &#x2F;&#x2F;清空bScroll
+        bScroll.refresh();
+    &#125;);
+&#125;,
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>better scroll原理 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44890979/article/details/111400863">https://blog.csdn.net/weixin_44890979/article/details/111400863</a><br>better scroll教程 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37719279/article/details/82084342">https://blog.csdn.net/weixin_37719279/article/details/82084342</a></p>
 </li>
 <li><p>生成二维码（qrcodesjs2）<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_48115935/article/details/113178939">https://blog.csdn.net/weixin_48115935/article/details/113178939</a></p>

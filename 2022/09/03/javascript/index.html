@@ -388,6 +388,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -425,33 +428,47 @@
 <p>每个对象都有一个propertyIsEnumerable方法。该方法可以确定对象中的指定属性是否可以通过for…in循环枚举，但通过原型链继承的属性除外。如果对象不具有指定的属性，则此方法返回false。</p>
 <h3 id="String-prototype"><a href="#String-prototype" class="headerlink" title="String.prototype"></a>String.prototype</h3><p>String.prototype用于为某字符串对象新增方法</p>
 <h3 id="forEach、filter、map、some、every、find、findIndex、reduce"><a href="#forEach、filter、map、some、every、find、findIndex、reduce" class="headerlink" title="forEach、filter、map、some、every、find、findIndex、reduce"></a>forEach、filter、map、some、every、find、findIndex、reduce</h3><p>这里有一堆土豆，如果换成代码，可以表示如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var potatos = [&#123; id: &#x27;1001&#x27;, weight: 50 &#125;,</span><br><span class="line">&#123; id: &#x27;1002&#x27;, weight: 80 &#125;,</span><br><span class="line">&#123; id: &#x27;1003&#x27;, weight: 120 &#125;,</span><br><span class="line">&#123; id: &#x27;1004&#x27;, weight: 40 &#125;,</span><br><span class="line">&#123; id: &#x27;1005&#x27;, weight: 110 &#125;,</span><br><span class="line">&#123; id: &#x27;1006&#x27;, weight: 60 &#125;]</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">var potatos &#x3D; [&#123; id: &#39;1001&#39;, weight: 50 &#125;,
+&#123; id: &#39;1002&#39;, weight: 80 &#125;,
+&#123; id: &#39;1003&#39;, weight: 120 &#125;,
+&#123; id: &#39;1004&#39;, weight: 40 &#125;,
+&#123; id: &#39;1005&#39;, weight: 110 &#125;,
+&#123; id: &#39;1006&#39;, weight: 60 &#125;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>同时把上面的重量（g）记录成一个数组</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var w = [50, 80, 120, 40, 110, 60]</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">var w &#x3D; [50, 80, 120, 40, 110, 60]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h4 id="批量操作-foreach"><a href="#批量操作-foreach" class="headerlink" title="批量操作 foreach"></a>批量操作 foreach</h4><p>数组里所有元素的weight增加，修改原数组，无返回值<br>map可实现，但不修改原数组，返回新数组</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">potatos.forEach(potato =&gt; potato.weight += 20 )</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">potatos.forEach(potato &#x3D;&gt; potato.weight +&#x3D; 20 )<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h4 id="生成原始数据的特征信息map"><a href="#生成原始数据的特征信息map" class="headerlink" title="生成原始数据的特征信息map"></a>生成原始数据的特征信息map</h4><p>map最适合做的事是映射，生成原始数据的特征信息的map</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">w = potatos.map(potato =&gt; &#123; return potato.weight += 20 &#125;)</span><br><span class="line">//[ 70, 100, 140, 60, 130, 80 ]</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">w &#x3D; potatos.map(potato &#x3D;&gt; &#123; return potato.weight +&#x3D; 20 &#125;)
+&#x2F;&#x2F;[ 70, 100, 140, 60, 130, 80 ]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="筛选过滤filter"><a href="#筛选过滤filter" class="headerlink" title="筛选过滤filter"></a>筛选过滤filter</h4><p>filter是滤波的意思 从名字上看，就知道筛选过滤这样的活是filter<br>返回一个新的对象数组，并不会改变原数组</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var bigOnes = potatos.filter(potato =&gt; &#123; return potato.weight &gt; 100 &#125;)</span><br><span class="line"></span><br><span class="line">//[ &#123; id: &#x27;1003&#x27;, weight: 120 &#125;, &#123; id: &#x27;1005&#x27;, weight: 110 &#125; ]</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">var bigOnes &#x3D; potatos.filter(potato &#x3D;&gt; &#123; return potato.weight &gt; 100 &#125;)
+
+&#x2F;&#x2F;[ &#123; id: &#39;1003&#39;, weight: 120 &#125;, &#123; id: &#39;1005&#39;, weight: 110 &#125; ]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="判断数组中有没有符合条件的时候some"><a href="#判断数组中有没有符合条件的时候some" class="headerlink" title="判断数组中有没有符合条件的时候some"></a>判断数组中有没有符合条件的时候some</h4><p>当只需要判断数组中有没有符合条件的时候（一个就行） 就需要我们的some方法登场了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var hasbig = potatos.some(potato =&gt; &#123; return potato.weight &gt; 100 &#125;)</span><br><span class="line">//true</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">var hasbig &#x3D; potatos.some(potato &#x3D;&gt; &#123; return potato.weight &gt; 100 &#125;)
+&#x2F;&#x2F;true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>我们的some小伙计，去土豆存放的仓库进行寻找，只要找到一个符合条件的，就回来报告true 所以并不会全部遍历，不做多余的活（性能优良）</p>
 <h4 id="判断数组元素是否全符合every"><a href="#判断数组元素是否全符合every" class="headerlink" title="判断数组元素是否全符合every"></a>判断数组元素是否全符合every</h4><p>every对每一个元素执行一个callback，直到它找到一个使 callback 返回 false的元素（没那么大的土豆），就返回false，直到遍历完成也没有返回false的话，就返回true</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var allbig = potatos.every(potato =&gt; &#123; return potato.weight &gt; 100 &#125;)</span><br><span class="line">//false</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">var allbig &#x3D; potatos.every(potato &#x3D;&gt; &#123; return potato.weight &gt; 100 &#125;)
+&#x2F;&#x2F;false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="寻找数组元素中一个符合的find"><a href="#寻找数组元素中一个符合的find" class="headerlink" title="寻找数组元素中一个符合的find"></a>寻找数组元素中一个符合的find</h4><p>来了一个顾客，想要一个大土豆 find自告奋勇，我去找给他</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var big = potatos.find(potato =&gt; &#123; return potato.weight &gt; 100 &#125;)</span><br><span class="line">//&#123; id: &#x27;1003&#x27;, weight: 120 &#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">var big &#x3D; potatos.find(potato &#x3D;&gt; &#123; return potato.weight &gt; 100 &#125;)
+&#x2F;&#x2F;&#123; id: &#39;1003&#39;, weight: 120 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>find和some很类似，都是寻找符合条件的，有一个就可以 不过some进去搜罗了一圈回来报了个“有”（true），而find则把那个土豆抱了出来（返回第一个符合条件的对象）</p>
-<h4 id="当需要知道所需元素的索引findIndex"><a href="#当需要知道所需元素的索引findIndex" class="headerlink" title="当需要知道所需元素的索引findIndex"></a>当需要知道所需元素的索引findIndex</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var i = potatos.findIndex(potato=&gt;&#123; return potato.weight &gt; 100 &#125;)</span><br><span class="line">//2</span><br></pre></td></tr></table></figure>
+<h4 id="当需要知道所需元素的索引findIndex"><a href="#当需要知道所需元素的索引findIndex" class="headerlink" title="当需要知道所需元素的索引findIndex"></a>当需要知道所需元素的索引findIndex</h4><pre class="line-numbers language-none"><code class="language-none">var i &#x3D; potatos.findIndex(potato&#x3D;&gt;&#123; return potato.weight &gt; 100 &#125;)
+&#x2F;&#x2F;2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>当需要知道所需元素的索引，就可以用findIndex，findIndex返回第一个符合条件的索引号</p>
-<h4 id="递归累加reduce"><a href="#递归累加reduce" class="headerlink" title="递归累加reduce"></a>递归累加reduce</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var sum = weight.reduce((sum, w) =&gt; &#123; return w + sum &#125;,0)</span><br><span class="line">//460</span><br><span class="line">//并不会改变原表格</span><br></pre></td></tr></table></figure>
+<h4 id="递归累加reduce"><a href="#递归累加reduce" class="headerlink" title="递归累加reduce"></a>递归累加reduce</h4><pre class="line-numbers language-none"><code class="language-none">var sum &#x3D; weight.reduce((sum, w) &#x3D;&gt; &#123; return w + sum &#125;,0)
+&#x2F;&#x2F;460
+&#x2F;&#x2F;并不会改变原表格<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>reduce()方法接收一个回调函数作为第一个参数，回调函数又接受四个参数，分别是；<br>1、previousValue &#x3D;&gt;初始值或上一次回调函数叠加的值；<br>2、currentValue &#x3D;&gt; 本次回调（循环）将要执行的值；<br>3、index&#x3D;&gt;“currentValue”的索引值；<br>4、arr &#x3D;&gt; 数组本身；<br>reduce()方法返回的是最后一次调用回调函数的返回值；能够实现递归累加</p>
 <h3 id="常见数据类型检测的方式"><a href="#常见数据类型检测的方式" class="headerlink" title="常见数据类型检测的方式"></a>常见数据类型检测的方式</h3><h4 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h4><p>其中数组、对象、null都会被判断为Object，其他判断都正确</p>
@@ -469,14 +486,42 @@
 <p><strong>for-of</strong><br>es6 中添加的循环遍历语法；<br>支持遍历数组，类数组对象（DOM NodeList），字符串，Map 对象，Set 对象；<br>不支持遍历对象； 遍历后输出的结果为数组元素的值</p>
 <p><strong>Object.keys()</strong> <br>对数组的遍历顺序和 for in 一致<br>此方法返回一个数组，元素均为对象自有可枚举的属性<br>Object.keys主要用于遍历对象自有的可枚举属性，不包括继承自原型的属性和不可枚举的属性</p>
 <p><strong>Object.getOwnProperty</strong><br>此方法用于返回对象的自有属性，包括可枚举和不可枚举的属性</p>
-<h2 id="var、function变量、函数提升"><a href="#var、function变量、函数提升" class="headerlink" title="var、function变量、函数提升"></a>var、function变量、函数提升</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var scope = &#x27;global&#x27;;</span><br><span class="line">function f()&#123;</span><br><span class="line">    console.log(scope);</span><br><span class="line">    var scope = &#x27;local&#x27;;</span><br><span class="line">    console.log(scope);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="var、function变量、函数提升"><a href="#var、function变量、函数提升" class="headerlink" title="var、function变量、函数提升"></a>var、function变量、函数提升</h2><pre class="line-numbers language-none"><code class="language-none">var scope &#x3D; &#39;global&#39;;
+function f()&#123;
+    console.log(scope);
+    var scope &#x3D; &#39;local&#39;;
+    console.log(scope);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>由于函数内声明提升，所以上面的代码实际上是这样的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var scope = &#x27;global&#x27;;</span><br><span class="line">function f()&#123;</span><br><span class="line">    var scope;    //变量声明提升到函数顶部</span><br><span class="line">    console.log(scope);</span><br><span class="line">    scope = &#x27;local&#x27;;    //变量初始化依然保留在原来的位置</span><br><span class="line">    console.log(scope);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">var scope &#x3D; &#39;global&#39;;
+function f()&#123;
+    var scope;    &#x2F;&#x2F;变量声明提升到函数顶部
+    console.log(scope);
+    scope &#x3D; &#39;local&#39;;    &#x2F;&#x2F;变量初始化依然保留在原来的位置
+    console.log(scope);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>经过这样变形之后，答案就就非常明显了。由于scope在第一个console.log(scope)语句之前就已经定义了，但是并没有赋值，因此此时scope的指是undefined.第二个console.log(scope)语句之前，scope已经完成赋值为’local’，所以输出的结果是local。</p>
 <hr>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var getName = function()&#123;</span><br><span class="line">    console.log(2);</span><br><span class="line">&#125;</span><br><span class="line">//函数表达式为变量声明，变量声明提升优先级较低</span><br><span class="line">function getName ()&#123;</span><br><span class="line">    console.log(1);</span><br><span class="line">&#125;</span><br><span class="line">//函数声明，函数声明提升优先级更高</span><br><span class="line">getName();</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">var getName &#x3D; function()&#123;
+    console.log(2);
+&#125;
+&#x2F;&#x2F;函数表达式为变量声明，变量声明提升优先级较低
+function getName ()&#123;
+    console.log(1);
+&#125;
+&#x2F;&#x2F;函数声明，函数声明提升优先级更高
+getName();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>让我们来分析一下，这个例子涉及到了变量声明提升和函数声明提升。正如前面说到的函数声明提升，函数声明function getName(){}的声明会被提前到顶部。而函数表达式var getName &#x3D; function(){}则表现出变量声明提升。因此在这种情况下，getName也是一个变量，因此这个变量的声明也将提升到底部，而变量的赋值依然保留在原来的位置。<strong>需要注意的是，函数优先，虽然函数声明和变量声明都会被提升，但是函数会首先被提升，然后才是变量</strong>。因此上面的函数可以转换成下面的样子:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function getName()&#123;    //函数声明提升到顶部</span><br><span class="line">    console.log(1);</span><br><span class="line">&#125;</span><br><span class="line">var getName;    //变量声明提升</span><br><span class="line">getName = function()&#123;    //变量赋值依然保留在原来的位置</span><br><span class="line">    console.log(2);</span><br><span class="line">&#125;</span><br><span class="line">getName();    // 最终输出：2</span><br><span class="line"></span><br><span class="line">所以最终的输出结果是：2。在原来的例子中，函数声明虽然是在函数表达式后面，但由于函数声明提升到顶部，因此后面getName又被函数表达式的赋值操作给覆盖了，所以输出2。</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">function getName()&#123;    &#x2F;&#x2F;函数声明提升到顶部
+    console.log(1);
+&#125;
+var getName;    &#x2F;&#x2F;变量声明提升
+getName &#x3D; function()&#123;    &#x2F;&#x2F;变量赋值依然保留在原来的位置
+    console.log(2);
+&#125;
+getName();    &#x2F;&#x2F; 最终输出：2
+
+所以最终的输出结果是：2。在原来的例子中，函数声明虽然是在函数表达式后面，但由于函数声明提升到顶部，因此后面getName又被函数表达式的赋值操作给覆盖了，所以输出2。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -500,7 +545,13 @@
 <p>从外向内找监听函数，叫做事件捕捉<br>从内向外找监听函数，叫做事件冒泡</p>
 <p><strong>取消冒泡 e.stopPropagation()</strong><br>捕获是不可取消的，但是冒泡可以取消。所有冒泡皆可取消，默认动作有的可以取消有的不能取消。e.stopPropagation() 可以中断冒泡，浏览器不再向上走了。</p>
 <p>事件委托<br>由于事件会在冒泡阶段向上传播到父节点，因此可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件。这种方法叫做事件的代理（delegation）。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var ul = document.querySelector(&#x27;ul&#x27;);</span><br><span class="line"></span><br><span class="line">ul.addEventListener(&#x27;click&#x27;, function (event) &#123;</span><br><span class="line">  if (event.target.tagName.toLowerCase() === &#x27;li&#x27;) &#123;</span><br><span class="line">    // some code</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">var ul &#x3D; document.querySelector(&#39;ul&#39;);
+
+ul.addEventListener(&#39;click&#39;, function (event) &#123;
+  if (event.target.tagName.toLowerCase() &#x3D;&#x3D;&#x3D; &#39;li&#39;) &#123;
+    &#x2F;&#x2F; some code
+  &#125;
+&#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>上面代码中，click事件的监听函数定义在节点，但是实际上，它处理的是子节点的click事件。这样做的好处是，只要定义一个监听函数，就能处理多个子节点的事件，而不用在每个节点上定义监听函数。而且以后再添加子节点，监听函数依然有效。</p>
 <p><strong>优点</strong><br>省监听数（内存）<br>可以监听动态元素</p>
 <h2 id="js的事件循环"><a href="#js的事件循环" class="headerlink" title="js的事件循环"></a>js的事件循环</h2><p><img src="/../images/JavaScript/1363_1.png" alt="js事件循环"></p>
@@ -508,7 +559,16 @@
 <h3 id="宏任务MacroTask"><a href="#宏任务MacroTask" class="headerlink" title="宏任务MacroTask"></a>宏任务MacroTask</h3><p>script代码、settimeout、setInterval、ajax、dom监听、UI Rendering</p>
 <h3 id="微任务MicroTask"><a href="#微任务MicroTask" class="headerlink" title="微任务MicroTask"></a>微任务MicroTask</h3><p>promise.then、await、queueMicrotask、MutationObserver的Api</p>
 <h3 id="Vue-nextTick"><a href="#Vue-nextTick" class="headerlink" title="Vue.nextTick"></a>Vue.nextTick</h3><p>与此同时，针对于vue的mvvn框架，在修改数据之后，视图并不会立刻更新，而是等同一事件循环中的所有数据变化完成之后，再统一进行视图更新。<br>Vue.nextTick将回调函数放到微任务或者宏任务当中以延迟它地执行顺序</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//改变数据</span><br><span class="line">vm.message = &#x27;changed&#x27;</span><br><span class="line"></span><br><span class="line">//想要立即使用更新后的DOM。这样不行，因为设置message后DOM还没有更新</span><br><span class="line">console.log(vm.$el.textContent) // 并不会得到&#x27;changed&#x27;</span><br><span class="line"></span><br><span class="line">//这样可以，nextTick里面的代码会在DOM更新后执行Vue.nextTick(function()&#123;</span><br><span class="line">    console.log(vm.$el.textContent) //可以得到&#x27;changed&#x27;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;改变数据
+vm.message &#x3D; &#39;changed&#39;
+
+&#x2F;&#x2F;想要立即使用更新后的DOM。这样不行，因为设置message后DOM还没有更新
+console.log(vm.$el.textContent) &#x2F;&#x2F; 并不会得到&#39;changed&#39;
+
+&#x2F;&#x2F;这样可以，nextTick里面的代码会在DOM更新后执行Vue.nextTick(function()&#123;
+    console.log(vm.$el.textContent) &#x2F;&#x2F;可以得到&#39;changed&#39;
+&#125;)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="settimeout倒计时为什么会出现误差"><a href="#settimeout倒计时为什么会出现误差" class="headerlink" title="settimeout倒计时为什么会出现误差"></a>settimeout倒计时为什么会出现误差</h3><p>setTimeout作为异步任务，在实现倒计时功能的时候，除了执行我们功能的实现代码，还会有主线程对任务队列的读取及执行等过程，这些过程也需要耗费一些时间，所以会因为event loop的机制出现些许误差。</p>
 <h3 id="为什么使用setTimeout实现倒计时，而不是setInterval"><a href="#为什么使用setTimeout实现倒计时，而不是setInterval" class="headerlink" title="为什么使用setTimeout实现倒计时，而不是setInterval?"></a>为什么使用setTimeout实现倒计时，而不是setInterval?</h3><p>setInterval指定的是“开始执行”之间的间隔，并不考虑每次任务执行本身所消耗的时间。因此实际上，两次执行之间的间隔会小于指定的时间。比如，setInterval指定每 100ms 执行一次，每次执行需要 5ms，那么第一次执行结束后95毫秒，第二次执行就会开始。如果某次执行耗时特别长，比如需要105毫秒，那么它结束后，下一次执行就会立即开始。<br>为了确保两次执行之间有固定的间隔，可以不用setInterval，而是每次执行结束后，使用setTimeout指定下一次执行的具体时间。</p>
@@ -519,12 +579,34 @@
 <li><p>类似于事件，但是异步触发<br>添加监视时，MutationObserver 上的 observer 函数与 addEventListener 有相似之处，但不同于后者的同步触发，MutationObserver 是异步触发，此举是为了避免 DOM 频繁变动导致回调函数被频繁调用，造成浏览器卡顿。</p>
 </li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> observer = <span class="keyword">new</span> <span class="title class_">MutationObserver</span>(callback);</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-javaScript" data-language="javaScript"><code class="language-javaScript">var observer &#x3D; new MutationObserver(callback);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h2 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a>requestAnimationFrame</h2><p>你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。requestAnimationFrame(rAF) 需要传入一个回调函数作为参数，同时该回调函数会在浏览器下一次重绘之前执行。</p>
 <p>requestAnimationFrame(rAF) 的回调有两个特征：<br>在重新渲染前调用。<br>很可能在宏任务之后不调用。</p>
 <p>我们来分析一下，为什么要在重新渲染前去调用？因为 rAF 是官方推荐的用来做一些流畅动画所应该使用的 API，做动画不可避免的会去更改 DOM，而如果在渲染之后再去更改 DOM，那就只能等到下一轮渲染机会的时候才能去绘制出来了，这显然是不合理的。<br>rAF在浏览器决定渲染之前给你最后一个机会去改变 DOM 属性，然后很快在接下来的绘制中帮你呈现出来，所以这是做流畅动画的不二选择。下面我用一个 setTimeout的例子来对比。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">style</span>.<span class="property">background</span> = <span class="string">&quot;red&quot;</span></span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">style</span>.<span class="property">background</span> = <span class="string">&quot;blue&quot;</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//这个结果是非常不可控的，如果这两个 Task 之间正好遇到了浏览器认定的渲染机会，那么它会重绘，否则就不会。由于这俩宏任务的间隔周期太短了，所以很大概率是不会的。</span></span><br><span class="line"><span class="keyword">let</span> i = <span class="number">10</span></span><br><span class="line"><span class="keyword">let</span> <span class="title function_">req</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  i--</span><br><span class="line">  <span class="title function_">requestAnimationFrame</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">style</span>.<span class="property">background</span> = <span class="string">&quot;red&quot;</span></span><br><span class="line">    <span class="title function_">requestAnimationFrame</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">style</span>.<span class="property">background</span> = <span class="string">&quot;blue&quot;</span></span><br><span class="line">      <span class="keyword">if</span> (i &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="title function_">req</span>()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">req</span>()</span><br><span class="line"><span class="comment">//浏览器会非常规律的把这 10 组也就是 20 次颜色变化绘制出来，</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">setTimeout(() &#x3D;&gt; &#123;
+  document.body.style.background &#x3D; &quot;red&quot;
+  setTimeout(() &#x3D;&gt; &#123;
+    document.body.style.background &#x3D; &quot;blue&quot;
+  &#125;)
+&#125;)
+
+&#x2F;&#x2F;这个结果是非常不可控的，如果这两个 Task 之间正好遇到了浏览器认定的渲染机会，那么它会重绘，否则就不会。由于这俩宏任务的间隔周期太短了，所以很大概率是不会的。
+let i &#x3D; 10
+let req &#x3D; () &#x3D;&gt; &#123;
+  i--
+  requestAnimationFrame(() &#x3D;&gt; &#123;
+    document.body.style.background &#x3D; &quot;red&quot;
+    requestAnimationFrame(() &#x3D;&gt; &#123;
+      document.body.style.background &#x3D; &quot;blue&quot;
+      if (i &gt; 0) &#123;
+        req()
+      &#125;
+    &#125;)
+  &#125;)
+&#125;
+req()
+&#x2F;&#x2F;浏览器会非常规律的把这 10 组也就是 20 次颜色变化绘制出来，<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="js异步方法"><a href="#js异步方法" class="headerlink" title="js异步方法"></a>js异步方法</h2><h3 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h3><p>是异步操作最基本的方法，比如AJAX回调，回调函数的优点是简单、容易理解和实现，缺点是不利于代码的阅读和维护，各个部分之间高度耦合，使得程序结构混乱、流程难以追踪（尤其是多个回调函数嵌套的情况），而且每个任务只能指定一个回调函数。此外它不能使用try catch捕获错误，不能之间return。</p>
 <h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><p>包装了一个异步调用并生成一个Promise实例，当异步调用返回的时候根据调用的结果分别调用实例化时传入的resolve和reject方法，then接收到对应的数据，做出相应的处理。Promise不仅能够捕获错误，而且也能很好地解决了回调地狱的问题，缺点是无法取消Promise，错误需要通过回调函数捕获。</p>
 <h3 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h3><p>函数是ES6提供的一种异步编程解决方案，Generator函数是一个状态机，封装了多个内部状态，可暂停函数，yield可暂停，next方法可启动，每次返回的是yield后的表达式结果。优点是异步语义清晰，缺点是手动迭代Generator函数很麻烦，实现逻辑优点绕。<br>function* gen(x){<br>    const y &#x3D; yield x + 6;<br>    return y;<br>}<br>const g &#x3D; gen(1);<br>&#x2F;&#x2F;执行 Generator 会返回一个Object,而不是像普通函数返回return 后面的值<br>g.next() &#x2F;&#x2F; { value: 7, done: false }<br>&#x2F;&#x2F;调用指针的 next 方法,会从函数的头部或上一次停下来的地方开始执行，直到遇到下一个 yield 表达式或return语句暂停,也就是执行yield 这一行<br>&#x2F;&#x2F; 执行完成会返回一个 Object,<br>&#x2F;&#x2F; value 就是执行 yield 后面的值,done 表示函数是否执行完毕<br>g.next() &#x2F;&#x2F; { value: undefined, done: true }<br>&#x2F;&#x2F; 因为最后一行 return y 被执行完成,所以done 为 true</p>
@@ -566,13 +648,35 @@
 </ol>
 <h4 id="暂时性死区"><a href="#暂时性死区" class="headerlink" title="暂时性死区"></a>暂时性死区</h4><p>暂时性死区：只要一进入当前作用域，所要使用的变量就已经存在了，但是不可获取，只有等到声明变量的那一行代码出现，才可以获取和使用该变量</p>
 <p>暂时性死区和不能变量提升的意义在于: 为了减少运行时错误，防止在变量声明前就使用这个变量，从而导致意料之外的行为。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var tmp = 123; // 声明</span><br><span class="line">if (true) &#123;</span><br><span class="line">  tmp = &#x27;abc&#x27;; // 报错 因为本区域有tmp声明变量</span><br><span class="line">  let tmp; // 绑定if这个块级的作用域 不能出现tmp变量</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">var tmp &#x3D; 123; &#x2F;&#x2F; 声明
+if (true) &#123;
+  tmp &#x3D; &#39;abc&#39;; &#x2F;&#x2F; 报错 因为本区域有tmp声明变量
+  let tmp; &#x2F;&#x2F; 绑定if这个块级的作用域 不能出现tmp变量
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h4><p><strong>概念</strong>：多个作用域对象连续引用形成的链式结构。</p>
 <p><strong>使用方面解释</strong>：当在Javascript中使用一个变量的时候，首先Javascript引擎会尝试在当前作用域下去寻找该变量，如果没找到，再到它的上层作用域寻找，以此类推直到找到该变量或是已经到了全局作用域，如果在全局作用域里仍然找不到该变量，它就会直接报错。</p>
 <p><strong>存储方面解释</strong>：作用域链在JS内部中是以数组的形式存储的，数组的第一个索引对应的是函数本身的执行期上下文，也就是当前执行的代码所在环境的变量对象，下一个索引对应的空间存储的是该对象的外部执行环境，依次类推，一直到全局执行环境</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a = 100</span><br><span class="line">function fun() &#123;</span><br><span class="line">    var b = 200</span><br><span class="line">    console.log(a) //100</span><br><span class="line">// fun函数局部作用域中没有变量a，于是从它的上一级，也就是全局作用域中找，</span><br><span class="line">//在全局中a被赋值为100，于是输出100</span><br><span class="line">    console.log(b)//200 fun函数局部作用域中有变量b，并且它被赋值为了200，输出200</span><br><span class="line">&#125;</span><br><span class="line">fun()</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">var a &#x3D; 100
+function fun() &#123;
+    var b &#x3D; 200
+    console.log(a) &#x2F;&#x2F;100
+&#x2F;&#x2F; fun函数局部作用域中没有变量a，于是从它的上一级，也就是全局作用域中找，
+&#x2F;&#x2F;在全局中a被赋值为100，于是输出100
+    console.log(b)&#x2F;&#x2F;200 fun函数局部作用域中有变量b，并且它被赋值为了200，输出200
+&#125;
+fun()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var a = 10</span><br><span class="line">function fun() &#123;</span><br><span class="line">   console.log(a)</span><br><span class="line">&#125;</span><br><span class="line">function show(f) &#123;</span><br><span class="line">   var a = 20</span><br><span class="line">   (function() &#123;</span><br><span class="line">      f()   //10，而不是20; 函数的作用域是在函数定义的时候就被决定了，与函数在哪里被调用无关</span><br><span class="line">   &#125;)()</span><br><span class="line">&#125;</span><br><span class="line">show(fun)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">var a &#x3D; 10
+function fun() &#123;
+   console.log(a)
+&#125;
+function show(f) &#123;
+   var a &#x3D; 20
+   (function() &#123;
+      f()   &#x2F;&#x2F;10，而不是20; 函数的作用域是在函数定义的时候就被决定了，与函数在哪里被调用无关
+   &#125;)()
+&#125;
+show(fun)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>由于变量的查找是沿着作用域链来实现的，所以也称作用域链为变量查找的机制。是不是很好理解，这里再来补充一点作用域的作用</p>
 <ul>
@@ -628,7 +732,30 @@
 <li>事件监听器：事件侦听器将防止在其范围内捕获的所有变量被垃圾收集。添加后，事件侦听器将一直有效，直到：<strong>使用 removeEventListener() 显式删除或者关联的 DOM 元素被移除。</strong></li>
 <li>缓存：如果不断地将内存添加到缓存中，而不删除未使用的对象，并且没有一些限制大小的逻辑，那么缓存可以无限增长。</li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> user_1 = &#123; <span class="attr">name</span>: <span class="string">&quot;Peter&quot;</span>, <span class="attr">id</span>: <span class="number">12345</span> &#125;;</span><br><span class="line"><span class="keyword">let</span> user_2 = &#123; <span class="attr">name</span>: <span class="string">&quot;Mark&quot;</span>, <span class="attr">id</span>: <span class="number">54321</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> mapCache = <span class="keyword">new</span> <span class="title class_">Map</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">cache</span>(<span class="params">obj</span>)&#123;</span><br><span class="line">  <span class="keyword">if</span> (!mapCache.<span class="title function_">has</span>(obj))&#123;</span><br><span class="line">    <span class="keyword">const</span> value = <span class="string">`<span class="subst">$&#123;obj.name&#125;</span> has an id of <span class="subst">$&#123;obj.id&#125;</span>`</span>;</span><br><span class="line">    mapCache.<span class="title function_">set</span>(obj, value);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [value, <span class="string">&#x27;computed&#x27;</span>];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> [mapCache.<span class="title function_">get</span>(obj), <span class="string">&#x27;cached&#x27;</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">cache</span>(user_1); <span class="comment">// [&#x27;Peter has an id of 12345&#x27;, &#x27;computed&#x27;]</span></span><br><span class="line"><span class="title function_">cache</span>(user_1); <span class="comment">// [&#x27;Peter has an id of 12345&#x27;, &#x27;cached&#x27;]</span></span><br><span class="line"><span class="title function_">cache</span>(user_2); <span class="comment">// [&#x27;Mark has an id of 54321&#x27;, &#x27;computed&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mapCache); <span class="comment">// &#123;&#123;…&#125; =&gt; &#x27;Peter has an id of 12345&#x27;, &#123;…&#125; =&gt; &#x27;Mark has an id of 54321&#x27;&#125;</span></span><br><span class="line">user_1 = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mapCache); <span class="comment">// &#123;&#123;…&#125; =&gt; &#x27;Peter has an id of 12345&#x27;, &#123;…&#125; =&gt; &#x27;Mark has an id of 54321&#x27;&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-javaScript" data-language="javaScript"><code class="language-javaScript">let user_1 &#x3D; &#123; name: &quot;Peter&quot;, id: 12345 &#125;;
+let user_2 &#x3D; &#123; name: &quot;Mark&quot;, id: 54321 &#125;;
+const mapCache &#x3D; new Map();
+
+function cache(obj)&#123;
+  if (!mapCache.has(obj))&#123;
+    const value &#x3D; &#96;$&#123;obj.name&#125; has an id of $&#123;obj.id&#125;&#96;;
+    mapCache.set(obj, value);
+
+    return [value, &#39;computed&#39;];
+  &#125;
+
+  return [mapCache.get(obj), &#39;cached&#39;];
+&#125;
+
+cache(user_1); &#x2F;&#x2F; [&#39;Peter has an id of 12345&#39;, &#39;computed&#39;]
+cache(user_1); &#x2F;&#x2F; [&#39;Peter has an id of 12345&#39;, &#39;cached&#39;]
+cache(user_2); &#x2F;&#x2F; [&#39;Mark has an id of 54321&#39;, &#39;computed&#39;]
+
+console.log(mapCache); &#x2F;&#x2F; &#123;&#123;…&#125; &#x3D;&gt; &#39;Peter has an id of 12345&#39;, &#123;…&#125; &#x3D;&gt; &#39;Mark has an id of 54321&#39;&#125;
+user_1 &#x3D; null;
+
+console.log(mapCache); &#x2F;&#x2F; &#123;&#123;…&#125; &#x3D;&gt; &#39;Peter has an id of 12345&#39;, &#123;…&#125; &#x3D;&gt; &#39;Mark has an id of 54321&#39;&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在上面的示例中，缓存仍然保留 user_1 对象。因此，我们需要将那些永远不会被重用的变量从缓存中清除。<strong>可以使用 WeakMap 来解决此问题。</strong>它是一种具有弱键引用的数据结构，仅接受对象作为键。如果我们使用一个对象作为键，并且它是对该对象的唯一引用——相关变量将从缓存中删除并被垃圾收集。在以下示例中，将 user_1 对象清空后，相关变量会在下一次垃圾回收后自动从 WeakMap 中删除。</p>
 <h2 id="TypeScript与JavaScript区别"><a href="#TypeScript与JavaScript区别" class="headerlink" title="TypeScript与JavaScript区别"></a>TypeScript与JavaScript区别</h2><p>区别：</p>
 <ol>

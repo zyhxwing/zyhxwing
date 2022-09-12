@@ -392,6 +392,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -451,13 +454,54 @@
 <li>checkbox 和radio使用checked property 和 change事件</li>
 <li>select 字段将value 作为prop 并将change 作为事件</li>
 </ul>
-<h2 id="VUE中的事件绑定原理"><a href="#VUE中的事件绑定原理" class="headerlink" title="VUE中的事件绑定原理"></a>VUE中的事件绑定原理</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 原生事件绑定</span><br><span class="line">&lt;div @click=&quot;fn()&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">// 组件绑定</span><br><span class="line">&lt;my-component @click.native=&quot;fn&quot; @click=&quot;fn1&quot;&gt;&lt;/my- component&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="VUE中的事件绑定原理"><a href="#VUE中的事件绑定原理" class="headerlink" title="VUE中的事件绑定原理"></a>VUE中的事件绑定原理</h2><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 原生事件绑定
+&lt;div @click&#x3D;&quot;fn()&quot;&gt;&lt;&#x2F;div&gt;
+
+&#x2F;&#x2F; 组件绑定
+&lt;my-component @click.native&#x3D;&quot;fn&quot; @click&#x3D;&quot;fn1&quot;&gt;&lt;&#x2F;my- component&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="原生事件绑定"><a href="#原生事件绑定" class="headerlink" title="原生事件绑定"></a>原生事件绑定</h3><p>原生事件绑定是通过addEventListener绑定给真实元素的，</p>
 <p>源码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function updateDOMListeners (oldVnode: VNodeWithData, vnode: VNodeWithData) &#123; </span><br><span class="line">	if (isUndef(oldVnode.data.on) &amp;&amp; isUndef(vnode.data.on)) &#123; return &#125;</span><br><span class="line">	const on = vnode.data.on || &#123;&#125; const oldOn = oldVnode.data.on || &#123;&#125; </span><br><span class="line">	target = vnode.elm </span><br><span class="line">	normalizeEvents(on) </span><br><span class="line">	updateListeners(on, oldOn, add, remove, createOnceHandler, vnode.context) </span><br><span class="line">	target = undefined </span><br><span class="line">&#125;</span><br><span class="line">function add ( </span><br><span class="line">	name: string, </span><br><span class="line">	handler: Function, </span><br><span class="line">	capture: boolean, </span><br><span class="line">	passive: boolean </span><br><span class="line">) &#123;</span><br><span class="line">	target.addEventListener( // 给当前的dom添加事件 </span><br><span class="line">		name, </span><br><span class="line">		handler, </span><br><span class="line">		supportsPassive </span><br><span class="line">		? &#123;  capture, passive  &#125; </span><br><span class="line">		: capture </span><br><span class="line">	) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">function updateDOMListeners (oldVnode: VNodeWithData, vnode: VNodeWithData) &#123; 
+	if (isUndef(oldVnode.data.on) &amp;&amp; isUndef(vnode.data.on)) &#123; return &#125;
+	const on &#x3D; vnode.data.on || &#123;&#125; const oldOn &#x3D; oldVnode.data.on || &#123;&#125; 
+	target &#x3D; vnode.elm 
+	normalizeEvents(on) 
+	updateListeners(on, oldOn, add, remove, createOnceHandler, vnode.context) 
+	target &#x3D; undefined 
+&#125;
+function add ( 
+	name: string, 
+	handler: Function, 
+	capture: boolean, 
+	passive: boolean 
+) &#123;
+	target.addEventListener( &#x2F;&#x2F; 给当前的dom添加事件 
+		name, 
+		handler, 
+		supportsPassive 
+		? &#123;  capture, passive  &#125; 
+		: capture 
+	) 
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="组件的事件绑定"><a href="#组件的事件绑定" class="headerlink" title="组件的事件绑定"></a>组件的事件绑定</h3><p>组件事件绑定是通过Vue自定义的$on实现的，（可用event触发）。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">export function updateComponentListeners ( </span><br><span class="line">	vm: Component, </span><br><span class="line">	listeners: Object, </span><br><span class="line">	oldListeners: ?Object </span><br><span class="line">) &#123;</span><br><span class="line">	target = vm updateListeners(</span><br><span class="line">		listeners, oldListeners || &#123;&#125;, </span><br><span class="line">		add, </span><br><span class="line">		remove,</span><br><span class="line">		createOnceHandler, vm)</span><br><span class="line">		target = undefined </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function add (event, fn) &#123; </span><br><span class="line">	target.$on(event, fn) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">export function updateComponentListeners ( 
+	vm: Component, 
+	listeners: Object, 
+	oldListeners: ?Object 
+) &#123;
+	target &#x3D; vm updateListeners(
+		listeners, oldListeners || &#123;&#125;, 
+		add, 
+		remove,
+		createOnceHandler, vm)
+		target &#x3D; undefined 
+&#125;
+
+function add (event, fn) &#123; 
+	target.$on(event, fn) 
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="Vue模版编译原理"><a href="#Vue模版编译原理" class="headerlink" title="Vue模版编译原理"></a>Vue模版编译原理</h2><p>Vue的编译过程就是将template转化为render函数的过程。会经历以下阶段：<br>首先解析模版，<strong>生成AST语法树</strong>(一种用JavaScript对象的形式来描述整个模板)。 使用大量的正则表达式对模板进行解析，遇到标签、文本的时候都会执行对应的钩子进行相关处理。Vue的数据是响应式的，但其实模板中并不是所有的数据都是响应式的。有一些数据首次渲染后就不会再变化，对应的DOM也不会变化。</p>
 <p><strong>优化</strong>过程就是深度遍历AST树，按照相关条件对树节点进行标记。这些被标记的节点(静态节点)我们就可以跳过对它们的比对，对运行时的模板起到很大的优化作用。</p>
@@ -538,7 +582,23 @@
 <li><p>也可以采用vuex和sessionStorage 结合的方式</p>
 </li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const state = &#123;</span><br><span class="line">  token:sessionStorage.getItem(`token`)||``,</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">const mutations = &#123;</span><br><span class="line">  //保存token</span><br><span class="line">  setToken(state,token)&#123;</span><br><span class="line">    sessionStorage.setItem(`token`,token)</span><br><span class="line">    state.token=token;</span><br><span class="line">  &#125;,</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line">const actions = &#123;</span><br><span class="line">  updateToken(context,value)&#123;</span><br><span class="line">    context.commit(&#x27;setToken&#x27;,value)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">const state &#x3D; &#123;
+  token:sessionStorage.getItem(&#96;token&#96;)||&#96;&#96;,
+&#125;;
+ 
+const mutations &#x3D; &#123;
+  &#x2F;&#x2F;保存token
+  setToken(state,token)&#123;
+    sessionStorage.setItem(&#96;token&#96;,token)
+    state.token&#x3D;token;
+  &#125;,
+ &#125;
+ 
+const actions &#x3D; &#123;
+  updateToken(context,value)&#123;
+    context.commit(&#39;setToken&#39;,value)
+  &#125;,
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="为什么-Vuex-的-mutation-中不能做异步操作？"><a href="#为什么-Vuex-的-mutation-中不能做异步操作？" class="headerlink" title="为什么 Vuex 的 mutation 中不能做异步操作？"></a>为什么 Vuex 的 mutation 中不能做异步操作？</h3><p>1、Vuex中所有的状态更新的唯一途径都是mutation，异步操作通过 Action 来提交 mutation实现，这样可以方便地跟踪每一个状态的变化，从而能够实现一些工具帮助更好地了解我们的应用。<br>2、每个mutation执行完成后都会对应到一个新的状态变更，这样devtools就可以打个快照存下来，然后就可以实现 time-travel 了。如果mutation支持异步操作，就没有办法知道状态是何时更新的，无法很好的进行状态的追踪，给调试带来困难。</p>
 <h2 id="Vue前端权限管理"><a href="#Vue前端权限管理" class="headerlink" title="Vue前端权限管理"></a>Vue前端权限管理</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1794300">https://cloud.tencent.com/developer/article/1794300</a></p>

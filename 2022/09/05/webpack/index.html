@@ -392,6 +392,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -441,7 +444,12 @@
 <p>hidden-source-map：借助第三方错误监控平台 Sentry 使用<br>nosources-source-map：只会显示具体行数以及查看源代码的错误栈。安全性比 sourcemap 高<br>sourcemap：通过 nginx 设置将 .map 文件只对白名单开放(公司内网)</p>
 <p>注意：避免在生产中使用 inline- 和 eval-，因为它们会增加 bundle 体积大小，并降低整体性能。</p>
 <h3 id="source-map-是如何对应到源代码的？"><a href="#source-map-是如何对应到源代码的？" class="headerlink" title="source map 是如何对应到源代码的？"></a>source map 是如何对应到源代码的？</h3><p>我们还是以刚才打包的文件为例，来看看产出的 source map 长啥样</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  sources:[&quot;webpack://webpack-source-demo/./src/index.js&quot;],</span><br><span class="line">  names: [&#x27;console&#x27;, &#x27;log&#x27;],</span><br><span class="line">  mappings: &#x27;AACAA,QAAQC,IADE&#x27;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&#123;
+  sources:[&quot;webpack:&#x2F;&#x2F;webpack-source-demo&#x2F;.&#x2F;src&#x2F;index.js&quot;],
+  names: [&#39;console&#39;, &#39;log&#39;],
+  mappings: &#39;AACAA,QAAQC,IADE&#39;,
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>英文，表示源码及压缩代码的位置关联;逗号，分隔一行代码中的内容。比如说 console.log(a) 就由 console 、log 及 a 三部分组成，所以存在两个逗号;分号，代表换行</p>
 <p>英文从左到右分别表示：</p>
 <ul>
@@ -493,15 +501,57 @@
 <p>Hash：和整个项目的构建相关，只要项目文件有修改，整个项目构建的 hash 值就会更改<br>Chunkhash：和 Webpack 打包的 chunk 有关，不同的 entry 会生出不同的 chunkhash<br>Contenthash：根据文件内容来定义 hash，文件内容不变，则 contenthash 不变</p>
 <p><strong>Compiler 模块是 webpack 的主要引擎，在 webpack 首次启动时会返回一个 Compiler 实例，而 Compiler 通过 Compilation 模块可以创建新的 compilation 实例，这个 compilation 实例能够访问依赖图中所有模块，也就是说项目中的任一文件的变化都会引起 compilation 实例的变化</strong>。</p>
 <p>JS的文件指纹设置<br>设置 output 的 filename，用 chunkhash。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="attr">entry</span>: &#123;</span><br><span class="line">        <span class="attr">app</span>: <span class="string">&#x27;./scr/app.js&#x27;</span>,</span><br><span class="line">        <span class="attr">search</span>: <span class="string">&#x27;./src/search.js&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;[name][chunkhash:8].js&#x27;</span>,</span><br><span class="line">        <span class="attr">path</span>:__dirname + <span class="string">&#x27;/dist&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-javaScript" data-language="javaScript"><code class="language-javaScript">module.exports &#x3D; &#123;
+    entry: &#123;
+        app: &#39;.&#x2F;scr&#x2F;app.js&#39;,
+        search: &#39;.&#x2F;src&#x2F;search.js&#39;
+    &#125;,
+    output: &#123;
+        filename: &#39;[name][chunkhash:8].js&#39;,
+        path:__dirname + &#39;&#x2F;dist&#39;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>CSS的文件指纹设置<br>设置 MiniCssExtractPlugin 的 filename，使用 contenthash。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="attr">entry</span>: &#123;</span><br><span class="line">        <span class="attr">app</span>: <span class="string">&#x27;./scr/app.js&#x27;</span>,</span><br><span class="line">        <span class="attr">search</span>: <span class="string">&#x27;./src/search.js&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;[name][chunkhash:8].js&#x27;</span>,</span><br><span class="line">        <span class="attr">path</span>:__dirname + <span class="string">&#x27;/dist&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">plugins</span>:[</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">MiniCssExtractPlugin</span>(&#123;</span><br><span class="line">            <span class="attr">filename</span>: <span class="string">`[name][contenthash:8].css`</span></span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-javaScript" data-language="javaScript"><code class="language-javaScript">module.exports &#x3D; &#123;
+    entry: &#123;
+        app: &#39;.&#x2F;scr&#x2F;app.js&#39;,
+        search: &#39;.&#x2F;src&#x2F;search.js&#39;
+    &#125;,
+    output: &#123;
+        filename: &#39;[name][chunkhash:8].js&#39;,
+        path:__dirname + &#39;&#x2F;dist&#39;
+    &#125;,
+    plugins:[
+        new MiniCssExtractPlugin(&#123;
+            filename: &#96;[name][contenthash:8].css&#96;
+        &#125;)
+    ]
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>图片的文件指纹设置<br>设置file-loader的name，使用hash。</p>
 <p>占位符名称及含义</p>
 <p>ext    资源后缀名<br>name   文件名称<br>path   文件的相对路径<br>folder 文件所在的文件夹<br>contenthash  文件的内容hash，默认是md5生成<br>hash  文件内容的hash，默认是md5生成<br>emoji  一个随机的指代文件内容的emoj</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&#x27;path&#x27;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    entry: &#x27;./src/index.js&#x27;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename:&#x27;bundle.js&#x27;,</span><br><span class="line">        path:path.resolve(__dirname, &#x27;dist&#x27;)</span><br><span class="line">    &#125;,</span><br><span class="line">    module:&#123;</span><br><span class="line">        rules:[&#123;</span><br><span class="line">            test:/\.(png|svg|jpg|gif)$/,</span><br><span class="line">            use:[&#123;</span><br><span class="line">                loader:&#x27;file-loader&#x27;,</span><br><span class="line">                options:&#123;</span><br><span class="line">                    name:&#x27;img/[name][hash:8].[ext]&#x27;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;]</span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">const path &#x3D; require(&#39;path&#39;);
+
+module.exports &#x3D; &#123;
+    entry: &#39;.&#x2F;src&#x2F;index.js&#39;,
+    output: &#123;
+        filename:&#39;bundle.js&#39;,
+        path:path.resolve(__dirname, &#39;dist&#39;)
+    &#125;,
+    module:&#123;
+        rules:[&#123;
+            test:&#x2F;\.(png|svg|jpg|gif)$&#x2F;,
+            use:[&#123;
+                loader:&#39;file-loader&#39;,
+                options:&#123;
+                    name:&#39;img&#x2F;[name][hash:8].[ext]&#39;
+                &#125;
+            &#125;]
+        &#125;]
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 <h2 id="如何对bundle体积进行监控和分析？"><a href="#如何对bundle体积进行监控和分析？" class="headerlink" title="如何对bundle体积进行监控和分析？"></a>如何对bundle体积进行监控和分析？</h2><p>VSCode 中有一个插件 <strong>Import Cost</strong> 可以帮助我们对引入模块的大小进行实时监测，还可以使用 <strong>webpack-bundle-analyzer</strong> 生成 bundle 的模块组成图，显示所占体积。<br><strong>bundlesize</strong> 工具包可以进行自动化资源体积监控。</p>
@@ -549,7 +599,39 @@
 <li>配置webpack， 在plugins 设置new class（类名，即步骤1的js文件里的class）</li>
 <li>执行编译命令</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">//遍历compilation.assets模块。对符合要求的文件进行正则替换</span><br><span class="line">class CssPathTransfor &#123;</span><br><span class="line">  apply (compiler) &#123;</span><br><span class="line">    compiler.plugin(&#x27;emit&#x27;, (compilation, callback) =&gt; &#123;</span><br><span class="line">      console.log(&#x27;--CssPathTransfor emit&#x27;)</span><br><span class="line">      // 遍历所有资源文件</span><br><span class="line">      for (var filePathName in compilation.assets) &#123;</span><br><span class="line">        // 查看对应的文件是否符合指定目录下的文件</span><br><span class="line">        if (/static\/css\/pages/i.test(filePathName)) &#123;</span><br><span class="line">          // 引入路径正则</span><br><span class="line">          const reg = /\/static\/css\/vendor\.wxss/i</span><br><span class="line">          // 需要替换的最终字符串</span><br><span class="line">          const finalStr = &#x27;/subPages/enjoy_given/static/css/vendor.wxss&#x27;</span><br><span class="line">          // 获取文件内容</span><br><span class="line">          let content = compilation.assets[filePathName].source() || &#x27;&#x27;</span><br><span class="line">          </span><br><span class="line">          content = content.replace(reg, finalStr)</span><br><span class="line">          // 重写指定输出模块内容</span><br><span class="line">          compilation.assets[filePathName] = &#123;</span><br><span class="line">            source () &#123;</span><br><span class="line">              return content;</span><br><span class="line">            &#125;,</span><br><span class="line">            size () &#123;</span><br><span class="line">              return content.length;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      callback()</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">module.exports = CssPathTransfor</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;遍历compilation.assets模块。对符合要求的文件进行正则替换
+class CssPathTransfor &#123;
+  apply (compiler) &#123;
+    compiler.plugin(&#39;emit&#39;, (compilation, callback) &#x3D;&gt; &#123;
+      console.log(&#39;--CssPathTransfor emit&#39;)
+      &#x2F;&#x2F; 遍历所有资源文件
+      for (var filePathName in compilation.assets) &#123;
+        &#x2F;&#x2F; 查看对应的文件是否符合指定目录下的文件
+        if (&#x2F;static\&#x2F;css\&#x2F;pages&#x2F;i.test(filePathName)) &#123;
+          &#x2F;&#x2F; 引入路径正则
+          const reg &#x3D; &#x2F;\&#x2F;static\&#x2F;css\&#x2F;vendor\.wxss&#x2F;i
+          &#x2F;&#x2F; 需要替换的最终字符串
+          const finalStr &#x3D; &#39;&#x2F;subPages&#x2F;enjoy_given&#x2F;static&#x2F;css&#x2F;vendor.wxss&#39;
+          &#x2F;&#x2F; 获取文件内容
+          let content &#x3D; compilation.assets[filePathName].source() || &#39;&#39;
+          
+          content &#x3D; content.replace(reg, finalStr)
+          &#x2F;&#x2F; 重写指定输出模块内容
+          compilation.assets[filePathName] &#x3D; &#123;
+            source () &#123;
+              return content;
+            &#125;,
+            size () &#123;
+              return content.length;
+            &#125;
+          &#125;
+        &#125;
+      &#125;
+      callback()
+    &#125;)
+  &#125;
+&#125;
+module.exports &#x3D; CssPathTransfor<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="聊一聊Babel原理吧"><a href="#聊一聊Babel原理吧" class="headerlink" title="聊一聊Babel原理吧"></a>聊一聊Babel原理吧</h1><p>大多数JavaScript Parser遵循 estree 规范，Babel 最初基于 acorn 项目(轻量级现代 JavaScript 解析器)<br>Babel大概分为三大部分：</p>
 <ol>

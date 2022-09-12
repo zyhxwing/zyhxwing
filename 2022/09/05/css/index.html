@@ -388,6 +388,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -450,13 +453,147 @@
 <li>绝对定位、相对定位、calc计算偏移距离</li>
 <li>绝对定位、相对定位、margin计算偏移距离</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .outer &#123;</span><br><span class="line">        position: relative;</span><br><span class="line">        width: 200px;</span><br><span class="line">        height: 200px;</span><br><span class="line">        background-color: red;</span><br><span class="line">    &#125;</span><br><span class="line">        //calc</span><br><span class="line">    .inner &#123;</span><br><span class="line">        position: absolute;</span><br><span class="line">        top: calc(50% - 50px);</span><br><span class="line">        left: calc(50% - 50px);</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">    &#125;</span><br><span class="line">        //margin</span><br><span class="line">   .inner &#123;</span><br><span class="line">        position: absolute;</span><br><span class="line">        top: 50%;</span><br><span class="line">        left: 50%;</span><br><span class="line">        margin-left: -50px;</span><br><span class="line">        margin-top: -50px;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;outer&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&lt;style&gt;
+    .outer &#123;
+        position: relative;
+        width: 200px;
+        height: 200px;
+        background-color: red;
+    &#125;
+        &#x2F;&#x2F;calc
+    .inner &#123;
+        position: absolute;
+        top: calc(50% - 50px);
+        left: calc(50% - 50px);
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+    &#125;
+        &#x2F;&#x2F;margin
+   .inner &#123;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -50px;
+        margin-top: -50px;
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+    &#125;
+&lt;&#x2F;style&gt;
+&lt;div class&#x3D;&quot;outer&quot;&gt;
+    &lt;div class&#x3D;&quot;inner&quot;&gt;&lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="元素不知道宽高"><a href="#元素不知道宽高" class="headerlink" title="元素不知道宽高"></a>元素不知道宽高</h3><ul>
 <li>绝对定位、相对定位、calc计算偏移距离</li>
 <li>绝对定位、相对定位、margin计算偏移距离</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .outer &#123;</span><br><span class="line">        position: relative;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        width: 200px;</span><br><span class="line">        height: 200px;</span><br><span class="line">        background-color: red;</span><br><span class="line">    &#125;</span><br><span class="line">        //margin:0</span><br><span class="line">    .inner &#123;</span><br><span class="line">        position: absolute;</span><br><span class="line">        top: 0;</span><br><span class="line">        bottom: 0;</span><br><span class="line">        left: 0;</span><br><span class="line">        right: 0;</span><br><span class="line">        margin: auto;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">    &#125;</span><br><span class="line">        //transform</span><br><span class="line">    .inner &#123;</span><br><span class="line">        position: absolute;</span><br><span class="line">        top: 50%;</span><br><span class="line">        left: 50%;</span><br><span class="line">        transform: translate(-50%, -50%);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;outer&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//flex 布局</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .outer &#123;</span><br><span class="line">        display: flex;</span><br><span class="line">        justify-content: center;</span><br><span class="line">        align-items: center;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        width: 200px;</span><br><span class="line">        height: 200px;</span><br><span class="line">        background-color: red;</span><br><span class="line">    &#125;</span><br><span class="line">    .inner &#123;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;outer&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//grid布局</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .outer &#123;</span><br><span class="line">        display: grid;</span><br><span class="line">        justify-content: center;</span><br><span class="line">        align-items: center;</span><br><span class="line">        </span><br><span class="line">        width: 200px;</span><br><span class="line">        height: 200px;</span><br><span class="line">        background-color: red;</span><br><span class="line">    &#125;</span><br><span class="line">    .inner &#123;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;outer&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//table布局</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .outer &#123;</span><br><span class="line">        display: table-cell;</span><br><span class="line">        text-align: center;</span><br><span class="line">        vertical-align: middle;</span><br><span class="line">        </span><br><span class="line">        width: 200px;</span><br><span class="line">        height: 200px;</span><br><span class="line">        background-color: red;</span><br><span class="line">    &#125;</span><br><span class="line">    .inner &#123;</span><br><span class="line">        display: inline-block;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;outer&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&lt;style&gt;
+    .outer &#123;
+        position: relative;
+
+
+        width: 200px;
+        height: 200px;
+        background-color: red;
+    &#125;
+        &#x2F;&#x2F;margin:0
+    .inner &#123;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+    &#125;
+        &#x2F;&#x2F;transform
+    .inner &#123;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+    &#125;
+
+&lt;&#x2F;style&gt;
+&lt;div class&#x3D;&quot;outer&quot;&gt;
+    &lt;div class&#x3D;&quot;inner&quot;&gt;&lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+
+&#x2F;&#x2F;flex 布局
+&lt;style&gt;
+    .outer &#123;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        width: 200px;
+        height: 200px;
+        background-color: red;
+    &#125;
+    .inner &#123;
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+    &#125;
+&lt;&#x2F;style&gt;
+&lt;div class&#x3D;&quot;outer&quot;&gt;
+    &lt;div class&#x3D;&quot;inner&quot;&gt;&lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+
+&#x2F;&#x2F;grid布局
+&lt;style&gt;
+    .outer &#123;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        
+        width: 200px;
+        height: 200px;
+        background-color: red;
+    &#125;
+    .inner &#123;
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+    &#125;
+&lt;&#x2F;style&gt;
+&lt;div class&#x3D;&quot;outer&quot;&gt;
+    &lt;div class&#x3D;&quot;inner&quot;&gt;&lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+
+&#x2F;&#x2F;table布局
+&lt;style&gt;
+    .outer &#123;
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+        
+        width: 200px;
+        height: 200px;
+        background-color: red;
+    &#125;
+    .inner &#123;
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+    &#125;
+&lt;&#x2F;style&gt;
+&lt;div class&#x3D;&quot;outer&quot;&gt;
+    &lt;div class&#x3D;&quot;inner&quot;&gt;&lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>vertical-align 只对 table-cell起作用，vertical-align 的值是相对于其父元素的，父元素必须是行内元素。<br>对于一行文字来讲，该属性的值是相对于行高（line-height）的。<br>对于 table-cell，该属性的值是相对于表格的行高的。</p>
 <h2 id="行内元素垂直居中、水平居中"><a href="#行内元素垂直居中、水平居中" class="headerlink" title="行内元素垂直居中、水平居中"></a>行内元素垂直居中、水平居中</h2><h3 id="垂直居中-1"><a href="#垂直居中-1" class="headerlink" title="垂直居中"></a>垂直居中</h3><ul>
 <li>在行内元素的父元素设置：text-align: center;</li>
@@ -469,18 +606,54 @@
 <li>在父元素设置： disaply: table-cell; vertical-align: middle; （多行文本垂直居中也适合单行文本的垂直居中）</li>
 </ul>
 <h2 id="实现单行／多行文本溢出的省略样式"><a href="#实现单行／多行文本溢出的省略样式" class="headerlink" title="实现单行／多行文本溢出的省略样式"></a>实现单行／多行文本溢出的省略样式</h2><h3 id="单行文本溢出省略"><a href="#单行文本溢出省略" class="headerlink" title="单行文本溢出省略"></a>单行文本溢出省略</h3><p>实现方式也很简单，涉及的css属性有：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">text-overflow：ellipsis;</span><br><span class="line">white-space：nowrap;</span><br><span class="line">overflow：hidden;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">text-overflow：ellipsis;
+white-space：nowrap;
+overflow：hidden;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>overflow设为hidden，普通情况用在块级元素的外层隐藏内部溢出元素，或者配合下面两个属性实现文本溢出省略<br>white-space:nowrap，作用是设置文本不换行，是overflow:hidden和text-overflow：ellipsis生效的基础<br>text-overflow属性值有如下：clip：当对象内文本溢出部分裁切掉,ellipsis：当对象内文本溢出时显示省略标记（…）</p>
 <h3 id="多行文本溢出省略"><a href="#多行文本溢出省略" class="headerlink" title="多行文本溢出省略"></a>多行文本溢出省略</h3><p>多行文本溢出的时候，我们可以分为两种情况：基于高度截断、基于行数截断</p>
 <h4 id="基于高度截断"><a href="#基于高度截断" class="headerlink" title="基于高度截断"></a>基于高度截断</h4><ul>
 <li>伪元素 + 定位<br>代码结构如下</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .demo &#123;</span><br><span class="line">        position: relative;</span><br><span class="line">        line-height: 20px;</span><br><span class="line">        height: 40px;</span><br><span class="line">        overflow: hidden;</span><br><span class="line">    &#125;</span><br><span class="line">    .demo::after &#123;</span><br><span class="line">        content: &quot;...&quot;;</span><br><span class="line">        position: absolute;</span><br><span class="line">        bottom: 0;</span><br><span class="line">        right: 0;</span><br><span class="line">        padding: 0 20px 0 10px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&#x27;demo&#x27;&gt;这是一段很长的文本&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&lt;style&gt;
+    .demo &#123;
+        position: relative;
+        line-height: 20px;
+        height: 40px;
+        overflow: hidden;
+    &#125;
+    .demo::after &#123;
+        content: &quot;...&quot;;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 0 20px 0 10px;
+    &#125;
+&lt;&#x2F;style&gt;
+&lt;body&gt;
+    &lt;div class&#x3D;&#39;demo&#39;&gt;这是一段很长的文本&lt;&#x2F;div&gt;
+&lt;&#x2F;body&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="基于行数截断"><a href="#基于行数截断" class="headerlink" title="基于行数截断"></a>基于行数截断</h4><ul>
 <li>css</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">    p &#123;</span><br><span class="line">        width: 400px;</span><br><span class="line">        border-radius: 1px solid red;</span><br><span class="line">        -webkit-line-clamp: 2;</span><br><span class="line">        //用来限制在一个块元素显示的文本的行数，为了实现该效果，它需要组合其他的WebKit属性）</span><br><span class="line">        display: -webkit-box;</span><br><span class="line">        //将对象作为弹性伸缩盒子模型显示</span><br><span class="line">        -webkit-box-orient: vertical;</span><br><span class="line">        //设置或检索伸缩盒对象的子元素的排列方式</span><br><span class="line">        overflow: hidden;//文本溢出限定的宽度就隐藏内容</span><br><span class="line">        text-overflow: ellipsis;</span><br><span class="line">        //多行文本的情况下，用省略号“…”隐藏溢出范围的文本</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;p&gt;</span><br><span class="line">    这是一些文本这是一些文本这是一些文本这是一些文本这是一些文本</span><br><span class="line">    这是一些文本这是一些文本这是一些文本这是一些文本这是一些文本</span><br><span class="line">&lt;/p &gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-<style>" data-language="<style>"><code class="language-<style>">    p &#123;
+        width: 400px;
+        border-radius: 1px solid red;
+        -webkit-line-clamp: 2;
+        &#x2F;&#x2F;用来限制在一个块元素显示的文本的行数，为了实现该效果，它需要组合其他的WebKit属性）
+        display: -webkit-box;
+        &#x2F;&#x2F;将对象作为弹性伸缩盒子模型显示
+        -webkit-box-orient: vertical;
+        &#x2F;&#x2F;设置或检索伸缩盒对象的子元素的排列方式
+        overflow: hidden;&#x2F;&#x2F;文本溢出限定的宽度就隐藏内容
+        text-overflow: ellipsis;
+        &#x2F;&#x2F;多行文本的情况下，用省略号“…”隐藏溢出范围的文本
+    &#125;
+&lt;&#x2F;style&gt;
+&lt;p&gt;
+    这是一些文本这是一些文本这是一些文本这是一些文本这是一些文本
+    这是一些文本这是一些文本这是一些文本这是一些文本这是一些文本
+&lt;&#x2F;p &gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h2><h3 id="媒体查询作用"><a href="#媒体查询作用" class="headerlink" title="媒体查询作用"></a>媒体查询作用</h3><ul>
 <li>使用 @media查询,可以针对不同的媒体类型定义不同的样式;</li>
@@ -488,7 +661,13 @@
 <li>当重置浏览器大小的过程中,页面也会根据浏览器的宽度和高度重新渲染页面;</li>
 <li>目前针对很多苹果手机、 Android手机 ,平板等设备都用得到多媒体查询。</li>
 </ul>
-<h3 id="语法规范"><a href="#语法规范" class="headerlink" title="语法规范"></a>语法规范</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@media mediatype and|not|only (media feature) &#123;</span><br><span class="line">	CSS-Code;</span><br><span class="line">&#125;</span><br><span class="line">// 1.用@media开头；</span><br><span class="line">// 2.mediatype媒体类型；</span><br><span class="line">// 3.关键字and not only</span><br><span class="line">// 4.media feature媒体特性，必须有小括号包含</span><br></pre></td></tr></table></figure>
+<h3 id="语法规范"><a href="#语法规范" class="headerlink" title="语法规范"></a>语法规范</h3><pre class="line-numbers language-none"><code class="language-none">@media mediatype and|not|only (media feature) &#123;
+	CSS-Code;
+&#125;
+&#x2F;&#x2F; 1.用@media开头；
+&#x2F;&#x2F; 2.mediatype媒体类型；
+&#x2F;&#x2F; 3.关键字and not only
+&#x2F;&#x2F; 4.media feature媒体特性，必须有小括号包含<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="mediatype查询类型"><a href="#mediatype查询类型" class="headerlink" title="mediatype查询类型"></a>mediatype查询类型</h3><p>将不同的终端设备分为不同的类型</p>
 <p><img src="https://img-blog.csdnimg.cn/62e73f971dcd40738f521e5ab64c4efd.png#pic_center" alt="mediatype查询类型"></p>
 <h3 id="and-not-only"><a href="#and-not-only" class="headerlink" title="and|not|only"></a>and|not|only</h3><p>关键字将媒体类型或多个特性连接到一起做为媒体查询的条件</p>
