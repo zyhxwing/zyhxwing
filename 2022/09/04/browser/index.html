@@ -423,7 +423,7 @@
 <h3 id="nuxt静态应用部署"><a href="#nuxt静态应用部署" class="headerlink" title="nuxt静态应用部署"></a>nuxt静态应用部署</h3><p>Nuxt.js 可依据路由配置将应用静态化，使得我们可以将应用部署至任何一个静态站点主机服务商。</p>
 <p>优势：纯静态文件，访问速度超快； 对比SSR，不涉及到服务器负载方面问题； 静态网页不宜遭到黑客攻击，安全性更高。</p>
 <p>不足：<br>如果动态路由参数多的话不适用。如果你的动态路由的参数很多，例如商品详情，可能高达几千几万个。需要一个接口返回所有id，然后打包时遍历id，打包到本地，如果某个商品修改了或者下架了，又要重新打包，数量多的情况下打包也是非常慢的，非常不现实。</p>
-<h2 id="前端跨域html"><a href="#前端跨域html" class="headerlink" title="前端跨域html"></a>前端跨域html</h2><p>同源策略是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，浏览器很容易受到XSS、CSRF等攻击。所谓同源是指”协议+域名+端口”三者相同，即便两个不同的域名指向同一个ip地址，也非同源。</p>
+<h2 id="前端跨域html"><a href="#前端跨域html" class="headerlink" title="前端跨域html"></a>前端跨域html</h2><p>同源策略是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，浏览器很容易受到XSS、CSRF等攻击。所谓同源是指”协议+域名+<br>端口”三者相同，即便两个不同的域名指向同一个ip地址，也非同源。</p>
 <p><img src="/../images/browser/1343_1.png" alt="浏览器同源协议"></p>
 <p>同源策略限制内容有：</p>
 <ul>
@@ -955,6 +955,158 @@ document<span class="token punctuation">.</span>body<span class="token punctuati
 <li>使用 localStorage 的方式，我们可以在一个标签页对 localStorage 的变化事件进行监听，然后当另一个标签页修改数据的时候，我们就可以通过这个监听事件来获取到数据。这个时候 localStorage 对象就是充当的中介者的角色。</li>
 <li>使用 postMessage 方法，如果我们能够获得对应标签页的引用，就可以使用postMessage 方法，进行通信。</li>
 </ul>
+<h2 id="前端页面性能测试与测试指标"><a href="#前端页面性能测试与测试指标" class="headerlink" title="前端页面性能测试与测试指标"></a>前端页面性能测试与测试指标</h2><h3 id="基本指标介绍"><a href="#基本指标介绍" class="headerlink" title="基本指标介绍"></a>基本指标介绍</h3><p>首先前端性能指标一般分为以下几种：</p>
+<p>首屏绘制（First Paint，FP）</p>
+<p>首屏内容绘制（First Contentful Paint，FCP）</p>
+<p>可交互时间（Time to Interactive，TTI）</p>
+<p>最大内容绘制（Largest Contentful Paint，LCP)</p>
+<p>首次有效绘制（First Meaning Paint, FMP）</p>
+<p>FP 是时间线上的第一个“时间点”，是指浏览器从响应用户输入网址地址，到浏览器开始显示内容的时间，简而言之就是浏览器第一次发生变化的时间。</p>
+<p>FCP（全称“First Contentful Paint”，翻译为“首次内容绘制”），是指浏览器从响应用户输入网络地址，在页面首次绘制文本，图片（包括背景图）、非白色的 canvas 或者SVG 才算做 FCP，有些文章说 FCP 是首屏渲染事件，这其实是不对的。</p>
+<p>TTI，翻译为“可交互时间”表示网页第一次完全达到可交互状态的时间点。可交互状态指的是页面上的 UI 组件是可以交互的（可以响应按钮的点击或在文本框输入文字等），不仅如此，此时主线程已经达到“流畅”的程度，主线程的任务均不超过50毫秒。在一般的管理系统中，TTI 是一个很重要的指标。</p>
+<p>FMP（全称“First Meaningful Paint”，翻译为“首次有效绘制”表示页面的“主要内容”开始出现在屏幕上的时间点，它以前是我们测量用户加载体验的主要指标。本质上是通过一个算法来猜测某个时间点可能是 FMP，但是最好的情况也只有77%的准确率，在lighthouse6.0 的时候废弃掉了这个指标，取而代之的是 LCP 这个指标。</p>
+<p>LCP（全称“Largest Contentful Paint”）表示可视区“内容”最大的可见元素开始出现在屏幕上的时间点。</p>
+<h2 id="如何使用cdn"><a href="#如何使用cdn" class="headerlink" title="如何使用cdn"></a>如何使用cdn</h2><ol>
+<li>为什么要用cdn加速服务<br>优点：</li>
+</ol>
+<ul>
+<li>JS体积变小，使用CDN的第三方资源的JS代码，将不再打包到本地服务的JS包中。减小本地JS包体积，提高加载速度</li>
+<li>给网页加载提速<br>缺点：</li>
+<li>请求变多</li>
+<li>万一CDN资源路径有变动需要更改，建议自行搭建CDN库。</li>
+</ul>
+<ol start="2">
+<li><p>哪些需要使用CDN<br>在项目根目录下运行npm run build –report<br>打包完成后，会打开一个页面，展示各个依赖包的大小，查看哪些第三方依赖包的体积大，就干掉它，从CDN上获取。</p>
+</li>
+<li><p>推荐BootCDN<br><a target="_blank" rel="noopener" href="http://www.bootcdn.cn/">www.bootcdn.cn/</a></p>
+</li>
+<li><p>确认包和版本<br>确认需要使用CDN加载的资源，在package-lock.json文件中，找到对应的版本号。<br>在BootCDN网站找到对应的资源路径。</p>
+</li>
+<li><p>修改index.html文件<br>link添加在头部，script添加在尾部</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.bootcss.com/element-ui/2.4.4/theme-chalk/index.css<span class="token punctuation">"</span></span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!-- built files will be auto injected --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.bootcss.com/vue/2.5.16/vue.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.bootcss.com/vuex/3.0.1/vuex.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.bootcss.com/three.js/100/three.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.bootcss.com/echarts/4.1.0/echarts.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.bootcss.com/axios/0.17.1/axios.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.bootcss.com/element-ui/2.4.4/index.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.bootcss.com/babel-polyfill/6.26.0/polyfill.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>修改webpack.base.conf.js文件<br>在module.exports下添加externals，将通过cdn引入的包忽略，在webpack打包中则无需打包。</p>
+</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">externals: &#123;
+    &#39;vue&#39;: &#39;Vue&#39;,
+    &#39;vue-router&#39;: &#39;VueRouter&#39;,
+    &#39;vuex&#39;: &#39;Vuex&#39;,
+    &#39;three&#39;: &#39;THREE&#39;,
+    &#39;echarts&#39;: &#39;echarts&#39;,
+    &#39;axios&#39;: &#39;axios&#39;,
+    &#39;element-ui&#39;: &#39;ElementUI&#39;,
+    &#39;babel-polyfill&#39;: &#39;_babelPolyfill&#39;
+&#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>属性名称vue表明该模块vue中import Vue from ‘vue’应排除在外。为了替换此模块，该值Vue将用于检索全局Vue变量。</p>
+<pre class="line-numbers language-none"><code class="language-none">externals: &#123;
+    &#39;vue-router&#39;: &#39;VueRouter&#39;
+&#125;,
+ 
+ export default new VueRouter(&#123;
+  linkActiveClass: &#39;on&#39;,
+  mode: &#39;history&#39;,
+  routes: routerArray
+&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>babel-polyfill的配置全局变量_babelPolyfill，同样是查看源码可得。</p>
+<ol>
+<li><p><strong>注释掉其他地方包的引入</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; import Vue from &#39;vue&#39;
+&#x2F;&#x2F; import VueRouter from &#39;vue-router&#39;
+&#x2F;&#x2F; import Vuex from &#39;vuex&#39;
+&#x2F;&#x2F; import * as THREE from &#39;three&#39;
+&#x2F;&#x2F; import echarts from &#39;echarts&#39;
+&#x2F;&#x2F; import axios from &#39;axios&#39;
+&#x2F;&#x2F; import ElementUI from &#39;element-ui&#39;
+&#x2F;&#x2F; import &#39;element-ui&#x2F;lib&#x2F;theme-chalk&#x2F;index.css&#39;
+&#x2F;&#x2F; import &#39;babel-polyfill&#39;
+
+&#x2F;&#x2F; Vue.use(VueRouter)
+&#x2F;&#x2F; Vue.use(Vuex)
+&#x2F;&#x2F; Vue.use(ElementUI)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>使用预获取<br>只需在链接属性上增加 rel&#x3D;”prefetch”,rel&#x3D;”dns-prefetch”，或者 rel&#x3D;”preload” 标记。</p>
+</li>
+</ol>
+<p>preload：<br>代码会被优先加载，并且会占用http并发数，从而也导致页面加载时间变长，特别是首屏时间会变长。<br>本页面接下来大概率要使用的资源重要资源。</p>
+<p>prefetch：<br>代码被安排在后面加载，这样才达到了优化效果。<br>下个页面很可能会去访问的非重要的资源。<br>然后修改代码如下：</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.bootcss.com/vue/2.5.16/vue.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.bootcss.com/vuex/3.0.1/vuex.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>preload<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.bootcss.com/three.js/100/three.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>prefetch<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.bootcss.com/echarts/4.1.0/echarts.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.bootcss.com/axios/0.17.1/axios.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.bootcss.com/element-ui/2.4.4/index.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>被preload修饰的three会优先加载，而被prefetch修饰的echarts会延后加载。</p>
+<h2 id="单点登录"><a href="#单点登录" class="headerlink" title="单点登录"></a>单点登录</h2><h3 id="什么是单点登录"><a href="#什么是单点登录" class="headerlink" title="什么是单点登录"></a>什么是单点登录</h3><p>单点登录的英文名叫做：Single Sign On（简称SSO），指在同一帐号平台下的多个应用系统中，用户只需登录一次，即可访问所有相互信任的系统。简而言之，多个系统，统一登陆。</p>
+<p>为什么需要做单点登录系统呢？在一些互联网公司中，公司旗下可能会有多个子系统，每个登陆实现统一管理，多个账户信息统一管理 SSO单点登陆认证授权系统。比如阿里系的淘宝和天猫，显而易见这是两个系统，但是在使用过程中，只要你登录了淘宝，同时也意味着登录了天猫，如果每个子系统都需要登录认证，用户早就疯了，所以我们要解决的问题就是，用户只需要登录一次就可以访问所有相互信任的应用系统。</p>
+<p>sso需要一个独立的认证中心，所有子系统都通过认证中心的登录入口进行登录，登录时带上自己的地址，子系统只接受认证中心的授权，授权通过令牌（token）实现，sso认证中心验证用户的用户名密码正确，创建全局会话和token，token作为参数发送给各个子系统，子系统拿到token，即得到了授权，可以借此创建局部会话，局部会话登录方式与单系统的登录方式相同。</p>
+<p>三、单点登录实现方式<br>单点登录的实现方案，一般就包含：Cookies，Session同步，分布式Session，目前的网站采用比较多的方式是token令牌和分布式Session的方式。</p>
+<ol>
+<li>基于Cookie+Redis的单点登录<br>最简单的单点登录实现方式，用cookie作为媒介存放用户凭证。 用户登录系统之后，会返回一个加密的cookie，当用户访问子应用的时候会带上这个cookie，授权以解密cookie并进行校验，校验通过后即可登录当前用户。</li>
+</ol>
+<p>redis：在key：生成唯一随机值（ip、用户id等等），在value：用户数据<br>cookie：把redis里面生成key值放到cookie里面</p>
+<ol start="2">
+<li>分布式session方式实现单点登录<br>流程运行：</li>
+</ol>
+<ul>
+<li>用户第一次登录时，将会话信息（用户Id和用户信息），比如以用户Id为Key，写入分布式Session；</li>
+<li>用户再次登录时，获取分布式Session，是否有会话信息，如果没有则调到登录页；</li>
+<li>一般采用Cache中间件实现，建议使用Redis，因此它有持久化功能，方便分布式Session宕机后，可以从持久化存储中加载会话信息；</li>
+<li>存入会话时，可以设置会话保持的时间，比如15分钟，超过后自动超时；<br>结合Cache中间件，实现的分布式Session，可以很好的模拟Session会话。</li>
+</ul>
+<ol start="3">
+<li>token验证<br>在项目某个模块进行登录，登录之后，按照jwt规则生成字符串，把登录之后用户包含到生成字符串里面，把字符串返回</li>
+</ol>
+<ul>
+<li>可以把宁符串通过cookie返回</li>
+<li>把字符串通过地址栏返回</li>
+</ul>
+<p>前端收到token之后将token存储在自己的请求头之中或者url后面，这样每次请求都可以带着token请求。</p>
+<p>再去访问项目其他模块，获取地址栏或者请求头里面的token，根据宇符串获职用户信息。</p>
+<p>同时为了设置失效时间，可以将token放在redis中，设置失效时间，判断过期。</p>
+<h2 id="防止localStorage和sessionStorage在开发工具中被篡改"><a href="#防止localStorage和sessionStorage在开发工具中被篡改" class="headerlink" title="防止localStorage和sessionStorage在开发工具中被篡改"></a>防止localStorage和sessionStorage在开发工具中被篡改</h2><ol>
+<li>让localStorage值无法修改，不推荐</li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'storage'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>key<span class="token punctuation">,</span> e<span class="token punctuation">.</span>oldValue<span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>localStorage里面被篡改的部分 和原来数据  会来回进行切换<br>2. localStorage值被修改的时候清除他并且跳转到登录页，只有localStorage发送变化，包括新增，都会清除，并跳转到登录，不推荐</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'storage'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    localStorage<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	window<span class="token punctuation">.</span>location<span class="token punctuation">.</span>href <span class="token operator">=</span> baseRout <span class="token operator">+</span> <span class="token string">'/login.html'</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="3">
+<li>对 localStorage进行加密和解密，推荐</li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//加密</span>
+localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">'user'</span><span class="token punctuation">,</span>window<span class="token punctuation">.</span><span class="token function">btoa</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span><span class="token function">encodeURIComponent</span><span class="token punctuation">(</span><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>、
+<span class="token comment">//解密，根据key获取值</span>
+<span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token function">decodeURIComponent</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span><span class="token function">atob</span><span class="token punctuation">(</span>localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'user'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>window.btoa(str)<br>用于编码形成 base-64 编码的字符串。</p>
+<p>window.atob(str)<br>用于解码使用 base-64 编码的字符串（base64图片下载时候通常需要先解码，然后将解码内容转化为二进制数据下载）。</p>
+<p>window.encodeURIComponent(str)<br>用于url的组成部分编码，不能用于整个url编码。把字符串作为 URI 组件进行编码。该方法不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII 标点符号进行编码： - _ . ! ~ * ‘ ( ) 。其他字符（比如 ：;&#x2F;?:@&amp;&#x3D;+$,# 这些用于分隔 URI 组件的标点符号），都是由一个或多个十六进制的转义序列替换的。假定任何保留字符都代表普通文本，所以必须编码它们。</p>
+<p>window.decodeURIComponent(str)<br>对 encodeURIComponent() 函数编码的 URI 进行解码。</p>
 
                 
             </div>
@@ -1237,12 +1389,12 @@ document<span class="token punctuation">.</span>body<span class="token punctuati
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Vue/">
-                        <span class="chip bg-color">Vue</span>
-                    </a>
-                    
                     <a href="/tags/JavaScript/">
                         <span class="chip bg-color">JavaScript</span>
+                    </a>
+                    
+                    <a href="/tags/Vue/">
+                        <span class="chip bg-color">Vue</span>
                     </a>
                     
                 </div>

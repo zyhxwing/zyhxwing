@@ -422,53 +422,57 @@
 <p>Symbol类型<br>Symbol 是一种在ES6 中新添加的数据类型，本质上是一种唯一标识符，可用作对象的唯一属性名，这样其他人就不会改写或覆盖你设置的属性值，同时具备隐藏性（for in不能访问）。</p>
 <h2 id="js常见函数"><a href="#js常见函数" class="headerlink" title="js常见函数"></a>js常见函数</h2><h3 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign"></a>Object.assign</h3><p>Object.assign(target, …sources)</p>
 <p><strong>Object.assign会将source里面的可枚举属性复制到target</strong>，如果和target的已有属性重名，则会覆盖。后续的source会覆盖前面的source的同名属性。Object.assign复制的是属性值，如果属性值是一个引用类型，那么复制的其实是引用地址，就会存在引用共享的问题。</p>
-<h3 id="Object-defineProperty"><a href="#Object-defineProperty" class="headerlink" title="Object.defineProperty"></a>Object.defineProperty</h3><p>var a&#x3D; {}<br>Object.defineProperty(a,”b”,{<br>  value:123<br>})<br>console.log(a.b);&#x2F;&#x2F;123<br>第一个参数：目标对象<br>第二个参数：需要定义的属性或方法的名字。<br>第三个参数：目标属性所拥有的特性。（descriptor）</p>
+<h3 id="Object-defineProperty"><a href="#Object-defineProperty" class="headerlink" title="Object.defineProperty"></a>Object.defineProperty</h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> a<span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span><span class="token string">"b"</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span>
+  value<span class="token operator">:</span><span class="token number">123</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//123</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>第一个参数：目标对象<br>第二个参数：需要定义的属性或方法的名字。<br>第三个参数：目标属性所拥有的特性。（descriptor）</p>
 <h3 id="可枚举属性"><a href="#可枚举属性" class="headerlink" title="可枚举属性"></a>可枚举属性</h3><p>可枚举可以理解为是否可以被遍历被列举出来，可枚举性决定了这个属性能否被<strong>for…in</strong>查找遍历到。<br>js中基本包装类型的原型属性是不可枚举的（不可被 for…in… 遍历），比如：Boolean,Number和String三个的原型属性，或是 Boolean,Number值，都是不可枚举的，即是基本类型。基本包装类型还可以像引用类型一样访问它自带的一些方法，但是不能像引用类型那样自定义方法。</p>
 <p>判断属性是否可枚举<br>1.<strong>for…in</strong><br>2.<strong>propertyIsEnumerable( )</strong> 方法返回一个布尔值，表示属性是否可以枚举</p>
 <p>每个对象都有一个propertyIsEnumerable方法。该方法可以确定对象中的指定属性是否可以通过for…in循环枚举，但通过原型链继承的属性除外。如果对象不具有指定的属性，则此方法返回false。</p>
 <h3 id="String-prototype"><a href="#String-prototype" class="headerlink" title="String.prototype"></a>String.prototype</h3><p>String.prototype用于为某字符串对象新增方法</p>
 <h3 id="forEach、filter、map、some、every、find、findIndex、reduce"><a href="#forEach、filter、map、some、every、find、findIndex、reduce" class="headerlink" title="forEach、filter、map、some、every、find、findIndex、reduce"></a>forEach、filter、map、some、every、find、findIndex、reduce</h3><p>这里有一堆土豆，如果换成代码，可以表示如下：</p>
-<pre class="line-numbers language-none"><code class="language-none">var potatos &#x3D; [&#123; id: &#39;1001&#39;, weight: 50 &#125;,
-&#123; id: &#39;1002&#39;, weight: 80 &#125;,
-&#123; id: &#39;1003&#39;, weight: 120 &#125;,
-&#123; id: &#39;1004&#39;, weight: 40 &#125;,
-&#123; id: &#39;1005&#39;, weight: 110 &#125;,
-&#123; id: &#39;1006&#39;, weight: 60 &#125;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> potatos <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">&#123;</span> <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token string">'1001'</span><span class="token punctuation">,</span> <span class="token literal-property property">weight</span><span class="token operator">:</span> <span class="token number">50</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#123;</span> <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token string">'1002'</span><span class="token punctuation">,</span> <span class="token literal-property property">weight</span><span class="token operator">:</span> <span class="token number">80</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#123;</span> <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token string">'1003'</span><span class="token punctuation">,</span> <span class="token literal-property property">weight</span><span class="token operator">:</span> <span class="token number">120</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#123;</span> <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token string">'1004'</span><span class="token punctuation">,</span> <span class="token literal-property property">weight</span><span class="token operator">:</span> <span class="token number">40</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#123;</span> <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token string">'1005'</span><span class="token punctuation">,</span> <span class="token literal-property property">weight</span><span class="token operator">:</span> <span class="token number">110</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#123;</span> <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token string">'1006'</span><span class="token punctuation">,</span> <span class="token literal-property property">weight</span><span class="token operator">:</span> <span class="token number">60</span> <span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>同时把上面的重量（g）记录成一个数组</p>
-<pre class="line-numbers language-none"><code class="language-none">var w &#x3D; [50, 80, 120, 40, 110, 60]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> w <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">,</span> <span class="token number">120</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">,</span> <span class="token number">110</span><span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h4 id="批量操作-foreach"><a href="#批量操作-foreach" class="headerlink" title="批量操作 foreach"></a>批量操作 foreach</h4><p>数组里所有元素的weight增加，修改原数组，无返回值<br>map可实现，但不修改原数组，返回新数组</p>
 <pre class="line-numbers language-none"><code class="language-none">potatos.forEach(potato &#x3D;&gt; potato.weight +&#x3D; 20 )<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h4 id="生成原始数据的特征信息map"><a href="#生成原始数据的特征信息map" class="headerlink" title="生成原始数据的特征信息map"></a>生成原始数据的特征信息map</h4><p>map最适合做的事是映射，生成原始数据的特征信息的map</p>
-<pre class="line-numbers language-none"><code class="language-none">w &#x3D; potatos.map(potato &#x3D;&gt; &#123; return potato.weight +&#x3D; 20 &#125;)
-&#x2F;&#x2F;[ 70, 100, 140, 60, 130, 80 ]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">w <span class="token operator">=</span> potatos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">potato</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> potato<span class="token punctuation">.</span>weight <span class="token operator">+=</span> <span class="token number">20</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token comment">//[ 70, 100, 140, 60, 130, 80 ]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="筛选过滤filter"><a href="#筛选过滤filter" class="headerlink" title="筛选过滤filter"></a>筛选过滤filter</h4><p>filter是滤波的意思 从名字上看，就知道筛选过滤这样的活是filter<br>返回一个新的对象数组，并不会改变原数组</p>
-<pre class="line-numbers language-none"><code class="language-none">var bigOnes &#x3D; potatos.filter(potato &#x3D;&gt; &#123; return potato.weight &gt; 100 &#125;)
-
-&#x2F;&#x2F;[ &#123; id: &#39;1003&#39;, weight: 120 &#125;, &#123; id: &#39;1005&#39;, weight: 110 &#125; ]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> bigOnes <span class="token operator">=</span> potatos<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token parameter">potato</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> potato<span class="token punctuation">.</span>weight <span class="token operator">></span> <span class="token number">100</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token comment">//[ &#123; id: '1003', weight: 120 &#125;, &#123; id: '1005', weight: 110 &#125; ]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="判断数组中有没有符合条件的时候some"><a href="#判断数组中有没有符合条件的时候some" class="headerlink" title="判断数组中有没有符合条件的时候some"></a>判断数组中有没有符合条件的时候some</h4><p>当只需要判断数组中有没有符合条件的时候（一个就行） 就需要我们的some方法登场了</p>
-<pre class="line-numbers language-none"><code class="language-none">var hasbig &#x3D; potatos.some(potato &#x3D;&gt; &#123; return potato.weight &gt; 100 &#125;)
-&#x2F;&#x2F;true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> hasbig <span class="token operator">=</span> potatos<span class="token punctuation">.</span><span class="token function">some</span><span class="token punctuation">(</span><span class="token parameter">potato</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> potato<span class="token punctuation">.</span>weight <span class="token operator">></span> <span class="token number">100</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>我们的some小伙计，去土豆存放的仓库进行寻找，只要找到一个符合条件的，就回来报告true 所以并不会全部遍历，不做多余的活（性能优良）</p>
 <h4 id="判断数组元素是否全符合every"><a href="#判断数组元素是否全符合every" class="headerlink" title="判断数组元素是否全符合every"></a>判断数组元素是否全符合every</h4><p>every对每一个元素执行一个callback，直到它找到一个使 callback 返回 false的元素（没那么大的土豆），就返回false，直到遍历完成也没有返回false的话，就返回true</p>
-<pre class="line-numbers language-none"><code class="language-none">var allbig &#x3D; potatos.every(potato &#x3D;&gt; &#123; return potato.weight &gt; 100 &#125;)
-&#x2F;&#x2F;false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> allbig <span class="token operator">=</span> potatos<span class="token punctuation">.</span><span class="token function">every</span><span class="token punctuation">(</span><span class="token parameter">potato</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> potato<span class="token punctuation">.</span>weight <span class="token operator">></span> <span class="token number">100</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token comment">//false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="寻找数组元素中一个符合的find"><a href="#寻找数组元素中一个符合的find" class="headerlink" title="寻找数组元素中一个符合的find"></a>寻找数组元素中一个符合的find</h4><p>来了一个顾客，想要一个大土豆 find自告奋勇，我去找给他</p>
-<pre class="line-numbers language-none"><code class="language-none">var big &#x3D; potatos.find(potato &#x3D;&gt; &#123; return potato.weight &gt; 100 &#125;)
-&#x2F;&#x2F;&#123; id: &#39;1003&#39;, weight: 120 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> big <span class="token operator">=</span> potatos<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token parameter">potato</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> potato<span class="token punctuation">.</span>weight <span class="token operator">></span> <span class="token number">100</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token comment">//&#123; id: '1003', weight: 120 &#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>find和some很类似，都是寻找符合条件的，有一个就可以 不过some进去搜罗了一圈回来报了个“有”（true），而find则把那个土豆抱了出来（返回第一个符合条件的对象）</p>
-<h4 id="当需要知道所需元素的索引findIndex"><a href="#当需要知道所需元素的索引findIndex" class="headerlink" title="当需要知道所需元素的索引findIndex"></a>当需要知道所需元素的索引findIndex</h4><pre class="line-numbers language-none"><code class="language-none">var i &#x3D; potatos.findIndex(potato&#x3D;&gt;&#123; return potato.weight &gt; 100 &#125;)
-&#x2F;&#x2F;2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4 id="当需要知道所需元素的索引findIndex"><a href="#当需要知道所需元素的索引findIndex" class="headerlink" title="当需要知道所需元素的索引findIndex"></a>当需要知道所需元素的索引findIndex</h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> i <span class="token operator">=</span> potatos<span class="token punctuation">.</span><span class="token function">findIndex</span><span class="token punctuation">(</span><span class="token parameter">potato</span><span class="token operator">=></span><span class="token punctuation">&#123;</span> <span class="token keyword">return</span> potato<span class="token punctuation">.</span>weight <span class="token operator">></span> <span class="token number">100</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token comment">//2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>当需要知道所需元素的索引，就可以用findIndex，findIndex返回第一个符合条件的索引号</p>
-<h4 id="递归累加reduce"><a href="#递归累加reduce" class="headerlink" title="递归累加reduce"></a>递归累加reduce</h4><pre class="line-numbers language-none"><code class="language-none">var sum &#x3D; weight.reduce((sum, w) &#x3D;&gt; &#123; return w + sum &#125;,0)
-&#x2F;&#x2F;460
-&#x2F;&#x2F;并不会改变原表格<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="递归累加reduce"><a href="#递归累加reduce" class="headerlink" title="递归累加reduce"></a>递归累加reduce</h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> sum <span class="token operator">=</span> weight<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">sum<span class="token punctuation">,</span> w</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> w <span class="token operator">+</span> sum <span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token comment">//460</span>
+<span class="token comment">//并不会改变原表格</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>reduce()方法接收一个回调函数作为第一个参数，回调函数又接受四个参数，分别是；<br>1、previousValue &#x3D;&gt;初始值或上一次回调函数叠加的值；<br>2、currentValue &#x3D;&gt; 本次回调（循环）将要执行的值；<br>3、index&#x3D;&gt;“currentValue”的索引值；<br>4、arr &#x3D;&gt; 数组本身；<br>reduce()方法返回的是最后一次调用回调函数的返回值；能够实现递归累加</p>
 <h3 id="常见数据类型检测的方式"><a href="#常见数据类型检测的方式" class="headerlink" title="常见数据类型检测的方式"></a>常见数据类型检测的方式</h3><h4 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h4><p>其中数组、对象、null都会被判断为Object，其他判断都正确</p>
@@ -477,54 +481,78 @@
 <h4 id="Object-prototype-toString-call"><a href="#Object-prototype-toString-call" class="headerlink" title="Object.prototype.toString.call()"></a>Object.prototype.toString.call()</h4><p>无论是Array,还是Date，所有数据类型。都是从对象衍生而来的。本质上，Array和Date还有Function啥的他们就是对象。虽然他们都被称为对象，对象也是有很多类型的。比如Date,他就是时间对象‘ [object Date] ’, Array,他就是数组对象‘[object Array]’等等。简而言之，js中所有的数据类型，都只是对象的一种类型。所以，js中有一句话叫，万物皆对象。而<strong>Object.prototype.toString() 这个函数作用就是，返回当前调用者的对象类型。</strong></p>
 <p>因为Object.prototype.toString()返回的是调用者的类型。不论你toString()本身的入参写的是什么，在Object.prototype.toString()中，他的调用者永远都是Object.prototype；所以，在不加call()情况下，我们的出来的结果永远都是 ‘[object Object]’</p>
 <h4 id="isNaN-检测数据是否是数字"><a href="#isNaN-检测数据是否是数字" class="headerlink" title="isNaN 检测数据是否是数字"></a>isNaN 检测数据是否是数字</h4><h4 id="Array-isArray-检测数据是否是数组"><a href="#Array-isArray-检测数据是否是数组" class="headerlink" title="Array.isArray()检测数据是否是数组"></a>Array.isArray()检测数据是否是数组</h4><h3 id="slice、splice、split"><a href="#slice、splice、split" class="headerlink" title="slice、splice、split"></a>slice、splice、split</h3><h4 id="slice-start-end"><a href="#slice-start-end" class="headerlink" title="slice(start,[end])"></a>slice(start,[end])</h4><p>slice(start,[end])方法：该方法是对数组进行部分截取，该方法返回一个新数组<br>参数start是截取的开始数组索引，end参数等于你要取的最后一个字符的位置值加上1（可选）。<br>包含了源函数从start到 end 所指定的元素，但是不包括end元素，比如a.slice(0,3)；<br>如果出现负数就把负数与长度相加后再划分。<br>slice中的负数的绝对值若大于数组长度就会显示所有数组<br>若参数只有一个，并且参数大于length，则为空。<br> 如果结束位置小于起始位置，则返回空数组<br> 返回的个数是end-start的个数<br>不会改变原数组</p>
-<p>var arr &#x3D; [1,2,3,4,5,6]<br>&#x2F;<em>console.log(arr.slice(3))&#x2F;&#x2F;[4,5,6] 从下标为0的到3，截取3之后的数<br>console.log(arr.slice(0,3))&#x2F;&#x2F;[1,2,3] 从下标为0的地方截取到下标为3之前的数<br>console.log(arr.slice(0,-2))&#x2F;&#x2F;[1,2,3,4]<br>console.log(arr.slice(-4,4))&#x2F;&#x2F;[3,4]<br>console.log(arr.slice(-7))&#x2F;&#x2F;[1,2,3,4,5,6]<br>console.log(arr.slice(-3,-3))&#x2F;&#x2F; []<br>console.log(arr.slice(8))&#x2F;&#x2F;[]</em>&#x2F;<br>&#x2F;&#x2F; 个人总结：slice的参数如果是正数就从左往右数，如果是负数的话就从右往左边数，<br>&#x2F;&#x2F; 截取的数组与数的方向一致，如果是2个参数则截取的是数的交集，没有交集则返回空数组<br>&#x2F;&#x2F; ps：slice也可以切割字符串，用法和数组一样，但要注意空格也算字符</p>
-<h4 id="splice-start-deletecount-item"><a href="#splice-start-deletecount-item" class="headerlink" title="splice(start,deletecount,item)"></a>splice(start,deletecount,item)</h4><p> start：起始位置<br> deletecount：删除位数<br>item：替换的item<br> 返回值为被删除的字符串<br>如果有额外的参数，那么item会插入到被移除元素的位置上。<br> splice:移除，splice方法从array中移除一个或多个数组，并用新的item替换它们。<br>举一个简单的例子<br>var a&#x3D;[‘a’,’b’,’c’];<br>var b&#x3D;a.splice(1,1,’e’,’f’);<br>console.log(a) &#x2F;&#x2F;[‘a’, ‘e’, ‘f’, ‘c’]<br>console.log(b) &#x2F;&#x2F;[‘b’]</p>
-<p>var a &#x3D; [1, 2, 3, 4, 5, 6];<br>&#x2F;&#x2F;console.log(“被删除的为：”,a.splice(1, 1, 8, 9)); &#x2F;&#x2F;被删除的为：2<br>&#x2F;&#x2F; console.log(“a数组元素：”,a); &#x2F;&#x2F;1,8,9,3,4,5,6</p>
-<p>&#x2F;&#x2F; console.log(“被删除的为：”, a.splice(0, 2)); &#x2F;&#x2F;被删除的为：1,2<br>&#x2F;&#x2F; console.log(“a数组元素：”, a) &#x2F;&#x2F;3,4,5,6<br>console.log(“被删除的为：”, a.splice(1, 0, 2, 2)) &#x2F;&#x2F;插入 第二个数为0，表示删除0个  <br>console.log(“a数组元素：”, a) &#x2F;&#x2F;1,2,2,2,3,4,5,6</p>
-<h4 id="split-字符串"><a href="#split-字符串" class="headerlink" title="split(字符串)"></a>split(字符串)</h4><p>&#x2F;&#x2F; string.split(separator,limit)：split方法把这个string分割成片段来创建一个字符串数组。<br>&#x2F;&#x2F; 可选参数limit可以限制被分割的片段数量。<br>&#x2F;&#x2F; separator参数可以是一个字符串或一个正则表达式。<br>&#x2F;&#x2F; 如果separator是一个空字符，会返回一个单字符的数组，不会改变原数组。<br>var a&#x3D;”0123456”;  <br>var b&#x3D;a.split(“”,3);  <br>console.log(b);&#x2F;&#x2F;b&#x3D;[“0”,”1”,”2”]<br>&#x2F;&#x2F; 注意：String.split() 执行的操作与 Array.join 执行的操作是相反的。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">]</span>
+<span class="token comment">/*console.log(arr.slice(3))//[4,5,6] 从下标为0的到3，截取3之后的数
+console.log(arr.slice(0,3))//[1,2,3] 从下标为0的地方截取到下标为3之前的数
+console.log(arr.slice(0,-2))//[1,2,3,4]
+console.log(arr.slice(-4,4))//[3,4]
+console.log(arr.slice(-7))//[1,2,3,4,5,6]
+console.log(arr.slice(-3,-3))// []
+console.log(arr.slice(8))//[]*/</span>
+<span class="token comment">// 个人总结：slice的参数如果是正数就从左往右数，如果是负数的话就从右往左边数，</span>
+<span class="token comment">// 截取的数组与数的方向一致，如果是2个参数则截取的是数的交集，没有交集则返回空数组</span>
+<span class="token comment">// ps：slice也可以切割字符串，用法和数组一样，但要注意空格也算字符</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="splice-start-deletecount-item"><a href="#splice-start-deletecount-item" class="headerlink" title="splice(start,deletecount,item)"></a>splice(start,deletecount,item)</h4><p> start：起始位置<br> deletecount：删除位数<br>item：替换的item<br> 返回值为被删除的字符串<br>如果有额外的参数，那么item会插入到被移除元素的位置上。<br> splice:移除，splice方法从array中移除一个或多个数组，并用新的item替换它们。<br>举一个简单的例子</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> a<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> b<span class="token operator">=</span>a<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">'e'</span><span class="token punctuation">,</span><span class="token string">'f'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token comment">//['a', 'e', 'f', 'c']</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token comment">//['b']</span>
+
+
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">//console.log("被删除的为：",a.splice(1, 1, 8, 9)); //被删除的为：2</span>
+<span class="token comment">// console.log("a数组元素：",a); //1,8,9,3,4,5,6</span>
+
+<span class="token comment">// console.log("被删除的为：", a.splice(0, 2)); //被删除的为：1,2</span>
+<span class="token comment">// console.log("a数组元素：", a) //3,4,5,6</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"被删除的为："</span><span class="token punctuation">,</span> a<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">//插入 第二个数为0，表示删除0个  </span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"a数组元素："</span><span class="token punctuation">,</span> a<span class="token punctuation">)</span> <span class="token comment">//1,2,2,2,3,4,5,6</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="split-字符串"><a href="#split-字符串" class="headerlink" title="split(字符串)"></a>split(字符串)</h4><p>string.split(separator,limit)：split方法把这个string分割成片段来创建一个字符串数组。<br>可选参数limit可以限制被分割的片段数量。<br>separator参数可以是一个字符串或一个正则表达式。<br>如果separator是一个空字符，会返回一个单字符的数组，不会改变原数组。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> a<span class="token operator">=</span><span class="token string">"0123456"</span><span class="token punctuation">;</span>  
+<span class="token keyword">var</span> b<span class="token operator">=</span>a<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//b=["0","1","2"]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>注意：String.split() 执行的操作与 Array.join 执行的操作是相反的。</p>
 <h3 id="for-in、Object-keys和for-of"><a href="#for-in、Object-keys和for-of" class="headerlink" title="for in、Object.keys和for-of"></a>for in、Object.keys和for-of</h3><p><strong>for-in</strong><br>for … in是为遍历对象属性而构建的，<br>主要用于遍历对象的<strong>可枚举属性</strong>，包括自有属性、继承自原型的属性</p>
 <p><strong>for-of</strong><br>es6 中添加的循环遍历语法；<br>支持遍历数组，类数组对象（DOM NodeList），字符串，Map 对象，Set 对象；<br>不支持遍历对象； 遍历后输出的结果为数组元素的值</p>
 <p><strong>Object.keys()</strong> <br>对数组的遍历顺序和 for in 一致<br>此方法返回一个数组，元素均为对象自有可枚举的属性<br>Object.keys主要用于遍历对象自有的可枚举属性，不包括继承自原型的属性和不可枚举的属性</p>
 <p><strong>Object.getOwnProperty</strong><br>此方法用于返回对象的自有属性，包括可枚举和不可枚举的属性</p>
-<h2 id="var、function变量、函数提升"><a href="#var、function变量、函数提升" class="headerlink" title="var、function变量、函数提升"></a>var、function变量、函数提升</h2><pre class="line-numbers language-none"><code class="language-none">var scope &#x3D; &#39;global&#39;;
-function f()&#123;
-    console.log(scope);
-    var scope &#x3D; &#39;local&#39;;
-    console.log(scope);
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="var、function变量、函数提升"><a href="#var、function变量、函数提升" class="headerlink" title="var、function变量、函数提升"></a>var、function变量、函数提升</h2><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> scope <span class="token operator">=</span> <span class="token string">'global'</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>scope<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> scope <span class="token operator">=</span> <span class="token string">'local'</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>scope<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>由于函数内声明提升，所以上面的代码实际上是这样的</p>
-<pre class="line-numbers language-none"><code class="language-none">var scope &#x3D; &#39;global&#39;;
-function f()&#123;
-    var scope;    &#x2F;&#x2F;变量声明提升到函数顶部
-    console.log(scope);
-    scope &#x3D; &#39;local&#39;;    &#x2F;&#x2F;变量初始化依然保留在原来的位置
-    console.log(scope);
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> scope <span class="token operator">=</span> <span class="token string">'global'</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">var</span> scope<span class="token punctuation">;</span>    <span class="token comment">//变量声明提升到函数顶部</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>scope<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    scope <span class="token operator">=</span> <span class="token string">'local'</span><span class="token punctuation">;</span>    <span class="token comment">//变量初始化依然保留在原来的位置</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>scope<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>经过这样变形之后，答案就就非常明显了。由于scope在第一个console.log(scope)语句之前就已经定义了，但是并没有赋值，因此此时scope的指是undefined.第二个console.log(scope)语句之前，scope已经完成赋值为’local’，所以输出的结果是local。</p>
-<hr>
-<pre class="line-numbers language-none"><code class="language-none">var getName &#x3D; function()&#123;
-    console.log(2);
-&#125;
-&#x2F;&#x2F;函数表达式为变量声明，变量声明提升优先级较低
-function getName ()&#123;
-    console.log(1);
-&#125;
-&#x2F;&#x2F;函数声明，函数声明提升优先级更高
-getName();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> <span class="token function-variable function">getName</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">//函数表达式为变量声明，变量声明提升优先级较低</span>
+<span class="token keyword">function</span> <span class="token function">getName</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">//函数声明，函数声明提升优先级更高</span>
+<span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>让我们来分析一下，这个例子涉及到了变量声明提升和函数声明提升。正如前面说到的函数声明提升，函数声明function getName(){}的声明会被提前到顶部。而函数表达式var getName &#x3D; function(){}则表现出变量声明提升。因此在这种情况下，getName也是一个变量，因此这个变量的声明也将提升到底部，而变量的赋值依然保留在原来的位置。<strong>需要注意的是，函数优先，虽然函数声明和变量声明都会被提升，但是函数会首先被提升，然后才是变量</strong>。因此上面的函数可以转换成下面的样子:</p>
-<pre class="line-numbers language-none"><code class="language-none">function getName()&#123;    &#x2F;&#x2F;函数声明提升到顶部
-    console.log(1);
-&#125;
-var getName;    &#x2F;&#x2F;变量声明提升
-getName &#x3D; function()&#123;    &#x2F;&#x2F;变量赋值依然保留在原来的位置
-    console.log(2);
-&#125;
-getName();    &#x2F;&#x2F; 最终输出：2
-
-所以最终的输出结果是：2。在原来的例子中，函数声明虽然是在函数表达式后面，但由于函数声明提升到顶部，因此后面getName又被函数表达式的赋值操作给覆盖了，所以输出2。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>    <span class="token comment">//函数声明提升到顶部</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">var</span> getName<span class="token punctuation">;</span>    <span class="token comment">//变量声明提升</span>
+<span class="token function-variable function">getName</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>    <span class="token comment">//变量赋值依然保留在原来的位置</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 最终输出：2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>所以最终的输出结果是：2。在原来的例子中，函数声明虽然是在函数表达式后面，但由于函数声明提升到顶部，因此后面getName又被函数表达式的赋值操作给覆盖了，所以输出2。</p>
 <h2 id="对象的属性"><a href="#对象的属性" class="headerlink" title="对象的属性"></a>对象的属性</h2><p>对象里的属性分为两种：数据属性 和 访问器属性。首先我们看看数据属性。</p>
 <p><strong>数据属性</strong></p>
 <ol>
@@ -545,13 +573,13 @@ getName();    &#x2F;&#x2F; 最终输出：2
 <p>从外向内找监听函数，叫做事件捕捉<br>从内向外找监听函数，叫做事件冒泡</p>
 <p><strong>取消冒泡 e.stopPropagation()</strong><br>捕获是不可取消的，但是冒泡可以取消。所有冒泡皆可取消，默认动作有的可以取消有的不能取消。e.stopPropagation() 可以中断冒泡，浏览器不再向上走了。</p>
 <p>事件委托<br>由于事件会在冒泡阶段向上传播到父节点，因此可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件。这种方法叫做事件的代理（delegation）。</p>
-<pre class="line-numbers language-none"><code class="language-none">var ul &#x3D; document.querySelector(&#39;ul&#39;);
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> ul <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'ul'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-ul.addEventListener(&#39;click&#39;, function (event) &#123;
-  if (event.target.tagName.toLowerCase() &#x3D;&#x3D;&#x3D; &#39;li&#39;) &#123;
-    &#x2F;&#x2F; some code
-  &#125;
-&#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ul<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>tagName<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">'li'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// some code</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>上面代码中，click事件的监听函数定义在节点，但是实际上，它处理的是子节点的click事件。这样做的好处是，只要定义一个监听函数，就能处理多个子节点的事件，而不用在每个节点上定义监听函数。而且以后再添加子节点，监听函数依然有效。</p>
 <p><strong>优点</strong><br>省监听数（内存）<br>可以监听动态元素</p>
 <h2 id="js的事件循环"><a href="#js的事件循环" class="headerlink" title="js的事件循环"></a>js的事件循环</h2><p><img src="/../images/JavaScript/1363_1.png" alt="js事件循环"></p>
@@ -559,15 +587,15 @@ ul.addEventListener(&#39;click&#39;, function (event) &#123;
 <h3 id="宏任务MacroTask"><a href="#宏任务MacroTask" class="headerlink" title="宏任务MacroTask"></a>宏任务MacroTask</h3><p>script代码、settimeout、setInterval、ajax、dom监听、UI Rendering</p>
 <h3 id="微任务MicroTask"><a href="#微任务MicroTask" class="headerlink" title="微任务MicroTask"></a>微任务MicroTask</h3><p>promise.then、await、queueMicrotask、MutationObserver的Api</p>
 <h3 id="Vue-nextTick"><a href="#Vue-nextTick" class="headerlink" title="Vue.nextTick"></a>Vue.nextTick</h3><p>与此同时，针对于vue的mvvn框架，在修改数据之后，视图并不会立刻更新，而是等同一事件循环中的所有数据变化完成之后，再统一进行视图更新。<br>Vue.nextTick将回调函数放到微任务或者宏任务当中以延迟它地执行顺序</p>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;改变数据
-vm.message &#x3D; &#39;changed&#39;
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//改变数据</span>
+vm<span class="token punctuation">.</span>message <span class="token operator">=</span> <span class="token string">'changed'</span>
 
-&#x2F;&#x2F;想要立即使用更新后的DOM。这样不行，因为设置message后DOM还没有更新
-console.log(vm.$el.textContent) &#x2F;&#x2F; 并不会得到&#39;changed&#39;
+<span class="token comment">//想要立即使用更新后的DOM。这样不行，因为设置message后DOM还没有更新</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>vm<span class="token punctuation">.</span>$el<span class="token punctuation">.</span>textContent<span class="token punctuation">)</span> <span class="token comment">// 并不会得到'changed'</span>
 
-&#x2F;&#x2F;这样可以，nextTick里面的代码会在DOM更新后执行Vue.nextTick(function()&#123;
-    console.log(vm.$el.textContent) &#x2F;&#x2F;可以得到&#39;changed&#39;
-&#125;)
+<span class="token comment">//这样可以，nextTick里面的代码会在DOM更新后执行Vue.nextTick(function()&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>vm<span class="token punctuation">.</span>$el<span class="token punctuation">.</span>textContent<span class="token punctuation">)</span> <span class="token comment">//可以得到'changed'</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="settimeout倒计时为什么会出现误差"><a href="#settimeout倒计时为什么会出现误差" class="headerlink" title="settimeout倒计时为什么会出现误差"></a>settimeout倒计时为什么会出现误差</h3><p>setTimeout作为异步任务，在实现倒计时功能的时候，除了执行我们功能的实现代码，还会有主线程对任务队列的读取及执行等过程，这些过程也需要耗费一些时间，所以会因为event loop的机制出现些许误差。</p>
@@ -609,7 +637,19 @@ console.log(vm.$el.textContent) &#x2F;&#x2F; 并不会得到&#39;changed&#39;
 <span class="token comment">//浏览器会非常规律的把这 10 组也就是 20 次颜色变化绘制出来，</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="js异步方法"><a href="#js异步方法" class="headerlink" title="js异步方法"></a>js异步方法</h2><h3 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h3><p>是异步操作最基本的方法，比如AJAX回调，回调函数的优点是简单、容易理解和实现，缺点是不利于代码的阅读和维护，各个部分之间高度耦合，使得程序结构混乱、流程难以追踪（尤其是多个回调函数嵌套的情况），而且每个任务只能指定一个回调函数。此外它不能使用try catch捕获错误，不能之间return。</p>
 <h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><p>包装了一个异步调用并生成一个Promise实例，当异步调用返回的时候根据调用的结果分别调用实例化时传入的resolve和reject方法，then接收到对应的数据，做出相应的处理。Promise不仅能够捕获错误，而且也能很好地解决了回调地狱的问题，缺点是无法取消Promise，错误需要通过回调函数捕获。</p>
-<h3 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h3><p>函数是ES6提供的一种异步编程解决方案，Generator函数是一个状态机，封装了多个内部状态，可暂停函数，yield可暂停，next方法可启动，每次返回的是yield后的表达式结果。优点是异步语义清晰，缺点是手动迭代Generator函数很麻烦，实现逻辑优点绕。<br>function* gen(x){<br>    const y &#x3D; yield x + 6;<br>    return y;<br>}<br>const g &#x3D; gen(1);<br>&#x2F;&#x2F;执行 Generator 会返回一个Object,而不是像普通函数返回return 后面的值<br>g.next() &#x2F;&#x2F; { value: 7, done: false }<br>&#x2F;&#x2F;调用指针的 next 方法,会从函数的头部或上一次停下来的地方开始执行，直到遇到下一个 yield 表达式或return语句暂停,也就是执行yield 这一行<br>&#x2F;&#x2F; 执行完成会返回一个 Object,<br>&#x2F;&#x2F; value 就是执行 yield 后面的值,done 表示函数是否执行完毕<br>g.next() &#x2F;&#x2F; { value: undefined, done: true }<br>&#x2F;&#x2F; 因为最后一行 return y 被执行完成,所以done 为 true</p>
+<h3 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h3><p>函数是ES6提供的一种异步编程解决方案，Generator函数是一个状态机，封装了多个内部状态，可暂停函数，yield可暂停，next方法可启动，每次返回的是yield后的表达式结果。优点是异步语义清晰，缺点是手动迭代Generator函数很麻烦，实现逻辑优点。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span><span class="token operator">*</span> <span class="token function">gen</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">const</span> y <span class="token operator">=</span> <span class="token keyword">yield</span> x <span class="token operator">+</span> <span class="token number">6</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">const</span> g <span class="token operator">=</span> <span class="token function">gen</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//执行 Generator 会返回一个Object,而不是像普通函数返回return 后面的值</span>
+g<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// &#123; value: 7, done: false &#125;</span>
+<span class="token comment">//调用指针的 next 方法,会从函数的头部或上一次停下来的地方开始执行，直到遇到下一个 yield 表达式或return语句暂停,也就是执行yield 这一行</span>
+<span class="token comment">// 执行完成会返回一个 Object,</span>
+<span class="token comment">// value 就是执行 yield 后面的值,done 表示函数是否执行完毕</span>
+g<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// &#123; value: undefined, done: true &#125;</span>
+<span class="token comment">// 因为最后一行 return y 被执行完成,所以done 为 true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="async-x2F-await"><a href="#async-x2F-await" class="headerlink" title="async&#x2F;await"></a>async&#x2F;await</h3><p>是于Promise实现的，async&#x2F;awt使得异步代码看起来像同步代码，所以优点是使用方法清晰明了，缺点是await将异步代码改造成了同步代码，如果多个异步代码没有依赖性却使用了await会导致性能上的降低，代码没有依赖性的话，完全可以使用Promise.all的方式。</p>
 <h2 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h2><p>javascript和typescript的区别是什么</p>
 <p>区别：<br>1、TypeScript中的数据要求带有明确的类型，JavaScript不要求。<br>2、TypeScript引入了JavaScript中没有的“类”概念。<br>3、TypeScript通过类型注解提供编译时的静态类型检查（ 虽然JavaScript是弱类型语言，但是在将其升级改造引入”类型注解”这一概念后的TypeScript中，类型注解相当于强类型语言中声明了某个变量的类型，以后该变量就必须为此类型，否则ts编译器将报错，并不能正确地编译成js文件。）。</p>
@@ -648,35 +688,35 @@ console.log(vm.$el.textContent) &#x2F;&#x2F; 并不会得到&#39;changed&#39;
 </ol>
 <h4 id="暂时性死区"><a href="#暂时性死区" class="headerlink" title="暂时性死区"></a>暂时性死区</h4><p>暂时性死区：只要一进入当前作用域，所要使用的变量就已经存在了，但是不可获取，只有等到声明变量的那一行代码出现，才可以获取和使用该变量</p>
 <p>暂时性死区和不能变量提升的意义在于: 为了减少运行时错误，防止在变量声明前就使用这个变量，从而导致意料之外的行为。</p>
-<pre class="line-numbers language-none"><code class="language-none">var tmp &#x3D; 123; &#x2F;&#x2F; 声明
-if (true) &#123;
-  tmp &#x3D; &#39;abc&#39;; &#x2F;&#x2F; 报错 因为本区域有tmp声明变量
-  let tmp; &#x2F;&#x2F; 绑定if这个块级的作用域 不能出现tmp变量
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> tmp <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span> <span class="token comment">// 声明</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  tmp <span class="token operator">=</span> <span class="token string">'abc'</span><span class="token punctuation">;</span> <span class="token comment">// 报错 因为本区域有tmp声明变量</span>
+  <span class="token keyword">let</span> tmp<span class="token punctuation">;</span> <span class="token comment">// 绑定if这个块级的作用域 不能出现tmp变量</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h4><p><strong>概念</strong>：多个作用域对象连续引用形成的链式结构。</p>
 <p><strong>使用方面解释</strong>：当在Javascript中使用一个变量的时候，首先Javascript引擎会尝试在当前作用域下去寻找该变量，如果没找到，再到它的上层作用域寻找，以此类推直到找到该变量或是已经到了全局作用域，如果在全局作用域里仍然找不到该变量，它就会直接报错。</p>
 <p><strong>存储方面解释</strong>：作用域链在JS内部中是以数组的形式存储的，数组的第一个索引对应的是函数本身的执行期上下文，也就是当前执行的代码所在环境的变量对象，下一个索引对应的空间存储的是该对象的外部执行环境，依次类推，一直到全局执行环境</p>
-<pre class="line-numbers language-none"><code class="language-none">var a &#x3D; 100
-function fun() &#123;
-    var b &#x3D; 200
-    console.log(a) &#x2F;&#x2F;100
-&#x2F;&#x2F; fun函数局部作用域中没有变量a，于是从它的上一级，也就是全局作用域中找，
-&#x2F;&#x2F;在全局中a被赋值为100，于是输出100
-    console.log(b)&#x2F;&#x2F;200 fun函数局部作用域中有变量b，并且它被赋值为了200，输出200
-&#125;
-fun()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">100</span>
+<span class="token keyword">function</span> <span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token number">200</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token comment">//100</span>
+<span class="token comment">// fun函数局部作用域中没有变量a，于是从它的上一级，也就是全局作用域中找，</span>
+<span class="token comment">//在全局中a被赋值为100，于是输出100</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token comment">//200 fun函数局部作用域中有变量b，并且它被赋值为了200，输出200</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">var a &#x3D; 10
-function fun() &#123;
-   console.log(a)
-&#125;
-function show(f) &#123;
-   var a &#x3D; 20
-   (function() &#123;
-      f()   &#x2F;&#x2F;10，而不是20; 函数的作用域是在函数定义的时候就被决定了，与函数在哪里被调用无关
-   &#125;)()
-&#125;
-show(fun)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">10</span>
+<span class="token keyword">function</span> <span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">function</span> <span class="token function">show</span><span class="token punctuation">(</span><span class="token parameter">f</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">20</span>
+   <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token comment">//10，而不是20; 函数的作用域是在函数定义的时候就被决定了，与函数在哪里被调用无关</span>
+   <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">show</span><span class="token punctuation">(</span>fun<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>由于变量的查找是沿着作用域链来实现的，所以也称作用域链为变量查找的机制。是不是很好理解，这里再来补充一点作用域的作用</p>
 <ul>
