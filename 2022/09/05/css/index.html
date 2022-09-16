@@ -1063,6 +1063,29 @@ overflow：hidden;<span aria-hidden="true" class="line-numbers-rows"><span></spa
 <li><p>对js的支持不同<br>link支持js控制dom去改变样式，@import则不能支持</p>
 </li>
 </ol>
+<h2 id="css-z-index优先级"><a href="#css-z-index优先级" class="headerlink" title="css z-index优先级"></a>css z-index优先级</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42878211/article/details/114934078">z-index优先级</a></p>
+<p>z-index的基础概念<br>x 轴代表水平方向，y 轴代表垂直方向，z 轴则代表我们的目光向页面（屏幕）看进去的时候，各元素的布局情况。</p>
+<p>屏幕是一个二维平面，所以完美实际上是看不到z轴的，z轴实际上是通过透视的形式展示的。也就是说，多个元素共享同一块二维平民啊时，友得元素在顶部，有的元素在底部，因此而感受到z轴的存在。</p>
+<p>css允许我们给z-index设置三种值来决定某个元素在z轴方向上的位置。</p>
+<p>auto（默认值） 堆叠顺序与父元素相等<br>number 元素的堆叠顺序<br>inherit 规定应该从父元素继承z-index属性的值<br>主要来看一下它的number值，number可以为正整数，负整数或者0，值越大的话，元素就会距离我们的眼睛越近，值越小就会距离我们的眼睛越远。</p>
+<p>如果两个元素在定位之后共享同一块二维空间，那么在这块空间中，z-index越大的元素将会覆盖z-index较小的元素。</p>
+<p>层叠顺序<br>我们可以通过一个非常简单的例子来理解层叠顺序，这个例子甚至还不需要涉及到 定位元素 。</p>
+<p>想象一下，现在有一个非常简单的网页，不考虑默认等元素，就只需要考虑每个网页至少都会有的一个 div。在 CSS 文件中设置 html 的背景颜色为蓝色，设置 div 的背景颜色为红色，并设置宽高。</p>
+<p>当加载页面的时候，你觉得会看到什么？</p>
+<p>这个自然不用多想，引入眼帘的肯定是一大片的蓝色，同时还有一个此前设置好尺寸的红色块级元素。除非你做了额外的设置，否则这个元素将正常地出现在左上角。</p>
+<p>为什么红色的块级元素就一定会位于蓝色背景的上层呢？为什么我们看到的就是 div 位于 html 的上层呢？原因是，它们都遵循了层叠顺序的规则。</p>
+<p>在这个简单的例子中，根据规则，正常文档流的子块（div）的层级将会高于根元素（html）的背景和边框。我们看到div 位于顶层，这是因为它的层叠等级更高。</p>
+<p><img src="https://img-blog.csdnimg.cn/20201114203435700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU1NTc3NA==,size_16,color_FFFFFF,t_70#pic_center" alt="层叠上下文"></p>
+<p>虽然上面这个例子只涉及到了两个层叠等级，但实际上，在一个层叠上下文中，一共可能出现七个层叠等级，从最低到最高排列，依次是：</p>
+<ol>
+<li>背景和边框 ：形成层叠上下文的元素的背景和边框，它是整个上下文中层叠等级最低的</li>
+<li>Z-index 为负数 ：设置了 z-index 为负数的子元素以及由它所产生的层叠上下文</li>
+<li>块级盒模型：位于正常文档流中的、块级的、非定位的子元素</li>
+<li>浮动盒模型 ：浮动的、非定位的子元素</li>
+<li>内联盒模型 ：位于正常文档流中的、内联的、非定位的子元素</li>
+<li>Z-index 为 0：设置了 z-index 为 0 与auto 的、定位的子元素以及由它所产生的层叠上下文</li>
+<li>Z-Index 为正数 ：设置了 z-index 为正数的、定位的子元素以及由它所产生的层叠上下文，它是整个上下文中层叠等级最高的</li>
+</ol>
 
                 
             </div>
