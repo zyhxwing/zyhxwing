@@ -651,11 +651,98 @@ g<span class="token punctuation">.</span><span class="token function">next</span
 g<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// &#123; value: undefined, done: true &#125;</span>
 <span class="token comment">// 因为最后一行 return y 被执行完成,所以done 为 true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="async-x2F-await"><a href="#async-x2F-await" class="headerlink" title="async&#x2F;await"></a>async&#x2F;await</h3><p>是于Promise实现的，async&#x2F;awt使得异步代码看起来像同步代码，所以优点是使用方法清晰明了，缺点是await将异步代码改造成了同步代码，如果多个异步代码没有依赖性却使用了await会导致性能上的降低，代码没有依赖性的话，完全可以使用Promise.all的方式。</p>
+<h2 id="异步网络请求xhr、ajax、fetch与axios"><a href="#异步网络请求xhr、ajax、fetch与axios" class="headerlink" title="异步网络请求xhr、ajax、fetch与axios"></a>异步网络请求xhr、ajax、fetch与axios</h2><p>现代浏览器，最开始与服务器交换数据，都是通过 XMLHttpRequest 对象。它可以使用JSON、XML、HTML和text文本等格式发送和接收数据。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>XMLHttpRequest<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// model browser</span>
+  xhr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>ActiveXObject<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// IE 6 and older</span>
+  xhr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ActiveXObject</span><span class="token punctuation">(</span><span class="token string">'Microsoft.XMLHTTP'</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+xhr<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'POST'</span><span class="token punctuation">,</span> url<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+xhr<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+xhr<span class="token punctuation">.</span><span class="token function-variable function">onreadystatechange</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 处理响应</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>xhr<span class="token punctuation">.</span>readyState <span class="token operator">===</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token comment">// 请求正常</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>xhr<span class="token punctuation">.</span>status <span class="token operator">===</span> <span class="token number">200</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 处理响应</span>
+      <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 请求遇到一些问题，处理异常</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+      <span class="token comment">// 还处于未准备好的状态</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 通信错误的事件中（例如服务器宕机）</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'Caught Exception: '</span> <span class="token operator">+</span> e<span class="token punctuation">.</span>description<span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>优点：</p>
+<p>不重新加载页面的情况下更新网页<br>在页面已加载后从服务器请求&#x2F;接收数据<br>在后台向服务器发送数据。<br>缺点：</p>
+<p>使用起来也比较繁琐，需要设置很多值。<br>早期的IE浏览器有自己的实现，这样需要写兼容代码。</p>
+<ol start="2">
+<li><p>jQuery ajax<br>为了更快捷的操作 DOM，并且规避一些浏览器兼容问题，产生了 jQuery 。它里面的 AJAX 请求也兼容了各浏览器，可以有简单易用的方法 $.get, $.post 。简单点说，就是对 XMLHttpRequest 对象的封装。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">$<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'POST'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">url</span><span class="token operator">:</span> url<span class="token punctuation">,</span> 
+  <span class="token literal-property property">data</span><span class="token operator">:</span> data<span class="token punctuation">,</span>
+  <span class="token literal-property property">dataType</span><span class="token operator">:</span> dataType<span class="token punctuation">,</span>
+  <span class="token function-variable function">success</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">error</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>优点：<br>XHR  JSONP<br>缺点：<br>如果有多个请求，并且有依赖关系的话，容易形成回调地狱。<br>本身是针对MVC的编程，不符合现在前端MVVM的浪潮。<br>ajax是jQuery中的一个方法。如果只是要使用ajax却要引入整个jQuery非常的不合理。</p>
+</li>
+<li><p>fetch<br>Fetch API提供了一个 JavaScript 接口，用于访问和操作HTTP管道的部分，例如请求和响应。它还提供了一个全局 fetch() 方法，该方法提供了一种简单，合理的方式来跨网络异步获取资源。</p>
+</li>
+</ol>
+<p>fetch 是底层API，代替 XHR ，可以轻松处理各种格式，非文本化格式。可以很容易的被其他技术使用，例如 Service Workers 。但是想要很好的使用 fetch ，需要做一些封装处理。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'http://example.com/movies.json'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">myJson</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myJson<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>优点：跨域的处理</p>
+<p>在配置中，添加mode： ‘no-cors’就可以跨域了</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'/users.json'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span> 
+    <span class="token literal-property property">mode</span><span class="token operator">:</span> <span class="token string">'no-cors'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">/* handle response */</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>缺点：</p>
+<p>fetch 只对网络请求报错，对 400 ， 500 都当做成功的请求，需要封装去处理<br>fetch 默认不会带 cookie ，需要添加配置项。<br>fetch 不支持 abort ，不支持超时控制，使用 setTimeout 及 Promise.reject 的实现超时控制并不能阻止请求过程继续在后台运行，造成了流量的浪费。<br>fetch 没有办法原生监测请求的进度，而 XHR 可以。<br>请注意， fetch 规范与 jQuery.ajax() 主要有三点不同，牢记：</p>
+<p>当接收到一个代表错误的 HTTP 状态码时，从 fetch() 返回的 Promise 不会被标记为 reject ， 即使该 HTTP 响应的状态码是 404 或 500 。相反，它会将 Promise 状态标记为 resolve （但是会将 resolve 的返回值的 ok 属性设置为 false ），仅当网络故障时或请求被阻止时，才会标记为 reject 。<br>fetch() 不会接受跨域 cookies ；你也不能使用 fetch() 建立起跨域会话。其他网站的 Set-Cookie 头部字段将会被无视。<br>fetch 不会发送 cookies 。除非你使用了 credentials 的 初始化选项。（自2017年8月25日以后，默认的 credentials 策略变更为 same-origin 。Firefox也在61.0b13版本中，对默认值进行修改）<br>4. axios<br>axios 是一个基于 promise 的HTTP库，可以用在浏览器和 node.js 中。它本质也是对原生 XMLHttpRequest 的封装，只不过它是 Promise 的实现版本，符合最新的ES规范。</p>
+<p>这是官方的并发案例:</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">getUserAccount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> axios<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'/user/12345'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+ 
+<span class="token keyword">function</span> <span class="token function">getUserPermissions</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> axios<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'/user/12345/permissions'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+ 
+axios<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token function">getUserAccount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">getUserPermissions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>axios<span class="token punctuation">.</span><span class="token function">spread</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">acct<span class="token punctuation">,</span> perms</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// Both requests are now complete</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>axios是尤雨溪大神推荐使用的,</p>
+<p>优点：</p>
+<p>XMLHttpRequests<br>node.js<br>Promise API<br>JSON<br>XSRF<br>缺点：</p>
+<p>只持现代浏览器</p>
 <h2 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h2><p>javascript和typescript的区别是什么</p>
 <p>区别：<br>1、TypeScript中的数据要求带有明确的类型，JavaScript不要求。<br>2、TypeScript引入了JavaScript中没有的“类”概念。<br>3、TypeScript通过类型注解提供编译时的静态类型检查（ 虽然JavaScript是弱类型语言，但是在将其升级改造引入”类型注解”这一概念后的TypeScript中，类型注解相当于强类型语言中声明了某个变量的类型，以后该变量就必须为此类型，否则ts编译器将报错，并不能正确地编译成js文件。）。</p>
 <h2 id="JS的arugments"><a href="#JS的arugments" class="headerlink" title="JS的arugments"></a>JS的arugments</h2><p>在函数调用的时候，浏览器每次都会传递进两个隐式参数：<br>一个是函数的上下文对象this，另一个则是封装实参的类数组对象arguments。</p>
 <p>1、arguments是一个类数组对象，用来存储实参；具有length、callee等属性；可以用arguments[0]这个形式访问实参；可以转换为真实数组。<br>2、arguments和函数相关联，其只有在函数执行时可用，不能显式创建。<br>3、arguments可以用来遍历参数；通过callee实现递归；也可以模拟函数重载。</p>
-<p>function f5(){<br>    &#x2F;&#x2F; 可以使用slice来将arguments转换为真实数组<br>    var args1 &#x3D; Array.prototype.slice.call(arguments);<br>    var args2 &#x3D; [].slice.call(arguments);<br>    &#x2F;&#x2F; 也可以使用Array.from()方法或者扩展运算符来将arguments转换为真实数组<br>    var args3 &#x3D; Array.from(arguments);<br>    var args4 &#x3D; […arguments];<br>}<br>f5(‘name’, ‘age’);</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">f5</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">// 可以使用slice来将arguments转换为真实数组</span>
+    <span class="token keyword">var</span> args1 <span class="token operator">=</span> <span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> args2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 也可以使用Array.from()方法或者扩展运算符来将arguments转换为真实数组</span>
+    <span class="token keyword">var</span> args3 <span class="token operator">=</span> Array<span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> args4 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>arguments<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">f5</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">,</span> <span class="token string">'age'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="JS的原型链"><a href="#JS的原型链" class="headerlink" title="JS的原型链"></a>JS的原型链</h2><p>什么是原型：任何对象实例都有一个原型，也叫原型对象，这个原型对象由对象的内置属性_proto_指向它的构造函数的 prototype 指向的对象，即任何对象都是由一个构造函数创建的，但是不是每一个对象都有 prototype，只有方法才有 prototype。</p>
 <p>什么是原型链：<strong>原型链基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。</strong>当调用某种方法或查找某种属性时，首先会在自身调用和查找，如果自身并没有该属性或方法，则会去它的__proto__中查找，也就是构造函数的显式原型prototype中查找，如果构造函数的显式原型prototype中也没有该属性，因为构造函数的显式原型prototype也是对象，也有__proto__，那么会去它的__proto__指向的另一个显式原型prototype中查找，一直到null，如果没有则返回undefined</p>
 <ul>

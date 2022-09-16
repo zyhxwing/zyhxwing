@@ -1043,6 +1043,27 @@ overflow：hidden;<span aria-hidden="true" class="line-numbers-rows"><span></spa
 <span class="token punctuation">&#125;</span>
 
 </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<h2 id="css引入"><a href="#css引入" class="headerlink" title="css引入"></a>css引入</h2><ol>
+<li>行内样式、内联样式 在网页元素上通过style&#x3D;””属性</li>
+<li>内部样式表 在网页创建嵌入的样式表，写在里面</li>
+<li>链入外部样式表 网页引入外部样式表，外部创建一个css文件，在html中通过连接这个css文件，一般写在css前面</li>
+<li>导入外部样式表 通过@import 引入，不建议开发使用</li>
+</ol>
+<p><strong>css引用的优先级</strong><br>记住就近原则<br>内部样式、@import都出现在HTML的里面，就近原则，距离修改元素近的优先级高<br><strong>行内样式&gt;内部样式&gt;link&gt;@import</strong><br>建议开发中链入外部样式，无需改动HTML结构，有利于代码的维护，开发效率高</p>
+<p><strong>link和@import的区别</strong></p>
+<ol>
+<li><p>引入的内容不同<br>link引入样式文件、图片资源等，而@import只引入样式文件</p>
+</li>
+<li><p>加载的顺序不同<br>link在页面加载的同时加载，@import在页面加载以后加载</p>
+</li>
+<li><p>兼容性不同<br>link是XHTML标签，没有兼容性问题，@import在css2.1提出，低版本的浏览器不支持</p>
+</li>
+<li><p>对js的支持不同<br>link支持js控制dom去改变样式，@import则不能支持</p>
+</li>
+</ol>
+
                 
             </div>
             <hr/>

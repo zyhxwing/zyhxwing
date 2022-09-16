@@ -411,16 +411,17 @@
 <ul>
 <li><p>在项目的前期需要去<strong>绘制原型图</strong>，项目工期很赶，要求半天时间就需要把原型图弄好。因为需要利用axure去绘制原型图，所以通过边查阅资料边实际上手操作的方式，及时完成了任务。<strong>（主要做交互，开发的参考，  页面、控件、跳转、动态面板，条件判断，给页面、面板取名字）</strong>在完成这个任务的过程中，遇到实现动态面板与条件判断的问题。动态面板简而言之就是在某个大页面中，有一个局部的小页面，称之为面板，点击某个按钮，要去实现小页面的动态转换，从a面板变成b面板。条件判断就是，比如点击登陆按钮，要判断账号输入框里是否有文字，没有的话就要显示一条提示，提示放在一个动态面板中，默认为不）</p>
 </li>
-<li><p>supermap、leaflat地图功能实现（页面引入、初始化地图、地图上绘制点、线、多边形、弹框、绘制省市区的边界与高亮区域、绘制热力图和风力图）<a target="_blank" rel="noopener" href="https://blog.csdn.net/summer_du/article/details/1143634733%E3%80%82">https://blog.csdn.net/summer_du/article/details/1143634733。</a><br>在初始化完图层之后，需要去实现“点击地图上某个图标，显示该图标详细信息”的功能，</p>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/summer_du/article/details/114363473">supermap、leaflat地图功能实现</a>页面引入、初始化地图、地图上绘制点、线、多边形、弹框、绘制省市区的边界与高亮区域、绘制热力图和风力图</p>
 </li>
 </ul>
+<p>在初始化完图层之后，需要去实现“点击地图上某个图标，显示该图标详细信息”的功能，</p>
 <ol>
 <li>先初始化各个图层，包括建筑物、医院、学校图层，每个图层都根据后端传回的经纬度数据各自生成了建筑物、医院、学校的点位，</li>
 <li>在各个图层上面监听onclik事件，当触发该事件时，触发事件总线的“点击图标”事件，并且传递该点击事件的点位信息与key（图层的种类） </li>
 <li>在vue文件中注册事件总线，当“点击图标”事件发生时，需要根据传回来的key与数据触发对应的方法 4.通过key的不同种类，使用swtich case来进行相应地方法。</li>
 </ol>
 <ul>
-<li>print打印功能实现</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41897680/article/details/124797673">print打印功能实现</a></li>
 </ul>
 <ol>
 <li>接到一个需求，打印当前页面的内容，一开始考虑的是直接打印当前页面的内容，但是页面上会显示地图，直接打印的话地图是不能打印出来的，所以考虑将地图所在的div转换成图片，通过搜索找到了一个html2canvs插件</li>
@@ -429,10 +430,10 @@
 <li>调用打印方法。</li>
 <li>声明不打印区域（ 声明”no-print”类名 ， 在print方法中通过”noPrint”属性指定不打印区域（通过class类名指定））</li>
 <li>通过css设置page-break-after来解决数据切割问题， page-break-after：always 属性用于设置在指定元素后面插入分页符。</li>
-<li>@page规则允许你指定页面盒子的许多方面。例如，你想要指定页面尺寸。 除了可以用长度值声明尺寸，你还可以使用纸质尺寸关键字，例如”A4”或““legal”。 你也可以使用关键字来指定页面方向 portrait（竖向的）或landscape（横向的）。<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41897680/article/details/1247976734%E3%80%82">https://blog.csdn.net/weixin_41897680/article/details/1247976734。</a></li>
+<li>@page规则允许你指定页面盒子的许多方面。例如，你想要指定页面尺寸。 除了可以用长度值声明尺寸，你还可以使用纸质尺寸关键字，例如”A4”或““legal”。 你也可以使用关键字来指定页面方向 portrait（竖向的）或landscape（横向的）。</li>
 </ol>
 <ul>
-<li>文件下载功能实现 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35435093/article/details/123902850">https://blog.csdn.net/qq_35435093/article/details/123902850</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35435093/article/details/123902850">文件下载功能实现</a></li>
 </ul>
 <p>图片下载一开始点击因为使用了 window.open 点击图片就直接跳转到预览了，想要点击下载的功能</p>
 <ol>
@@ -460,10 +461,17 @@
 </li>
 <li><p>功能设计</p>
 </li>
-<li><p>批量导入功能的实现EasyExcel是阿里巴巴开源的一个excel处理框架，以使用简单、节省内存著称。EasyExcel能很大的减少占用内存的主要原因是在解析文件时没有将数据一次性全部加载到内存中，而是从磁盘上一行行读取数据，逐个解析。 EasyExcel采用一行一行的解析模式，并将一行的解析结果以观察者的模式通知处理（AnalysisEventListener）。（使用EasyExcel进行导入功能：1.引入maven2.编写pojo（ @ExcelProperty(“单据编号”)注解对应的excel的标题，一个字都不能差，他会自动读取）3.编写controller（    &#x2F;&#x2F;1.进行读取数据，StorageRetrieval是我的pojo类， &#x2F;&#x2F;2.new SorageListener(storageService)这个是监听器，主要用来读取数据的&#x2F;&#x2F;3. EasyExcel.read（file.getInputStream();, StorageRetrieval.class, new SorageListener; ））4.读取到工作簿内容后，将获取到的数据传到dto：workBook.sheet().doReadSync();））<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/a1489540461/article/details/1202709906%E3%80%82">https://blog.csdn.net/a1489540461/article/details/1202709906。</a></p>
+<li><p>批量导入功能的实现EasyExcel是阿里巴巴开源的一个excel处理框架，以使用简单、节省内存著称。EasyExcel能很大的减少占用内存的主要原因是在解析文件时没有将数据一次性全部加载到内存中，而是从磁盘上一行行读取数据，逐个解析。 EasyExcel采用一行一行的解析模式，并将一行的解析结果以观察者的模式通知处理（AnalysisEventListener）。（使用EasyExcel进行导入功能：</p>
 </li>
-<li><p>工作流功能的实现</p>
-</li>
+</ul>
+<ol>
+<li>引入maven</li>
+<li>编写pojo（ @ExcelProperty(“单据编号”)注解对应的excel的标题，一个字都不能差，他会自动读取）</li>
+<li>编写controller（&#x2F;&#x2F;1.进行读取数据，StorageRetrieval是我的pojo类， &#x2F;&#x2F;2.new SorageListener(storageService)这个是监听器，主要用来读取数据的&#x2F;&#x2F;3. EasyExcel.read（file.getInputStream();, StorageRetrieval.class, new SorageListener; ））</li>
+<li>读取到工作簿内容后，将获取到的数据传到dto：workBook.sheet().doReadSync();））</li>
+</ol>
+<ul>
+<li>工作流功能的实现</li>
 </ul>
  <pre class="line-numbers language-none"><code class="language-none">private Integer companyId;
 &#x2F;&#x2F;表示是否为通用工作流(0表示通用工作流，1表示自定义工作流)
@@ -521,13 +529,18 @@ Object object&#x3D;feignClientServe.startCounterSign(activitiesCheckDTO); &#x2F;
     2.8.获取下一节点审批人员信息，并且根据节点id获取下一节点信息，为下级审批人员添加提醒
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
-<li>文件预览功能kkFileView   1. 将预览接口提供给前端；2.利用 window.open 浏览器打开新窗口预览文件 3.通过iframe，预览文件 结合elementUI的弹窗（可以做其他弹窗效果）很多系统内不是直接暴露文件下载地址，而是请求通过id、code等参数到通过统一的接口，后端通过id或code等参数定位文件，再通过OutputStream输出下载，此时下载url是不带文件后缀名的，预览时需要拿到文件名，传一个参数fullfilename&#x3D;xxx.xxx来指定文件名<br><a target="_blank" rel="noopener" href="https://kkfileview.keking.cn/zh-cn/docs/usage.html">https://kkfileview.keking.cn/zh-cn/docs/usage.html</a></li>
+<li>文件预览功能 <a target="_blank" rel="noopener" href="https://kkfileview.keking.cn/zh-cn/docs/usage.html">kkFileView</a></li>
 </ul>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/MtangEr/article/details/108599708?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-108599708-blog-120524610.pc_relevant_paycolumn_v3&amp;spm=1001.2101.3001.4242.1&amp;utm_relevant_index=3">https://blog.csdn.net/MtangEr/article/details/108599708?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-108599708-blog-120524610.pc_relevant_paycolumn_v3&amp;spm=1001.2101.3001.4242.1&amp;utm_relevant_index=3</a></p>
+<ol>
+<li>将预览接口提供给前端；</li>
+<li>利用 window.open 浏览器打开新窗口预览文件 </li>
+<li>通过iframe，预览文件 结合elementUI的弹窗（可以做其他弹窗效果）很多系统内不是直接暴露文件下载地址，而是请求通过id、code等参数到通过统一的接口，后端通过id或code等参数定位文件，再通过OutputStream输出下载，此时下载url是不带文件后缀名的，预览时需要拿到文件名，传一个参数fullfilename&#x3D;xxx.xxx来指定文件名</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/MtangEr/article/details/108599708?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-108599708-blog-120524610.pc_relevant_paycolumn_v3&spm=1001.2101.3001.4242.1&utm_relevant_index=3">具体步骤</a></p>
 <p>3.徐工培训云平台<br>项目内容：基于JavaWeb的培训教育管理平台，实现课程学习、参与考试、发布计划等功能<br>项目技术：SpringBoot、java、Vue2.0、elementUi、Mint UI<br>负责模块：PC端课程管理的前后端开发，移动端的课程学习、线下课程签到、课程评价管理的前后端开发<br>个人收获：个人收获：我系统地了解了程序开发的相关知识，对项目的运行流程有了大体上的认知，培养了我良好的编程习惯，包括变量命名规范、格式规范等</p>
 <ul>
 <li>服务器项目搭建</li>
-<li>课程视屏播放 vue-video-player<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38684316/article/details/88070737?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1-88070737-blog-105723063.pc_relevant_multi_platform_whitelistv1&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1-88070737-blog-105723063.pc_relevant_multi_platform_whitelistv1&amp;utm_relevant_index=1">https://blog.csdn.net/weixin_38684316/article/details/88070737?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1-88070737-blog-105723063.pc_relevant_multi_platform_whitelistv1&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1-88070737-blog-105723063.pc_relevant_multi_platform_whitelistv1&amp;utm_relevant_index=1</a></li>
+<li>课程视屏播放 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38684316/article/details/88070737?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1-88070737-blog-105723063.pc_relevant_multi_platform_whitelistv1&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1-88070737-blog-105723063.pc_relevant_multi_platform_whitelistv1&utm_relevant_index=1">vue-video-player</a></li>
 </ul>
 <pre class="line-numbers language-none"><code class="language-none">1.首先是npm i vue-video-player -D 安装依赖
 2.在main.js里面引入
@@ -594,11 +607,10 @@ onPlayerEnded(player) &#123;
 &#125;,
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
-<li><p>文件预览功能</p>
-</li>
-<li><p>手机端界面响应式布局实现</p>
-</li>
-<li><p>无限滑动功能的实现（  better-scroll）</p>
+<li>文件预览功能</li>
+<li>手机端界面响应式布局实现</li>
+<li>无限滑动功能的实现（  better-scroll）<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44890979/article/details/111400863">better scroll原理</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37719279/article/details/82084342">better scroll教程</a></li>
+</ul>
 <pre class="line-numbers language-none"><code class="language-none">initScroll(dom) &#123;
     let that &#x3D; this;
     that.$nextTick(() &#x3D;&gt; &#123;
@@ -661,10 +673,9 @@ onPlayerEnded(player) &#123;
     &#125;);
 &#125;,
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>better scroll原理 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44890979/article/details/111400863">https://blog.csdn.net/weixin_44890979/article/details/111400863</a><br>better scroll教程 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37719279/article/details/82084342">https://blog.csdn.net/weixin_37719279/article/details/82084342</a></p>
-</li>
-<li><p>生成二维码（qrcodesjs2）<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_48115935/article/details/113178939">https://blog.csdn.net/weixin_48115935/article/details/113178939</a></p>
-</li>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_48115935/article/details/113178939">生成二维码（qrcodesjs2）</a></li>
 </ul>
 <h2 id="什么要学习前端"><a href="#什么要学习前端" class="headerlink" title="什么要学习前端"></a>什么要学习前端</h2><p>个人热爱，从一开始接触互联网，就对这个行业有向往有憧憬，期望能在这个行业发光发热，敲出的代码跑出来运行起来，内心很兴奋</p>
 <p>前端一开始写html页面，看着自己写出来的一个个页面就很有成就感，然后慢慢的就想写的更漂亮，交互效果越多，就开始努力学习css和js，随着页面越来越复杂，就需要学更多的东西，追求更高的代码质量，就是这样的良性循环促使自己在前端道路上一直走下去。</p>
