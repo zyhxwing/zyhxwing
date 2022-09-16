@@ -668,7 +668,7 @@ ALLOW-FROM         &#x2F;&#x2F; 可以定义允许frame加载的页面地址<spa
 <li>使用缓存(客户端缓存、服务端缓存)、</li>
 <li>服务端开启gzip压缩等。</li>
 </ol>
-<h2 id="前端模块化CommonJS，AMD，CMD及ES6模块化"><a href="#前端模块化CommonJS，AMD，CMD及ES6模块化" class="headerlink" title="前端模块化CommonJS，AMD，CMD及ES6模块化"></a>前端模块化CommonJS，AMD，CMD及ES6模块化</h2><p><strong>什么是模块化？</strong><br>模块化开发是一种管理方式，是一种生产方式，一种解决问题的方案，一个模块就是实现特定功能的文件，有了模块，我们就可以更方便地使用别人的代码，想要什么功能，就加载什么模块，但是模块开发需要遵循一定的规范，否则就都乱套了，因此，才有了后来大家熟悉的AMD规范，CMD规范，以及ES6自带的模块化规范</p>
+<h2 id="前端模块化CommonJS及ES6模块化"><a href="#前端模块化CommonJS及ES6模块化" class="headerlink" title="前端模块化CommonJS及ES6模块化"></a>前端模块化CommonJS及ES6模块化</h2><p><strong>什么是模块化？</strong><br>模块化开发是一种管理方式，是一种生产方式，一种解决问题的方案，一个模块就是实现特定功能的文件，有了模块，我们就可以更方便地使用别人的代码，想要什么功能，就加载什么模块，但是模块开发需要遵循一定的规范，否则就都乱套了，因此，才有了后来大家熟悉的AMD规范，CMD规范，以及ES6自带的模块化规范</p>
 <p><strong>模块化带来的好处</strong><br>解决命名冲突、代码复用、代码可读性、依赖管理等</p>
 <h3 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h3><p>(1)简介<br>Node 应用由模块组成，采用 CommonJS 模块规范。每个文件就是一个模块，有自己的作用域。在一个文件里面定义的变量、函数、类，都是私有的，对其他文件不可见。它有四个重要的环境变量为模块化的实现提供支持：module、exports、require、global。在服务器端，模块的加载<strong>是运行时同步加载</strong>的，模块文件都存在本地磁盘，读取非常快，所以这样做不会有问题；在浏览器端，基于网络原因，模块需要提前编译打包处理。</p>
 <p>(2)特点<br>所有代码都运行在模块作用域，不会污染全局作用域。<br>模块可以多次加载，但是只会在第一次加载时运行一次，然后运行结果就被缓存了，以后再加载，就直接读取缓存结果。要想让模块再次运行，必须清除缓存。模块加载的顺序，按照其在代码中出现的顺序。</p>
@@ -755,7 +755,7 @@ ALLOW-FROM         &#x2F;&#x2F; 可以定义允许frame加载的页面地址<spa
 <li>迭代器模式 访问一个聚合对象的内容而无需暴露它的内部表示。为遍历不同的集合结构提供一个统一的接口，从而支持同样的算法在不同的集合结构上进行操作</li>
 <li>状态模式 通过定义不同的状态类，根据状态的改变而改变对象的行为，也不必把大量的逻辑都写在被操作对象的类中，而且容易增加新的状态</li>
 </ol>
-<h2 id="说说你对SPA单页面的理解，它的优缺点分别是什么？"><a href="#说说你对SPA单页面的理解，它的优缺点分别是什么？" class="headerlink" title="说说你对SPA单页面的理解，它的优缺点分别是什么？"></a>说说你对SPA单页面的理解，它的优缺点分别是什么？</h2><p>概念：<br>SPA（ single page application ）仅在 Web 页面初始化时加载相应的 HTML、javascript 和 CSS。<br>一旦页面加载完成，SPA 不会因为用户的操作而进行页面的重新加载或跳转<br>而页面的变化是利用路由机制实现 HTML 内容的变换，避免页面的重新加载。</p>
+<h2 id="SPA单页面"><a href="#SPA单页面" class="headerlink" title="SPA单页面"></a>SPA单页面</h2><p>概念：<br>SPA（ single page application ）仅在 Web 页面初始化时加载相应的 HTML、javascript 和 CSS。<br>一旦页面加载完成，SPA 不会因为用户的操作而进行页面的重新加载或跳转<br>而页面的变化是利用路由机制实现 HTML 内容的变换，避免页面的重新加载。</p>
 <p><strong>优点：</strong></p>
 <ol>
 <li>加载速度快，内容的改变不需要重新加载整个页面</li>
@@ -791,7 +791,7 @@ ALLOW-FROM         &#x2F;&#x2F; 可以定义允许frame加载的页面地址<spa
 <li>Renderer 进程将得到的结果传递给 Browser 进程</li>
 <li>Browser进程 接收到结果并在界面上绘制出图像。</li>
 </ul>
-<h2 id="多进程浏览器-有哪些进程、线程"><a href="#多进程浏览器-有哪些进程、线程" class="headerlink" title="多进程浏览器 有哪些进程、线程"></a>多进程浏览器 有哪些进程、线程</h2><ul>
+<h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><h3 id="多进程浏览器-有哪些进程、线程"><a href="#多进程浏览器-有哪些进程、线程" class="headerlink" title="多进程浏览器 有哪些进程、线程"></a>多进程浏览器 有哪些进程、线程</h3><ul>
 <li>GPU 进程。Chrome 刚开始发布的时候是没有 GPU 进程的。而 GPU 的使用初衷是为了实现 3D CSS 的效果，只是随后网页、Chrome 的 UI 界面都选择采用 GPU 来绘制，这使得 GPU 成为浏览器普遍的需求。最后，Chrome 在其多进程架构上也引入了GPU 进程。</li>
 <li>V8代理解析工具（v8代码解释器）Google的开源高性能javascript和WebAssembly引擎，用C编写，它实现ECMAScript和WebAssembly，可独立运行或嵌入到任何C应用程序中，如Chrome和Node.js。</li>
 <li>NetWork进程。主要负责页面的网络资源加载，之前是作为一个模块运行在浏览器进程里面的，直至最近才独立出来，成为一个单独的进程。</li>
@@ -807,7 +807,7 @@ ALLOW-FROM         &#x2F;&#x2F; 可以定义允许frame加载的页面地址<spa
 <li>定时触发器线程：setInterval与setTimeout所在的线程、定时任务并不是由JS引擎计时的，是由定时触发线程来计时的、计时完毕后，将回调事件放入到事件队列中</li>
 <li>异步http请求线程：浏览器有一个单独的线程用于处理AJAX请求、当请求完成时，若有回调函数，将回调事件放入到事件队列中。</li>
 </ul>
-<h2 id="操作系统下进程与线程的区别"><a href="#操作系统下进程与线程的区别" class="headerlink" title="操作系统下进程与线程的区别"></a>操作系统下进程与线程的区别</h2><p>做个简单的比喻：进程&#x3D;火车，线程&#x3D;车厢</p>
+<h3 id="操作系统下进程与线程的区别"><a href="#操作系统下进程与线程的区别" class="headerlink" title="操作系统下进程与线程的区别"></a>操作系统下进程与线程的区别</h3><p>做个简单的比喻：进程&#x3D;火车，线程&#x3D;车厢</p>
 <ul>
 <li>线程在进程下行进（单纯的车厢无法运行）</li>
 <li>一个进程可以包含多个线程（一辆火车可以有多个车厢）</li>
@@ -841,7 +841,7 @@ ALLOW-FROM         &#x2F;&#x2F; 可以定义允许frame加载的页面地址<spa
 <li><p>真实用户监控：真实用户监控是一种被动监控技术，是一种应用服务，被监控的 web 应用通过 sdk 等方式接入该服务，将真实的用户访问、交互等性能指标数据收集上报、通过数据清洗加工后形成性能分析报表。例如 <strong>FrontJs、oneapm、Datadog</strong> 等。</p>
 </li>
 </ol>
-<h2 id="请说一下Dom树-CSS树-渲染树-render树-规则、原理"><a href="#请说一下Dom树-CSS树-渲染树-render树-规则、原理" class="headerlink" title="请说一下Dom树 CSS树 渲染树(render树) 规则、原理"></a>请说一下Dom树 CSS树 渲染树(render树) 规则、原理</h2><p>首先你要了解浏览器渲染的顺序：</p>
+<h2 id="Dom树、CSS树、渲染树"><a href="#Dom树、CSS树、渲染树" class="headerlink" title="Dom树、CSS树、渲染树"></a>Dom树、CSS树、渲染树</h2><p>首先你要了解浏览器渲染的顺序：</p>
 <ol>
 <li>构建dom 树</li>
 <li>构建css 树</li>
@@ -1082,7 +1082,7 @@ document<span class="token punctuation">.</span>body<span class="token punctuati
 <p>前端收到token之后将token存储在自己的请求头之中或者url后面，这样每次请求都可以带着token请求。</p>
 <p>再去访问项目其他模块，获取地址栏或者请求头里面的token，根据宇符串获职用户信息。</p>
 <p>同时为了设置失效时间，可以将token放在redis中，设置失效时间，判断过期。</p>
-<h2 id="防止localStorage和sessionStorage在开发工具中被篡改"><a href="#防止localStorage和sessionStorage在开发工具中被篡改" class="headerlink" title="防止localStorage和sessionStorage在开发工具中被篡改"></a>防止localStorage和sessionStorage在开发工具中被篡改</h2><ol>
+<h2 id="防止localStorage被篡改"><a href="#防止localStorage被篡改" class="headerlink" title="防止localStorage被篡改"></a>防止localStorage被篡改</h2><ol>
 <li>让localStorage值无法修改，不推荐</li>
 </ol>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'storage'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
