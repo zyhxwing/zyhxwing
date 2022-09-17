@@ -601,7 +601,7 @@ const actions &#x3D; &#123;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="为什么-Vuex-的-mutation-中不能做异步操作？"><a href="#为什么-Vuex-的-mutation-中不能做异步操作？" class="headerlink" title="为什么 Vuex 的 mutation 中不能做异步操作？"></a>为什么 Vuex 的 mutation 中不能做异步操作？</h3><p>1、Vuex中所有的状态更新的唯一途径都是mutation，异步操作通过 Action 来提交 mutation实现，这样可以方便地跟踪每一个状态的变化，从而能够实现一些工具帮助更好地了解我们的应用。<br>2、每个mutation执行完成后都会对应到一个新的状态变更，这样devtools就可以打个快照存下来，然后就可以实现 time-travel 了。如果mutation支持异步操作，就没有办法知道状态是何时更新的，无法很好的进行状态的追踪，给调试带来困难。</p>
-<h2 id="Vue前端权限管理"><a href="#Vue前端权限管理" class="headerlink" title="Vue前端权限管理"></a>Vue前端权限管理</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1794300">https://cloud.tencent.com/developer/article/1794300</a></p>
+<h2 id="Vue前端权限管理"><a href="#Vue前端权限管理" class="headerlink" title="Vue前端权限管理"></a>Vue前端权限管理</h2><p> <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1794300">前端权限管理</a></p>
 <p>vue前端登录流程</p>
 <ol>
 <li>用户输入账号密码进行登录，登录完拿到token，将token存到cookie和localstorage，之后每次往后端发送请求都通过axios请求拦截器进行拦截，每次请求的时候头部携带token</li>
@@ -609,7 +609,7 @@ const actions &#x3D; &#123;
 <li>在用户登录完之后，在beforeeach 路由钩子函数中设置，每次进行跳转时都先判断缓存内是否有用户的路由表信息，以及跳转的路由是否存在在用户的路由表信息中</li>
 <li>如果没有的话，需要先去获取用户的权限信息，然后筛选有权限访问的路由，最后根据roles权限利用addRoutes方法动态添加该用户可访问的路由表</li>
 </ol>
-<h2 id="Vue3与Vue2的区别"><a href="#Vue3与Vue2的区别" class="headerlink" title="Vue3与Vue2的区别"></a>Vue3与Vue2的区别</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1794328">https://cloud.tencent.com/developer/article/1794328</a></p>
+<h2 id="Vue3与Vue2的区别"><a href="#Vue3与Vue2的区别" class="headerlink" title="Vue3与Vue2的区别"></a>Vue3与Vue2的区别</h2><p> <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1794328">区别</a></p>
 <h2 id="Vue前端登录流程"><a href="#Vue前端登录流程" class="headerlink" title="Vue前端登录流程"></a>Vue前端登录流程</h2><p>初次登录的时候，前端调后调的登录接口，发送用户名和密码，后端收到请求，验证用户名和密码，验证成功，就给前端返回一个token，和一个用户信息的值，前端拿到token，将token储存到Vuex中，然后从Vuex中把token的值存入浏览器Cookies中。把用户信息存到Vuex然后再存储到LocalStroage中,然后跳转到下一个页面，根据后端接口的要求，只要不登录就不能访问的页面需要在前端每次跳转页面师判断Cookies中是否有token，没有就跳转到登录页，有就跳转到相应的页面，我们应该再每次发送post&#x2F;get请求的时候应该加入token，常用方法再项目utils&#x2F;service.js中添加全局拦截器，将token的值放入请求头中 后端判断请求头中有无token，有token，就拿到token并验证token是否过期，在这里过期会返回无效的token然后有个跳回登录页面重新登录并且清除本地用户的信息</p>
 <h2 id="搭建一个vue项目"><a href="#搭建一个vue项目" class="headerlink" title="搭建一个vue项目"></a>搭建一个vue项目</h2><ol>
 <li>环境准备nodejs</li>

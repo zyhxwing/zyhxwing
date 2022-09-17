@@ -411,14 +411,35 @@
 <ul>
 <li><p>在项目的前期需要去<strong>绘制原型图</strong>，项目工期很赶，要求半天时间就需要把原型图弄好。因为需要利用axure去绘制原型图，所以通过边查阅资料边实际上手操作的方式，及时完成了任务。<strong>（主要做交互，开发的参考，  页面、控件、跳转、动态面板，条件判断，给页面、面板取名字）</strong>在完成这个任务的过程中，遇到实现动态面板与条件判断的问题。动态面板简而言之就是在某个大页面中，有一个局部的小页面，称之为面板，点击某个按钮，要去实现小页面的动态转换，从a面板变成b面板。条件判断就是，比如点击登陆按钮，要判断账号输入框里是否有文字，没有的话就要显示一条提示，提示放在一个动态面板中，默认为不）</p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/summer_du/article/details/114363473">supermap、leaflat地图功能实现</a>页面引入、初始化地图、地图上绘制点、线、多边形、弹框、绘制省市区的边界与高亮区域、绘制热力图和风力图</p>
+<li><p>权限细化到按钮级别<br>当时在做按钮的权限管理时，没有用那种传统的v-if（每个页面都要获取一次权限信息，代码往往很冗余），而是通过自定义指令进行按钮权限的判断（将获取权限的方法封装起来），首先该自定义指令绑定在某个按钮上，在该按钮被渲染时调用inserted钩子函数，传入当前按钮的v-hasPermi的值，检查保存在vuex、localstorage内的权限树是否有当前按钮的权限，有则进行渲染，无则删除子节点，返回父节点</p>
 </li>
 </ul>
-<p>在初始化完图层之后，需要去实现“点击地图上某个图标，显示该图标详细信息”的功能，</p>
+<p>拓展：权限树的获取步骤</p>
+<ol>
+<li>用户输入账号密码进行登录，登录完拿到token，将token存到cookie和localstorage，之后每次往后端发送请求都通过axios请求拦截器进行拦截，每次请求的时候头部携带token</li>
+<li>在页面初始化的时候先挂载不需要权限控制的路由，比如登录页，404等错误页。如果用户通过URL进行强制访问，则会直接进入404，相当于从源头上做了控制。</li>
+<li>在用户登录完之后，在beforeeach 路由钩子函数中设置，每次进行跳转时都先判断缓存内是否有用户的路由表信息，以及跳转的路由是否存在在用户的路由表信息中</li>
+<li>如果没有的话，需要先去获取用户的权限信息，然后筛选有权限访问的路由，最后根据roles权限利用addRoutes方法动态添加该用户可访问的路由表</li>
+</ol>
+<p>钩子函数（自定义指令）</p>
+<ul>
+<li><code>bind</code>：只调用一次，指令第一次绑定到元素时调用。在这里可以进行一次性的初始化设置。</li>
+<li><code>inserted</code>：被绑定元素插入父节点时调用 (仅保证父节点存在，但不一定已被插入文档中)。</li>
+<li><code>update</code>：所在组件的 VNode 更新时调用，但是可能发生在其子 VNode 更新之前。指令的值可能发生了改变，也可能没有。但是你可以通过比较更新前后的值来忽略不必要的模板更新。</li>
+<li><code>componentUpdated</code>：指令所在组件的 VNode 及其子 VNode 全部更新后调用。</li>
+<li><code>unbind</code>：只调用一次，指令与元素解绑时调用。</li>
+</ul>
+<p>首先当时因为我们的按钮有两个判定条件，一个是根据左侧一个树的层级来显示的，所以我们一开始先在按钮上绑定了一个v-if，来控制它在哪一层显示和隐藏，第二个则是根据用户是否有当前按钮的权限。</p>
+<p>但当我把自定义指令加到按钮上时，系统报错了，这时候我发现v-if和v-permission，也就是自定义指令会产生冲突（当同时存在 v-if 和自定义隐藏的指令 el 会被删除，但元素上的指令依旧会执行，修改的是上一个元素的显示隐藏）（v-if把咱们的dom元素给删除了，导致这个v-permission找不到这个dom元素了），后来的话也是找到了两种解决方式：<br>第一种方式，将v-if 替换为v-show，这样元素一直存在，就不会出现问题，(如果你的自定义指令会动态改变display属性，那就可能和v-show冲突 v-show是通过display：none来控制隐藏，这点需要注意，只是单一的隐藏，就不需要考虑了)<br>第二种方式，将v-if指令合并到自定义中 传入一个对象；改指令实现通过传入的对象来实现是否需要隐藏。</p>
+<p>然后的话还有个小细节就是，当时主要有两个地方的按钮会涉及到权限的设置，分别是html部分的v-permission和在列表中渲染的按钮v-permission，通过一个渲染函数customRender，把节点渲染到html中，在customRender中填写的<code>&lt;Button v-hasPermi=&quot;[&#39;ADRESS:BUILD:EDIT&#39;]&quot;&gt;修改&lt;/Button&gt;</code>是个字符串，而<code>&lt;a-button v-hasPermi=&quot;[&#39;ADRESS:BUILD:ADD&#39;]&quot;&gt;新增&lt;/a-button&gt;</code>是个数组，虽然两种写法是一样的，但vue处理的方式不一样，这时候需要对值做一个判断，如果是字符串就需要将其转换成数组,将其统一之后再做处理</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/summer_du/article/details/114363473">supermap、leaflat地图功能实现</a>页面引入、初始化地图、地图上绘制点、线、多边形、弹框、绘制省市区的边界与高亮区域、绘制热力图和风力图</li>
+</ul>
+<p>地图上点击要有反馈，查阅官方文档后给不同图层绑定了一个点击事件，但点击事件无法在其它vue组件里进行触发，这时候我们通过vue的事件总线，把事件传出来，各个vue组件在初始化的时候先注册了一个事件，然后我们在画图的时候，我们绑定了一个点击事件，在点击事件中触发这个事件，进而拿到它的一些参数（key：图层的种类），然后可以进行一些弹窗展示</p>
 <ol>
 <li>先初始化各个图层，包括建筑物、医院、学校图层，每个图层都根据后端传回的经纬度数据各自生成了建筑物、医院、学校的点位，</li>
 <li>在各个图层上面监听onclik事件，当触发该事件时，触发事件总线的“点击图标”事件，并且传递该点击事件的点位信息与key（图层的种类） </li>
-<li>在vue文件中注册事件总线，当“点击图标”事件发生时，需要根据传回来的key与数据触发对应的方法 4.通过key的不同种类，使用swtich case来进行相应地方法。</li>
+<li>在vue文件中注册事件总线，当“点击图标”事件发生时，需要根据传回来的key与数据触发对应的方法 4.通过key的不同种类，使用<code>swtich case</code>来进行相应地方法。</li>
 </ol>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41897680/article/details/124797673">print打印功能实现</a></li>
@@ -428,9 +449,9 @@
 <li>html2canvs的作用就是允许让我们直接在用户浏览器上拍摄网页或其部分的“截图”，它的屏幕截图是基于 DOM 的，因此可能不会 100% 精确到真实的表示，因为它不会生成实际的屏幕截图，而是基于页面上可用的信息构建屏幕截图。所以在页面初始化created时，当地图加载完毕之后，调用html2canvas方法，设置允许跨域图像污染画步，同时设置尝试使用CORS从服务器加载图像，最后生成对应的图片地址，最后利用v-if来显示与隐藏地图和图片</li>
 <li>声明打印区域：可通过设置class 类名或 id 指定打印区域，但由于vue项目涉及到打包部署，推荐使用ref获取DOM节点，如果使用id或class获取，打包部署后打印内容可能显示空白。</li>
 <li>调用打印方法。</li>
-<li>声明不打印区域（ 声明”no-print”类名 ， 在print方法中通过”noPrint”属性指定不打印区域（通过class类名指定））</li>
-<li>通过css设置page-break-after来解决数据切割问题， page-break-after：always 属性用于设置在指定元素后面插入分页符。</li>
-<li>@page规则允许你指定页面盒子的许多方面。例如，你想要指定页面尺寸。 除了可以用长度值声明尺寸，你还可以使用纸质尺寸关键字，例如”A4”或““legal”。 你也可以使用关键字来指定页面方向 portrait（竖向的）或landscape（横向的）。</li>
+<li>声明不打印区域（ 声明<code>no-print</code>类名 ， 在print方法中通过<code>noPrint</code>属性指定不打印区域（通过class类名指定））</li>
+<li>通过css设置<code>page-break-after</code>来解决数据切割问题， <code>page-break-after：always</code> 属性用于设置在指定元素后面插入分页符。</li>
+<li>@page规则允许你指定页面盒子的许多方面。例如，你想要指定页面尺寸。 除了可以用长度值声明尺寸，你还可以使用纸质尺寸关键字，例如”A4”或<code>legal</code>。 你也可以使用关键字来指定页面方向 portrait（竖向的）或landscape（横向的）。</li>
 </ol>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35435093/article/details/123902850">文件下载功能实现</a></li>
@@ -473,60 +494,60 @@
 <ul>
 <li>工作流功能的实现</li>
 </ul>
- <pre class="line-numbers language-none"><code class="language-none">private Integer companyId;
-&#x2F;&#x2F;表示是否为通用工作流(0表示通用工作流，1表示自定义工作流)
-private Integer type;
-&#x2F;&#x2F;当为通用工作流时，需要传下级审批人id,为自定义工作流时无需传该值,其中该值为数组
-private List&lt;Integer&gt; checkUserIdList;
-&#x2F;&#x2F;该业务的唯一标识
-private String identifier;
-&#x2F;&#x2F;提交人id
-private Integer inputUserId;
-&#x2F;&#x2F;任务流程实例Id
-private String processId;
-&#x2F;&#x2F;退回标志(1表示退回，0表示不是退回)
-private Integer returnFlag;
-&#x2F;&#x2F;退回原因
-private String reason;
-&#x2F;&#x2F;业务id
-private Integer businessId;
-&#x2F;&#x2F;业务批注
-private String comment;
-&#x2F;&#x2F;会签类型,用于表示是否需要所有人审批后会签完成
-private Integer countersignType;
-&#x2F;&#x2F;当前审批人id
-private Integer checkUserId;
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token class-name">Integer</span> companyId<span class="token punctuation">;</span>
+<span class="token comment">//表示是否为通用工作流(0表示通用工作流，1表示自定义工作流)</span>
+<span class="token keyword">private</span> <span class="token class-name">Integer</span> type<span class="token punctuation">;</span>
+<span class="token comment">//当为通用工作流时，需要传下级审批人id,为自定义工作流时无需传该值,其中该值为数组</span>
+<span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">></span></span> checkUserIdList<span class="token punctuation">;</span>
+<span class="token comment">//该业务的唯一标识</span>
+<span class="token keyword">private</span> <span class="token class-name">String</span> identifier<span class="token punctuation">;</span>
+<span class="token comment">//提交人id</span>
+<span class="token keyword">private</span> <span class="token class-name">Integer</span> inputUserId<span class="token punctuation">;</span>
+<span class="token comment">//任务流程实例Id</span>
+<span class="token keyword">private</span> <span class="token class-name">String</span> processId<span class="token punctuation">;</span>
+<span class="token comment">//退回标志(1表示退回，0表示不是退回)</span>
+<span class="token keyword">private</span> <span class="token class-name">Integer</span> returnFlag<span class="token punctuation">;</span>
+<span class="token comment">//退回原因</span>
+<span class="token keyword">private</span> <span class="token class-name">String</span> reason<span class="token punctuation">;</span>
+<span class="token comment">//业务id</span>
+<span class="token keyword">private</span> <span class="token class-name">Integer</span> businessId<span class="token punctuation">;</span>
+<span class="token comment">//业务批注</span>
+<span class="token keyword">private</span> <span class="token class-name">String</span> comment<span class="token punctuation">;</span>
+<span class="token comment">//会签类型,用于表示是否需要所有人审批后会签完成</span>
+<span class="token keyword">private</span> <span class="token class-name">Integer</span> countersignType<span class="token punctuation">;</span>
+<span class="token comment">//当前审批人id</span>
+<span class="token keyword">private</span> <span class="token class-name">Integer</span> checkUserId<span class="token punctuation">;</span>
 
-新增文件-工作流逻辑
-1.如果为提交并且工作流未关闭则启动工作流
-Object object&#x3D;feignClientServe.startCounterSign(activitiesCheckDTO); &#x2F;&#x2F;开始会签
-  1.根据唯一标识来确认对应该流程操作的是哪个数据库表
-    2.设置工作流流程变量
-    3.判断工作流所属类型（通用还是专有）
-    3.1.表示通用工作流
-    3.2.更新业务表信息与审批人信息
-    3.3.表示专有工作流
-    3.4.根据工作流id查询工作流明细
-    3.5.根据前端传回的数据，（是否会签）设置流程变量
-    3.6.更新审批人信息
-    4.修改待处理业务表信息，更新审批人待处理的文件的数量 
-2.如果为提交操作但是工作流为关闭状态直接完成流程更改体系文件状态      
-3.如果为暂存业务则不走工作流，直接入数据库，但是此时不走工作流
+新增文件<span class="token operator">-</span>工作流逻辑
+<span class="token number">1.</span>如果为提交并且工作流未关闭则启动工作流
+<span class="token class-name">Object</span> object<span class="token operator">=</span>feignClientServe<span class="token punctuation">.</span><span class="token function">startCounterSign</span><span class="token punctuation">(</span>activitiesCheckDTO<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//开始会签</span>
+  <span class="token number">1.</span>根据唯一标识来确认对应该流程操作的是哪个数据库表
+    <span class="token number">2.</span>设置工作流流程变量
+    <span class="token number">3.</span>判断工作流所属类型（通用还是专有）
+    <span class="token number">3.1</span><span class="token punctuation">.</span>表示通用工作流
+    <span class="token number">3.2</span><span class="token punctuation">.</span>更新业务表信息与审批人信息
+    <span class="token number">3.3</span><span class="token punctuation">.</span>表示专有工作流
+    <span class="token number">3.4</span><span class="token punctuation">.</span>根据工作流id查询工作流明细
+    <span class="token number">3.5</span><span class="token punctuation">.</span>根据前端传回的数据，（是否会签）设置流程变量
+    <span class="token number">3.6</span><span class="token punctuation">.</span>更新审批人信息
+    <span class="token number">4.</span>修改待处理业务表信息，更新审批人待处理的文件的数量 
+<span class="token number">2.</span>如果为提交操作但是工作流为关闭状态直接完成流程更改体系文件状态      
+<span class="token number">3.</span>如果为暂存业务则不走工作流，直接入数据库，但是此时不走工作流
 
-审批文件-工作流逻辑
-1.驳回
-    1.1.当退回时直接结束流程，完成当前任务，文件状态更改
-    1.2.获取所有审核人员信息，待处理任务减1
-    1.3.删除审批信息
-2.通过
-    2.1.判断是否是通用、专有
-    2.2.通用工作流获取所有下级审批人
-    2.3.如果仅剩一个或会签类型为仅需一人审批，且没有下级审批人，流程结束
-    2.4.获取当前实例所有需要审核人员信息，将其提示信息减一
-    2.5.还有多个活动实例，且有下级审批人，流程继续，
-    2.6.判断下一个流程是否会签，同时新增下一个节点的审批人员信息
-    2.7.专有工作流从流程变量中获取流程节点id来获取会签类型
-    2.8.获取下一节点审批人员信息，并且根据节点id获取下一节点信息，为下级审批人员添加提醒
+审批文件<span class="token operator">-</span>工作流逻辑
+<span class="token number">1.</span>驳回
+    <span class="token number">1.1</span><span class="token punctuation">.</span>当退回时直接结束流程，完成当前任务，文件状态更改
+    <span class="token number">1.2</span><span class="token punctuation">.</span>获取所有审核人员信息，待处理任务减<span class="token number">1</span>
+    <span class="token number">1.3</span><span class="token punctuation">.</span>删除审批信息
+<span class="token number">2.</span>通过
+    <span class="token number">2.1</span><span class="token punctuation">.</span>判断是否是通用、专有
+    <span class="token number">2.2</span><span class="token punctuation">.</span>通用工作流获取所有下级审批人
+    <span class="token number">2.3</span><span class="token punctuation">.</span>如果仅剩一个或会签类型为仅需一人审批，且没有下级审批人，流程结束
+    <span class="token number">2.4</span><span class="token punctuation">.</span>获取当前实例所有需要审核人员信息，将其提示信息减一
+    <span class="token number">2.5</span><span class="token punctuation">.</span>还有多个活动实例，且有下级审批人，流程继续，
+    <span class="token number">2.6</span><span class="token punctuation">.</span>判断下一个流程是否会签，同时新增下一个节点的审批人员信息
+    <span class="token number">2.7</span><span class="token punctuation">.</span>专有工作流从流程变量中获取流程节点id来获取会签类型
+    <span class="token number">2.8</span><span class="token punctuation">.</span>获取下一节点审批人员信息，并且根据节点id获取下一节点信息，为下级审批人员添加提醒
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>文件预览功能 <a target="_blank" rel="noopener" href="https://kkfileview.keking.cn/zh-cn/docs/usage.html">kkFileView</a></li>
@@ -542,136 +563,134 @@ Object object&#x3D;feignClientServe.startCounterSign(activitiesCheckDTO); &#x2F;
 <li>服务器项目搭建</li>
 <li>课程视屏播放 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38684316/article/details/88070737?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1-88070737-blog-105723063.pc_relevant_multi_platform_whitelistv1&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1-88070737-blog-105723063.pc_relevant_multi_platform_whitelistv1&utm_relevant_index=1">vue-video-player</a></li>
 </ul>
-<pre class="line-numbers language-none"><code class="language-none">1.首先是npm i vue-video-player -D 安装依赖
-2.在main.js里面引入
-3.vue组件中引用
-  &lt;video-player class&#x3D;&quot;video-player vjs-custom-skin&quot;
-                 ref&#x3D;&quot;videoPlayer&quot;
-                 :playsinline&#x3D;&quot;true&quot;
-                 style&#x3D;&quot;object-fit:fill&quot;
-                 :options&#x3D;&quot;playerOptions&quot;
-                @play&#x3D;&quot;onPlayerPlay($event)&quot;
-                @pause&#x3D;&quot;onPlayerPause($event)&quot;
-                @ended&#x3D;&quot;onPlayerEnded($event)&quot;
-                @timeupdate&#x3D;&quot;onPlayerTimeupdate($event)&quot;
-                @ready&#x3D;&quot;playerReadied&quot;
-   &gt;
-   &lt;&#x2F;video-player&gt;
+<p>1.首先是npm i vue-video-player -D 安装依赖<br>2.在main.js里面引入<br>3.vue组件中引用</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">  <span class="token operator">&lt;</span>video<span class="token operator">-</span>player <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"video-player vjs-custom-skin"</span>
+                 ref<span class="token operator">=</span><span class="token string">"videoPlayer"</span>
+                 <span class="token operator">:</span>playsinline<span class="token operator">=</span><span class="token string">"true"</span>
+                 style<span class="token operator">=</span><span class="token string">"object-fit:fill"</span>
+                 <span class="token operator">:</span>options<span class="token operator">=</span><span class="token string">"playerOptions"</span>
+                @play<span class="token operator">=</span><span class="token string">"onPlayerPlay($event)"</span>
+                @pause<span class="token operator">=</span><span class="token string">"onPlayerPause($event)"</span>
+                @ended<span class="token operator">=</span><span class="token string">"onPlayerEnded($event)"</span>
+                @timeupdate<span class="token operator">=</span><span class="token string">"onPlayerTimeupdate($event)"</span>
+                @ready<span class="token operator">=</span><span class="token string">"playerReadied"</span>
+   <span class="token operator">></span>
+   <span class="token operator">&lt;</span><span class="token operator">/</span>video<span class="token operator">-</span>player<span class="token operator">></span>
 
-playerOptions: &#123;
-          playbackRates: [0.7, 1.0, 1.5, 2.0], &#x2F;&#x2F;播放速度
-          autoplay: false, &#x2F;&#x2F;如果true,浏览器准备好时开始回放。
-          muted: false, &#x2F;&#x2F; 默认情况下将会消除任何音频。
-          loop: false, &#x2F;&#x2F; 导致视频一结束就重新开始。
-          preload: &#39;auto&#39;, &#x2F;&#x2F; 建议浏览器在&lt;video&gt;加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
-          language: &#39;zh-CN&#39;,
-          aspectRatio: &#39;16:9&#39;, &#x2F;&#x2F; 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如&quot;16:9&quot;或&quot;4:3&quot;）
-          fluid: true, &#x2F;&#x2F; 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
-          sources: [&#123;
-            type: &quot;video&#x2F;mp4&quot;,
-            src: &quot;你的视频地址&quot;
-          &#125;],
-          poster: &quot;你的封面地址&quot;,
-          width: document.documentElement.clientWidth,
-          notSupportedMessage: &#39;此视频暂无法播放，请稍后再试&#39;, &#x2F;&#x2F;允许覆盖Video.js无法播放媒体源时显示的默认信息。
-          controlBar: &#123;
-            timeDivider: true,
-            durationDisplay: true,
-            remainingTimeDisplay: false,
-            fullscreenToggle: true  &#x2F;&#x2F;全屏按钮
-          &#125;
-        &#125;
-mounted() &#123;
-    this.onPlayerPlay(this.$refs.videoPlayer.player);
-&#125;, 
+<span class="token literal-property property">playerOptions</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+          <span class="token literal-property property">playbackRates</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">0.7</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">,</span> <span class="token number">1.5</span><span class="token punctuation">,</span> <span class="token number">2.0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">//播放速度</span>
+          <span class="token literal-property property">autoplay</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">//如果true,浏览器准备好时开始回放。</span>
+          <span class="token literal-property property">muted</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// 默认情况下将会消除任何音频。</span>
+          <span class="token literal-property property">loop</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// 导致视频一结束就重新开始。</span>
+          <span class="token literal-property property">preload</span><span class="token operator">:</span> <span class="token string">'auto'</span><span class="token punctuation">,</span> <span class="token comment">// 建议浏览器在&lt;video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）</span>
+          <span class="token literal-property property">language</span><span class="token operator">:</span> <span class="token string">'zh-CN'</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">aspectRatio</span><span class="token operator">:</span> <span class="token string">'16:9'</span><span class="token punctuation">,</span> <span class="token comment">// 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）</span>
+          <span class="token literal-property property">fluid</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。</span>
+          <span class="token literal-property property">sources</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"video/mp4"</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">src</span><span class="token operator">:</span> <span class="token string">"你的视频地址"</span>
+          <span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">poster</span><span class="token operator">:</span> <span class="token string">"你的封面地址"</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">width</span><span class="token operator">:</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>clientWidth<span class="token punctuation">,</span>
+          <span class="token literal-property property">notSupportedMessage</span><span class="token operator">:</span> <span class="token string">'此视频暂无法播放，请稍后再试'</span><span class="token punctuation">,</span> <span class="token comment">//允许覆盖Video.js无法播放媒体源时显示的默认信息。</span>
+          <span class="token literal-property property">controlBar</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">timeDivider</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">durationDisplay</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">remainingTimeDisplay</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">fullscreenToggle</span><span class="token operator">:</span> <span class="token boolean">true</span>  <span class="token comment">//全屏按钮</span>
+          <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+<span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">onPlayerPlay</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>videoPlayer<span class="token punctuation">.</span>player<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span> 
 
-onPlayerPlay(player) &#123;
-    this.paused &#x3D; false
-&#125;,
-&#x2F;&#x2F; 暂停回调
-onPlayerPause(player) &#123;
-    this.paused &#x3D; true
-&#125;,
-playerReadied (player) &#123;
-    console.dir(this.timelog);
-    player.currentTime(this.timelog);
-&#125;,
-&#x2F;&#x2F; 视频播完回调
-onPlayerEnded(player) &#123;
-    if (localStorage.videoStatus &#x3D;&#x3D; 0) &#123;
-&#x2F;&#x2F;完成课程
-        this.finishLesson();
-    &#125;else&#123;
-        alert(&quot;已经看过&quot;)
-    &#125;
-&#125;,
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">onPlayerPlay</span><span class="token punctuation">(</span><span class="token parameter">player</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>paused <span class="token operator">=</span> <span class="token boolean">false</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token comment">// 暂停回调</span>
+<span class="token function">onPlayerPause</span><span class="token punctuation">(</span><span class="token parameter">player</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>paused <span class="token operator">=</span> <span class="token boolean">true</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token function">playerReadied</span> <span class="token punctuation">(</span><span class="token parameter">player</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>timelog<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    player<span class="token punctuation">.</span><span class="token function">currentTime</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>timelog<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token comment">// 视频播完回调</span>
+<span class="token function">onPlayerEnded</span><span class="token punctuation">(</span><span class="token parameter">player</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>localStorage<span class="token punctuation">.</span>videoStatus <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<span class="token comment">//完成课程</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">finishLesson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+        <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"已经看过"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>文件预览功能</li>
 <li>手机端界面响应式布局实现</li>
 <li>无限滑动功能的实现（  better-scroll）<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44890979/article/details/111400863">better scroll原理</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37719279/article/details/82084342">better scroll教程</a></li>
 </ul>
-<pre class="line-numbers language-none"><code class="language-none">initScroll(dom) &#123;
-    let that &#x3D; this;
-    that.$nextTick(() &#x3D;&gt; &#123;
-        let bscrollDom &#x3D; this.$refs[dom];
-        let bScroll &#x3D; new BScroll(bscrollDom, &#123;
-            click: true,
-            probeType: 2,
-            bounceTime: 700, &#x2F;&#x2F;回弹时间
-            pullUpLoad: &#123;
-                threshold: 50, &#x2F;&#x2F; 当上拉距离超过50px时触发 pullingUp 事件
-                stop: 50
-            &#125;,
-            pullDownRefresh: &#123;
-                threshold: 50, &#x2F;&#x2F; 当下拉距离超过50px时触发 pullingDown 事件
-                stop: 50
-            &#125;,
-            useTransition: false &#x2F;&#x2F; 防止iphone微信滑动卡顿
-        &#125;);
-        bScroll.on(&quot;pullingDown&quot;, () &#x3D;&gt; &#123;
-            this.page &#x3D; 1;
-            console.dir(&quot;下拉刷新&quot;);
-            &#x2F;&#x2F;下拉刷新图标显示
-            this.loadingUp &#x3D; true;
-            &#x2F;&#x2F;删除无数据提示的标识位
-            this.showFlag &#x3D; false;
-            setTimeout(() &#x3D;&gt; &#123;
-              &#x2F;&#x2F;清空当前课程列表
-                this.lessonList &#x3D; [];
-              &#x2F;&#x2F;重新加载课程列表
-                this.getCourseData(this.page);
-            &#125;, 1000);
-            &#x2F;&#x2F;完成下拉操作
-            bScroll.finishPullDown();
-        &#125;);
-        bScroll.on(&quot;pullingUp&quot;, () &#x3D;&gt; &#123;
-            console.dir(&quot;上拉加载&quot;);
-          &#x2F;&#x2F;上划加载图标显示
-            this.loadingDown &#x3D; true;
-          &#x2F;&#x2F;删除无数据提示的标识位
-            this.showFlag &#x3D; false;
-            localStorage.selected&#x3D;0;&#x2F;&#x2F;叠加
-            if (this.page &lt; this.totalPages) &#123;
-                setTimeout(() &#x3D;&gt; &#123;
-                    this.page++;
-                  &#x2F;&#x2F;继续加载课程列表
-                    this.getCourseData(this.page);
-                &#125;, 1000);
-            &#125; else &#123;
-              &#x2F;&#x2F;跳转页码大于总页码，无更多数据
-              &#x2F;&#x2F;隐藏上划加载图标
-                this.loadingDown &#x3D; false;
-              &#x2F;&#x2F;显示无数据提示的标识位
-                this.showFlag &#x3D; true;
-            &#125;
-          &#x2F;&#x2F;完成上划操作
-            bScroll.finishPullUp();
-        &#125;);
-        &#x2F;&#x2F;清空bScroll
-        bScroll.refresh();
-    &#125;);
-&#125;,
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">initScroll</span><span class="token punctuation">(</span><span class="token parameter">dom</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">let</span> that <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    that<span class="token punctuation">.</span><span class="token function">$nextTick</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">let</span> bscrollDom <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">[</span>dom<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> bScroll <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BScroll</span><span class="token punctuation">(</span>bscrollDom<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">click</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">probeType</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">bounceTime</span><span class="token operator">:</span> <span class="token number">700</span><span class="token punctuation">,</span> <span class="token comment">//回弹时间</span>
+            <span class="token literal-property property">pullUpLoad</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+                <span class="token literal-property property">threshold</span><span class="token operator">:</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token comment">// 当上拉距离超过50px时触发 pullingUp 事件</span>
+                <span class="token literal-property property">stop</span><span class="token operator">:</span> <span class="token number">50</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">pullDownRefresh</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+                <span class="token literal-property property">threshold</span><span class="token operator">:</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token comment">// 当下拉距离超过50px时触发 pullingDown 事件</span>
+                <span class="token literal-property property">stop</span><span class="token operator">:</span> <span class="token number">50</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">useTransition</span><span class="token operator">:</span> <span class="token boolean">false</span> <span class="token comment">// 防止iphone微信滑动卡顿</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        bScroll<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">"pullingDown"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>page <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span><span class="token string">"下拉刷新"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">//下拉刷新图标显示</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>loadingUp <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+            <span class="token comment">//删除无数据提示的标识位</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>showFlag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+              <span class="token comment">//清空当前课程列表</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span>lessonList <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+              <span class="token comment">//重新加载课程列表</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getCourseData</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>page<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">//完成下拉操作</span>
+            bScroll<span class="token punctuation">.</span><span class="token function">finishPullDown</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        bScroll<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">"pullingUp"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+            console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span><span class="token string">"上拉加载"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token comment">//上划加载图标显示</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>loadingDown <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+          <span class="token comment">//删除无数据提示的标识位</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>showFlag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            localStorage<span class="token punctuation">.</span>selected<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token comment">//叠加</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>page <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>totalPages<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+                    <span class="token keyword">this</span><span class="token punctuation">.</span>page<span class="token operator">++</span><span class="token punctuation">;</span>
+                  <span class="token comment">//继续加载课程列表</span>
+                    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getCourseData</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>page<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+              <span class="token comment">//跳转页码大于总页码，无更多数据</span>
+              <span class="token comment">//隐藏上划加载图标</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span>loadingDown <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+              <span class="token comment">//显示无数据提示的标识位</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span>showFlag <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+          <span class="token comment">//完成上划操作</span>
+            bScroll<span class="token punctuation">.</span><span class="token function">finishPullUp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//清空bScroll</span>
+        bScroll<span class="token punctuation">.</span><span class="token function">refresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
