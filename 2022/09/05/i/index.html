@@ -402,18 +402,12 @@
 <h2 id="英语自我介绍"><a href="#英语自我介绍" class="headerlink" title="英语自我介绍"></a>英语自我介绍</h2><p>My name is ZhangYuHan. And i was born in Jiangsu Nantong.My intended work city is Shanghai.  And i got my bachel degree when i graduated from my college, as 2020. i will get my master degree in 2023.</p>
 <p>During the past few years, i ‘ve spent most of my time on study, and i have passed cet6, and i have acquired basic knowledge of my major both in theory and in practice during my college. Otherwise, I also participated in some software development projects. In a recent project, I was mainly responsible for front-end development and writing high-quality code.<br>i have got a lot of interest . such as swimming,running and basketball. For me ,my biggest advantage is cooperating with other. and i think i am a good team player and i am a person  of great honesty to others .Also i am able to work under great pressure . i hope you can give me the chance.</p>
 <h2 id="实习经历"><a href="#实习经历" class="headerlink" title="实习经历"></a>实习经历</h2><p>参与 csb 运营监控平台前端工程的代码优化；根据团队规范使用 Vue.js 完成前端业务功能开发，包括 eop能力调用实时展示、接口服务情况、平台健康度展示等功能，编写高质量，易读易维护的代码；参与能力开放平台接口注册与配置工作。</p>
-<h2 id="项目经历"><a href="#项目经历" class="headerlink" title="项目经历"></a>项目经历</h2><ol>
-<li>微网格管理系统项目内容：兼容三维、二维等多种数据格式的社区网格化管理平台。支持动态处理事件，把“人、地、物、事、组织”等全部纳入网格管理，对每一网格实施精细化、主动化、可视化。</li>
-</ol>
+<h2 id="项目经历"><a href="#项目经历" class="headerlink" title="项目经历"></a>项目经历</h2><h3 id="微网格管理系统"><a href="#微网格管理系统" class="headerlink" title="微网格管理系统"></a>微网格管理系统</h3><p>项目内容：兼容三维、二维等多种数据格式的社区网格化管理平台。支持动态处理事件，把“人、地、物、事、组织”等全部纳入网格管理，对每一网格实施精细化、主动化、可视化。</p>
 <p>项目技术：SpringBoot、java、Vue2.0、Ant DesignVue</p>
 <p>负责模块：利用axure设计单位管理等界面效果图，参与实有人口管理、地址与房屋管理、车辆管理、行政区划管理、单位管理（学校管理、党政机关管理、医院管理）、工单管理的前端开发。</p>
 <p>个人收获， 我主要负责的内容是前端开发，项目开发的经历首先增长了我前端的开发知识，比如supermap 地图功能的实现、print打印功能、文件下载功能。同时时间的紧迫也培养了我良好的时间意识，保证了在工期压力之下依旧能够稳定地产出高质量的代码。最后我也是了解到 在项目开发的时候切记个人主义，不要你想什么就是什么，  不要假想用户会了解软件设计的详细过程，也不要想当然的认为用户会耐心的看用户帮助文档，一切从用户的角度出发思考问题</p>
-<ul>
-<li><p>在项目的前期需要去<strong>绘制原型图</strong>，项目工期很赶，要求半天时间就需要把原型图弄好。因为需要利用axure去绘制原型图，所以通过边查阅资料边实际上手操作的方式，及时完成了任务。<strong>（主要做交互，开发的参考，  页面、控件、跳转、动态面板，条件判断，给页面、面板取名字）</strong>在完成这个任务的过程中，遇到实现动态面板与条件判断的问题。动态面板简而言之就是在某个大页面中，有一个局部的小页面，称之为面板，点击某个按钮，要去实现小页面的动态转换，从a面板变成b面板。条件判断就是，比如点击登陆按钮，要判断账号输入框里是否有文字，没有的话就要显示一条提示，提示放在一个动态面板中，默认为不）</p>
-</li>
-<li><p>权限细化到按钮级别<br>当时在做按钮的权限管理时，没有用那种传统的v-if（每个页面都要获取一次权限信息，代码往往很冗余），而是通过自定义指令进行按钮权限的判断（将获取权限的方法封装起来），首先该自定义指令绑定在某个按钮上，在该按钮被渲染时调用inserted钩子函数，传入当前按钮的v-hasPermi的值，检查保存在vuex、localstorage内的权限树是否有当前按钮的权限，有则进行渲染，无则删除子节点，返回父节点</p>
-</li>
-</ul>
+<h4 id="axure绘制原型图"><a href="#axure绘制原型图" class="headerlink" title="axure绘制原型图"></a>axure绘制原型图</h4><p>在项目的前期需要去<strong>绘制原型图</strong>，项目工期很赶，要求半天时间就需要把原型图弄好。因为需要利用axure去绘制原型图，所以通过边查阅资料边实际上手操作的方式，及时完成了任务。<strong>（主要做交互，开发的参考，  页面、控件、跳转、动态面板，条件判断，给页面、面板取名字）</strong>在完成这个任务的过程中，遇到实现动态面板与条件判断的问题。动态面板简而言之就是在某个大页面中，有一个局部的小页面，称之为面板，点击某个按钮，要去实现小页面的动态转换，从a面板变成b面板。条件判断就是，比如点击登陆按钮，要判断账号输入框里是否有文字，没有的话就要显示一条提示，提示放在一个动态面板中，默认为不）</p>
+<h4 id="自定义权限指令细化到按钮级别"><a href="#自定义权限指令细化到按钮级别" class="headerlink" title="自定义权限指令细化到按钮级别"></a>自定义权限指令细化到按钮级别</h4><p>当时在做按钮的权限管理时，没有用那种传统的v-if（每个页面都要获取一次权限信息，代码往往很冗余），而是通过自定义指令进行按钮权限的判断（将获取权限的方法封装起来），首先该自定义指令绑定在某个按钮上，在该按钮被渲染时调用inserted钩子函数，传入当前按钮的v-hasPermi的值，检查保存在vuex、localstorage内的权限树是否有当前按钮的权限，有则进行渲染，无则删除子节点，返回父节点 </p>
 <p>拓展：权限树的获取步骤</p>
 <ol>
 <li>用户输入账号密码进行登录，登录完拿到token，将token存到cookie和localstorage，之后每次往后端发送请求都通过axios请求拦截器进行拦截，每次请求的时候头部携带token</li>
@@ -432,18 +426,14 @@
 <p>首先当时因为我们的按钮有两个判定条件，一个是根据左侧一个树的层级来显示的，所以我们一开始先在按钮上绑定了一个v-if，来控制它在哪一层显示和隐藏，第二个则是根据用户是否有当前按钮的权限。</p>
 <p>但当我把自定义指令加到按钮上时，系统报错了，这时候我发现v-if和v-permission，也就是自定义指令会产生冲突（当同时存在 v-if 和自定义隐藏的指令 el 会被删除，但元素上的指令依旧会执行，修改的是上一个元素的显示隐藏）（v-if把咱们的dom元素给删除了，导致这个v-permission找不到这个dom元素了），后来的话也是找到了两种解决方式：<br>第一种方式，将v-if 替换为v-show，这样元素一直存在，就不会出现问题，(如果你的自定义指令会动态改变display属性，那就可能和v-show冲突 v-show是通过display：none来控制隐藏，这点需要注意，只是单一的隐藏，就不需要考虑了)<br>第二种方式，将v-if指令合并到自定义中 传入一个对象；改指令实现通过传入的对象来实现是否需要隐藏。</p>
 <p>然后的话还有个小细节就是，当时主要有两个地方的按钮会涉及到权限的设置，分别是html部分的v-permission和在列表中渲染的按钮v-permission，通过一个渲染函数customRender，把节点渲染到html中，在customRender中填写的<code>&lt;Button v-hasPermi=&quot;[&#39;ADRESS:BUILD:EDIT&#39;]&quot;&gt;修改&lt;/Button&gt;</code>是个字符串，而<code>&lt;a-button v-hasPermi=&quot;[&#39;ADRESS:BUILD:ADD&#39;]&quot;&gt;新增&lt;/a-button&gt;</code>是个数组，虽然两种写法是一样的，但vue处理的方式不一样，这时候需要对值做一个判断，如果是字符串就需要将其转换成数组,将其统一之后再做处理</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/summer_du/article/details/114363473">supermap、leaflat地图功能实现</a>页面引入、初始化地图、地图上绘制点、线、多边形、弹框、绘制省市区的边界与高亮区域、绘制热力图和风力图</li>
-</ul>
+<h4 id="supermap、leaflat地图功能实现"><a href="#supermap、leaflat地图功能实现" class="headerlink" title="supermap、leaflat地图功能实现"></a>supermap、leaflat地图功能实现</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/summer_du/article/details/114363473">supermap、leaflat</a>页面引入、初始化地图、地图上绘制点、线、多边形、弹框、绘制省市区的边界与高亮区域、绘制热力图和风力图</p>
 <p>地图上点击要有反馈，查阅官方文档后给不同图层绑定了一个点击事件，但点击事件无法在其它vue组件里进行触发，这时候我们通过vue的事件总线，把事件传出来，各个vue组件在初始化的时候先注册了一个事件，然后我们在画图的时候，我们绑定了一个点击事件，在点击事件中触发这个事件，进而拿到它的一些参数（key：图层的种类），然后可以进行一些弹窗展示</p>
 <ol>
 <li>先初始化各个图层，包括建筑物、医院、学校图层，每个图层都根据后端传回的经纬度数据各自生成了建筑物、医院、学校的点位，</li>
 <li>在各个图层上面监听onclik事件，当触发该事件时，触发事件总线的“点击图标”事件，并且传递该点击事件的点位信息与key（图层的种类） </li>
 <li>在vue文件中注册事件总线，当“点击图标”事件发生时，需要根据传回来的key与数据触发对应的方法 4.通过key的不同种类，使用<code>swtich case</code>来进行相应地方法。</li>
 </ol>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41897680/article/details/124797673">print打印功能实现</a></li>
-</ul>
+<h4 id="print打印"><a href="#print打印" class="headerlink" title="print打印"></a>print打印</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41897680/article/details/124797673">print打印功能实现</a></p>
 <ol>
 <li>接到一个需求，打印当前页面的内容，一开始考虑的是直接打印当前页面的内容，但是页面上会显示地图，直接打印的话地图是不能打印出来的，所以考虑将地图所在的div转换成图片，通过搜索找到了一个html2canvs插件</li>
 <li>html2canvs的作用就是允许让我们直接在用户浏览器上拍摄网页或其部分的“截图”，它的屏幕截图是基于 DOM 的，因此可能不会 100% 精确到真实的表示，因为它不会生成实际的屏幕截图，而是基于页面上可用的信息构建屏幕截图。所以在页面初始化created时，当地图加载完毕之后，调用html2canvas方法，设置允许跨域图像污染画步，同时设置尝试使用CORS从服务器加载图像，最后生成对应的图片地址，最后利用v-if来显示与隐藏地图和图片</li>
@@ -453,48 +443,22 @@
 <li>通过css设置<code>page-break-after</code>来解决数据切割问题， <code>page-break-after：always</code> 属性用于设置在指定元素后面插入分页符。</li>
 <li>@page规则允许你指定页面盒子的许多方面。例如，你想要指定页面尺寸。 除了可以用长度值声明尺寸，你还可以使用纸质尺寸关键字，例如”A4”或<code>legal</code>。 你也可以使用关键字来指定页面方向 portrait（竖向的）或landscape（横向的）。</li>
 </ol>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35435093/article/details/123902850">文件下载功能实现</a></li>
-</ul>
+<h4 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35435093/article/details/123902850">文件下载功能实现</a></p>
 <p>图片下载一开始点击因为使用了 window.open 点击图片就直接跳转到预览了，想要点击下载的功能</p>
 <ol>
 <li>使用文件流的方式，在请求的时候，需要预先设置响应的数据格式responseType为bold，提醒后端这个请求需要获取blod(之前的接口被封装好了，另外重写了新的请求接口)，</li>
 <li>再获取到后端的文件流之后，不能用window.open方法打开，而是创建一个新的对象URL，该对象URL可以代表某一个指定的file对象或者bold对象 </li>
 <li>新建一个a标签并为其添加属性，将生成的URL设置为a.href属性，在通过虚拟dom创建a标签，最后调用点击事件，进行下载文件</li>
 </ol>
-<ul>
-<li><p>antd框架的熟悉与使用</p>
-</li>
-<li><p>后端对接与团队交流</p>
-</li>
-<li><p>需求确认，bug修改是否正确</p>
-</li>
-</ul>
-<ol>
-<li>小型企业安全生产信息化管理平台<br>项目内容：基于JavaWeb的安全生产信息化管理平台，规范企业安全生产规范化建设<br>项目技术：SpringCloud、java、Vue3.0、elementUi<br>负责模块：参与系统管理与业务模块的功能设计以及安全生产目标功能与隐患排查功能前后端的开发。<br>个人收获：对于一个完整的项目流程有了更加深刻的认识和理解，同时参与了业务流程设计与数据库设计，掌握了更多技能，包括用axure绘制原型图，用staruml设计数据库，这让我了解到快速学习新知识并将其运用到业务开发的重要性。在这个开发的过程中，前端代码直观的反馈会带给我成就感，我对前端的兴趣也越来越浓厚，</li>
-</ol>
-<ul>
-<li><p>axure图绘制</p>
-</li>
-<li><p>数据库设计</p>
-</li>
-<li><p>页面设计</p>
-</li>
-<li><p>功能设计</p>
-</li>
-<li><p>批量导入功能的实现EasyExcel是阿里巴巴开源的一个excel处理框架，以使用简单、节省内存著称。EasyExcel能很大的减少占用内存的主要原因是在解析文件时没有将数据一次性全部加载到内存中，而是从磁盘上一行行读取数据，逐个解析。 EasyExcel采用一行一行的解析模式，并将一行的解析结果以观察者的模式通知处理（AnalysisEventListener）。（使用EasyExcel进行导入功能：</p>
-</li>
-</ul>
+<h3 id="小型企业安全生产信息化管理平台"><a href="#小型企业安全生产信息化管理平台" class="headerlink" title="小型企业安全生产信息化管理平台"></a>小型企业安全生产信息化管理平台</h3><p>项目内容：基于JavaWeb的安全生产信息化管理平台，规范企业安全生产规范化建设<br>项目技术：SpringCloud、java、Vue3.0、elementUi<br>负责模块：参与系统管理与业务模块的功能设计以及安全生产目标功能与隐患排查功能前后端的开发。<br>个人收获：对于一个完整的项目流程有了更加深刻的认识和理解，同时参与了业务流程设计与数据库设计，掌握了更多技能，包括用axure绘制原型图，用staruml设计数据库，这让我了解到快速学习新知识并将其运用到业务开发的重要性。在这个开发的过程中，前端代码直观的反馈会带给我成就感，我对前端的兴趣也越来越浓厚，</p>
+<h4 id="批量导入功能"><a href="#批量导入功能" class="headerlink" title="批量导入功能"></a>批量导入功能</h4><p>批量导入功能的实现EasyExcel是阿里巴巴开源的一个excel处理框架，以使用简单、节省内存著称。EasyExcel能很大的减少占用内存的主要原因是在解析文件时没有将数据一次性全部加载到内存中，而是从磁盘上一行行读取数据，逐个解析。 EasyExcel采用一行一行的解析模式，并将一行的解析结果以观察者的模式通知处理（AnalysisEventListener）。（使用EasyExcel进行导入功能：</p>
 <ol>
 <li>引入maven</li>
 <li>编写pojo（ @ExcelProperty(“单据编号”)注解对应的excel的标题，一个字都不能差，他会自动读取）</li>
 <li>编写controller（&#x2F;&#x2F;1.进行读取数据，StorageRetrieval是我的pojo类， &#x2F;&#x2F;2.new SorageListener(storageService)这个是监听器，主要用来读取数据的&#x2F;&#x2F;3. EasyExcel.read（file.getInputStream();, StorageRetrieval.class, new SorageListener; ））</li>
 <li>读取到工作簿内容后，将获取到的数据传到dto：workBook.sheet().doReadSync();））</li>
 </ol>
-<ul>
-<li>工作流功能的实现</li>
-</ul>
- <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token class-name">Integer</span> companyId<span class="token punctuation">;</span>
+<h4 id="工作流功能的实现"><a href="#工作流功能的实现" class="headerlink" title="工作流功能的实现"></a>工作流功能的实现</h4> <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token class-name">Integer</span> companyId<span class="token punctuation">;</span>
 <span class="token comment">//表示是否为通用工作流(0表示通用工作流，1表示自定义工作流)</span>
 <span class="token keyword">private</span> <span class="token class-name">Integer</span> type<span class="token punctuation">;</span>
 <span class="token comment">//当为通用工作流时，需要传下级审批人id,为自定义工作流时无需传该值,其中该值为数组</span>
@@ -549,22 +513,19 @@
     <span class="token number">2.7</span><span class="token punctuation">.</span>专有工作流从流程变量中获取流程节点id来获取会签类型
     <span class="token number">2.8</span><span class="token punctuation">.</span>获取下一节点审批人员信息，并且根据节点id获取下一节点信息，为下级审批人员添加提醒
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>文件预览功能 <a target="_blank" rel="noopener" href="https://kkfileview.keking.cn/zh-cn/docs/usage.html">kkFileView</a></li>
-</ul>
+<h4 id="文件预览功能"><a href="#文件预览功能" class="headerlink" title="文件预览功能"></a>文件预览功能</h4><p><a target="_blank" rel="noopener" href="https://kkfileview.keking.cn/zh-cn/docs/usage.html">kkFileView</a></p>
 <ol>
 <li>将预览接口提供给前端；</li>
 <li>利用 window.open 浏览器打开新窗口预览文件 </li>
 <li>通过iframe，预览文件 结合elementUI的弹窗（可以做其他弹窗效果）很多系统内不是直接暴露文件下载地址，而是请求通过id、code等参数到通过统一的接口，后端通过id或code等参数定位文件，再通过OutputStream输出下载，此时下载url是不带文件后缀名的，预览时需要拿到文件名，传一个参数fullfilename&#x3D;xxx.xxx来指定文件名</li>
 </ol>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/MtangEr/article/details/108599708?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-108599708-blog-120524610.pc_relevant_paycolumn_v3&spm=1001.2101.3001.4242.1&utm_relevant_index=3">具体步骤</a></p>
-<p>3.徐工培训云平台<br>项目内容：基于JavaWeb的培训教育管理平台，实现课程学习、参与考试、发布计划等功能<br>项目技术：SpringBoot、java、Vue2.0、elementUi、Mint UI<br>负责模块：PC端课程管理的前后端开发，移动端的课程学习、线下课程签到、课程评价管理的前后端开发<br>个人收获：个人收获：我系统地了解了程序开发的相关知识，对项目的运行流程有了大体上的认知，培养了我良好的编程习惯，包括变量命名规范、格式规范等</p>
-<ul>
-<li>服务器项目搭建</li>
-<li>课程视屏播放 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38684316/article/details/88070737?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1-88070737-blog-105723063.pc_relevant_multi_platform_whitelistv1&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1-88070737-blog-105723063.pc_relevant_multi_platform_whitelistv1&utm_relevant_index=1">vue-video-player</a></li>
-</ul>
-<p>1.首先是npm i vue-video-player -D 安装依赖<br>2.在main.js里面引入<br>3.vue组件中引用</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">  <span class="token operator">&lt;</span>video<span class="token operator">-</span>player <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"video-player vjs-custom-skin"</span>
+<h3 id="徐工培训云平台"><a href="#徐工培训云平台" class="headerlink" title="徐工培训云平台"></a>徐工培训云平台</h3><p>项目内容：基于JavaWeb的培训教育管理平台，实现课程学习、参与考试、发布计划等功能<br>项目技术：SpringBoot、java、Vue2.0、elementUi、Mint UI<br>负责模块：PC端课程管理的前后端开发，移动端的课程学习、线下课程签到、课程评价管理的前后端开发<br>个人收获：个人收获：我系统地了解了程序开发的相关知识，对项目的运行流程有了大体上的认知，培养了我良好的编程习惯，包括变量命名规范、格式规范等</p>
+<h4 id="课程视屏播放"><a href="#课程视屏播放" class="headerlink" title="课程视屏播放"></a>课程视屏播放</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38684316/article/details/88070737?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1-88070737-blog-105723063.pc_relevant_multi_platform_whitelistv1&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1-88070737-blog-105723063.pc_relevant_multi_platform_whitelistv1&utm_relevant_index=1">vue-video-player</a></p>
+<ol>
+<li>首先是npm i vue-video-player -D 安装依赖</li>
+<li>在main.js里面引入</li>
+<li>vue组件中引用<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">  <span class="token operator">&lt;</span>video<span class="token operator">-</span>player <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"video-player vjs-custom-skin"</span>
                  ref<span class="token operator">=</span><span class="token string">"videoPlayer"</span>
                  <span class="token operator">:</span>playsinline<span class="token operator">=</span><span class="token string">"true"</span>
                  style<span class="token operator">=</span><span class="token string">"object-fit:fill"</span>
@@ -624,12 +585,9 @@
         <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"已经看过"</span><span class="token punctuation">)</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>文件预览功能</li>
-<li>手机端界面响应式布局实现</li>
-<li>无限滑动功能的实现（  better-scroll）<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44890979/article/details/111400863">better scroll原理</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37719279/article/details/82084342">better scroll教程</a></li>
-</ul>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<h4 id="无限滑动功能的实现better-scroll"><a href="#无限滑动功能的实现better-scroll" class="headerlink" title="无限滑动功能的实现better-scroll"></a>无限滑动功能的实现better-scroll</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44890979/article/details/111400863">better scroll原理</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37719279/article/details/82084342">better scroll教程</a> </p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">initScroll</span><span class="token punctuation">(</span><span class="token parameter">dom</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">let</span> that <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
     that<span class="token punctuation">.</span><span class="token function">$nextTick</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
@@ -693,9 +651,7 @@
 <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_48115935/article/details/113178939">生成二维码（qrcodesjs2）</a></li>
-</ul>
+<h4 id="生成二维码"><a href="#生成二维码" class="headerlink" title="生成二维码"></a>生成二维码</h4><p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_48115935/article/details/113178939">生成二维码（qrcodesjs2）</a></p>
 <h2 id="什么要学习前端"><a href="#什么要学习前端" class="headerlink" title="什么要学习前端"></a>什么要学习前端</h2><p>个人热爱，从一开始接触互联网，就对这个行业有向往有憧憬，期望能在这个行业发光发热，敲出的代码跑出来运行起来，内心很兴奋</p>
 <p>前端一开始写html页面，看着自己写出来的一个个页面就很有成就感，然后慢慢的就想写的更漂亮，交互效果越多，就开始努力学习css和js，随着页面越来越复杂，就需要学更多的东西，追求更高的代码质量，就是这样的良性循环促使自己在前端道路上一直走下去。</p>
 <p>就业前景好（互联网应用环境）也觉得这个行业,社区很开放，很有活力。这两年前端技术井喷，感觉自己还是图样，还需要在工作中不断学习，提高知识水平</p>
