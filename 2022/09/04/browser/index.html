@@ -766,7 +766,7 @@ ALLOW-FROM         &#x2F;&#x2F; 可以定义允许frame加载的页面地址<spa
 <li>迭代器模式 访问一个聚合对象的内容而无需暴露它的内部表示。为遍历不同的集合结构提供一个统一的接口，从而支持同样的算法在不同的集合结构上进行操作</li>
 <li>状态模式 通过定义不同的状态类，根据状态的改变而改变对象的行为，也不必把大量的逻辑都写在被操作对象的类中，而且容易增加新的状态</li>
 </ol>
-<h2 id="SPA单页面"><a href="#SPA单页面" class="headerlink" title="SPA单页面"></a>SPA单页面</h2><p>概念：<br>SPA（ single page application ）仅在 Web 页面初始化时加载相应的 HTML、javascript 和 CSS。<br>一旦页面加载完成，SPA 不会因为用户的操作而进行页面的重新加载或跳转<br>而页面的变化是利用路由机制实现 HTML 内容的变换，避免页面的重新加载。</p>
+<h2 id="SPA单页面"><a href="#SPA单页面" class="headerlink" title="SPA单页面"></a>SPA单页面</h2><p><strong>概念：</strong><br>SPA（ single page application ）仅在 Web 页面初始化时加载相应的 HTML、javascript 和 CSS。<br>一旦页面加载完成，SPA 不会因为用户的操作而进行页面的重新加载或跳转<br>而页面的变化是利用路由机制实现 HTML 内容的变换，避免页面的重新加载。</p>
 <p><strong>优点：</strong></p>
 <ol>
 <li>加载速度快，内容的改变不需要重新加载整个页面</li>
@@ -847,7 +847,7 @@ ALLOW-FROM         &#x2F;&#x2F; 可以定义允许frame加载的页面地址<spa
 </ol>
 <p><strong>监控的方法：</strong></p>
 <ol>
-<li><p>合成监控：用 web 浏览器模拟器来加载网页，通过模拟终端用户可能的操作来采集对应的性能指标，最后输出一个网站性能报<strong>Lighthouse</strong><br>、PageSpeed、WebPageTest。</p>
+<li><p>合成监控：用 web 浏览器模拟器来加载网页，通过模拟终端用户可能的操作来采集对应的性能指标，最后输出一个网站性能报<strong>Lighthouse</strong>、PageSpeed、WebPageTest。</p>
 </li>
 <li><p>真实用户监控：真实用户监控是一种被动监控技术，是一种应用服务，被监控的 web 应用通过 sdk 等方式接入该服务，将真实的用户访问、交互等性能指标数据收集上报、通过数据清洗加工后形成性能分析报表。例如 <strong>FrontJs、oneapm、Datadog</strong> 等。</p>
 </li>
@@ -1017,43 +1017,30 @@ document<span class="token punctuation">.</span>body<span class="token punctuati
 <li><p>修改webpack.base.conf.js文件<br>在module.exports下添加externals，将通过cdn引入的包忽略，在webpack打包中则无需打包。</p>
 </li>
 </ol>
-<pre class="line-numbers language-none"><code class="language-none">externals: &#123;
-    &#39;vue&#39;: &#39;Vue&#39;,
-    &#39;vue-router&#39;: &#39;VueRouter&#39;,
-    &#39;vuex&#39;: &#39;Vuex&#39;,
-    &#39;three&#39;: &#39;THREE&#39;,
-    &#39;echarts&#39;: &#39;echarts&#39;,
-    &#39;axios&#39;: &#39;axios&#39;,
-    &#39;element-ui&#39;: &#39;ElementUI&#39;,
-    &#39;babel-polyfill&#39;: &#39;_babelPolyfill&#39;
-&#125;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">externals</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token string-property property">'vue'</span><span class="token operator">:</span> <span class="token string">'Vue'</span><span class="token punctuation">,</span>
+    <span class="token string-property property">'vue-router'</span><span class="token operator">:</span> <span class="token string">'VueRouter'</span><span class="token punctuation">,</span>
+    <span class="token string-property property">'vuex'</span><span class="token operator">:</span> <span class="token string">'Vuex'</span><span class="token punctuation">,</span>
+    <span class="token string-property property">'three'</span><span class="token operator">:</span> <span class="token string">'THREE'</span><span class="token punctuation">,</span>
+    <span class="token string-property property">'echarts'</span><span class="token operator">:</span> <span class="token string">'echarts'</span><span class="token punctuation">,</span>
+    <span class="token string-property property">'axios'</span><span class="token operator">:</span> <span class="token string">'axios'</span><span class="token punctuation">,</span>
+    <span class="token string-property property">'element-ui'</span><span class="token operator">:</span> <span class="token string">'ElementUI'</span><span class="token punctuation">,</span>
+    <span class="token string-property property">'babel-polyfill'</span><span class="token operator">:</span> <span class="token string">'_babelPolyfill'</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>属性名称vue表明该模块vue中import Vue from ‘vue’应排除在外。为了替换此模块，该值Vue将用于检索全局Vue变量。</p>
-<pre class="line-numbers language-none"><code class="language-none">externals: &#123;
-    &#39;vue-router&#39;: &#39;VueRouter&#39;
-&#125;,
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">externals</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token string-property property">'vue-router'</span><span class="token operator">:</span> <span class="token string">'VueRouter'</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
  
- export default new VueRouter(&#123;
-  linkActiveClass: &#39;on&#39;,
-  mode: &#39;history&#39;,
-  routes: routerArray
-&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">linkActiveClass</span><span class="token operator">:</span> <span class="token string">'on'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">mode</span><span class="token operator">:</span> <span class="token string">'history'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">routes</span><span class="token operator">:</span> routerArray
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>babel-polyfill的配置全局变量_babelPolyfill，同样是查看源码可得。</p>
-<ol>
-<li><p><strong>注释掉其他地方包的引入</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; import Vue from &#39;vue&#39;
-&#x2F;&#x2F; import VueRouter from &#39;vue-router&#39;
-&#x2F;&#x2F; import Vuex from &#39;vuex&#39;
-&#x2F;&#x2F; import * as THREE from &#39;three&#39;
-&#x2F;&#x2F; import echarts from &#39;echarts&#39;
-&#x2F;&#x2F; import axios from &#39;axios&#39;
-&#x2F;&#x2F; import ElementUI from &#39;element-ui&#39;
-&#x2F;&#x2F; import &#39;element-ui&#x2F;lib&#x2F;theme-chalk&#x2F;index.css&#39;
-&#x2F;&#x2F; import &#39;babel-polyfill&#39;
-
-&#x2F;&#x2F; Vue.use(VueRouter)
-&#x2F;&#x2F; Vue.use(Vuex)
-&#x2F;&#x2F; Vue.use(ElementUI)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="7">
+<li><p>注释掉其他地方包的引入</p>
 </li>
 <li><p>使用预获取<br>只需在链接属性上增加 rel&#x3D;”prefetch”,rel&#x3D;”dns-prefetch”，或者 rel&#x3D;”preload” 标记。</p>
 </li>

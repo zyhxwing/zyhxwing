@@ -766,6 +766,16 @@ axios<span class="token punctuation">.</span><span class="token function">all</s
 <p><strong>3）内存整理</strong><br>频繁回收对象后，内存中就会存在大量不连续空间，称为内存碎片。当出现了大量的内存碎片之后，如果需要分配较大的连续内存时，就会出现内存不足的情况，所以最后一步需要整理这些内存碎片。</p>
 <p>在我们的实际开发过程中，如果我们想要让垃圾回收器回收某一对象，就将对象的引用直接设置为 null。但如果一个对象被多次引用时，例如作为另一对象的键、值或子元素时，将该对象引用设置为 null 时，该对象是不会被回收的，依然存在。</p>
 <h2 id="Cookie、LocalStorage、SessionStorage"><a href="#Cookie、LocalStorage、SessionStorage" class="headerlink" title="Cookie、LocalStorage、SessionStorage"></a>Cookie、LocalStorage、SessionStorage</h2><p><img src="/../images/JavaScript/1367_1.png" alt="Cookie、LocalStorage、SessionStorage"></p>
+<h3 id="cookies属性有哪些"><a href="#cookies属性有哪些" class="headerlink" title="cookies属性有哪些"></a>cookies属性有哪些</h3><ul>
+<li>cookieName&#x3D;cookieValue 设置 cookie 的名字和值，必填项。</li>
+<li>HttpOnly 只能通过 HTTP 响应报文的 Set-Cookie 来新增或更新 cookie ，客户端无法通过脚本的方式来读写 cookie。</li>
+<li>Expires cookie 的过期时间点</li>
+<li>Max-Age cookie 的有效时间长度</li>
+<li>Path 设置 cookie 的路径作用域</li>
+<li>Domain 设置 cookie 的 domain 作用域。</li>
+<li>Secure 该属性没有值，属性本身存在就代表设置为安全模式。即请求必须为安全连接（HTTPS），cookie 才会被保存下来。HTTP 协议下，cookie 无效。</li>
+<li>SameSite cookie 在跨域时是否应该被发送。</li>
+</ul>
 <h2 id="es6"><a href="#es6" class="headerlink" title="es6"></a>es6</h2><h3 id="let-const-var"><a href="#let-const-var" class="headerlink" title="let const var"></a>let const var</h3><p>var ——ES5 变量声明方式变量未赋值时，变量undefined（为使用声明变量时也为undefined）<br>作用域——var的作用域为方法作用域；只要在方法内定义了，整个方法内的定义变量后的代码都可以使用</p>
 <p>let——ES6变量声明方式<br>在变量为声明前直接使用会报错<br>作用域——let为块作用域——通常let比var 范围要小<br>let禁止重复声明变量，否则会报错；var可以重复声明</p>
 <p>const——ES6变量声明方式</p>
@@ -971,6 +981,13 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <li>初始化arguments对象</li>
 <li>形参赋值</li>
 <li>执行代码</li>
+</ol>
+<h2 id="0-1-0-2-x3D-x3D-0-3"><a href="#0-1-0-2-x3D-x3D-0-3" class="headerlink" title="0.1+0.2!&#x3D;&#x3D;0.3"></a>0.1+0.2!&#x3D;&#x3D;0.3</h2><p>原因总结：<br>进制转换 ：js 在做数字计算的时候，<strong>0.1 和 0.2 都会被转成二进制后无限循环</strong>，但是 js 采用的 IEEE 754 二进制浮点运算，最大可以存储 53 位有效数字，于是大于 53 位后面的会全部截掉，将导致精度丢失。<br>对阶运算 ：由于指数位数不相同，运算时需要对阶运算，阶小的尾数要根据阶差来右移（0舍1入），尾数位移时可能会发生数丢失的情况，影响精度。</p>
+<p>解决办法：</p>
+<ol>
+<li>转为整数（大数）运算。</li>
+<li>使用 Number.EPSILON 误差范围。</li>
+<li>转成字符串，对字符串做加法运算。</li>
 </ol>
 
                 

@@ -464,6 +464,7 @@
 <p>第一种实现方式是基于时间实现的，第二种实现方式是基于一个唯一标识实现的，相对来说后者可以更加准确地判断文件内容是否被修改，避免由于时间篡改导致的不可靠问题。</p>
 <p>如果 HTTP 响应头部同时有 Etag 和 Last-Modified 字段的时候， Etag 的优先级更高，也就是先会判断 Etag 是否变化了，如果 Etag 没有变化，然后再看 Last-Modified。</p>
 <p>注意，协商缓存这两个字段都需要配合强制缓存中 Cache-control 字段来使用，只有在未能命中强制缓存的时候，才能发起带有协商缓存字段的请求。</p>
+<h4 id="三种刷新操作对-http-缓存的影响"><a href="#三种刷新操作对-http-缓存的影响" class="headerlink" title="三种刷新操作对 http 缓存的影响"></a>三种刷新操作对 http 缓存的影响</h4><p>正常操作：地址栏输入 url，跳转链接，前进后退等。强制缓存有效，协商缓存有效<br>手动刷新：f5，点击刷新按钮，右键菜单刷新。强制缓存失效，协商缓存有效<br>强制刷新：ctrl + f5，shift+command+r。强制缓存失效，协商缓存失效。</p>
 <h3 id="HTTP特性与演变"><a href="#HTTP特性与演变" class="headerlink" title="HTTP特性与演变"></a>HTTP特性与演变</h3><h4 id="HTTP1-1优点"><a href="#HTTP1-1优点" class="headerlink" title="HTTP1.1优点"></a>HTTP1.1优点</h4><ul>
 <li>简单，header+body，头部内容为key-value</li>
 <li>灵活、易于拓展</li>
