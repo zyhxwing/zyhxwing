@@ -553,6 +553,317 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token punctuation">&#125;</span>
 <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 最终输出：2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>所以最终的输出结果是：2。在原来的例子中，函数声明虽然是在函数表达式后面，但由于函数声明提升到顶部，因此后面getName又被函数表达式的赋值操作给覆盖了，所以输出2。</p>
+<h2 id="es6"><a href="#es6" class="headerlink" title="es6"></a>es6</h2><h3 id="parseInt方法"><a href="#parseInt方法" class="headerlink" title="parseInt方法"></a>parseInt方法</h3><h3 id="拓展运算符"><a href="#拓展运算符" class="headerlink" title="拓展运算符"></a>拓展运算符</h3><h3 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h3><h3 id="异步Promise、Generator和Async"><a href="#异步Promise、Generator和Async" class="headerlink" title="异步Promise、Generator和Async"></a>异步Promise、Generator和Async</h3><h3 id="数组遍历方法for-in、Object-keys"><a href="#数组遍历方法for-in、Object-keys" class="headerlink" title="数组遍历方法for in、Object.keys()"></a>数组遍历方法for in、Object.keys()</h3><h3 id="Symbol-bigInt"><a href="#Symbol-bigInt" class="headerlink" title="Symbol\bigInt"></a>Symbol\bigInt</h3><h3 id="数据结构Set和Map"><a href="#数据结构Set和Map" class="headerlink" title="数据结构Set和Map"></a>数据结构Set和Map</h3><h3 id="class定义类"><a href="#class定义类" class="headerlink" title="class定义类"></a>class定义类</h3><h3 id="reflect对象"><a href="#reflect对象" class="headerlink" title="reflect对象"></a>reflect对象</h3><p>Reflect对象与Proxy对象一样，也是 ES6 为了操作对象而提供的新 API。Reflect对象的设计目的有这样几个。</p>
+<ol>
+<li><p>将Object对象的一些明显属于语言内部的方法（比如Object.defineProperty），放到Reflect对象上。现阶段，某些方法同时在Object和Reflect对象上部署，未来的新方法将只部署在Reflect对象上。也就是说，从Reflect对象上可以拿到语言内部的方法。</p>
+</li>
+<li><p>修改某些Object方法的返回结果，让其变得更合理。比如，Object.defineProperty(obj, name, desc)在无法定义属性时，会抛出一个错误，而Reflect.defineProperty(obj, name, desc)则会返回false。</p>
+</li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//Reflect.defineProperty会返回false来代表此次操作失败</span>
+<span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'鲨鱼辣椒'</span> <span class="token punctuation">&#125;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">'age'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token number">25</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">writable</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">configurable</span><span class="token operator">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>age<span class="token punctuation">)</span> <span class="token comment">// 25</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Reflect<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">'age'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// false</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>age<span class="token punctuation">)</span> <span class="token comment">// 25</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'鲨鱼辣椒'</span> <span class="token punctuation">&#125;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>name<span class="token punctuation">)</span> <span class="token comment">// 鲨鱼辣椒</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Reflect<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">'name'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// 鲨鱼辣椒</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>Proxy可以最大限度的弥补Object.defineProperty带来的缺点，而Proxy也不仅仅只能代理对象，还可以代理数组等其它对象。代理可以捕获13种不同的操作，而每种操作都会有一个所对应的ReflectApi，这就使Proxy对象可以方便的调用对应的Reflect方法来完成默认行为。我们前面已经对Proxy与Reflect进行了讲解，现在就让它们结合起来吧</p>
+<h3 id="let-const-var"><a href="#let-const-var" class="headerlink" title="let const var"></a>let const var</h3><p>var ——ES5 变量声明方式变量未赋值时，变量undefined（为使用声明变量时也为undefined）<br>作用域——var的作用域为方法作用域；只要在方法内定义了，整个方法内的定义变量后的代码都可以使用</p>
+<p>let——ES6变量声明方式<br>在变量为声明前直接使用会报错<br>作用域——let为块作用域——通常let比var 范围要小<br>let禁止重复声明变量，否则会报错；var可以重复声明</p>
+<p>const——ES6变量声明方式</p>
+<ol>
+<li>const为常量声明方式；声明变量时必须初始化，在后面出现的代码中不能再修改该常量的值</li>
+<li>const实际上保证的，并不是变量的值不得改动，而是变量指向的那个内存地址不得改动</li>
+</ol>
+<h4 id="暂时性死区"><a href="#暂时性死区" class="headerlink" title="暂时性死区"></a>暂时性死区</h4><p>暂时性死区：只要一进入当前作用域，所要使用的变量就已经存在了，但是不可获取，只有等到声明变量的那一行代码出现，才可以获取和使用该变量</p>
+<p>暂时性死区和不能变量提升的意义在于: 为了减少运行时错误，防止在变量声明前就使用这个变量，从而导致意料之外的行为。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> tmp <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span> <span class="token comment">// 声明</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  tmp <span class="token operator">=</span> <span class="token string">'abc'</span><span class="token punctuation">;</span> <span class="token comment">// 报错 因为本区域有tmp声明变量</span>
+  <span class="token keyword">let</span> tmp<span class="token punctuation">;</span> <span class="token comment">// 绑定if这个块级的作用域 不能出现tmp变量</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h4><p><strong>概念</strong>：多个作用域对象连续引用形成的链式结构。</p>
+<p><strong>使用方面解释</strong>：当在Javascript中使用一个变量的时候，首先Javascript引擎会尝试在当前作用域下去寻找该变量，如果没找到，再到它的上层作用域寻找，以此类推直到找到该变量或是已经到了全局作用域，如果在全局作用域里仍然找不到该变量，它就会直接报错。</p>
+<p><strong>存储方面解释</strong>：作用域链在JS内部中是以数组的形式存储的，数组的第一个索引对应的是函数本身的执行期上下文，也就是当前执行的代码所在环境的变量对象，下一个索引对应的空间存储的是该对象的外部执行环境，依次类推，一直到全局执行环境</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">100</span>
+<span class="token keyword">function</span> <span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token number">200</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token comment">//100</span>
+<span class="token comment">// fun函数局部作用域中没有变量a，于是从它的上一级，也就是全局作用域中找，</span>
+<span class="token comment">//在全局中a被赋值为100，于是输出100</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token comment">//200 fun函数局部作用域中有变量b，并且它被赋值为了200，输出200</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">10</span>
+<span class="token keyword">function</span> <span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">function</span> <span class="token function">show</span><span class="token punctuation">(</span><span class="token parameter">f</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">20</span>
+   <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token comment">//10，而不是20; 函数的作用域是在函数定义的时候就被决定了，与函数在哪里被调用无关</span>
+   <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">show</span><span class="token punctuation">(</span>fun<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>由于变量的查找是沿着作用域链来实现的，所以也称作用域链为变量查找的机制。是不是很好理解，这里再来补充一点作用域的作用</p>
+<ul>
+<li><p>作用域最为重要的一点是安全。变量只能在特定的区域内才能被访问，外部环境不能访问内部环境的任何变量和函数，即可以向上搜索，但不可以向下搜索， 有了作用域我们就可以避免在程序其它位置意外对某个变量做出修改导致程序发生事故。</p>
+</li>
+<li><p>作用域能够减轻命名的压力。我们可以在不同的作用域内定义相同的变量名，并且这些变量名不会产生冲突。。</p>
+</li>
+</ul>
+<h4 id="为什么let在编译后实际还是var？"><a href="#为什么let在编译后实际还是var？" class="headerlink" title="为什么let在编译后实际还是var？"></a>为什么let在编译后实际还是var？</h4><p><strong>原因：</strong></p>
+<ol>
+<li>let 和 const 是 ES6 新增的变量申明关键字， 和 var 的主要区别在于作用域的不同，var 支持全局作用域和函数作用域，而 let 和 const 是块作用域。Babel 使用 babel-plugin-transform-block-scoping 插件完成 let 到 var 的转换，本质是块作用域到函数作用域或全局作用域的转换。</li>
+<li>Babel 在生成 AST 之后，定义了一个访问者（visitor），用于遍历 AST 的过程中，根据语法规则生成作用域对象(Scope)，该对象中定义了该作用域下绑定的变量，这些变量是否被引用以及每个引用具体的路径。这些信息是后续修改作用域以及变量更换绑定的基础。</li>
+<li>let 直接变为 var 很容易导致语义变化，需要结合作用域和上下文来进行判断，如果变成 var 后，和同层作用域的变量名称发生冲突，可以修改名称解决。如果 let 被内层作用域的方法引用，则需要修改代码，形成闭包。</li>
+<li>babel-plugin-transform-block-scoping 插件是 Babel 中负责块级作用域转换的插件，实现了收集作用域下变量，判断是否存在闭包，let 节点修改等功能。我们在自己编写插件的时候，最好能多看几个 Babel 的原生插件，不仅可以了解 Babel 编译的原理，还可以学一些 AST 操作的方法。</li>
+</ol>
+<p><strong>如何变化</strong></p>
+<ol>
+<li>let 处于全局作用域，那么 let 直接变成 var。</li>
+<li>let 处于块作用域，那就要判断该变量升级至上级的函数作用域或者全局作用域后，是否会与同一作用域的变量发生重名现象，如果重名，那就换个变量名。同时修改所有引用这个变量的代码。</li>
+<li>let 处于循环语句中，形成类似闭包的效果，此时需要将循环内部的方法转换为立即执行函数的写法，利用闭包的特性保存循环次数。</li>
+</ol>
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p>可以看出，定义箭头函在数语法上要比普通函数简洁得多。箭头函数省去了function关键字，采用箭头&#x3D;&gt;来定义函数。</p>
+<p>关于箭头函数的参数：① 如果箭头函数没有参数，直接写一个空括号即可。② 如果箭头函数的参数只有一个，也可以省去包裹参数的括号。③ 如果箭头函数有多个参数，将参数依次用逗号(,)分隔，包裹在括号中即可。</p>
+<p>① 如果箭头函数的函数体只有一句代码，就是简单返回某个变量或者返回一个简单的JS表达式，可以省去函数体的大括号{ }。</p>
+<p>② 如果箭头函数的函数体只有一句代码，就是返回一个对象，可以像下面这样写</p>
+<p>③ 如果箭头函数的函数体只有一条语句并且不需要返回值（最常见是调用一个函数），可以给这条语句前面加一个void关键字</p>
+<p>区别：</p>
+<ul>
+<li>语法更加简洁、清晰。箭头函数的定义要比普通函数定义简洁、清晰得多，很快捷。</li>
+<li>箭头函数不会创建自己的this。箭头函数没有自己的this，它会捕获自己在定义时（注意，是定义时，不是调用时）所处的外层执行环境的this，并继承这个this值。所以，箭头函数中this的指向在它被定义的时候就已经确定了，之后永远不会改变。</li>
+<li>箭头函数继承而来的this指向永远不变。call()&#x2F;.apply()&#x2F;.bind()无法改变箭头函数中this的指向.call()&#x2F;.apply()&#x2F;.bind()方法可以用来动态修改函数执行时this的指向，但由于箭头函数的this定义时就已经确定且永远不会改变。所以使用这些方法永远也改变不了箭头函数this的指向，虽然这么做代码不会报错。</li>
+<li>箭头函数不能作为构造函数使用。因为箭头函数没有自己的this，它的this其实是继承了外层执行环境中的this，</li>
+<li>箭头函数没有自己的arguments</li>
+<li>箭头函数没有原型prototype</li>
+<li>箭头函数不能用作Generator函数，不能使用yeild关键字</li>
+</ul>
+<h2 id="new做了什么"><a href="#new做了什么" class="headerlink" title="new做了什么"></a>new做了什么</h2><ol>
+<li>创建一个空对象</li>
+<li>this指向这个对象</li>
+<li>执行构造函数的语句</li>
+<li>返回该对象</li>
+</ol>
+<h2 id="js继承"><a href="#js继承" class="headerlink" title="js继承"></a>js继承</h2><h3 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h3><p>将父类的实例作为子类的原型</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">Parent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   <span class="token keyword">this</span><span class="token punctuation">.</span>isShow <span class="token operator">=</span> <span class="token boolean">true</span>
+   <span class="token keyword">this</span><span class="token punctuation">.</span>info <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+       <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"yhd"</span><span class="token punctuation">,</span>
+       <span class="token literal-property property">age</span><span class="token operator">:</span> <span class="token number">18</span><span class="token punctuation">,</span>
+   <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token class-name">Parent</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">getInfo</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>info<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>isShow<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">function</span> <span class="token function">Child</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token class-name">Child</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Parent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> Child1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Child1<span class="token punctuation">.</span>info<span class="token punctuation">.</span>gender <span class="token operator">=</span> <span class="token string">"男"</span><span class="token punctuation">;</span>
+Child1<span class="token punctuation">.</span><span class="token function">getInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// &#123;name: "yhd", age: 18, gender: "男"&#125;</span>
+
+<span class="token keyword">let</span> child2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+child2<span class="token punctuation">.</span><span class="token function">getInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// &#123;name: "yhd", age: 18, gender: "男"&#125;</span>
+child2<span class="token punctuation">.</span>isShow <span class="token operator">=</span> <span class="token boolean">false</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child2<span class="token punctuation">.</span>isShow<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>优点</p>
+<ul>
+<li>父类方法可以复用<br>缺点</li>
+<li>父类的所有引用属性（info）会被所有子类共享，更改一个子类的引用属性，其他子类也会受影响</li>
+<li>子类型实例不能给父类型构造函数传参</li>
+</ul>
+<h3 id="盗用构造函数继承"><a href="#盗用构造函数继承" class="headerlink" title="盗用构造函数继承"></a>盗用构造函数继承</h3><p>在子类构造函数中调用父类构造函数，可以在子类构造函数中使用call()和apply()方法</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">Parent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>info <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"yhd"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">age</span><span class="token operator">:</span> <span class="token number">19</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">function</span> <span class="token function">Child</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">Parent</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> child1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+child1<span class="token punctuation">.</span>info<span class="token punctuation">.</span>gender <span class="token operator">=</span> <span class="token string">"男"</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child1<span class="token punctuation">.</span>info<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// &#123;name: "yhd", age: 19, gender: "男"&#125;;</span>
+
+<span class="token keyword">let</span> child2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child2<span class="token punctuation">.</span>info<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// &#123;name: "yhd", age: 19&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>​通过使用call()或apply()方法，Parent构造函数在为Child的实例创建的新对象的上下文执行了，就相当于新的Child实例对象上运行了Parent()函数中的所有初始化代码，结果就是每个实例都有自己的info属性。</p>
+<p>优点</p>
+<ul>
+<li>可以在子类构造函数中向父类传参数</li>
+<li>父类的引用属性不会被共享<br>缺点</li>
+<li>子类不能访问父类原型上定义的方法（即不能访问Parent.prototype上定义的方法），因此所有方法属性都写在构造函数中，每次创建实例都会初始化</li>
+</ul>
+<h3 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h3><p>组合继承综合了<strong>原型链继承</strong>和<strong>盗用构造函数继承</strong>(构造函数继承)，将两者的优点结合了起来，<br>基本的思路就是使用原型链继承原型上的属性和方法，而通过构造函数继承实例属性，这样既可以把方法定义在原型上以实现重用，又可以让每个实例都有自己的属性</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">Parent</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name
+   <span class="token keyword">this</span><span class="token punctuation">.</span>colors <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"red"</span><span class="token punctuation">,</span> <span class="token string">"blue"</span><span class="token punctuation">,</span> <span class="token string">"yellow"</span><span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span>
+<span class="token class-name">Parent</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">sayName</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">function</span> <span class="token function">Child</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> age</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   <span class="token comment">// 继承父类属性</span>
+   <span class="token function">Parent</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+   <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> age<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// 继承父类方法</span>
+<span class="token class-name">Child</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Parent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">Child</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">sayAge</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> child1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token string">"yhd"</span><span class="token punctuation">,</span> <span class="token number">19</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+child1<span class="token punctuation">.</span>colors<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"pink"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child1<span class="token punctuation">.</span>colors<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ["red", "blue", "yellow", "pink"]</span>
+child1<span class="token punctuation">.</span><span class="token function">sayAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 19</span>
+child1<span class="token punctuation">.</span><span class="token function">sayName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "yhd"</span>
+
+<span class="token keyword">let</span> child2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token string">"wxb"</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child2<span class="token punctuation">.</span>colors<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// ["red", "blue", "yellow"]</span>
+child2<span class="token punctuation">.</span><span class="token function">sayAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 30</span>
+child2<span class="token punctuation">.</span><span class="token function">sayName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "wxb"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面例子中，Parent构造函数定义了name，colors两个属性，接着又在他的原型上添加了个sayName()方法。Child构造函数内部调用了Parent构造函数，同时传入了name参数，同时Child.prototype也被赋值为Parent实例，然后又在他的原型上添加了个sayAge()方法。这样就可以创建 child1，child2两个实例，让这两个实例都有自己的属性，包括colors，同时还共享了父类的sayName方法</p>
+<p>优点</p>
+<ul>
+<li>父类的方法可以复用</li>
+<li>可以在Child构造函数中向Parent构造函数中传参</li>
+<li>父类构造函数中的引用属性不会被共享</li>
+</ul>
+<h3 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h3><p>对参数对象的一种浅复制</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">objectCopy</span><span class="token punctuation">(</span><span class="token parameter">obj</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">function</span> <span class="token function">Fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+  <span class="token class-name">Fun</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> obj<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> person <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"yhd"</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">age</span><span class="token operator">:</span> <span class="token number">18</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">friends</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"jack"</span><span class="token punctuation">,</span> <span class="token string">"tom"</span><span class="token punctuation">,</span> <span class="token string">"rose"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">sayName</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> person1 <span class="token operator">=</span> <span class="token function">objectCopy</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+person1<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"wxb"</span><span class="token punctuation">;</span>
+person1<span class="token punctuation">.</span>friends<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"lily"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+person1<span class="token punctuation">.</span><span class="token function">sayName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// wxb</span>
+
+<span class="token keyword">let</span> person2 <span class="token operator">=</span> <span class="token function">objectCopy</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+person2<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"gsr"</span><span class="token punctuation">;</span>
+person2<span class="token punctuation">.</span>friends<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"kobe"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+person2<span class="token punctuation">.</span><span class="token function">sayName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "gsr"</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>friends<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ["jack", "tom", "rose", "lily", "kobe"]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>优点：</p>
+<ul>
+<li>父类方法可复用<br>缺点：</li>
+<li>父类的引用会被所有子类所共享</li>
+<li>子类实例不能向父类传参</li>
+<li>ES5的Object.create()方法在只有第一个参数时，与这里的objectCopy()方法效果相同</li>
+</ul>
+<h3 id="寄生式继承"><a href="#寄生式继承" class="headerlink" title="寄生式继承"></a>寄生式继承</h3><p>使用原型式继承对一个目标对象进行浅复制，增强这个浅复制的能力</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">objectCopy</span><span class="token punctuation">(</span><span class="token parameter">obj</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">function</span> <span class="token function">Fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+  <span class="token class-name">Fun</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> obj<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">function</span> <span class="token function">createAnother</span><span class="token punctuation">(</span><span class="token parameter">original</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">let</span> clone <span class="token operator">=</span> <span class="token function">objectCopy</span><span class="token punctuation">(</span>original<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  clone<span class="token punctuation">.</span><span class="token function-variable function">getName</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> clone<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> person <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+     <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"yhd"</span><span class="token punctuation">,</span>
+     <span class="token literal-property property">friends</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"rose"</span><span class="token punctuation">,</span> <span class="token string">"tom"</span><span class="token punctuation">,</span> <span class="token string">"jack"</span><span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> person1 <span class="token operator">=</span> <span class="token function">createAnother</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+person1<span class="token punctuation">.</span>friends<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"lily"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>person1<span class="token punctuation">.</span>friends<span class="token punctuation">)</span><span class="token punctuation">;</span>
+person1<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// yhd</span>
+
+<span class="token keyword">let</span> person2 <span class="token operator">=</span> <span class="token function">createAnother</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>person2<span class="token punctuation">.</span>friends<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ["rose", "tom", "jack", "lily"]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="寄生式组合继承"><a href="#寄生式组合继承" class="headerlink" title="寄生式组合继承"></a>寄生式组合继承</h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">objectCopy</span><span class="token punctuation">(</span><span class="token parameter">obj</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">function</span> <span class="token function">Fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+  <span class="token class-name">Fun</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> obj<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">function</span> <span class="token function">inheritPrototype</span><span class="token punctuation">(</span><span class="token parameter">child<span class="token punctuation">,</span> parent</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">let</span> prototype <span class="token operator">=</span> <span class="token function">objectCopy</span><span class="token punctuation">(</span>parent<span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 创建对象</span>
+  prototype<span class="token punctuation">.</span>constructor <span class="token operator">=</span> child<span class="token punctuation">;</span> <span class="token comment">// 增强对象</span>
+  <span class="token class-name">Child</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> prototype<span class="token punctuation">;</span> <span class="token comment">// 赋值对象</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">function</span> <span class="token function">Parent</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>friends <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"rose"</span><span class="token punctuation">,</span> <span class="token string">"lily"</span><span class="token punctuation">,</span> <span class="token string">"tom"</span><span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token class-name">Parent</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">sayName</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">function</span> <span class="token function">Child</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> age</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token function">Parent</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> age<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token function">inheritPrototype</span><span class="token punctuation">(</span>Child<span class="token punctuation">,</span> Parent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Child</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">sayAge</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">let</span> child1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token string">"yhd"</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+child1<span class="token punctuation">.</span><span class="token function">sayAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 23</span>
+child1<span class="token punctuation">.</span><span class="token function">sayName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// yhd</span>
+child1<span class="token punctuation">.</span>friends<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"jack"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child1<span class="token punctuation">.</span>friends<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ["rose", "lily", "tom", "jack"]</span>
+
+<span class="token keyword">let</span> child2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Child</span><span class="token punctuation">(</span><span class="token string">"yl"</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">)</span>
+child2<span class="token punctuation">.</span><span class="token function">sayAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 22</span>
+child2<span class="token punctuation">.</span><span class="token function">sayName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// yl</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child2<span class="token punctuation">.</span>friends<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ["rose", "lily", "tom"]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>优点：</p>
+<ul>
+<li>只调用一次父类构造函数</li>
+<li>Child可以向Parent传参</li>
+<li>父类方法可以复用</li>
+<li>父类的引用属性不会被共享</li>
+</ul>
+<p>寄生式组合继承可以算是引用类型继承的最佳模式</p>
 <h2 id="对象的属性"><a href="#对象的属性" class="headerlink" title="对象的属性"></a>对象的属性</h2><p>对象里的属性分为两种：数据属性 和 访问器属性。首先我们看看数据属性。</p>
 <p><strong>数据属性</strong></p>
 <ol>
@@ -776,112 +1087,6 @@ axios<span class="token punctuation">.</span><span class="token function">all</s
 <li>Secure 该属性没有值，属性本身存在就代表设置为安全模式。即请求必须为安全连接（HTTPS），cookie 才会被保存下来。HTTP 协议下，cookie 无效。</li>
 <li>SameSite cookie 在跨域时是否应该被发送。</li>
 </ul>
-<h2 id="es6"><a href="#es6" class="headerlink" title="es6"></a>es6</h2><h3 id="let-const-var"><a href="#let-const-var" class="headerlink" title="let const var"></a>let const var</h3><p>var ——ES5 变量声明方式变量未赋值时，变量undefined（为使用声明变量时也为undefined）<br>作用域——var的作用域为方法作用域；只要在方法内定义了，整个方法内的定义变量后的代码都可以使用</p>
-<p>let——ES6变量声明方式<br>在变量为声明前直接使用会报错<br>作用域——let为块作用域——通常let比var 范围要小<br>let禁止重复声明变量，否则会报错；var可以重复声明</p>
-<p>const——ES6变量声明方式</p>
-<ol>
-<li>const为常量声明方式；声明变量时必须初始化，在后面出现的代码中不能再修改该常量的值</li>
-<li>const实际上保证的，并不是变量的值不得改动，而是变量指向的那个内存地址不得改动</li>
-</ol>
-<h4 id="暂时性死区"><a href="#暂时性死区" class="headerlink" title="暂时性死区"></a>暂时性死区</h4><p>暂时性死区：只要一进入当前作用域，所要使用的变量就已经存在了，但是不可获取，只有等到声明变量的那一行代码出现，才可以获取和使用该变量</p>
-<p>暂时性死区和不能变量提升的意义在于: 为了减少运行时错误，防止在变量声明前就使用这个变量，从而导致意料之外的行为。</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> tmp <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span> <span class="token comment">// 声明</span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-  tmp <span class="token operator">=</span> <span class="token string">'abc'</span><span class="token punctuation">;</span> <span class="token comment">// 报错 因为本区域有tmp声明变量</span>
-  <span class="token keyword">let</span> tmp<span class="token punctuation">;</span> <span class="token comment">// 绑定if这个块级的作用域 不能出现tmp变量</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h4><p><strong>概念</strong>：多个作用域对象连续引用形成的链式结构。</p>
-<p><strong>使用方面解释</strong>：当在Javascript中使用一个变量的时候，首先Javascript引擎会尝试在当前作用域下去寻找该变量，如果没找到，再到它的上层作用域寻找，以此类推直到找到该变量或是已经到了全局作用域，如果在全局作用域里仍然找不到该变量，它就会直接报错。</p>
-<p><strong>存储方面解释</strong>：作用域链在JS内部中是以数组的形式存储的，数组的第一个索引对应的是函数本身的执行期上下文，也就是当前执行的代码所在环境的变量对象，下一个索引对应的空间存储的是该对象的外部执行环境，依次类推，一直到全局执行环境</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">100</span>
-<span class="token keyword">function</span> <span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token number">200</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token comment">//100</span>
-<span class="token comment">// fun函数局部作用域中没有变量a，于是从它的上一级，也就是全局作用域中找，</span>
-<span class="token comment">//在全局中a被赋值为100，于是输出100</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token comment">//200 fun函数局部作用域中有变量b，并且它被赋值为了200，输出200</span>
-<span class="token punctuation">&#125;</span>
-<span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">10</span>
-<span class="token keyword">function</span> <span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">function</span> <span class="token function">show</span><span class="token punctuation">(</span><span class="token parameter">f</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-   <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">20</span>
-   <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-      <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token comment">//10，而不是20; 函数的作用域是在函数定义的时候就被决定了，与函数在哪里被调用无关</span>
-   <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span>
-<span class="token function">show</span><span class="token punctuation">(</span>fun<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>由于变量的查找是沿着作用域链来实现的，所以也称作用域链为变量查找的机制。是不是很好理解，这里再来补充一点作用域的作用</p>
-<ul>
-<li><p>作用域最为重要的一点是安全。变量只能在特定的区域内才能被访问，外部环境不能访问内部环境的任何变量和函数，即可以向上搜索，但不可以向下搜索， 有了作用域我们就可以避免在程序其它位置意外对某个变量做出修改导致程序发生事故。</p>
-</li>
-<li><p>作用域能够减轻命名的压力。我们可以在不同的作用域内定义相同的变量名，并且这些变量名不会产生冲突。。</p>
-</li>
-</ul>
-<h4 id="let在编译后实际还是var-因为低版本不支持let语法-这个是怎么实现的？"><a href="#let在编译后实际还是var-因为低版本不支持let语法-这个是怎么实现的？" class="headerlink" title="let在编译后实际还是var,因为低版本不支持let语法,这个是怎么实现的？"></a>let在编译后实际还是var,因为低版本不支持let语法,这个是怎么实现的？</h4><ol>
-<li><p>let 处于全局作用域，那么 let 直接变成 var。</p>
-</li>
-<li><p>let 处于块作用域，那就要判断该变量升级至上级的函数作用域或者全局作用域后，是否会与同一作用域的变量发生重名现象，如果重名，那就换个变量名。同时修改所有引用这个变量的代码。</p>
-</li>
-<li><p>let 处于循环语句中，形成类似闭包的效果，此时需要将循环内部的方法转换为立即执行函数的写法，利用闭包的特性保存循环次数。</p>
-</li>
-<li><p>let 和 const 是 ES6 新增的变量申明关键字， 和 var 的主要区别在于作用域的不同，var 支持全局作用域和函数作用域，而 let 和 const 是块作用域。Babel 使用 babel-plugin-transform-block-scoping 插件完成 let 到 var 的转换，本质是块作用域到函数作用域或全局作用域的转换。</p>
-</li>
-<li><p>Babel 在生成 AST 之后，定义了一个访问者（visitor），用于遍历 AST 的过程中，根据语法规则生成作用域对象(Scope)，该对象中定义了该作用域下绑定的变量，这些变量是否被引用以及每个引用具体的路径。这些信息是后续修改作用域以及变量更换绑定的基础。</p>
-</li>
-<li><p>let 直接变为 var 很容易导致语义变化，需要结合作用域和上下文来进行判断，如果变成 var 后，和同层作用域的变量名称发生冲突，可以修改名称解决。如果 let 被内层作用域的方法引用，则需要修改代码，形成闭包。</p>
-</li>
-<li><p>babel-plugin-transform-block-scoping 插件是 Babel 中负责块级作用域转换的插件，实现了收集作用域下变量，判断是否存在闭包，let 节点修改等功能。我们在自己编写插件的时候，最好能多看几个 Babel 的原生插件，不仅可以了解 Babel 编译的原理，还可以学一些 AST 操作的方法。</p>
-</li>
-</ol>
-<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p>可以看出，定义箭头函在数语法上要比普通函数简洁得多。箭头函数省去了function关键字，采用箭头&#x3D;&gt;来定义函数。</p>
-<p>关于箭头函数的参数：① 如果箭头函数没有参数，直接写一个空括号即可。② 如果箭头函数的参数只有一个，也可以省去包裹参数的括号。③ 如果箭头函数有多个参数，将参数依次用逗号(,)分隔，包裹在括号中即可。</p>
-<p>① 如果箭头函数的函数体只有一句代码，就是简单返回某个变量或者返回一个简单的JS表达式，可以省去函数体的大括号{ }。</p>
-<p>② 如果箭头函数的函数体只有一句代码，就是返回一个对象，可以像下面这样写</p>
-<p>③ 如果箭头函数的函数体只有一条语句并且不需要返回值（最常见是调用一个函数），可以给这条语句前面加一个void关键字</p>
-<p>区别：</p>
-<ul>
-<li>语法更加简洁、清晰。箭头函数的定义要比普通函数定义简洁、清晰得多，很快捷。</li>
-<li>箭头函数不会创建自己的this。箭头函数没有自己的this，它会捕获自己在定义时（注意，是定义时，不是调用时）所处的外层执行环境的this，并继承这个this值。所以，箭头函数中this的指向在它被定义的时候就已经确定了，之后永远不会改变。</li>
-<li>箭头函数继承而来的this指向永远不变。call()&#x2F;.apply()&#x2F;.bind()无法改变箭头函数中this的指向.call()&#x2F;.apply()&#x2F;.bind()方法可以用来动态修改函数执行时this的指向，但由于箭头函数的this定义时就已经确定且永远不会改变。所以使用这些方法永远也改变不了箭头函数this的指向，虽然这么做代码不会报错。</li>
-<li>箭头函数不能作为构造函数使用。因为箭头函数没有自己的this，它的this其实是继承了外层执行环境中的this，</li>
-<li>箭头函数没有自己的arguments</li>
-<li>箭头函数没有原型prototype</li>
-<li>箭头函数不能用作Generator函数，不能使用yeild关键字</li>
-</ul>
-<h3 id="new做了什么"><a href="#new做了什么" class="headerlink" title="new做了什么"></a>new做了什么</h3><ol>
-<li>创建一个空对象</li>
-<li>this指向这个对象</li>
-<li>执行构造函数的语句</li>
-<li>返回该对象</li>
-</ol>
-<h3 id="parseInt方法"><a href="#parseInt方法" class="headerlink" title="parseInt方法"></a>parseInt方法</h3><h3 id="拓展运算符"><a href="#拓展运算符" class="headerlink" title="拓展运算符"></a>拓展运算符</h3><h3 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h3><h3 id="异步Promise、Generator和Async"><a href="#异步Promise、Generator和Async" class="headerlink" title="异步Promise、Generator和Async"></a>异步Promise、Generator和Async</h3><h3 id="数组遍历方法for-in、Object-keys"><a href="#数组遍历方法for-in、Object-keys" class="headerlink" title="数组遍历方法for in、Object.keys()"></a>数组遍历方法for in、Object.keys()</h3><h3 id="Symbol-bigInt"><a href="#Symbol-bigInt" class="headerlink" title="Symbol\bigInt"></a>Symbol\bigInt</h3><h3 id="数据结构Set和Map"><a href="#数据结构Set和Map" class="headerlink" title="数据结构Set和Map"></a>数据结构Set和Map</h3><h3 id="class定义类"><a href="#class定义类" class="headerlink" title="class定义类"></a>class定义类</h3><h3 id="reflect对象"><a href="#reflect对象" class="headerlink" title="reflect对象"></a>reflect对象</h3><p>Reflect对象与Proxy对象一样，也是 ES6 为了操作对象而提供的新 API。Reflect对象的设计目的有这样几个。</p>
-<ol>
-<li><p>将Object对象的一些明显属于语言内部的方法（比如Object.defineProperty），放到Reflect对象上。现阶段，某些方法同时在Object和Reflect对象上部署，未来的新方法将只部署在Reflect对象上。也就是说，从Reflect对象上可以拿到语言内部的方法。</p>
-</li>
-<li><p>修改某些Object方法的返回结果，让其变得更合理。比如，Object.defineProperty(obj, name, desc)在无法定义属性时，会抛出一个错误，而Reflect.defineProperty(obj, name, desc)则会返回false。</p>
-</li>
-</ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//Reflect.defineProperty会返回false来代表此次操作失败</span>
-<span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'鲨鱼辣椒'</span> <span class="token punctuation">&#125;</span>
-Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">'age'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
-    <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token number">25</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">writable</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">configurable</span><span class="token operator">:</span> <span class="token boolean">false</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>age<span class="token punctuation">)</span> <span class="token comment">// 25</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Reflect<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">'age'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
-    <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// false</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>age<span class="token punctuation">)</span> <span class="token comment">// 25</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'鲨鱼辣椒'</span> <span class="token punctuation">&#125;</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>name<span class="token punctuation">)</span> <span class="token comment">// 鲨鱼辣椒</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Reflect<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">'name'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// 鲨鱼辣椒</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>Proxy可以最大限度的弥补Object.defineProperty带来的缺点，而Proxy也不仅仅只能代理对象，还可以代理数组等其它对象。代理可以捕获13种不同的操作，而每种操作都会有一个所对应的ReflectApi，这就使Proxy对象可以方便的调用对应的Reflect方法来完成默认行为。我们前面已经对Proxy与Reflect进行了讲解，现在就让它们结合起来吧</p>
 <h2 id="js闭包"><a href="#js闭包" class="headerlink" title="js闭包"></a>js闭包</h2><p>闭包是指有权访问另外一个函数作用域中的变量的函数。 <br>内部的函数存在外部作用域的引用就会导致闭包。</p>
 <p>闭包中的变量存储的位置是堆内存。</p>
 <p><strong>作用：</strong><br>保护函数的私有变量不受外部的干扰。形成不销毁的栈内存。保存，把一些函数内的值保存下来。闭包可以实现方法和属性的私有化。局部变量无法共享和长久的保存，而全局变量可能造成变量污染，所以我们希望有一种机制既可以长久的保存变量又不会造成全局污染。</p>
@@ -982,7 +1187,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <li>形参赋值</li>
 <li>执行代码</li>
 </ol>
-<h2 id="0-1-0-2-x3D-x3D-0-3"><a href="#0-1-0-2-x3D-x3D-0-3" class="headerlink" title="0.1+0.2!&#x3D;&#x3D;0.3"></a>0.1+0.2!&#x3D;&#x3D;0.3</h2><p>原因总结：<br>进制转换 ：js 在做数字计算的时候，<strong>0.1 和 0.2 都会被转成二进制后无限循环</strong>，但是 js 采用的 IEEE 754 二进制浮点运算，最大可以存储 53 位有效数字，于是大于 53 位后面的会全部截掉，将导致精度丢失。<br>对阶运算 ：由于指数位数不相同，运算时需要对阶运算，阶小的尾数要根据阶差来右移（0舍1入），尾数位移时可能会发生数丢失的情况，影响精度。</p>
+<h2 id="js阴间面试题"><a href="#js阴间面试题" class="headerlink" title="js阴间面试题"></a>js阴间面试题</h2><h3 id="0-1-0-2-x3D-x3D-0-3"><a href="#0-1-0-2-x3D-x3D-0-3" class="headerlink" title="0.1+0.2!&#x3D;&#x3D;0.3"></a>0.1+0.2!&#x3D;&#x3D;0.3</h3><p>原因总结：<br>进制转换 ：js 在做数字计算的时候，<strong>0.1 和 0.2 都会被转成二进制后无限循环</strong>，但是 js 采用的 IEEE 754 二进制浮点运算，最大可以存储 53 位有效数字，于是大于 53 位后面的会全部截掉，将导致精度丢失。<br>对阶运算 ：由于指数位数不相同，运算时需要对阶运算，阶小的尾数要根据阶差来右移（0舍1入），尾数位移时可能会发生数丢失的情况，影响精度。</p>
 <p>解决办法：</p>
 <ol>
 <li>转为整数（大数）运算。</li>
