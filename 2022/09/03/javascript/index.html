@@ -1006,10 +1006,11 @@ g<span class="token punctuation">.</span><span class="token function">next</span
   xhr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>ActiveXObject<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// IE 6 and older</span>
   xhr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ActiveXObject</span><span class="token punctuation">(</span><span class="token string">'Microsoft.XMLHTTP'</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span>
-xhr<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'POST'</span><span class="token punctuation">,</span> url<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
-xhr<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
-xhr<span class="token punctuation">.</span><span class="token function-variable function">onreadystatechange</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span><span class="token comment">//创建xhr对象</span>
+xhr<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'POST'</span><span class="token punctuation">,</span> url<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token comment">//调用xhr.open()函数</span>
+<span class="token comment">//设置Content-Type属性</span>
+xhr<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token comment">//调用xhr.send()函数</span>
+xhr<span class="token punctuation">.</span><span class="token function-variable function">onreadystatechange</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token comment">//监听xhr.onreadStatechange()事件</span>
   <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
     <span class="token comment">// 处理响应</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>xhr<span class="token punctuation">.</span>readyState <span class="token operator">===</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -1026,10 +1027,11 @@ xhr<span class="token punctuation">.</span><span class="token function-variable 
     <span class="token comment">// 通信错误的事件中（例如服务器宕机）</span>
     <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'Caught Exception: '</span> <span class="token operator">+</span> e<span class="token punctuation">.</span>description<span class="token punctuation">)</span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>优点：</p>
 <p>不重新加载页面的情况下更新网页<br>在页面已加载后从服务器请求&#x2F;接收数据<br>在后台向服务器发送数据。<br>缺点：</p>
 <p>使用起来也比较繁琐，需要设置很多值。<br>早期的IE浏览器有自己的实现，这样需要写兼容代码。</p>
+<p>xhr的readyState，状态码<br>0 对象被创建但没有使用open方法<br>1 open方法已经被调用<br>2 send方法已经被调用<br>3 数据接受，response属性已经包含部分数据<br>4 ajax请求完成</p>
 <ol start="2">
 <li><p>jQuery ajax<br>为了更快捷的操作 DOM，并且规避一些浏览器兼容问题，产生了 jQuery 。它里面的 AJAX 请求也兼容了各浏览器，可以有简单易用的方法 $.get, $.post 。简单点说，就是对 XMLHttpRequest 对象的封装。</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">$<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
