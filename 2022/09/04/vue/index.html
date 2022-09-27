@@ -454,54 +454,54 @@
 <li>checkbox 和radio使用checked property 和 change事件</li>
 <li>select 字段将value 作为prop 并将change 作为事件</li>
 </ul>
-<h2 id="VUE中的事件绑定原理"><a href="#VUE中的事件绑定原理" class="headerlink" title="VUE中的事件绑定原理"></a>VUE中的事件绑定原理</h2><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 原生事件绑定
-&lt;div @click&#x3D;&quot;fn()&quot;&gt;&lt;&#x2F;div&gt;
+<h2 id="VUE中的事件绑定原理"><a href="#VUE中的事件绑定原理" class="headerlink" title="VUE中的事件绑定原理"></a>VUE中的事件绑定原理</h2><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 原生事件绑定</span>
+<span class="token operator">&lt;</span>div @click<span class="token operator">=</span><span class="token string">"fn()"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
 
-&#x2F;&#x2F; 组件绑定
-&lt;my-component @click.native&#x3D;&quot;fn&quot; @click&#x3D;&quot;fn1&quot;&gt;&lt;&#x2F;my- component&gt;
+<span class="token comment">// 组件绑定</span>
+<span class="token operator">&lt;</span>my<span class="token operator">-</span>component @click<span class="token punctuation">.</span>native<span class="token operator">=</span><span class="token string">"fn"</span> @click<span class="token operator">=</span><span class="token string">"fn1"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>my<span class="token operator">-</span> component<span class="token operator">></span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="原生事件绑定"><a href="#原生事件绑定" class="headerlink" title="原生事件绑定"></a>原生事件绑定</h3><p>原生事件绑定是通过addEventListener绑定给真实元素的，</p>
 <p>源码：</p>
-<pre class="line-numbers language-none"><code class="language-none">function updateDOMListeners (oldVnode: VNodeWithData, vnode: VNodeWithData) &#123; 
-	if (isUndef(oldVnode.data.on) &amp;&amp; isUndef(vnode.data.on)) &#123; return &#125;
-	const on &#x3D; vnode.data.on || &#123;&#125; const oldOn &#x3D; oldVnode.data.on || &#123;&#125; 
-	target &#x3D; vnode.elm 
-	normalizeEvents(on) 
-	updateListeners(on, oldOn, add, remove, createOnceHandler, vnode.context) 
-	target &#x3D; undefined 
-&#125;
-function add ( 
-	name: string, 
-	handler: Function, 
-	capture: boolean, 
-	passive: boolean 
-) &#123;
-	target.addEventListener( &#x2F;&#x2F; 给当前的dom添加事件 
-		name, 
-		handler, 
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">updateDOMListeners</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">oldVnode</span><span class="token operator">:</span> VNodeWithData<span class="token punctuation">,</span> <span class="token literal-property property">vnode</span><span class="token operator">:</span> VNodeWithData</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> 
+	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isUndef</span><span class="token punctuation">(</span>oldVnode<span class="token punctuation">.</span>data<span class="token punctuation">.</span>on<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token function">isUndef</span><span class="token punctuation">(</span>vnode<span class="token punctuation">.</span>data<span class="token punctuation">.</span>on<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> <span class="token punctuation">&#125;</span>
+	<span class="token keyword">const</span> on <span class="token operator">=</span> vnode<span class="token punctuation">.</span>data<span class="token punctuation">.</span>on <span class="token operator">||</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token keyword">const</span> oldOn <span class="token operator">=</span> oldVnode<span class="token punctuation">.</span>data<span class="token punctuation">.</span>on <span class="token operator">||</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> 
+	target <span class="token operator">=</span> vnode<span class="token punctuation">.</span>elm 
+	<span class="token function">normalizeEvents</span><span class="token punctuation">(</span>on<span class="token punctuation">)</span> 
+	<span class="token function">updateListeners</span><span class="token punctuation">(</span>on<span class="token punctuation">,</span> oldOn<span class="token punctuation">,</span> add<span class="token punctuation">,</span> remove<span class="token punctuation">,</span> createOnceHandler<span class="token punctuation">,</span> vnode<span class="token punctuation">.</span>context<span class="token punctuation">)</span> 
+	target <span class="token operator">=</span> <span class="token keyword">undefined</span> 
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">function</span> <span class="token function">add</span> <span class="token punctuation">(</span> 
+	<span class="token parameter"><span class="token literal-property property">name</span><span class="token operator">:</span> string<span class="token punctuation">,</span> 
+	<span class="token literal-property property">handler</span><span class="token operator">:</span> Function<span class="token punctuation">,</span> 
+	<span class="token literal-property property">capture</span><span class="token operator">:</span> boolean<span class="token punctuation">,</span> 
+	<span class="token literal-property property">passive</span><span class="token operator">:</span> boolean</span> 
+<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	target<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span> <span class="token comment">// 给当前的dom添加事件 </span>
+		name<span class="token punctuation">,</span> 
+		handler<span class="token punctuation">,</span> 
 		supportsPassive 
-		? &#123;  capture, passive  &#125; 
-		: capture 
-	) 
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+		<span class="token operator">?</span> <span class="token punctuation">&#123;</span>  capture<span class="token punctuation">,</span> passive  <span class="token punctuation">&#125;</span> 
+		<span class="token operator">:</span> capture 
+	<span class="token punctuation">)</span> 
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="组件的事件绑定"><a href="#组件的事件绑定" class="headerlink" title="组件的事件绑定"></a>组件的事件绑定</h3><p>组件事件绑定是通过Vue自定义的$on实现的，（可用event触发）。</p>
-<pre class="line-numbers language-none"><code class="language-none">export function updateComponentListeners ( 
-	vm: Component, 
-	listeners: Object, 
-	oldListeners: ?Object 
-) &#123;
-	target &#x3D; vm updateListeners(
-		listeners, oldListeners || &#123;&#125;, 
-		add, 
-		remove,
-		createOnceHandler, vm)
-		target &#x3D; undefined 
-&#125;
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">updateComponentListeners</span> <span class="token punctuation">(</span> 
+	<span class="token parameter"><span class="token literal-property property">vm</span><span class="token operator">:</span> Component<span class="token punctuation">,</span> 
+	<span class="token literal-property property">listeners</span><span class="token operator">:</span> Object<span class="token punctuation">,</span> 
+	<span class="token literal-property property">oldListeners</span><span class="token operator">:</span> <span class="token operator">?</span>Object</span> 
+<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	target <span class="token operator">=</span> vm <span class="token function">updateListeners</span><span class="token punctuation">(</span>
+		listeners<span class="token punctuation">,</span> oldListeners <span class="token operator">||</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> 
+		add<span class="token punctuation">,</span> 
+		remove<span class="token punctuation">,</span>
+		createOnceHandler<span class="token punctuation">,</span> vm<span class="token punctuation">)</span>
+		target <span class="token operator">=</span> <span class="token keyword">undefined</span> 
+<span class="token punctuation">&#125;</span>
 
-function add (event, fn) &#123; 
-	target.$on(event, fn) 
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">function</span> <span class="token function">add</span> <span class="token punctuation">(</span><span class="token parameter">event<span class="token punctuation">,</span> fn</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> 
+	target<span class="token punctuation">.</span><span class="token function">$on</span><span class="token punctuation">(</span>event<span class="token punctuation">,</span> fn<span class="token punctuation">)</span> 
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="Vue模版编译原理"><a href="#Vue模版编译原理" class="headerlink" title="Vue模版编译原理"></a>Vue模版编译原理</h2><p>Vue的编译过程就是将template转化为render函数的过程。会经历以下阶段：<br>首先解析模版，<strong>生成AST语法树</strong>(一种用JavaScript对象的形式来描述整个模板)。 使用大量的正则表达式对模板进行解析，遇到标签、文本的时候都会执行对应的钩子进行相关处理。Vue的数据是响应式的，但其实模板中并不是所有的数据都是响应式的。有一些数据首次渲染后就不会再变化，对应的DOM也不会变化。</p>
 <p><strong>优化</strong>过程就是深度遍历AST树，按照相关条件对树节点进行标记。这些被标记的节点(静态节点)我们就可以跳过对它们的比对，对运行时的模板起到很大的优化作用。</p>
