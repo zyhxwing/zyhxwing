@@ -444,11 +444,11 @@
 <p>hidden-source-map：借助第三方错误监控平台 Sentry 使用<br>nosources-source-map：只会显示具体行数以及查看源代码的错误栈。安全性比 sourcemap 高<br>sourcemap：通过 nginx 设置将 .map 文件只对白名单开放(公司内网)</p>
 <p>注意：避免在生产中使用 inline- 和 eval-，因为它们会增加 bundle 体积大小，并降低整体性能。</p>
 <h3 id="source-map-是如何对应到源代码的？"><a href="#source-map-是如何对应到源代码的？" class="headerlink" title="source map 是如何对应到源代码的？"></a>source map 是如何对应到源代码的？</h3><p>我们还是以刚才打包的文件为例，来看看产出的 source map 长啥样</p>
-<pre class="line-numbers language-none"><code class="language-none">&#123;
-  sources:[&quot;webpack:&#x2F;&#x2F;webpack-source-demo&#x2F;.&#x2F;src&#x2F;index.js&quot;],
-  names: [&#39;console&#39;, &#39;log&#39;],
-  mappings: &#39;AACAA,QAAQC,IADE&#39;,
-&#125;
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">sources</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"webpack://webpack-source-demo/./src/index.js"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">names</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'console'</span><span class="token punctuation">,</span> <span class="token string">'log'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">mappings</span><span class="token operator">:</span> <span class="token string">'AACAA,QAAQC,IADE'</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>英文，表示源码及压缩代码的位置关联;逗号，分隔一行代码中的内容。比如说 console.log(a) 就由 console 、log 及 a 三部分组成，所以存在两个逗号;分号，代表换行</p>
 <p>英文从左到右分别表示：</p>
@@ -532,30 +532,30 @@
 <p>图片的文件指纹设置<br>设置file-loader的name，使用hash。</p>
 <p>占位符名称及含义</p>
 <p>ext    资源后缀名<br>name   文件名称<br>path   文件的相对路径<br>folder 文件所在的文件夹<br>contenthash  文件的内容hash，默认是md5生成<br>hash  文件内容的hash，默认是md5生成<br>emoji  一个随机的指代文件内容的emoj</p>
-<pre class="line-numbers language-none"><code class="language-none">const path &#x3D; require(&#39;path&#39;);
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-module.exports &#x3D; &#123;
-    entry: &#39;.&#x2F;src&#x2F;index.js&#39;,
-    output: &#123;
-        filename:&#39;bundle.js&#39;,
-        path:path.resolve(__dirname, &#39;dist&#39;)
-    &#125;,
-    module:&#123;
-        rules:[&#123;
-            test:&#x2F;\.(png|svg|jpg|gif)$&#x2F;,
-            use:[&#123;
-                loader:&#39;file-loader&#39;,
-                options:&#123;
-                    name:&#39;img&#x2F;[name][hash:8].[ext]&#39;
-                &#125;
-            &#125;]
-        &#125;]
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token string">'./src/index.js'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">filename</span><span class="token operator">:</span><span class="token string">'bundle.js'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">path</span><span class="token operator">:</span>path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'dist'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">module</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">rules</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">test</span><span class="token operator">:</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.(png|svg|jpg|gif)$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+            <span class="token literal-property property">use</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">&#123;</span>
+                <span class="token literal-property property">loader</span><span class="token operator">:</span><span class="token string">'file-loader'</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">options</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
+                    <span class="token literal-property property">name</span><span class="token operator">:</span><span class="token string">'img/[name][hash:8].[ext]'</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">]</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">]</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 <h2 id="如何对bundle体积进行监控和分析？"><a href="#如何对bundle体积进行监控和分析？" class="headerlink" title="如何对bundle体积进行监控和分析？"></a>如何对bundle体积进行监控和分析？</h2><p>VSCode 中有一个插件 <strong>Import Cost</strong> 可以帮助我们对引入模块的大小进行实时监测，还可以使用 <strong>webpack-bundle-analyzer</strong> 生成 bundle 的模块组成图，显示所占体积。<br><strong>bundlesize</strong> 工具包可以进行自动化资源体积监控。</p>
-<h2 id="在实际工程中，配置文件上百行乃是常事，如何保证各个loader按照预想方式工作？"><a href="#在实际工程中，配置文件上百行乃是常事，如何保证各个loader按照预想方式工作？" class="headerlink" title="在实际工程中，配置文件上百行乃是常事，如何保证各个loader按照预想方式工作？"></a>在实际工程中，配置文件上百行乃是常事，如何保证各个loader按照预想方式工作？</h2><p>可以使用 <strong>enforce</strong> 强制执行 loader 的作用顺序，<strong>pre</strong> 代表在所有正常 loader 之前执行，<strong>post</strong> 是所有 loader 之后执行。(inline 官方不推荐使用)</p>
+<h2 id="如何保证各个loader按照预想方式工作"><a href="#如何保证各个loader按照预想方式工作" class="headerlink" title="如何保证各个loader按照预想方式工作"></a>如何保证各个loader按照预想方式工作</h2><p>可以使用 <strong>enforce</strong> 强制执行 loader 的作用顺序，<strong>pre</strong> 代表在所有正常 loader 之前执行，<strong>post</strong> 是所有 loader 之后执行。(inline 官方不推荐使用)</p>
 <h2 id="如何优化-Webpack-的构建速度？"><a href="#如何优化-Webpack-的构建速度？" class="headerlink" title="如何优化 Webpack 的构建速度？"></a>如何优化 Webpack 的构建速度？</h2><p>使用高版本的 Webpack 和 Node.js<br>多进程&#x2F;多实例构建：thread-loader<br>压缩代码<br>多进程并行压缩<br>webpack-paralle-uglify-pluginuglifyjs-webpack-plugin 开启 parallel 参数 (不支持ES6)terser-webpack-plugin 开启 parallel 参数<br>通过 mini-css-extract-plugin 提取 Chunk 中的 CSS 代码到单独文件，通过 css-loader 的 minimize 选项开启 cssnano 压缩 CSS。<br>图片压缩</p>
 <p>使用基于 Node 库的 imagemin (很多定制选项、可以处理多种图片格式)配置 image-webpack-loader<br>缩小打包作用域：</p>
 <p>exclude&#x2F;include (确定 loader 规则范围)resolve.modules 指明第三方模块的绝对路径 (减少不必要的查找)resolve.mainFields 只采用 main 字段作为入口文件描述字段 (减少搜索步骤，需要考虑到所有运行时依赖的第三方模块的入口文件描述字段)resolve.extensions 尽可能减少后缀尝试的可能性noParse 对完全不需要解析的库进行忽略 (不去解析但仍会打包到 bundle 中，注意被忽略掉的文件里不应该包含 import、require、define 等模块化语句)IgnorePlugin (完全排除模块)合理使用alias<br>提取页面公共资源：</p>
@@ -569,10 +569,10 @@ module.exports &#x3D; &#123;
 <p>Scope hoisting</p>
 <p>构建后的代码会存在大量闭包，造成体积增大，运行代码时创建的函数作用域变多，内存开销变大。Scope hoisting 将所有模块的代码按照引用顺序放在一个函数作用域里，然后适当的重命名一些变量以防止变量名冲突必须是ES6的语法，因为有很多第三方库仍采用 CommonJS 语法，为了充分发挥 Scope hoisting 的作用，需要配置 mainFields 对第三方模块优先采用 jsnext:main 中指向的ES6模块化语法<br>动态Polyfill</p>
 <p>建议采用 polyfill-service 只给用户返回需要的polyfill，社区维护。 (部分国内奇葩浏览器UA可能无法识别，但可以降级返回所需全部polyfill)</p>
-<h2 id="你刚才也提到了代码分割，那代码分割的本质是什么？有什么意义呢？"><a href="#你刚才也提到了代码分割，那代码分割的本质是什么？有什么意义呢？" class="headerlink" title="你刚才也提到了代码分割，那代码分割的本质是什么？有什么意义呢？"></a>你刚才也提到了代码分割，那代码分割的本质是什么？有什么意义呢？</h2><p>某个模块被多个入口模块引用时，它就会被打包多次（在最终打包出来的某几个文件里，它们都会有一份相同的代码）。当项目业务越来越复杂，打包出来的代码会非常冗余，文件体积会非常庞大。大体积文件会增加编译时间，影响开发效率；如果直接上线，还会拉长请求和加载时长，影响网站体验。作为一个追求极致体验的攻城狮，是不能忍的。所以在多页应用中优化打包尤为必要。那么如何优化webpack打包呢</p>
+<h2 id="代码分割的本质"><a href="#代码分割的本质" class="headerlink" title="代码分割的本质"></a>代码分割的本质</h2><p>某个模块被多个入口模块引用时，它就会被打包多次（在最终打包出来的某几个文件里，它们都会有一份相同的代码）。当项目业务越来越复杂，打包出来的代码会非常冗余，文件体积会非常庞大。大体积文件会增加编译时间，影响开发效率；如果直接上线，还会拉长请求和加载时长，影响网站体验。作为一个追求极致体验的攻城狮，是不能忍的。所以在多页应用中优化打包尤为必要。那么如何优化webpack打包呢</p>
 <p>代码分割的本质其实就是在源代码直接上线和打包成唯一脚本main.bundle.js这两种极端方案之间的一种更适合实际场景的中间状态。</p>
 <p>「用可接受的服务器性能压力增加来换取更好的用户体验。」<br>源代码直接上线：虽然过程可控，但是http请求多，性能开销大。<br>打包成唯一脚本：一把梭完自己爽，服务器压力小，但是页面空白期长，用户体验不好。</p>
-<h2 id="是否写过Loader？简单描述一下编写loader的思路？"><a href="#是否写过Loader？简单描述一下编写loader的思路？" class="headerlink" title="是否写过Loader？简单描述一下编写loader的思路？"></a>是否写过Loader？简单描述一下编写loader的思路？</h2><p>Loader 支持链式调用，所以开发上需要严格遵循“单一职责”，每个 Loader 只负责自己需要负责的事情。</p>
+<h2 id="编写loader的思路"><a href="#编写loader的思路" class="headerlink" title="编写loader的思路"></a>编写loader的思路</h2><p>Loader 支持链式调用，所以开发上需要严格遵循“单一职责”，每个 Loader 只负责自己需要负责的事情。</p>
 <ul>
 <li>Loader 运行在 Node.js 中，我们可以调用任意 Node.js 自带的 API 或者安装第三方模块进行调用</li>
 <li>Webpack 传给 Loader 的原内容都是 UTF-8 格式编码的字符串，当某些场景下 Loader 处理二进制文件时，需要通过 exports.raw &#x3D; true 告诉 Webpack 该 Loader 是否需要二进制数据</li>
@@ -586,7 +586,7 @@ module.exports &#x3D; &#123;
 <li>配置webpack， 在module. rules中设置test（待处理文件），use（处理的方式，即步骤1js文件），可以写多个use，先写的user会被后面执行</li>
 <li>在入口文件导入这个脚本，如果不引用该文件的话，webpack是不会对该文件进行打包处理的，那么你的loader也不会执行</li>
 </ol>
-<h2 id="是否写过Plugin？简单描述一下编写Plugin的思路？"><a href="#是否写过Plugin？简单描述一下编写Plugin的思路？" class="headerlink" title="是否写过Plugin？简单描述一下编写Plugin的思路？"></a>是否写过Plugin？简单描述一下编写Plugin的思路？</h2><p>webpack在运行的生命周期中会广播出许多事件，Plugin 可以监听这些事件，在特定的阶段钩入想要添加的自定义功能。Webpack 的 Tapable 事件流机制保证了插件的有序性，使得整个系统扩展性良好。</p>
+<h2 id="编写Plugin的思路"><a href="#编写Plugin的思路" class="headerlink" title="编写Plugin的思路"></a>编写Plugin的思路</h2><p>webpack在运行的生命周期中会广播出许多事件，Plugin 可以监听这些事件，在特定的阶段钩入想要添加的自定义功能。Webpack 的 Tapable 事件流机制保证了插件的有序性，使得整个系统扩展性良好。</p>
 <ul>
 <li>compiler 暴露了和 Webpack 整个生命周期相关的钩子</li>
 <li>compilation 暴露了与模块和依赖有关的粒度更小的事件钩子</li>
