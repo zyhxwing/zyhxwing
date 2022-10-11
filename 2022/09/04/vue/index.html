@@ -400,7 +400,32 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="VUE"><a href="#VUE" class="headerlink" title="VUE"></a>VUE</h1><h2 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h2><p>MVVM是Model-View-ViewModel缩写，也就是把MVC中的Controller演变成ViewModel。Model层代表数据模型，View代表UI组件，ViewModel是View和Model层的桥梁，数据会绑定到viewModel层并自动将数据渲染到页面中，视图变化的时候会通知viewModel层更新数据。</p>
+                <h1 id="VUE"><a href="#VUE" class="headerlink" title="VUE"></a>VUE</h1><h2 id="MVVM框架与其他框架的区别"><a href="#MVVM框架与其他框架的区别" class="headerlink" title="MVVM框架与其他框架的区别"></a>MVVM框架与其他框架的区别</h2><h3 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h3><p>MVVM是Model-View-ViewModel缩写，也就是把MVC中的Controller演变成ViewModel。Model层代表数据模型，View代表UI组件，ViewModel是View和Model层的桥梁，数据会绑定到viewModel层并自动将数据渲染到页面中，视图变化的时候会通知viewModel层更新数据。</p>
+<h3 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h3><p><code>MVC</code>是应用最广泛的软件架构之一，一般<code>MVC</code>分为：<br><code>Model（ 模型 ）</code>、<code>Controller（ 控制器 ）</code>、<code>View（ 视图 ）</code>。<br>这主要是基于分层的目的，让彼此的职责分开。<code>View</code>一般通过<code>Controller</code>来和<code>Model</code>进行联系。<code>Controller</code>是<code>Model</code>和<code>View</code>的协调者，<code>View</code>和<code>Model</code>不直接联系。基本联系都是单向的。<br><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015020105.png" alt="MVC"></p>
+<ol>
+<li>View 传送指令到 Controller</li>
+<li>Controller 完成业务逻辑后，要求 Model 改变状态</li>
+<li>Model 将新的数据发送到 View，用户得到反馈</li>
+</ol>
+<h3 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h3><p><code>MVP</code> 模式将 <code>Controller</code> 改名为<code>Presenter</code>，同时改变了通信方向。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015020109.png" alt="MVP"></h2><ol>
+<li>各部分之间的通信，都是双向的。</li>
+<li>View 与 Model 不发生联系，都通过 Presenter 传递。</li>
+<li>View 非常薄，不部署任何业务逻辑，称为”被动视图”（Passive View），即没有任何主动性，而 Presenter非常厚，所有逻辑都部署在那里。</li>
+</ol>
+<h3 id="MVVM模式的优点以及与MVC模式的区别"><a href="#MVVM模式的优点以及与MVC模式的区别" class="headerlink" title="MVVM模式的优点以及与MVC模式的区别"></a>MVVM模式的优点以及与MVC模式的区别</h3><p><strong>MVVM模式的优点：</strong></p>
+<ol>
+<li><strong>低耦合：</strong>视图（View）可以独立于 Model 变化和修改，一个 ViewModel 可以绑定到不同的”View”上，当View变化的时候Model可以不变，当Model变化的时候View也可以不变。</li>
+<li><strong>可重用性：</strong>你可以把一些视图逻辑放在一个ViewModel里面，让很多 view 重用这段视图逻辑。</li>
+<li><strong>独立开发：</strong>开发人员可以专注于业务逻辑和数据的开发（ViewModel），设计人员可以专注于页面设计。</li>
+<li><strong>可测试：</strong>界面素来是比较难于测试的，而现在测试可以针对ViewModel来写。</li>
+</ol>
+<p><strong>MVVM 和 MVC 的区别：</strong></p>
+<ol>
+<li>MVC 中 Controller演变成 MVVM 中的 ViewModel，</li>
+<li>MVVM 通过数据来显示视图层而不是节点操作。</li>
+<li>MVC中大量的DOM 操作使页面渲染性能降低，加载速度变慢，影响用户体验。</li>
+</ol>
 <h2 id="Vue响应式数据原理"><a href="#Vue响应式数据原理" class="headerlink" title="Vue响应式数据原理"></a>Vue响应式数据原理</h2><p>首先需要解释的是 什么是响应式：数据发生改变的时候，视图会重新渲染，匹配更新为最新的值。</p>
 <h3 id="Vue2-x响应式数据原理"><a href="#Vue2-x响应式数据原理" class="headerlink" title="Vue2.x响应式数据原理"></a>Vue2.x响应式数据原理</h3><p>Vue2.x采用<strong>数据劫持</strong>结合<strong>发布者-订阅者模式</strong>的方式，在初始化的时候，通过Object.defineProperty 为对象中的每一个属性，设置 get 和 set 方法，每个声明的属性，都会有一个 专属的依赖收集器 subs，当页面使用到 某个属性时，触发 ObjectdefineProperty - get函数，页面的 watcher 就会被 放到 属性的依赖收集器 subs 中，在 数据变化时，通知更新；当数据改变的时候，会触发Object.defineProperty - set函数，数据会遍历自己的依赖收集器 subs，逐个通知 watcher，视图开始更新。</p>
 <p><img src="/zyhxwing/../images/Vue/1371_1.png" alt="Vue2.x响应式数据原理"></p>

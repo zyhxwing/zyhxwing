@@ -987,6 +987,12 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token comment">//浏览器会非常规律的把这 10 组也就是 20 次颜色变化绘制出来，</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="js异步方法"><a href="#js异步方法" class="headerlink" title="js异步方法"></a>js异步方法</h2><h3 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h3><p>是异步操作最基本的方法，比如AJAX回调，回调函数的优点是简单、容易理解和实现，缺点是不利于代码的阅读和维护，各个部分之间高度耦合，使得程序结构混乱、流程难以追踪（尤其是多个回调函数嵌套的情况），而且每个任务只能指定一个回调函数。此外它不能使用try catch捕获错误，不能之间return。</p>
 <h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><p>包装了一个异步调用并生成一个Promise实例，当异步调用返回的时候根据调用的结果分别调用实例化时传入的resolve和reject方法，then接收到对应的数据，做出相应的处理。Promise不仅能够捕获错误，而且也能很好地解决了回调地狱的问题，缺点是无法取消Promise，错误需要通过回调函数捕获。</p>
+<p><strong>Promise.then方法的链式调用</strong></p>
+<ul>
+<li>前一个then里面返回的字符串，会被下一个then方法接收到。但是没有意义；</li>
+<li>前一个then里面返回的Promise对象，并且调用resolve的时候传递了数据，数据会被下一个then接收到</li>
+<li>前一个then里面如果没有调用resolve，则后续的then不会接收到任何值</li>
+</ul>
 <h3 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h3><p>函数是ES6提供的一种异步编程解决方案，Generator函数是一个状态机，封装了多个内部状态，可暂停函数，yield可暂停，next方法可启动，每次返回的是yield后的表达式结果。优点是异步语义清晰，缺点是手动迭代Generator函数很麻烦，实现逻辑优点。</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span><span class="token operator">*</span> <span class="token function">gen</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
     <span class="token keyword">const</span> y <span class="token operator">=</span> <span class="token keyword">yield</span> x <span class="token operator">+</span> <span class="token number">6</span><span class="token punctuation">;</span>
@@ -1001,6 +1007,14 @@ g<span class="token punctuation">.</span><span class="token function">next</span
 g<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// &#123; value: undefined, done: true &#125;</span>
 <span class="token comment">// 因为最后一行 return y 被执行完成,所以done 为 true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="async-x2F-await"><a href="#async-x2F-await" class="headerlink" title="async&#x2F;await"></a>async&#x2F;await</h3><p>是于Promise实现的，async&#x2F;awt使得异步代码看起来像同步代码，所以优点是使用方法清晰明了，缺点是await将异步代码改造成了同步代码，如果多个异步代码没有依赖性却使用了await会导致性能上的降低，代码没有依赖性的话，完全可以使用Promise.all的方式。</p>
+<p>1）async&#x2F;await 就是 Generator 的语法糖，使得异步操作变得更加方便<br>2）async 函数就是将 Generator 函数的星号（*）替换成 async，将 yield 替换成await<br>3）async 是 Generator 的语法糖，这个糖体现在这几个方面：</p>
+<ul>
+<li>async函数内置执行器，函数调用之后，会自动执行，输出最后结果，而Generator需要调用next或者配合co模块使用</li>
+<li>更好的语义，async和await，比起星号和yield，语义更清楚了，async表示函数里有异步操作，await表示紧跟在后面的表达式需要等待结果</li>
+<li>更广的适用性，co模块约定，yield命令后面只能是 Thunk 函数或 Promise 对象，而async 函数的 await 命令后面，可以是 Promise 对象和原始类型的值</li>
+<li>返回值是Promise，async函数的返回值是 Promise 对象，Generator的返回值是 Iterator，Promise 对象使用起来更加方便</li>
+</ul>
+<p>4）<strong>async&#x2F;await 函数的实现原理，就是将 Generator 函数和自动执行器，包装在一个函数里</strong></p>
 <h2 id="异步网络请求xhr、ajax、fetch与axios"><a href="#异步网络请求xhr、ajax、fetch与axios" class="headerlink" title="异步网络请求xhr、ajax、fetch与axios"></a>异步网络请求xhr、ajax、fetch与axios</h2><p>现代浏览器，最开始与服务器交换数据，都是通过 XMLHttpRequest 对象。它可以使用JSON、XML、HTML和text文本等格式发送和接收数据。</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>XMLHttpRequest<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// model browser</span>
   xhr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -1248,6 +1262,18 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <p>计算当前可视区域起始数据索引(startIndex)<br>计算当前可视区域结束数据索引(endIndex)<br>计算当前可视区域的数据，并渲染到页面中<br>计算startIndex对应的数据在整个列表中的偏移位置startOffset并设置到列表上</p>
 <p>上述实现中，列表项的高度是固定的，因为高度固定，所以可以很轻易的获取列表项的整体高度以及滚动时的显示数据与对应的偏移量。而实际应用的时候，当列表中包含文本之类的可变内容，会导致列表项的高度并不相同。</p>
 <p>可以以预估高度先行渲染，然后获取真实高度并缓存。</p>
+<h2 id="WebAssembly"><a href="#WebAssembly" class="headerlink" title="WebAssembly"></a>WebAssembly</h2><p>为什么说 WebAssembly 更为高效，性能更好？</p>
+<p>在 JS 引擎中性能消耗的分布大致为：将源码转为解释器可运行代码 -&gt; 基线&amp;优化编译器的运行 -&gt; 优化-丢弃优化的过程 -&gt; 执行代码 -&gt; 垃圾回收&amp;内存清理，这个过程是交叉进行的。</p>
+<p><img src="https://user-images.githubusercontent.com/3983192/37875422-882e5cf2-3071-11e8-873f-497d45040084.png" alt="img"></p>
+<p>而 WebAssembly 却只要简单的三个步骤即可完成 JS 引擎的整个交叉执行过程。</p>
+<p><img src="https://user-images.githubusercontent.com/3983192/37875442-e3e03a5c-3071-11e8-9186-b65843520aa0.png" alt="img"></p>
+<h4 id="Parse"><a href="#Parse" class="headerlink" title="Parse"></a>Parse</h4><p>当到达浏览器时，JS 源码需要被解析成 AST（抽象语法树）变成字节码提供给引擎编译，而 WebAssembly 却不需要这种转换，因为其本身就是字节码，因此它只需对代码进行 decode 并检查其正确性即可。</p>
+<h4 id="Compile-Optimize"><a href="#Compile-Optimize" class="headerlink" title="Compile + Optimize"></a>Compile + Optimize</h4><p>这是执行代码编译和优化的阶段，在这个阶段 WebAssembly 的性能优于 JS 的主要原因为：</p>
+<ul>
+<li>WebAssembly 是有类型定义的代码，不需要在编译前运行代码来获取变量类型</li>
+<li>WebAssembly 不需要像 JS 那样当变量类型改变时需要将代码编译成不同版本</li>
+<li>WebAssembly 不需要在编译阶段做太多的优化工作</li>
+</ul>
 
                 
             </div>

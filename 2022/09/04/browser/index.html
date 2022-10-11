@@ -467,6 +467,32 @@
 </ul>
 <h3 id="websocket"><a href="#websocket" class="headerlink" title="websocket"></a>websocket</h3><p>websocket是HTML5的一个持久化的协议，它实现了浏览器与服务器的全双工通信，同时也是跨域的一种解决方案。<br>WebSocket和HTTP都是应用层协议，都基于 TCP 协议。但是 WebSocket 是一种双向通信协议，在建立连接之后，WebSocket 的 server 与 client 都能主动向对方发送或接收数据。同时，WebSocket 在建立连接时需要借助 HTTP 协议，连接建立好了之后 client 与 server 之间的双向通信就与 HTTP 无关了。</p>
 <h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><p>需要你搭建一个中转nginx服务器，用于转发请求。使用nginx反向代理实现跨域，是最简单的跨域方式。只需要修改nginx的配置即可解决跨域问题，支持所有浏览器，支持session，不需要修改任何代码，并且不会影响服务器性能。<br>实现思路：通过nginx配置一个代理服务器（域名与domain1相同，端口不同）做跳板机，反向代理访问domain2接口，并且可以顺便修改cookie中domain信息，方便当前域cookie写入，实现跨域登录。</p>
+<p>反向代理是工作中最常用的服务器功能，经常被用来解决跨域问题，下面我们来简单介绍一下如何实现反向代理。</p>
+<p>首先进入 Nginx 的主配置文件：vim &#x2F;etc&#x2F;nginx&#x2F;nginx.conf</p>
+<p>然后我们去 http 模块的 server 块中的 location &#x2F;，增加一行将默认网址重定向到最大学习网站 Bilibili 的 proxy_pass 配置：</p>
+<p><img src="http://ypimg.muzhuangnet.com/Collect/nginx/upload/image/725/644/355/1592555055376693.png" alt="4f1f3ca89b3bd13e948d7a06b3d3ec7.png"></p>
+<p>改完保存退出，<code>nginx -s reload</code> 重新加载，进入默认网址，那么现在就直接跳转到 B 站了，实现了一个简单的代理。</p>
+<p>实际使用中，可以将请求转发到本机另一个服务器上，也可以根据访问的路径跳转到不同端口的服务中。</p>
+<p>比如我们监听 9001 端口，然后把访问不同路径的请求进行反向代理：<br>把访问 <a target="_blank" rel="noopener" href="http://127.0.0.1:9001/edu">http://127.0.0.1:9001/edu</a> 的请求转发到 <a target="_blank" rel="noopener" href="http://127.0.0.1:8080/">http://127.0.0.1:8080</a><br>把访问 <a target="_blank" rel="noopener" href="http://127.0.0.1:9001/vod">http://127.0.0.1:9001/vod</a> 的请求转发到 <a target="_blank" rel="noopener" href="http://127.0.0.1:8081/">http://127.0.0.1:8081</a><br>这种要怎么配置呢，首先同样打开主配置文件，然后在 http 模块下增加一个 server 块：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">server <span class="token punctuation">&#123;</span>
+  listen <span class="token number">9001</span><span class="token punctuation">;</span>
+  server_name <span class="token operator">*</span><span class="token punctuation">.</span>sherlocked93<span class="token punctuation">.</span>club<span class="token punctuation">;</span>
+  location <span class="token operator">~</span> <span class="token operator">/</span>edu<span class="token operator">/</span> <span class="token punctuation">&#123;</span>
+    proxy_pass http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span><span class="token operator">:</span><span class="token number">8080</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  location <span class="token operator">~</span> <span class="token operator">/</span>vod<span class="token operator">/</span> <span class="token punctuation">&#123;</span>
+    proxy_pass http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span><span class="token operator">:</span><span class="token number">8081</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>反向代理还有一些其他的指令，可以了解一下：</p>
+<ol>
+<li>proxy_set_header：在将客户端请求发送给后端服务器之前，更改来自客户端的请求头信息。</li>
+<li>proxy_connect_timeout：配置Nginx与后端代理服务器尝试建立连接的超时时间。</li>
+<li>proxy_read_timeout：配置Nginx向后端服务器组发出read请求后，等待相应的超时时间。</li>
+<li>proxy_send_timeout：配置Nginx向后端服务器组发出write请求后，等待相应的超时时间。</li>
+<li>proxy_redirect：用于修改后端服务器返回的响应头中的Location和Refresh。</li>
+</ol>
 <h3 id="postmessage"><a href="#postmessage" class="headerlink" title="postmessage"></a>postmessage</h3><p>iframe 和 父窗口 跨域（一般是调用别人的HTML ）必须使用安全的 postMessage方式来进行通信</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 向父窗口传值</span>
 window<span class="token punctuation">.</span>parent<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token literal-property property">code</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token literal-property property">msg</span><span class="token operator">:</span> <span class="token string">'向父窗口传值'</span><span class="token punctuation">&#125;</span>，<span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
