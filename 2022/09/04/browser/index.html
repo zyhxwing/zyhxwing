@@ -424,7 +424,7 @@
 <p>优势：纯静态文件，访问速度超快； 对比SSR，不涉及到服务器负载方面问题； 静态网页不宜遭到黑客攻击，安全性更高。</p>
 <p>不足：<br>如果动态路由参数多的话不适用。如果你的动态路由的参数很多，例如商品详情，可能高达几千几万个。需要一个接口返回所有id，然后打包时遍历id，打包到本地，如果某个商品修改了或者下架了，又要重新打包，数量多的情况下打包也是非常慢的，非常不现实。</p>
 <h2 id="前端跨域html"><a href="#前端跨域html" class="headerlink" title="前端跨域html"></a>前端跨域html</h2><p>同源策略是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，浏览器很容易受到XSS、CSRF等攻击。所谓同源是指”协议+域名+<br>端口”三者相同，即便两个不同的域名指向同一个ip地址，也非同源。</p>
-<p><img src="/zyhxwing/../images/browser/1343_1.png" alt="浏览器同源协议"></p>
+<p><img src="/zyhxwing/./images/browser/1343_1.png" alt="浏览器同源协议"></p>
 <p>同源策略限制内容有：</p>
 <ul>
 <li>Cookie、LocalStorage、IndexedDB 等存储性内容</li>
@@ -543,7 +543,7 @@ window<span class="token punctuation">.</span><span class="token function">addEv
 </li>
 </ul>
 <h2 id="前端安全问题"><a href="#前端安全问题" class="headerlink" title="前端安全问题"></a>前端安全问题</h2><p>前端常见安全问题有8个方面</p>
-<p><img src="/zyhxwing/../images/browser/1345_1.png" alt="前端常见安全问题"></p>
+<p><img src="/zyhxwing/./images/browser/1345_1.png" alt="前端常见安全问题"></p>
 <h3 id="XSS跨站脚本攻击"><a href="#XSS跨站脚本攻击" class="headerlink" title="XSS跨站脚本攻击"></a>XSS跨站脚本攻击</h3><p>Cross-Site Scripting（跨站脚本攻击）简称 XSS，是一种代码注入攻击。攻击者通过在目标网站上注入恶意脚本，使之在用户的浏览器上运行。利用这些恶意脚本，攻击者可获取用户的敏感信息如 Cookie、SessionID 等，进而危害数据安全。为了和 CSS 区分，这里把攻击的第一个字母改成了 X，于是叫做 XSS。</p>
 <h4 id="存储型"><a href="#存储型" class="headerlink" title="存储型"></a>存储型</h4><p>又叫持久型 XSS，顾名思义，黑客将恶意 JavaScript 脚本长期保存在服务端数据库中，用户一旦访问相关页面数据，恶意脚本就会被执行。常见于搜索、微博、社区贴吧评论等。</p>
 <p>存储型 XSS 的攻击步骤：</p>

@@ -926,7 +926,7 @@ ul<span class="token punctuation">.</span><span class="token function">addEventL
 <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>上面代码中，click事件的监听函数定义在节点，但是实际上，它处理的是子节点的click事件。这样做的好处是，只要定义一个监听函数，就能处理多个子节点的事件，而不用在每个节点上定义监听函数。而且以后再添加子节点，监听函数依然有效。</p>
 <p><strong>优点</strong><br>省监听数（内存）<br>可以监听动态元素</p>
-<h2 id="js的事件循环"><a href="#js的事件循环" class="headerlink" title="js的事件循环"></a>js的事件循环</h2><p><img src="/zyhxwing/../images/JavaScript/1363_1.png" alt="js事件循环"></p>
+<h2 id="js的事件循环"><a href="#js的事件循环" class="headerlink" title="js的事件循环"></a>js的事件循环</h2><p><img src="/zyhxwing/./images/JavaScript/1363_1.png" alt="js事件循环"></p>
 <p>S是单线程的，但是我们在写代码的时候，会有同步执行的代码和异步执行的代码。EventLoop就是一种解决异步回调的一种机制。具体的解决办法就是使用一个执行栈和事件队列，事件队列又分为宏任务队列和微任务队列。简单的来讲，就是把代码从上到下，会把同步任务压入到执行栈，遇到异步的任务，根据异步任务的类型，放入不同的事件队列，交给其它线程进行处理。如果执行栈空的话，就从事件队列当中取出结果，放入到执行栈中执行并执行。Event Loop 的每一次循环称为一个tick，具体是先拿出一个宏任务，然后检查它里面的微任务，如果有的话，就执行所有的微任务，结束之后，进行一次渲染。再拿出一个宏任务，按照刚刚的过程继续进行</p>
 <h3 id="宏任务MacroTask"><a href="#宏任务MacroTask" class="headerlink" title="宏任务MacroTask"></a>宏任务MacroTask</h3><p>script代码、settimeout、promise、async、setInterval、ajax、dom监听、UI Rendering</p>
 <h3 id="微任务MicroTask"><a href="#微任务MicroTask" class="headerlink" title="微任务MicroTask"></a>微任务MicroTask</h3><p>promise的回调函数（then、catch、finally）、await、queueMicrotask、MutationObserver的Api</p>
@@ -1125,13 +1125,13 @@ axios<span class="token punctuation">.</span><span class="token function">all</s
 <p>解决办法：及时销毁绑定的事件、使用弱引用 weakMap、weakSet。</p>
 <p><strong>2）标记清除方法。</strong></p>
 <p>V8 中主垃圾回收器就采用标记清除法进行垃圾回收。主要流程如下：<br>标记：遍历调用栈，看老生代区域堆中的对象是否被引用，被引用的对象标记为活动对象，没有被引用的对象（待清理）标记为垃圾数据。<br>清除：将所有垃圾数据清理掉。</p>
-<p><img src="/zyhxwing/../images/JavaScript/1365_1.png" alt="标记清除方法"></p>
+<p><img src="/zyhxwing/./images/JavaScript/1365_1.png" alt="标记清除方法"></p>
 <p>垃圾回收算法垃圾回收的实现简单分为以下三个步骤：<br><strong>1）可访问性</strong><br>从 GC Roots 对象出发，遍历 GC Root 中的所有对象：<br>a、可访问对象：通过 GC Root 遍历到的对象，我们就认为该对象是可访问的（reachable），那么必须保证这些对象应该在内存中保留。<br>b、不可访问对象：通过 GC Roots 没有遍历到的对象，则是不可访问的（unreachable），并会对其做上标记，那么这些不可访问的对象就可能被回收。</p>
 <p>GC Root 有很多，通常包括了以下几种 (但是不止于这几种)：全局的 window 对象（位于每个 iframe 中）；文档 DOM 树，可以通过遍历文档到达的所有原生 DOM 节点组成；存放栈上变量。</p>
 <p><strong>2）回收不可访问对象所占据的内存</strong><br>在所有的标记完成之后，统一清理内存中所有被标记为可回收的对象。</p>
 <p><strong>3）内存整理</strong><br>频繁回收对象后，内存中就会存在大量不连续空间，称为内存碎片。当出现了大量的内存碎片之后，如果需要分配较大的连续内存时，就会出现内存不足的情况，所以最后一步需要整理这些内存碎片。</p>
 <p>在我们的实际开发过程中，如果我们想要让垃圾回收器回收某一对象，就将对象的引用直接设置为 null。但如果一个对象被多次引用时，例如作为另一对象的键、值或子元素时，将该对象引用设置为 null 时，该对象是不会被回收的，依然存在。</p>
-<h2 id="Cookie、LocalStorage、SessionStorage"><a href="#Cookie、LocalStorage、SessionStorage" class="headerlink" title="Cookie、LocalStorage、SessionStorage"></a>Cookie、LocalStorage、SessionStorage</h2><p><img src="/zyhxwing/../images/JavaScript/1367_1.png" alt="Cookie、LocalStorage、SessionStorage"></p>
+<h2 id="Cookie、LocalStorage、SessionStorage"><a href="#Cookie、LocalStorage、SessionStorage" class="headerlink" title="Cookie、LocalStorage、SessionStorage"></a>Cookie、LocalStorage、SessionStorage</h2><p><img src="/zyhxwing/./images/JavaScript/1367_1.png" alt="Cookie、LocalStorage、SessionStorage"></p>
 <h3 id="cookies属性有哪些"><a href="#cookies属性有哪些" class="headerlink" title="cookies属性有哪些"></a>cookies属性有哪些</h3><ul>
 <li>cookieName&#x3D;cookieValue 设置 cookie 的名字和值，必填项。</li>
 <li>HttpOnly 只能通过 HTTP 响应报文的 Set-Cookie 来新增或更新 cookie ，客户端无法通过脚本的方式来读写 cookie。</li>

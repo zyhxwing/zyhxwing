@@ -428,7 +428,7 @@
 </ol>
 <h2 id="Vue响应式数据原理"><a href="#Vue响应式数据原理" class="headerlink" title="Vue响应式数据原理"></a>Vue响应式数据原理</h2><p>首先需要解释的是 什么是响应式：数据发生改变的时候，视图会重新渲染，匹配更新为最新的值。</p>
 <h3 id="Vue2-x响应式数据原理"><a href="#Vue2-x响应式数据原理" class="headerlink" title="Vue2.x响应式数据原理"></a>Vue2.x响应式数据原理</h3><p>Vue2.x采用<strong>数据劫持</strong>结合<strong>发布者-订阅者模式</strong>的方式，在初始化的时候，通过Object.defineProperty 为对象中的每一个属性，设置 get 和 set 方法，每个声明的属性，都会有一个 专属的依赖收集器 subs，当页面使用到 某个属性时，触发 ObjectdefineProperty - get函数，页面的 watcher 就会被 放到 属性的依赖收集器 subs 中，在 数据变化时，通知更新；当数据改变的时候，会触发Object.defineProperty - set函数，数据会遍历自己的依赖收集器 subs，逐个通知 watcher，视图开始更新。</p>
-<p><img src="/zyhxwing/../images/Vue/1371_1.png" alt="Vue2.x响应式数据原理"></p>
+<p><img src="/zyhxwing/./images/Vue/1371_1.png" alt="Vue2.x响应式数据原理"></p>
 <h3 id="Vue2-x如何监听数组变化"><a href="#Vue2-x如何监听数组变化" class="headerlink" title="Vue2.x如何监听数组变化"></a>Vue2.x如何监听数组变化</h3><p>使用了函数劫持的方式，重写了数组的方法，Vue将data中的数组进行了原型链重写，指向了自己定义的数组原型方法。这样当调用数组api时，可以通知依赖更新。如果数组中包含着引用类型，会对数组中的引用类型再次递归遍历进行监控。这样就实现了监测数组变化。</p>
 <h3 id="Vue3-x响应式数据原理"><a href="#Vue3-x响应式数据原理" class="headerlink" title="Vue3.x响应式数据原理"></a>Vue3.x响应式数据原理</h3><p>Vue3.x改用Proxy替代Object.defineProperty。因为Proxy可以直接监听对象和数组的变化，并且有多达13种拦截方法，包括不限于 apply、ownKeys、deleteProperty、has 等等。并且作为新标准将受到浏览器厂商重点持续的性能优化。</p>
 <p>但是Proxy只会代理对象的第一层，Vue3会判断当前Reflect.get的返回值是否为Object，如果是则再通过reactive方法做代理， 这样就实现了深度观测。</p>
@@ -559,7 +559,7 @@
 <p>正常Diff两个树的时间复杂度是O(n^3)，但实际情况下我们很少会进行跨层级的移动DOM，所以Vue将Diff进行了优化，从O(n^3) -&gt; O(n)，只有当新旧children都为多个子节点时才需要用核心的Diff算法进行同层级比较。</p>
 <h3 id="Vue2的核心Diff算法"><a href="#Vue2的核心Diff算法" class="headerlink" title="Vue2的核心Diff算法"></a>Vue2的核心Diff算法</h3><p>Vue2的核心Diff算法采用了双端比较的算法，同时从新旧children的两端开始进行比较，借助key值找到可复用的节点，再进行相关操作，直到某一个列表的节点全部遍历过，对比停止。但这比较的过程是全量diff，也就是每个节点都会彼此比较。当数据发生变化，它就会新生成一个DOM树，并和之前的DOM树进行比较，找到不同的节点然后更新。但其中很显然的是，有些节点中的内容是不会发生改变的，那我们对其进行比较就肯定消耗了时间。</p>
 <h3 id="Vue3的核心Diff算法"><a href="#Vue3的核心Diff算法" class="headerlink" title="Vue3的核心Diff算法"></a>Vue3的核心Diff算法</h3><p>Vue3.x的核心Diff算法采用了静态标记 + 非全量 Diff的方法，在创建虚拟DOM树的时候，会根据DOM中的内容会不会发生变化，添加一个静态标记。那么之后在与上次虚拟节点进行对比的时候，就只会对比这些带有静态标记的节点。同时使用最长递增子序列优化对比流程，可以最大程度的减少 DOM 的移动，达到最少的 DOM 操作</p>
-<p><img src="/zyhxwing/../images/Vue/1373_0.png" alt="Vue3的Diff算法"></p>
+<p><img src="/zyhxwing/./images/Vue/1373_0.png" alt="Vue3的Diff算法"></p>
 <p>基于最长递增子序列进行移动&#x2F;添加&#x2F;删除</p>
 <h3 id="虚拟DOM中key的作用"><a href="#虚拟DOM中key的作用" class="headerlink" title="虚拟DOM中key的作用"></a>虚拟DOM中key的作用</h3><p>简单的说：key是虚拟DOM对象的标识，在更新显示时key起着极其重要的作用。<br><strong>「key的作用是尽可能的复用 DOM 元素」</strong><br>复杂的说：当状态中的数据发生了变化时，vue根据【新数据】生成【新的虚拟DOM】，随后vue进行【新虚拟DOM】与【旧虚拟DOM】的diff比较，比较规则如下：</p>
 <p>旧虚拟DOM中找到了与新虚拟DOM相同的key<br>1.若虚拟DOM中的内容没有变，直接使用之前的真实DOM<br>2.若虚拟DOM中内容变了，则生成新的真实DOM，随后替换掉页面中之前的真实DOM</p>
