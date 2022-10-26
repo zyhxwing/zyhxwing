@@ -417,6 +417,10 @@
 <li>堆内存是无序存储，可以根据引用直接获取。</li>
 <li>基础数据类型比较稳定，而且相对来说占用的内存小。</li>
 <li>引用数据类型大小是动态的，而且是无限的。</li>
+<li>复制方式不一样：值类型直接赋值就是复制，引用类型的变量直接赋值实际上是传递引用，只是浅复制</li>
+<li>基本数据类型无法添加属性和方法，引用类型可以添加属性和方法</li>
+<li>基本数据类型的比较是值的比较，只有当它们的值相等的时候它们才相等，引用类型是引用地址的比较（比较的时候&#x3D;&#x3D;是在比较的时候做了类型转换，而&#x3D;&#x3D;&#x3D;是值和类型相等才能相等）</li>
+<li>基本数据类型的变量在函数中被修改时，只在函数作用域内部生效，函数被销毁后此次修改立即失效，而引用类型在函数中被修改时修改的是运行时数据区中的值，即使函数被销毁，变量的值依旧被改变。</li>
 </ul>
 <p>BigInt类型<br>BigInt数据类型提供了一种方法来表示大于2^53-1的整数。BigInt可以表示任意大的整数。</p>
 <p>Symbol类型<br>Symbol 是一种在ES6 中新添加的数据类型，本质上是一种唯一标识符，可用作对象的唯一属性名，这样其他人就不会改写或覆盖你设置的属性值，同时具备隐藏性（for in不能访问）。</p>
@@ -986,13 +990,23 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token function">req</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token comment">//浏览器会非常规律的把这 10 组也就是 20 次颜色变化绘制出来，</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="js异步方法"><a href="#js异步方法" class="headerlink" title="js异步方法"></a>js异步方法</h2><h3 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h3><p>是异步操作最基本的方法，比如AJAX回调，回调函数的优点是简单、容易理解和实现，缺点是不利于代码的阅读和维护，各个部分之间高度耦合，使得程序结构混乱、流程难以追踪（尤其是多个回调函数嵌套的情况），而且每个任务只能指定一个回调函数。此外它不能使用try catch捕获错误，不能之间return。</p>
-<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><p>包装了一个异步调用并生成一个Promise实例，当异步调用返回的时候根据调用的结果分别调用实例化时传入的resolve和reject方法，then接收到对应的数据，做出相应的处理。Promise不仅能够捕获错误，而且也能很好地解决了回调地狱的问题，缺点是无法取消Promise，错误需要通过回调函数捕获。</p>
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><p>包装了一个异步调用并生成一个Promise实例，当异步调用返回的时候根据调用的结果分别调用实例化时传入的resolve和reject方法，then接收到对应的数据，做出相应的处理。Promise不仅能够捕获错误，而且也能很好地解决了回调地狱的问题，缺点是无法取消Promise，错误需要通过回调函数捕获。，Promise有四种状态：<code>pending:</code>初始状态, 非<code>fulfilled</code>或<code>rejected</code>. <code>fulfilled:</code>成功的操作. <code>rejected:</code>失败的操作，<code>settled:</code> <code>Promise</code>已被<code>fulfilled</code>或<code>rejected</code>，且不是<code>pending</code></p>
 <p><strong>Promise.then方法的链式调用</strong></p>
 <ul>
 <li>前一个then里面返回的字符串，会被下一个then方法接收到。但是没有意义；</li>
 <li>前一个then里面返回的Promise对象，并且调用resolve的时候传递了数据，数据会被下一个then接收到</li>
 <li>前一个then里面如果没有调用resolve，则后续的then不会接收到任何值</li>
 </ul>
+<p><strong>Promise.all方法</strong><br>要实现 Promise.all,首先我们需要知道 Promise.all 的功能：</p>
+<ol>
+<li>如果传入的参数是一个空的可迭代对象，那么此promise对象回调完成(resolve)，只有此情况，是同步执行的，其它都是异步返回的。</li>
+<li>如果传入的参数不包含任何 promise，则返回一个异步完成.</li>
+</ol>
+<p>promises 中所有的promise都“完成”时或参数中不包含 promise 时回调完成。</p>
+<ol>
+<li>如果参数中有一个promise失败，那么Promise.all返回的promise对象失败</li>
+<li>在任何情况下，Promise.all 返回的 promise 的完成状态的结果都是一个数组</li>
+</ol>
 <h3 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h3><p>函数是ES6提供的一种异步编程解决方案，Generator函数是一个状态机，封装了多个内部状态，可暂停函数，yield可暂停，next方法可启动，每次返回的是yield后的表达式结果。优点是异步语义清晰，缺点是手动迭代Generator函数很麻烦，实现逻辑优点。</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span><span class="token operator">*</span> <span class="token function">gen</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
     <span class="token keyword">const</span> y <span class="token operator">=</span> <span class="token keyword">yield</span> x <span class="token operator">+</span> <span class="token number">6</span><span class="token punctuation">;</span>

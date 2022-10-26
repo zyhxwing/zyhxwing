@@ -440,6 +440,7 @@
 <li>后代选择器(li a)</li>
 <li>伪类选择(a:hover,li:nth-child)</li>
 </ol>
+<p><img src="https://i0.hdslb.com/bfs/article/8893357747d83ffb476629f3bd8e5bd25e202cdd.jpg@942w_423h_progressive.webp" alt="css选择器优先级"></p>
 <p>当两个规则都作用到了同一个html元素上时，如果定义的属性有冲突，那么应该用谁的值的，用到谁的值谁的优先级就高。<br>我们来看一下css选择器优先级的算法：</p>
 <ul>
 <li>每个规则对应一个初始”四位数”：0、0、0、0</li>
@@ -448,7 +449,13 @@
 <li>若是 类选择符&#x2F;伪类选择符，则分别加0、0、1、0</li>
 <li>若是 元素选择符，则分别加0、0、0、1</li>
 </ul>
-<p>!important的优先级是最高的，但出现冲突时则需比较”四位数“;<br>优先级相同时，则采用就近原则，选择最后出现的样式;<br>继承得来的属性，其优先级最低。</p>
+<ol>
+<li>!important 声明的样式的优先级最高；</li>
+<li>如果优先级相同，则最后出现的样式生效；</li>
+<li>继承得到的样式的优先级最低；</li>
+<li>通用选择器（*）、子选择器（&gt;）和相邻同胞选择器（+）并不在这四个等级中，所以它们的权值都为 0 ；</li>
+<li>样式表的来源不同时，优先级顺序为：内联样式 &gt; 内部样式 &gt; 外部样式 &gt; 浏览器用户自定义样式 &gt; 浏览器默认样式。</li>
+</ol>
 <h2 id="transition和animation的区别"><a href="#transition和animation的区别" class="headerlink" title="transition和animation的区别:"></a>transition和animation的区别:</h2><ol>
 <li><p>Transition 强调过渡; Animation 强调流程与控制 。</p>
 </li>
@@ -1272,6 +1279,10 @@ overflow：hidden;<span aria-hidden="true" class="line-numbers-rows"><span></spa
 <li><p>对js的支持不同<br>link支持js控制dom去改变样式，@import则不能支持</p>
 </li>
 </ol>
+<h2 id="img标签alt和title的区别"><a href="#img标签alt和title的区别" class="headerlink" title="img标签alt和title的区别"></a>img标签alt和title的区别</h2><ol>
+<li>title：通常当鼠标滑动到元素上的时候显示</li>
+<li>alt：alt是img标签的特有属性，是图片内容的等价描述，用于图片无法正常加载时显示；搜索引擎可以通过这个属性的文字描述获取图片</li>
+</ol>
 <h2 id="css-z-index优先级"><a href="#css-z-index优先级" class="headerlink" title="css z-index优先级"></a>css z-index优先级</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42878211/article/details/114934078">z-index优先级</a></p>
 <p>z-index的基础概念<br>x 轴代表水平方向，y 轴代表垂直方向，z 轴则代表我们的目光向页面（屏幕）看进去的时候，各元素的布局情况。</p>
 <p>屏幕是一个二维平面，所以完美实际上是看不到z轴的，z轴实际上是通过透视的形式展示的。也就是说，多个元素共享同一块二维平民啊时，友得元素在顶部，有的元素在底部，因此而感受到z轴的存在。</p>
@@ -1294,6 +1305,13 @@ overflow：hidden;<span aria-hidden="true" class="line-numbers-rows"><span></spa
 <li>内联盒模型 ：位于正常文档流中的、内联的、非定位的子元素</li>
 <li>Z-index 为 0：设置了 z-index 为 0 与auto 的、定位的子元素以及由它所产生的层叠上下文</li>
 <li>Z-Index 为正数 ：设置了 z-index 为正数的、定位的子元素以及由它所产生的层叠上下文，它是整个上下文中层叠等级最高的</li>
+</ol>
+<h2 id="伪类和伪元素"><a href="#伪类和伪元素" class="headerlink" title="伪类和伪元素"></a>伪类和伪元素</h2><p><strong>伪元素</strong>本身不存在在DOM文档中，它需要人为的去创建它。且就算你创建了伪元素，它也只是逻辑上存在，实际上也并不存在DOM文档中，也就是说你无法使用JS去获取改变它。</p>
+<p><strong>伪类</strong>它存在于DOM文档中，但如果你没有特别的去声明它，你就看不到它。</p>
+<ol>
+<li>伪元素是创建了一个新元素，而伪类本身就存在只不过不用特别声明</li>
+<li>伪元素使用<code>:</code>或者<code>::</code>声明(前者是css2的声明方式，后者是css3)，而伪类只能使用<code>：</code> (建议在H5中伪元素统一用<code>::</code> 以便区分伪元素和伪类)</li>
+<li>伪元素只能同时使用一个，伪类可以同时使用多个</li>
 </ol>
 
                 
