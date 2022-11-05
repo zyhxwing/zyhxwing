@@ -434,11 +434,9 @@
 <h2 id="css选择器优先级"><a href="#css选择器优先级" class="headerlink" title="css选择器优先级"></a>css选择器优先级</h2><p>css选择器优先级最高到最低顺序为：</p>
 <ol>
 <li>id选择器(#myid)</li>
-<li>类选择器(.myclassname)</li>
-<li>标签选择器(div,h1,p)</li>
-<li>子选择器(ul &lt; li)</li>
-<li>后代选择器(li a)</li>
-<li>伪类选择(a:hover,li:nth-child)</li>
+<li>类选择器(.myclassname)、伪类选择器（li：last-child）、属性选择器</li>
+<li>标签选择器(div,h1,p)、伪元素选择器（li：after）</li>
+<li>子选择器(ul &lt; li)、相邻兄弟选择器、后代选择器(li a)、通配符选择器</li>
 </ol>
 <p><img src="https://i0.hdslb.com/bfs/article/8893357747d83ffb476629f3bd8e5bd25e202cdd.jpg@942w_423h_progressive.webp" alt="css选择器优先级"></p>
 <p>当两个规则都作用到了同一个html元素上时，如果定义的属性有冲突，那么应该用谁的值的，用到谁的值谁的优先级就高。<br>我们来看一下css选择器优先级的算法：</p>
@@ -456,6 +454,64 @@
 <li>通用选择器（*）、子选择器（&gt;）和相邻同胞选择器（+）并不在这四个等级中，所以它们的权值都为 0 ；</li>
 <li>样式表的来源不同时，优先级顺序为：内联样式 &gt; 内部样式 &gt; 外部样式 &gt; 浏览器用户自定义样式 &gt; 浏览器默认样式。</li>
 </ol>
+<h2 id="选择器详解"><a href="#选择器详解" class="headerlink" title="选择器详解"></a>选择器详解</h2><h3 id="伪类选择器"><a href="#伪类选择器" class="headerlink" title="伪类选择器"></a>伪类选择器</h3><ol>
+<li><p>动态伪类选择器</p>
+<ul>
+<li>:link		选择地址没有被访问过的超链接元素</li>
+<li>:visited	选择地址被访问过的超链接元素</li>
+<li>:hover		选择鼠标悬停在上面的元素。</li>
+<li>:active		选择鼠标在上面并且按键按下不松手的元素</li>
+<li>:focus		选择获取焦点的元素。</li>
+</ul>
+</li>
+<li><p>目标伪类选择器  </p>
+<ul>
+<li>:target		选择当前锚点指向的元素。</li>
+</ul>
+</li>
+<li><p>语言伪类选择</p>
+<ul>
+<li>lang()		根据语言选择元素（lang 属性的值）</li>
+</ul>
+</li>
+<li><p>UI元素伪类选择器</p>
+<ul>
+<li>:enabled	选择可以使用的表单控件（没有设置disabled 属性）</li>
+<li>:disabled	选择不可以使用的表单控件（设置了disabled属性）</li>
+<li>:checked	选择到被选中的单选按钮、复选框、下拉选项（option）</li>
+</ul>
+</li>
+<li><p>结构伪类选择器</p>
+<ul>
+<li>:root	选择到根元素</li>
+<li>:empty	选择到既不能有文本内容也没有后代元素的元素</li>
+<li>:first-child			所有兄弟元素中的第一个</li>
+<li>:last-child				所有兄弟元素中的最后一个</li>
+<li>:nth-child(n)			所有兄弟元素中的第n个，n是个数字</li>
+<li>:nth-last-child(n)		所有兄弟元素中的倒数第n个，n是个数字</li>
+<li>:only-child				没有兄弟元素的元素</li>
+<li>:first-of-type			所有兄弟元素中同类型的第一个</li>
+<li>:last-of-type			所有兄弟元素中同类型的最后一个</li>
+<li>:nth-of-type(n)			所有兄弟元素中同类型的第n个,n是个数字</li>
+<li>:nth-last-of-type(n)	所有兄弟元素中同类型的倒数第n个，n是数字</li>
+<li>:only-of-type			没有同类型兄弟元素</li>
+</ul>
+</li>
+<li><p>否定伪类选择器</p>
+<ul>
+<li>:not(选择器)			  排除满足小括号中选择器的元素</li>
+</ul>
+</li>
+</ol>
+<h3 id="伪元素选择器"><a href="#伪元素选择器" class="headerlink" title="伪元素选择器"></a>伪元素选择器</h3><ul>
+<li>::first-letter		选择元素中第一字母</li>
+<li>::first-line		选择元素中第一行</li>
+<li>::after				给元素动态创建最后一个子元素</li>
+<li>::before			给元素动态创建第一个子元素</li>
+<li>::placeholder		用于设置输入框或文本域中placeholder属性设置的文字的样式</li>
+<li>::selection			用于设置被鼠标选中的文字的样式</li>
+</ul>
+<h3 id="子选择器"><a href="#子选择器" class="headerlink" title="子选择器"></a>子选择器</h3><p>  div span得到的是div下所有的span元素，而div &gt;span (div &amp;gt span)则是取得的div下第一级的span元素，div a span 不会被改变，div span 则会被改变</p>
 <h2 id="transition和animation的区别"><a href="#transition和animation的区别" class="headerlink" title="transition和animation的区别:"></a>transition和animation的区别:</h2><ol>
 <li><p>Transition 强调过渡; Animation 强调流程与控制 。</p>
 </li>
@@ -1839,7 +1895,7 @@ overflow：hidden;<span aria-hidden="true" class="line-numbers-rows"><span></spa
                    type="playlist"
                    id="7618857959"
                    fixed='true'
-                   autoplay='true'
+                   autoplay='false'
                    theme='#42b983'
                    loop='all'
                    order='list'

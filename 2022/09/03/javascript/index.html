@@ -426,6 +426,12 @@
 <p>Symbol类型<br>Symbol 是一种在ES6 中新添加的数据类型，本质上是一种唯一标识符，可用作对象的唯一属性名，这样其他人就不会改写或覆盖你设置的属性值，同时具备隐藏性（for in不能访问）。</p>
 <h2 id="js常见函数"><a href="#js常见函数" class="headerlink" title="js常见函数"></a>js常见函数</h2><h3 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign"></a>Object.assign</h3><p>Object.assign(target, …sources)</p>
 <p><strong>Object.assign会将source里面的可枚举属性复制到target</strong>，如果和target的已有属性重名，则会覆盖。后续的source会覆盖前面的source的同名属性。Object.assign复制的是属性值，如果属性值是一个引用类型，那么复制的其实是引用地址，就会存在引用共享的问题。</p>
+<h3 id="call、apply、bind"><a href="#call、apply、bind" class="headerlink" title="call、apply、bind"></a>call、apply、bind</h3><ul>
+<li><p>相同<br>三者都可以改变函数的this对象指向。<br>三者第一个参数都是this要指向的对象，如果如果没有这个参数或参数为undefined或null，则默认指向全局window。</p>
+</li>
+<li><p>区别<br>三者都可以传参，但是apply是数组，即一个数组对象，而call是参数列表，可以有多个对象，且apply和call是一次性传入参数，而bind可以分为多次传入。<br>bind 改变this指向后不会立即执行，而是返回一个永久改变this指向的函数；而apply 、call 则是立即执行当前函数 。</p>
+</li>
+</ul>
 <h3 id="Object-defineProperty"><a href="#Object-defineProperty" class="headerlink" title="Object.defineProperty"></a>Object.defineProperty</h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> a<span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
 Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span><span class="token string">"b"</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span>
   value<span class="token operator">:</span><span class="token number">123</span>
@@ -1822,7 +1828,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
                    type="playlist"
                    id="7618857959"
                    fixed='true'
-                   autoplay='true'
+                   autoplay='false'
                    theme='#42b983'
                    loop='all'
                    order='list'
