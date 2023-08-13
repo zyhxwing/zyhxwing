@@ -116,6 +116,17 @@
     
   </li>
   
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/zyhxwing/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
   <li>
     <a href="#searchModal" class="modal-trigger waves-effect waves-light">
       <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
@@ -193,6 +204,17 @@
 			    <i class="fa-fw fas fa-user-circle"></i>
 			
 			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/zyhxwing/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
 		</a>
           
         </li>
@@ -396,10 +418,41 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="nrm"><a href="#nrm" class="headerlink" title="nrm"></a>nrm</h1><p>todo</p>
-<h1 id="nvm"><a href="#nvm" class="headerlink" title="nvm"></a>nvm</h1><p>todo</p>
-<h1 id="pnpm"><a href="#pnpm" class="headerlink" title="pnpm"></a>pnpm</h1><p>利用pnpm工具管理项目依赖，项目共享依赖包，pnpm将依赖存放在一个统一的位置，在版本不一致的情况下，仅保存版本之间不同的文件，节省硬盘空间，提高安装速度</p>
-<p>todo</p>
+                <h1 id="nrm"><a href="#nrm" class="headerlink" title="nrm"></a>nrm</h1><p>利用nrm工具管理npm源地址</p>
+<ul>
+<li>npm install -g nrm (安装nrm)</li>
+<li>nrm ls(查看源列表)</li>
+<li>nrm add <registry> <url> (添加源registry为源名称)</li>
+<li>nrm use <registry> (使用源)</li>
+<li>nrm del <registry> (删除源)</li>
+<li>nrm test <registry> (测试源速度)</li>
+</ul>
+<h1 id="nvm"><a href="#nvm" class="headerlink" title="nvm"></a>nvm</h1><p>利用nvm工具管理node版本.</p>
+<p>首先<a target="_blank" rel="noopener" href="https://github.com/coreybutler/nvm-windows/releases">下载</a>安装nvm，安装位置即之后各种版本的nodejs的安装位置</p>
+<ul>
+<li>nvm -v(查看nvm版本)</li>
+<li>nvm list available(查看可供下载的node)</li>
+<li>nvm install xxxx(在线安装node也可以去node官网下载离线安装包解压后放入nvm安装目录下)</li>
+<li>nvm uninstall xx.xx.x(卸载)</li>
+<li>nvm usexxxxx(使用某个版本的node)</li>
+<li>nvm ls(查看当前node版本列表)</li>
+</ul>
+<h1 id="pnpm"><a href="#pnpm" class="headerlink" title="pnpm"></a>pnpm</h1><p>利用pnpm工具管理项目依赖，<a target="_blank" rel="noopener" href="https://juejin.cn/post/7124142007659790372">参考网址</a>。项目共享依赖包，pnpm将依赖存放在一个统一的位置，在版本不一致的情况下，仅保存版本之间不同的文件，节省硬盘空间，提高安装速度，</p>
+<ul>
+<li>npm install -g pnpm (安装pnpm)</li>
+<li>pnpm -v(查看版本)</li>
+<li><ul>
+<li>pnpm init(初始化)</li>
+</ul>
+</li>
+<li>pnpm install(安装项目所有依赖)</li>
+<li>pnpm update(更新项目依赖)</li>
+<li>pnpm run xxx(运行自定义脚本)</li>
+</ul>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>pnpm使用符号链接Symbolic link<br>(软链接,相对路径，快捷方式) 来创建依赖项的嵌套结构，将项目的直接依赖符号链接到node_modules的根目录，直接依赖的实际位置在<code>.pnpm/&lt;name&gt;@&lt;version&gt;node_modules/&lt;name&gt;</code>，依赖包中的每个文件再硬链接 (Hard link，多个文件名指向同一索引节点，通过索引节点链接)到pnpm store。</p>
+<h2 id="pnpm-store"><a href="#pnpm-store" class="headerlink" title="pnpm store"></a>pnpm store</h2><p>pnpm store为pnpm资源在磁盘上的存储位置。在项目中执行pnpm<br>install的时候，依赖包存在于store中，直接创建依赖包硬链接到 store中，如果不存在，则从远程下载后存储在store中，并从项目的node_modules依赖包中创建硬链接到store中。</p>
+<h2 id="workspace"><a href="#workspace" class="headerlink" title="workspace"></a>workspace</h2><p>pnpm 支持 workspace 协议 (写法:workspace:&lt;版本号&gt;)。当使用此协议时，pnpm 将拒绝解析除本地workspace 包含的 package 之外的任何内容。因此，如果设置为”foo””workspace:2.0.0”时，安装将会失败，因为”<a href="mailto:&#102;&#111;&#x6f;&#64;&#50;&#46;&#48;&#46;&#48;">&#102;&#111;&#x6f;&#64;&#50;&#46;&#48;&#46;&#48;</a>“不存在于此workspace 中。</p>
+<h2 id="支持-monorepo"><a href="#支持-monorepo" class="headerlink" title="支持 monorepo"></a>支持 monorepo</h2><p>对于多个项目的管理，过往都是使用多个 git 仓库进行管理，但 monorepo的宗旨就是用一个git 仓库来管理多个子项目，所有的子项目都存放在根目录的packages目录下，那么一个子项目就代表一个package，类似微服务。</p>
 <h1 id="npm发包流程"><a href="#npm发包流程" class="headerlink" title="npm发包流程"></a>npm发包流程</h1><h2 id="切换npm镜像"><a href="#切换npm镜像" class="headerlink" title="切换npm镜像"></a>切换npm镜像</h2><ul>
 <li>npm config set registry + 地址</li>
 </ul>
@@ -423,11 +476,11 @@
 <li>npm version patch</li>
 </ul>
 <h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><ul>
-<li>npm unpublish <a href="mailto:&#x78;&#x78;&#x78;&#x40;&#x31;&#46;&#x30;&#46;&#48;">&#x78;&#x78;&#x78;&#x40;&#x31;&#46;&#x30;&#46;&#48;</a> –force(强制)</li>
-<li>npm unpublish <a href="mailto:&#120;&#x78;&#x78;&#64;&#49;&#46;&#48;&#46;&#48;">&#120;&#x78;&#x78;&#64;&#49;&#46;&#48;&#46;&#48;</a> (非强制)</li>
+<li>npm unpublish <a href="mailto:&#120;&#120;&#120;&#64;&#49;&#x2e;&#48;&#x2e;&#48;">&#120;&#120;&#120;&#64;&#49;&#x2e;&#48;&#x2e;&#48;</a> –force(强制)</li>
+<li>npm unpublish <a href="mailto:&#120;&#x78;&#x78;&#x40;&#x31;&#x2e;&#x30;&#46;&#48;">&#120;&#x78;&#x78;&#x40;&#x31;&#x2e;&#x30;&#46;&#48;</a> (非强制)</li>
 </ul>
 <h2 id="弃用"><a href="#弃用" class="headerlink" title="弃用"></a>弃用</h2><ul>
-<li>npm deprecate <a href="mailto:&#120;&#120;&#x78;&#64;&#49;&#x2e;&#x30;&#46;&#x30;">&#120;&#120;&#x78;&#64;&#49;&#x2e;&#x30;&#46;&#x30;</a> 弃用信息XXXX</li>
+<li>npm deprecate <a href="mailto:&#x78;&#x78;&#x78;&#x40;&#49;&#x2e;&#48;&#46;&#x30;">&#x78;&#x78;&#x78;&#x40;&#49;&#x2e;&#48;&#46;&#x30;</a> 弃用信息XXXX</li>
 </ul>
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在使用到该包的项目中卸载依赖，如果采用 vite构建项目，需要删除 vite目录下的deps文件夹，再进行安装依赖</p>
 <ul>
@@ -653,6 +706,269 @@
     
 
     
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/zyhxwing/medias/comment_bg3.jpeg") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/zyhxwing/libs/valine/av-min.js"></script>
+<script src="/zyhxwing/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'Q1VUxPSzDAvKh0EG05SvQzam-gzGzoHsz',
+        appKey: 'WYiISZ2HUpualzvBubUNMbNo',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '不喜欢可以骂，没必要离开'
+    });
+</script>
 
     
 
