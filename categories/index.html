@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="分类, xwing">
-    <meta name="description" content="xwing的个人网站">
+    <meta name="description" content="xwing">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -133,7 +133,7 @@
         <div class="logo-name">xwing</div>
         <div class="logo-desc">
             
-            xwing的个人网站
+            xwing
             
         </div>
     </div>
@@ -216,7 +216,7 @@
         <div class="brand">
             <div class="title center-align">
                 
-                xwing的个人网站
+                xwing
                 
             </div>
 
@@ -242,7 +242,9 @@
 
 
 <script>
-    $('.bg-cover').css('background-image', 'url(/zyhxwing/medias/banner/0.jpg)');
+    // 每天切换 banner 图.  Switch banner image every day.
+    var bannerUrl = "/zyhxwing/medias/banner/" + new Date().getDay() + '.jpg';
+    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
 </script>
 
 

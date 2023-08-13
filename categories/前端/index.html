@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="分类: 前端, xwing">
-    <meta name="description" content="xwing的个人网站">
+    <meta name="description" content="xwing">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -133,7 +133,7 @@
         <div class="logo-name">xwing</div>
         <div class="logo-desc">
             
-            xwing的个人网站
+            xwing
             
         </div>
     </div>
@@ -216,7 +216,7 @@
         <div class="brand">
             <div class="title center-align">
                 
-                xwing的个人网站
+                xwing
                 
             </div>
 
@@ -242,7 +242,9 @@
 
 
 <script>
-    $('.bg-cover').css('background-image', 'url(/zyhxwing/medias/banner/0.jpg)');
+    // 每天切换 banner 图.  Switch banner image every day.
+    var bannerUrl = "/zyhxwing/medias/banner/" + new Date().getDay() + '.jpg';
+    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
 </script>
 
 
@@ -312,11 +314,60 @@
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/zyhxwing/2023/08/13/typescript/">
+                        <div class="card-image tag-image">
+                            
+                            <img src="/zyhxwing/images/img/bc6a9d956275b865d1866967a298cf9a.jpeg" class="responsive-img" alt="TypeScript">
+                            
+                            <span class="card-title">TypeScript</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                TypeScript详解
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-13
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/zyhxwing/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
+                                    前端
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/zyhxwing/tags/JavaScript/">
+                            <span class="chip bg-color">JavaScript</span>
+                        </a>
+                        
+                        <a href="/zyhxwing/tags/TypeScript/">
+                            <span class="chip bg-color">TypeScript</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/zyhxwing/2023/08/11/display/">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/zyhxwing/medias/featureimages/0.jpg" class="responsive-img" alt="display">
+                            <img src="/zyhxwing/medias/featureimages/2.jpg" class="responsive-img" alt="display">
                             
                             <span class="card-title">display</span>
                         </div>
@@ -362,57 +413,10 @@
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/zyhxwing/2023/08/11/ts/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/zyhxwing/medias/featureimages/0.jpg" class="responsive-img" alt="npm">
-                            
-                            <span class="card-title">npm</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                npm相关，包括nrm、nvm、pnpm等常见npm工具
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-11
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/zyhxwing/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
-                                    前端
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/zyhxwing/tags/npm/">
-                            <span class="chip bg-color">npm</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
                     <a href="/zyhxwing/2023/08/11/qian-duan-chang-jian-gong-ju-yu-xiang-mu/">
                         <div class="card-image tag-image">
                             
-                            
-                            <img src="/zyhxwing/medias/featureimages/0.jpg" class="responsive-img" alt="前端常见工具">
+                            <img src="/zyhxwing/images/img/vim-vi-workmodel.png" class="responsive-img" alt="前端常见工具">
                             
                             <span class="card-title">前端常见工具</span>
                         </div>
@@ -457,8 +461,7 @@
                     <a href="/zyhxwing/2023/08/10/npm/">
                         <div class="card-image tag-image">
                             
-                            
-                            <img src="/zyhxwing/medias/featureimages/0.jpg" class="responsive-img" alt="npm">
+                            <img src="/zyhxwing/images/img/3ef1926a6130582599513b9cfcca2bac.png" class="responsive-img" alt="npm">
                             
                             <span class="card-title">npm</span>
                         </div>
@@ -503,8 +506,7 @@
                     <a href="/zyhxwing/2022/09/25/react/">
                         <div class="card-image tag-image">
                             
-                            
-                            <img src="/zyhxwing/medias/featureimages/0.jpg" class="responsive-img" alt="react">
+                            <img src="/zyhxwing/images/img/04dd822b72c5ccb8eb436de4693b2c28.jpeg" class="responsive-img" alt="react">
                             
                             <span class="card-title">react</span>
                         </div>
@@ -554,7 +556,7 @@
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/zyhxwing/medias/featureimages/0.jpg" class="responsive-img" alt="手写代码">
+                            <img src="/zyhxwing/medias/featureimages/7.jpg" class="responsive-img" alt="手写代码">
                             
                             <span class="card-title">手写代码</span>
                         </div>
@@ -599,8 +601,7 @@
                     <a href="/zyhxwing/2022/09/05/vite/">
                         <div class="card-image tag-image">
                             
-                            
-                            <img src="/zyhxwing/medias/featureimages/0.jpg" class="responsive-img" alt="vite">
+                            <img src="/zyhxwing/images/img/b01bcd3b9c2cf76787535c8531e8ccf5.jpeg" class="responsive-img" alt="vite">
                             
                             <span class="card-title">vite</span>
                         </div>
@@ -649,8 +650,7 @@
                     <a href="/zyhxwing/2022/09/05/webpack/">
                         <div class="card-image tag-image">
                             
-                            
-                            <img src="/zyhxwing/medias/featureimages/0.jpg" class="responsive-img" alt="webpack">
+                            <img src="/zyhxwing/images/img/260aa86c1a66b2f323e775209dc242f3.png" class="responsive-img" alt="webpack">
                             
                             <span class="card-title">webpack</span>
                         </div>
@@ -699,8 +699,7 @@
                     <a href="/zyhxwing/2022/09/05/css/">
                         <div class="card-image tag-image">
                             
-                            
-                            <img src="/zyhxwing/medias/featureimages/0.jpg" class="responsive-img" alt="css">
+                            <img src="/zyhxwing/images/img/a15a5f973d3ce330ca62eb0f6cb4739c.jpeg" class="responsive-img" alt="css">
                             
                             <span class="card-title">css</span>
                         </div>
@@ -745,8 +744,7 @@
                     <a href="/zyhxwing/2022/09/05/html/">
                         <div class="card-image tag-image">
                             
-                            
-                            <img src="/zyhxwing/medias/featureimages/0.jpg" class="responsive-img" alt="html">
+                            <img src="/zyhxwing/images/img/abbe5a1a18010a1a305a55d108010659.jpeg" class="responsive-img" alt="html">
                             
                             <span class="card-title">html</span>
                         </div>
@@ -791,8 +789,7 @@
                     <a href="/zyhxwing/2022/09/04/vue/">
                         <div class="card-image tag-image">
                             
-                            
-                            <img src="/zyhxwing/medias/featureimages/0.jpg" class="responsive-img" alt="Vue">
+                            <img src="/zyhxwing/images/img/7a739c9113007c0f499c08b10fb0e78b.jpeg" class="responsive-img" alt="Vue">
                             
                             <span class="card-title">Vue</span>
                         </div>

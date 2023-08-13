@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="标签: git, xwing">
-    <meta name="description" content="xwing的个人网站">
+    <meta name="description" content="xwing">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -133,7 +133,7 @@
         <div class="logo-name">xwing</div>
         <div class="logo-desc">
             
-            xwing的个人网站
+            xwing
             
         </div>
     </div>
@@ -216,7 +216,7 @@
         <div class="brand">
             <div class="title center-align">
                 
-                xwing的个人网站
+                xwing
                 
             </div>
 
@@ -242,7 +242,9 @@
 
 
 <script>
-    $('.bg-cover').css('background-image', 'url(/zyhxwing/medias/banner/0.jpg)');
+    // 每天切换 banner 图.  Switch banner image every day.
+    var bannerUrl = "/zyhxwing/medias/banner/" + new Date().getDay() + '.jpg';
+    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
 </script>
 
 
@@ -289,11 +291,11 @@
                 </a>
                 
                 
-                <a href="/zyhxwing/tags/JavaScript/" title="JavaScript: 5">
+                <a href="/zyhxwing/tags/JavaScript/" title="JavaScript: 6">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
                             data-tagname="JavaScript" style="background-color: #E8F8F5;">JavaScript
-                        <span class="tag-length">5</span>
+                        <span class="tag-length">6</span>
                     </span>
                 </a>
                 
@@ -316,20 +318,29 @@
                 </a>
                 
                 
-                <a href="/zyhxwing/tags/react/" title="react: 1">
+                <a href="/zyhxwing/tags/npm/" title="npm: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="react" style="background-color: #82E0AA;">react
+                            data-tagname="npm" style="background-color: #82E0AA;">npm
                         <span class="tag-length">1</span>
                     </span>
                 </a>
                 
                 
-                <a href="/zyhxwing/tags/npm/" title="npm: 2">
+                <a href="/zyhxwing/tags/TypeScript/" title="TypeScript: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="npm" style="background-color: #D7BDE2;">npm
-                        <span class="tag-length">2</span>
+                            data-tagname="TypeScript" style="background-color: #D7BDE2;">TypeScript
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/zyhxwing/tags/react/" title="react: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="react" style="background-color: #A3E4D7;">react
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
@@ -337,7 +348,7 @@
                 <a href="/zyhxwing/tags/vite/" title="vite: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="vite" style="background-color: #A3E4D7;">vite
+                            data-tagname="vite" style="background-color: #85C1E9;">vite
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -346,7 +357,7 @@
                 <a href="/zyhxwing/tags/%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7/" title="打包工具: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="打包工具" style="background-color: #85C1E9;">打包工具
+                            data-tagname="打包工具" style="background-color: #F8C471;">打包工具
                         <span class="tag-length">2</span>
                     </span>
                 </a>
@@ -355,7 +366,7 @@
                 <a href="/zyhxwing/tags/%E5%B7%A5%E5%85%B7/" title="工具: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="工具" style="background-color: #F8C471;">工具
+                            data-tagname="工具" style="background-color: #F9E79F;">工具
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -364,7 +375,7 @@
                 <a href="/zyhxwing/tags/Vue/" title="Vue: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="Vue" style="background-color: #F9E79F;">Vue
+                            data-tagname="Vue" style="background-color: #D5F5E3;">Vue
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -439,8 +450,7 @@
                     <a href="/zyhxwing/2022/09/22/git/">
                         <div class="card-image tag-image">
                             
-                            
-                            <img src="/zyhxwing/medias/featureimages/0.jpg" class="responsive-img" alt="git">
+                            <img src="/zyhxwing/images/img/338d764e1a88a5a9a9a40c4610669272.jpeg" class="responsive-img" alt="git">
                             
                             <span class="card-title">git</span>
                         </div>
